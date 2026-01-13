@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Clavis-security</title>
+  <meta name="description" content="Contacter Clavis-security. Support, questions, demande pro." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+      <nav class="navlinks">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="navcta">
+        <a class="btn small ghost" href="login.html">Connexion</a>
+        <a class="btn small primary" href="register.html">Créer mon coffre</a>
+        <button class="btn small mobile-toggle" data-mobile-toggle>Menu</button>
+      </div>
+    </div>
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Connexion</a>
+      <a href="register.html">Créer mon coffre</a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+    <div class="page-hero">
+      <span class="badge">✉️ Réponse rapide</span>
+      <h1>Contact</h1>
+      <p>Une question, une demande pro, un bug ? Écris-nous ici. (On branchera l’envoi Brevo à l’étape Brevo.)</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Formulaire</h3>
+        <form class="form" onsubmit="event.preventDefault(); alert('Formulaire prêt. Envoi Brevo à l’étape 10.');">
+          <div class="field">
+            <label for="name">Nom</label>
+            <input id="name" name="name" placeholder="Ton nom" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="ton@email.com" required />
+          </div>
+          <div class="field">
+            <label for="msg">Message</label>
+            <textarea id="msg" name="msg" placeholder="Explique ton besoin…" required></textarea>
+          </div>
+          <button class="btn primary" type="submit">Envoyer</button>
+          <div class="hero-note">⚠️ Pour l’instant, ça affiche juste un message. On branche Brevo ensuite.</div>
+        </form>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Support</h3>
+        <p style="margin:0;color:var(--muted);">
+          Quand Brevo sera branché, tu recevras :
+          <br/>• un accusé de réception
+          <br/>• une réponse support
+          <br/>• (optionnel) un suivi de ticket
+        </p>
+        <div class="hr"></div>
+        <p style="margin:0;color:var(--muted);">
+          🔒 Rappel : ne colle jamais tes mots de passe en clair dans un message de support.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="index.html">Accueil</a>
+        <a href="faq.html">FAQ</a>
+        <a href="offers.html">Offres</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>

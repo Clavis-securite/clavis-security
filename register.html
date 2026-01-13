@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Créer un compte — Clavis-security</title>
+  <meta name="description" content="Créer un compte Clavis-security" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="navcta">
+        <a class="btn small ghost" href="login.html">Connexion</a>
+        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Connexion</a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+    <div class="page-hero">
+      <span class="badge">🧠 Un mot de passe pour tous les retenir</span>
+      <h1>Créer ton coffre</h1>
+      <p>Ton mot de passe est la clé. Il sert à sécuriser ton compte et à déverrouiller le coffre (zéro-knowledge).</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Inscription</h3>
+
+        <form class="form" id="registerForm">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="ton@email.com" required />
+          </div>
+
+          <div class="field">
+            <label for="password">Mot de passe (clé du coffre)</label>
+            <input id="password" name="password" type="password" placeholder="12+ caractères recommandé" required />
+          </div>
+
+          <div class="field">
+            <label for="password2">Confirmer le mot de passe</label>
+            <input id="password2" name="password2" type="password" placeholder="Retape le même mot de passe" required />
+          </div>
+
+          <button class="btn primary" type="submit">Créer mon compte</button>
+
+          <div class="hero-note">
+            Supabase + email Brevo seront branchés ensuite. Là on valide d’abord l’interface.
+          </div>
+        </form>
+
+        <div class="hr"></div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <span style="color:var(--muted); font-size:14px;">Déjà un compte ?</span>
+          <a class="btn" href="login.html">Me connecter</a>
+        </div>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Important (à lire)</h3>
+        <p style="margin:0;color:var(--muted);">
+          Comme Clavis-security vise le “zéro-knowledge” :<br>
+          • tes mots de passe sont chiffrés côté navigateur<br>
+          • sans ton mot de passe, on ne peut pas déchiffrer tes secrets<br>
+          • si tu le perds, on ne pourra pas “récupérer” l’ancien coffre
+        </p>
+        <div class="hr"></div>
+        <p style="margin:0;color:var(--muted);">
+          ✅ Recommandation : une phrase longue + chiffres + symbole.
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="index.html">Accueil</a>
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const p1 = document.getElementById('password').value;
+    const p2 = document.getElementById('password2').value;
+
+    if (p1.length < 12) {
+      alert("⚠️ Mets au moins 12 caractères (recommandé).");
+      return;
+    }
+    if (p1 !== p2) {
+      alert("❌ Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    try {
+      const data = await signUp(email, p1);
+
+      // Selon ta config Supabase, tu peux avoir confirmation email.
+      // Si confirmation activée : l'utilisateur doit cliquer le lien reçu.
+      if (data?.user && !data?.session) {
+        alert("✅ Compte créé ! Vérifie ta boîte mail pour confirmer ton adresse.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      alert("✅ Compte créé et connecté !");
+      window.location.href = "dashboard.html";
+    } catch (err) {
+      alert("❌ Inscription impossible : " + (err?.message || err));
+    }
+  });
+</script>
+
+</body>
+</html>

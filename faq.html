@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FAQ — Clavis-security</title>
+  <meta name="description" content="FAQ Clavis-security : chiffrement, zéro-knowledge, déverrouillage du coffre, offres." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+      <nav class="navlinks">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="navcta">
+        <a class="btn small ghost" href="login.html">Connexion</a>
+        <a class="btn small primary" href="register.html">Créer mon coffre</a>
+        <button class="btn small mobile-toggle" data-mobile-toggle>Menu</button>
+      </div>
+    </div>
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Connexion</a>
+      <a href="register.html">Créer mon coffre</a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+    <div class="page-hero">
+      <span class="badge">📌 Réponses claires, sans blabla</span>
+      <h1>FAQ</h1>
+      <p>Les questions les plus fréquentes sur Clavis-security.</p>
+    </div>
+
+    <div class="faq">
+      <details open>
+        <summary>Est-ce que Clavis-security peut voir mes mots de passe ?</summary>
+        <p>
+          Non. L’objectif est “zéro-knowledge” : tes secrets sont chiffrés côté navigateur avant d’être stockés.
+          Sans ton mot de passe, ils restent illisibles.
+        </p>
+      </details>
+
+      <details>
+        <summary>Pourquoi dois-je retaper mon mot de passe pour voir un secret ?</summary>
+        <p>
+          Parce que c’est ce qui déverrouille le coffre : on dérive une clé depuis ton mot de passe (KDF),
+          puis on déchiffre uniquement dans ton navigateur.
+        </p>
+      </details>
+
+      <details>
+        <summary>Et si j’oublie mon mot de passe ?</summary>
+        <p>
+          Comme on vise le zéro-knowledge, on ne peut pas “récupérer” tes secrets sans ce mot de passe.
+          Tu pourras réinitialiser ton compte, mais pas déchiffrer les anciens secrets.
+        </p>
+      </details>
+
+      <details>
+        <summary>Quels sont les plans ?</summary>
+        <p>
+          Gratuit : 15 mots de passe. Abonnement : 30€/an. À vie : 99€ (paiement unique).
+        </p>
+      </details>
+
+      <details>
+        <summary>Où sont stockées mes données ?</summary>
+        <p>
+          Les comptes et les données chiffrées sont stockés dans une base Supabase. Le site est hébergé sur Netlify.
+        </p>
+      </details>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="card pad">
+      <div class="grid2">
+        <div>
+          <h3 style="margin:0 0 6px;">Tu veux te lancer ?</h3>
+          <p style="margin:0;color:var(--muted);">Crée ton coffre et commence à enregistrer tes premiers accès.</p>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap;">
+          <a class="btn" href="offers.html">Voir les offres</a>
+          <a class="btn primary" href="register.html">Créer mon coffre</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="index.html">Accueil</a>
+        <a href="offers.html">Offres</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>

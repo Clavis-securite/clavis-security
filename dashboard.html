@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Clavis-security</title>
+  <meta name="description" content="Coffre Clavis-security" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="navcta">
+        <span class="badge" id="userBadge">👤 …</span>
+        <button class="btn small" id="logoutBtn">Déconnexion</button>
+        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <button class="btn" id="logoutBtnMobile" style="margin-top:12px;">Déconnexion</button>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+    <div class="page-hero">
+      <span class="badge">🔒 Coffre chiffré côté navigateur</span>
+      <h1>Dashboard</h1>
+      <p id="planLine">Chargement…</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Déverrouiller le coffre</h3>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <span class="pill lock" id="vaultState">LOCKED</span>
+          <button class="btn primary" id="unlockBtn">Déverrouiller</button>
+          <button class="btn" id="lockBtn" disabled>Verrouiller</button>
+        </div>
+        <div class="hero-note" id="vaultNote">
+          Pour afficher/copier les secrets, tu dois retaper ton mot de passe.
+        </div>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Recherche</h3>
+        <div class="field">
+          <label for="search">Rechercher</label>
+          <input id="search" placeholder="ex: banque, gmail, netflix…" />
+        </div>
+        <div class="hero-note">Le titre est en clair pour permettre la recherche. Le reste est chiffré.</div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Ajouter un mot de passe</h3>
+
+        <form class="form" id="addForm">
+          <div class="field">
+            <label for="title">Titre (ex: Gmail)</label>
+            <input id="title" required />
+          </div>
+
+          <div class="field">
+            <label for="username">Identifiant / email</label>
+            <input id="username" required />
+          </div>
+
+          <div class="field">
+            <label for="secretPassword">Mot de passe</label>
+            <input id="secretPassword" required />
+          </div>
+
+          <div class="field">
+            <label for="url">URL (optionnel)</label>
+            <input id="url" placeholder="https://..." />
+          </div>
+
+          <div class="field">
+            <label for="notes">Notes (optionnel)</label>
+            <textarea id="notes" placeholder="Ex: 2FA activé, remarque…"></textarea>
+          </div>
+
+          <button class="btn primary" type="submit">Enregistrer (chiffré)</button>
+          <div class="hero-note" id="limitNote"></div>
+        </form>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Mes entrées</h3>
+        <div class="hero-note" id="itemsInfo">Chargement…</div>
+        <div id="itemsList" style="display:grid; gap:10px; margin-top:12px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Unlock -->
+  <div id="unlockModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter: blur(6px); z-index:999;">
+    <div class="container" style="height:100%; display:grid; place-items:center;">
+      <div class="card pad" style="width:min(520px, 92vw);">
+        <h3 style="margin:0 0 8px;">Déverrouiller le coffre</h3>
+        <p style="margin:0 0 14px; color:var(--muted);">
+          Retape ton mot de passe. Il sert à dériver la clé de déchiffrement (zéro-knowledge).
+        </p>
+
+        <form class="form" id="unlockForm">
+          <div class="field">
+            <label for="unlockPassword">Mot de passe</label>
+            <input id="unlockPassword" type="password" placeholder="••••••••••" required />
+          </div>
+
+          <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+            <button class="btn" type="button" id="unlockCancel">Annuler</button>
+            <button class="btn primary" type="submit">Déverrouiller</button>
+          </div>
+
+          <div class="hero-note" id="unlockError" style="color: rgba(239,68,68,.95); display:none;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/crypto.js"></script>
+
+<script>
+  // ==========================
+  // State
+  // ==========================
+  let session = null;
+  let profile = null;
+  let items = [];
+
+  let unlocked = false;
+  let vaultKey = null;
+  let vaultSaltB64 = null;
+
+  let autoLockTimer = null;
+  const AUTO_LOCK_MS = 10 * 60 * 1000; // 10 min
+
+  // ==========================
+  // Utils
+  // ==========================
+  function toast(msg){ alert(msg); }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, s => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[s]));
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast("✅ Copié !");
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      toast("✅ Copié !");
+    }
+  }
+
+  function startAutoLockTimer() {
+    if (autoLockTimer) clearTimeout(autoLockTimer);
+    autoLockTimer = setTimeout(() => lockVault(true), AUTO_LOCK_MS);
+  }
+
+  function setVaultUI() {
+    const pill = document.getElementById('vaultState');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const lockBtn = document.getElementById('lockBtn');
+    const note = document.getElementById('vaultNote');
+
+    if (unlocked) {
+      pill.textContent = "UNLOCKED";
+      pill.classList.remove("lock");
+      pill.classList.add("ok");
+      unlockBtn.disabled = true;
+      lockBtn.disabled = false;
+      note.textContent = "Coffre déverrouillé. Tu peux afficher/copier/ajouter. Auto-lock: 10 min.";
+    } else {
+      pill.textContent = "LOCKED";
+      pill.classList.add("lock");
+      pill.classList.remove("ok");
+      unlockBtn.disabled = false;
+      lockBtn.disabled = true;
+      note.textContent = "Coffre verrouillé. Déverrouille pour afficher/copier/ajouter.";
+    }
+  }
+
+  // ==========================
+  // Supabase Data
+  // ==========================
+  async function loadProfile() {
+    const { data, error } = await supabaseClient
+      .from("profiles")
+      .select("*")
+      .eq("id", session.user.id)
+      .single();
+
+    if (error) throw error;
+    profile = data;
+
+    document.getElementById("planLine").textContent =
+      `Plan: ${profile.plan.toUpperCase()} — Gratuit: 15 mots de passe • Premium: illimité`;
+  }
+
+  async function ensureVaultSalt() {
+    if (profile.vault_salt) {
+      vaultSaltB64 = profile.vault_salt;
+      return vaultSaltB64;
+    }
+
+    const newSalt = CryptoV1.newSaltB64();
+    const { error } = await supabaseClient
+      .from("profiles")
+      .update({ vault_salt: newSalt })
+      .eq("id", session.user.id);
+
+    if (error) throw error;
+
+    profile.vault_salt = newSalt;
+    vaultSaltB64 = newSalt;
+    return newSalt;
+  }
+
+  async function loadItems() {
+    const { data, error } = await supabaseClient
+      .from("vault_items")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    items = data || [];
+    document.getElementById("itemsInfo").textContent = `${items.length} entrée(s) enregistrée(s).`;
+    renderItems();
+  }
+
+  // ==========================
+  // Vault unlock modal
+  // ==========================
+  function openUnlockModal() {
+    document.getElementById("unlockError").style.display = "none";
+    document.getElementById("unlockError").textContent = "";
+    document.getElementById("unlockPassword").value = "";
+    document.getElementById("unlockModal").style.display = "block";
+    setTimeout(() => document.getElementById("unlockPassword").focus(), 50);
+  }
+
+  function closeUnlockModal() {
+    document.getElementById("unlockModal").style.display = "none";
+  }
+
+  async function unlockWithPassword(pwd) {
+    await ensureVaultSalt();
+    vaultKey = await CryptoV1.deriveKeyFromPassword(pwd, vaultSaltB64);
+    unlocked = true;
+    setVaultUI();
+    renderItems();
+    startAutoLockTimer();
+  }
+
+  function lockVault(isAuto = false) {
+    unlocked = false;
+    vaultKey = null;
+    if (autoLockTimer) clearTimeout(autoLockTimer);
+    autoLockTimer = null;
+    setVaultUI();
+    renderItems();
+    toast(isAuto ? "🔒 Coffre reverrouillé automatiquement." : "🔒 Coffre verrouillé.");
+  }
+
+  // ==========================
+  // Render list
+  // ==========================
+  function renderItems() {
+    const q = (document.getElementById("search").value || "").toLowerCase();
+    const list = document.getElementById("itemsList");
+    list.innerHTML = "";
+
+    const filtered = items.filter(it => (it.title || "").toLowerCase().includes(q));
+
+    if (filtered.length === 0) {
+      list.innerHTML = `<div style="color:var(--muted);">Aucun résultat.</div>`;
+      return;
+    }
+
+    filtered.forEach(it => {
+      const row = document.createElement("div");
+      row.style.borderRadius = "16px";
+      row.style.padding = "10px 12px";
+      row.style.background = "rgba(255,255,255,.05)";
+      row.style.border = "1px solid rgba(255,255,255,.12)";
+      row.style.display = "flex";
+      row.style.justifyContent = "space-between";
+      row.style.alignItems = "center";
+      row.style.gap = "12px";
+
+      row.innerHTML = `
+        <div>
+          <strong>${escapeHtml(it.title)}</strong><br />
+          <span style="color: rgba(255,255,255,.65); font-size: 13px;">
+            ${unlocked ? "déverrouillé" : "••••••"}
+          </span>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+          <button class="btn small" data-action="view">Voir</button>
+          <button class="btn small" data-action="copy-user">Copier ID</button>
+          <button class="btn small" data-action="copy-pass">Copier MDP</button>
+          <button class="btn small" data-action="delete">Suppr.</button>
+        </div>
+      `;
+
+      // View
+      row.querySelector('[data-action="view"]').addEventListener('click', async () => {
+        if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre pour afficher.");
+
+        try {
+          const uiv = it.username_iv || it.crypto_iv;
+          const piv = it.password_iv || it.crypto_iv;
+          const urliv = it.url_iv || it.crypto_iv;
+          const niv = it.notes_iv || it.crypto_iv;
+
+          const username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
+          const pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
+          const url = it.url_encrypted ? await CryptoV1.decryptText(it.url_encrypted, urliv, vaultKey) : "";
+          const notes = it.notes_encrypted ? await CryptoV1.decryptText(it.notes_encrypted, niv, vaultKey) : "";
+
+          startAutoLockTimer();
+          toast(`🔐 ${it.title}\n\nIdentifiant: ${username}\nMot de passe: ${pwd}\nURL: ${url}\nNotes: ${notes}`);
+        } catch (e) {
+          toast("❌ Déchiffrement impossible (mauvais mot de passe ?).");
+        }
+      });
+
+      // Copy username
+      row.querySelector('[data-action="copy-user"]').addEventListener('click', async () => {
+        if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre.");
+
+        try {
+          const uiv = it.username_iv || it.crypto_iv;
+          const username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
+          await copyToClipboard(username);
+          startAutoLockTimer();
+        } catch {
+          toast("❌ Impossible de copier.");
+        }
+      });
+
+      // Copy password
+      row.querySelector('[data-action="copy-pass"]').addEventListener('click', async () => {
+        if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre.");
+
+        try {
+          const piv = it.password_iv || it.crypto_iv;
+          const pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
+          await copyToClipboard(pwd);
+          startAutoLockTimer();
+        } catch {
+          toast("❌ Impossible de copier.");
+        }
+      });
+
+      // Delete
+      row.querySelector('[data-action="delete"]').addEventListener('click', async () => {
+        if (!confirm(`Supprimer "${it.title}" ?`)) return;
+        const { error } = await supabaseClient.from("vault_items").delete().eq("id", it.id);
+        if (error) return toast("❌ Suppression impossible : " + error.message);
+
+        items = items.filter(x => x.id !== it.id);
+        document.getElementById("itemsInfo").textContent = `${items.length} entrée(s) enregistrée(s).`;
+        renderItems();
+      });
+
+      list.appendChild(row);
+    });
+  }
+
+  // ==========================
+  // Add item (crypto v2)
+  // ==========================
+  async function addItem(e) {
+    e.preventDefault();
+
+    if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre avant d’ajouter.");
+
+    const isFree = (profile.plan === "free");
+    if (isFree && items.length >= 15) {
+      document.getElementById("limitNote").textContent = "⚠️ Limite atteinte (15). Passe premium dans Offres.";
+      return toast("⚠️ Limite free atteinte (15).");
+    } else {
+      document.getElementById("limitNote").textContent = "";
+    }
+
+    const title = document.getElementById("title").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("secretPassword").value;
+    const url = document.getElementById("url").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+
+    try {
+      await ensureVaultSalt();
+
+      const usernameIv = CryptoV1.newIvB64();
+      const passwordIv = CryptoV1.newIvB64();
+      const urlIv = CryptoV1.newIvB64();
+      const notesIv = CryptoV1.newIvB64();
+
+      const usernameEnc = await CryptoV1.encryptText(username, vaultKey, usernameIv);
+      const passwordEnc = await CryptoV1.encryptText(password, vaultKey, passwordIv);
+      const urlEnc = url ? await CryptoV1.encryptText(url, vaultKey, urlIv) : null;
+      const notesEnc = notes ? await CryptoV1.encryptText(notes, vaultKey, notesIv) : null;
+
+      const payload = {
+        user_id: session.user.id,
+        title,
+
+        username_encrypted: usernameEnc,
+        password_encrypted: passwordEnc,
+        url_encrypted: urlEnc,
+        notes_encrypted: notesEnc,
+
+        username_iv: usernameIv,
+        password_iv: passwordIv,
+        url_iv: url ? urlIv : null,
+        notes_iv: notes ? notesIv : null,
+
+        crypto_salt: vaultSaltB64,
+        crypto_version: 2
+      };
+
+      const { data, error } = await supabaseClient
+        .from("vault_items")
+        .insert(payload)
+        .select("*")
+        .single();
+
+      if (error) throw error;
+
+      document.getElementById("addForm").reset();
+      items.unshift(data);
+      document.getElementById("itemsInfo").textContent = `${items.length} entrée(s) enregistrée(s).`;
+      renderItems();
+
+      startAutoLockTimer();
+      toast("✅ Ajouté (chiffré).");
+    } catch (err) {
+      toast("❌ Ajout impossible : " + (err?.message || err));
+    }
+  }
+
+  // ==========================
+  // Init
+  // ==========================
+  async function init() {
+    session = await requireAuth();
+
+    const badge = document.getElementById("userBadge");
+    if (badge) badge.textContent = "👤 " + (session.user.email || "Utilisateur");
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await signOut();
+      window.location.href = "login.html";
+    });
+    const logoutMobile = document.getElementById("logoutBtnMobile");
+    if (logoutMobile) logoutMobile.addEventListener("click", async () => {
+      await signOut();
+      window.location.href = "login.html";
+    });
+
+    await loadProfile();
+    await loadItems();
+
+    document.getElementById("search").addEventListener("input", renderItems);
+
+    document.getElementById("unlockBtn").addEventListener("click", openUnlockModal);
+    document.getElementById("lockBtn").addEventListener("click", () => lockVault(false));
+
+    document.getElementById("unlockCancel").addEventListener("click", closeUnlockModal);
+    document.getElementById("unlockForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const pwd = document.getElementById("unlockPassword").value;
+
+      try {
+        await unlockWithPassword(pwd);
+        closeUnlockModal();
+        toast("✅ Coffre déverrouillé.");
+      } catch {
+        const el = document.getElementById("unlockError");
+        el.style.display = "block";
+        el.textContent = "Mot de passe incorrect ou déverrouillage impossible.";
+      }
+    });
+
+    document.getElementById("addForm").addEventListener("submit", addItem);
+
+    // auto-lock on tab hidden
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && unlocked) lockVault(true);
+    });
+
+    setVaultUI();
+  }
+
+  init().catch(err => {
+    alert("Erreur dashboard : " + (err?.message || err));
+    window.location.href = "login.html";
+  });
+</script>
+
+</body>
+</html>

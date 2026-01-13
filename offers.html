@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Offres — Clavis-security</title>
+  <meta name="description" content="Offres Clavis-security : Gratuit, Abonnement 30€/an, À vie 99€." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="navcta">
+        <a class="btn small ghost" href="login.html">Connexion</a>
+        <a class="btn small primary" href="register.html">Créer mon coffre</a>
+        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Connexion</a>
+      <a href="register.html">Créer mon coffre</a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+    <div class="page-hero">
+      <span class="badge">💳 Paiement sécurisé via Stripe</span>
+      <h1>Choisis ton offre.</h1>
+      <p>Tu peux commencer gratuitement (15 mots de passe), puis passer premium quand tu veux.</p>
+      <p id="statusLine" style="margin:10px 0 0; color: var(--muted);"></p>
+    </div>
+
+    <div class="pricing">
+      <div class="card price-card">
+        <div class="name">Gratuit</div>
+        <div class="price">0€</div>
+        <p class="desc">Idéal pour tester Clavis.</p>
+        <ul>
+          <li><strong>15</strong> mots de passe maximum</li>
+          <li>Recherche instantanée</li>
+          <li>Chiffrement côté client</li>
+        </ul>
+        <div class="hr"></div>
+        <a class="btn primary" href="register.html">Commencer gratuit</a>
+      </div>
+
+      <div class="card price-card featured">
+        <div class="name">Abonnement <span class="tag">30€ / an</span></div>
+        <div class="price">30€ <span style="font-size:14px;color:var(--muted)">/ an</span></div>
+        <p class="desc">La meilleure option pour la majorité.</p>
+        <ul>
+          <li>Mots de passe <strong>illimités</strong></li>
+          <li>Support prioritaire</li>
+          <li>Accès premium</li>
+        </ul>
+        <div class="hr"></div>
+        <button class="btn primary" id="buyAnnual">Choisir l’abonnement</button>
+        <div class="hero-note">Tu dois être connecté pour payer.</div>
+      </div>
+
+      <div class="card price-card">
+        <div class="name">À vie</div>
+        <div class="price">99€</div>
+        <p class="desc">Paiement unique, accès pour toujours.</p>
+        <ul>
+          <li>Mots de passe <strong>illimités</strong></li>
+          <li>Accès à vie</li>
+          <li>Badge “Lifetime”</li>
+        </ul>
+        <div class="hr"></div>
+        <button class="btn" id="buyLifetime">Prendre à vie</button>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="card pad">
+      <div class="grid2">
+        <div>
+          <h3 style="margin:0 0 6px;">Garantie sécurité</h3>
+          <p style="margin:0;color:var(--muted);">
+            Tes mots de passe sont chiffrés avant d’être stockés. Pour les afficher, tu déverrouilles le coffre en retapant ton mot de passe.
+          </p>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap;">
+          <a class="btn" href="faq.html">Voir la FAQ</a>
+          <a class="btn primary" href="dashboard.html">Aller au dashboard</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="index.html">Accueil</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+<script>
+  async function startCheckout(plan) {
+    const session = await getSession();
+    if (!session) {
+      alert("Connecte-toi d'abord 🙂");
+      window.location.href = "login.html";
+      return;
+    }
+
+    const site_url = window.location.origin;
+
+    const res = await fetch("/.netlify/functions/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        plan,
+        user_id: session.user.id,
+        user_email: session.user.email,
+        site_url
+      })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert("Erreur Stripe : " + (data?.error || res.statusText));
+      return;
+    }
+
+    window.location.href = data.url;
+  }
+
+  document.getElementById("buyAnnual").addEventListener("click", () => startCheckout("annual"));
+  document.getElementById("buyLifetime").addEventListener("click", () => startCheckout("lifetime"));
+
+  // petite info UX : affiche si connecté
+  (async () => {
+    try {
+      const s = await getSession();
+      document.getElementById("statusLine").textContent = s
+        ? `Connecté : ${s.user.email}`
+        : "Non connecté : connecte-toi pour payer.";
+    } catch {
+      document.getElementById("statusLine").textContent = "Non connecté : connecte-toi pour payer.";
+    }
+  })();
+</script>
+
+</body>
+</html>

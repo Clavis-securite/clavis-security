@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Connexion — Clavis-security</title>
+  <meta name="description" content="Connexion à Clavis-security" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="navcta">
+        <a class="btn small ghost" href="register.html">Créer un compte</a>
+        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="register.html">Créer un compte</a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+    <div class="page-hero">
+      <span class="badge">🔐 Accès sécurisé</span>
+      <h1>Connexion</h1>
+      <p>Connecte-toi pour accéder à ton coffre. Les secrets restent chiffrés : seul toi peux les déverrouiller.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Se connecter</h3>
+
+        <form class="form" id="loginForm">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="ton@email.com" required />
+          </div>
+
+          <div class="field">
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="password" placeholder="••••••••••" required />
+          </div>
+
+          <button class="btn primary" type="submit">Connexion</button>
+
+          <div class="hero-note">
+            Supabase sera branché à l’étape suivante. Pour l’instant, le bouton affiche un message.
+          </div>
+        </form>
+
+        <div class="hr"></div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <span style="color:var(--muted); font-size:14px;">Pas encore de compte ?</span>
+          <a class="btn" href="register.html">Créer mon coffre</a>
+        </div>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Conseils sécurité</h3>
+        <p style="margin:0;color:var(--muted);">
+          • Utilise un mot de passe long (12+ caractères).<br>
+          • Évite les mots de passe réutilisés.<br>
+          • Le coffre se déverrouille en retapant ton mot de passe.
+        </p>
+        <div class="hr"></div>
+        <p style="margin:0;color:var(--muted);">
+          🧠 Astuce : ton “mot de passe maître” doit être unique.  
+          Si tu l’oublies, on ne pourra pas déchiffrer tes secrets (zéro-knowledge).
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="index.html">Accueil</a>
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    try {
+      await signIn(email, password);
+      // Connexion OK -> dashboard
+      window.location.href = "dashboard.html";
+    } catch (err) {
+      alert("❌ Connexion impossible : " + (err?.message || err));
+    }
+  });
+</script>
+
+</body>
+</html>
