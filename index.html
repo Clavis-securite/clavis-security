@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Clavis-security — Un mot de passe pour tous les retenir.</title>
-  <meta name="description" content="Clavis-security : votre coffre de mots de passe chiffré côté client. Recherche instantanée, déverrouillage sécurisé, zéro-knowledge." />
+  <meta name="description" content="Retiens un seul mot de passe. Retrouve tous les autres en 3 secondes. Simple, rapide, rassurant." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -12,13 +12,8 @@
 <header class="topbar">
   <div class="container">
     <div class="nav">
-      <a class="brand" href="index.html">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M7 11V8.7a5 5 0 0 1 10 0V11" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <path d="M6.5 11h11A2.5 2.5 0 0 1 20 13.5v5A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-5A2.5 2.5 0 0 1 6.5 11Z" stroke="white" stroke-width="2" />
-          </svg>
-        </div>
+      <a class="brand" href="index.html" aria-current="page">
+        <div class="logo" aria-hidden="true"></div>
         <span>Clavis-security</span>
       </a>
 
@@ -45,158 +40,180 @@
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div>
-          <span class="badge">🔐 Zéro-knowledge • Chiffrement côté client • Déverrouillage sécurisé</span>
-          <h1>Un mot de passe pour tous les retenir.</h1>
-          <p>
-            Clavis-security est un coffre de mots de passe simple et rapide : tu stockes, tu recherches, tu retrouves.
-            Les données sont chiffrées avant d’être envoyées en base. Seul toi peux déverrouiller le coffre en retapant ton mot de passe.
-          </p>
+<main class="section">
+  <div class="container">
 
-          <div class="hero-ctas">
-            <a class="btn primary" href="register.html">Créer mon coffre</a>
-            <a class="btn" href="offers.html">Voir les offres</a>
-            <a class="btn ghost" href="#how">Comment ça marche</a>
-          </div>
+    <!-- HERO -->
+    <div class="page-hero">
+      <span class="badge">✨ Un mot de passe pour tous les retenir.</span>
+      <h1>Moins d’oublis. Plus de tranquillité.</h1>
+      <p style="max-width: 760px;">
+        Tu gardes tout au même endroit : identifiants, mots de passe, sites, remarques.
+        Tu retrouves ce que tu cherches en quelques secondes, et tu peux copier en un clic.
+      </p>
 
-          <div class="hero-note">✅ Gratuit jusqu’à 15 mots de passe • 🔁 Synchronisation multi-appareils • 🧠 Recherche instantanée</div>
-        </div>
-
-        <div class="card mock" aria-label="Aperçu du coffre">
-          <div class="top">
-            <span>Dashboard • Coffre</span>
-            <span class="pill lock">LOCKED</span>
-          </div>
-          <div class="search">🔎 Rechercher : “banque”, “gmail”, “netflix”…</div>
-          <div class="list">
-            <div class="item">
-              <div>
-                <strong>Gmail</strong><br />
-                <span style="color: rgba(255,255,255,.65); font-size: 13px;">alex@… • • • • • •</span>
-              </div>
-              <span class="pill">Copier</span>
-            </div>
-            <div class="item">
-              <div>
-                <strong>Banque</strong><br />
-                <span style="color: rgba(255,255,255,.65); font-size: 13px;">identifiant • • • • • •</span>
-              </div>
-              <span class="pill">Déverrouiller</span>
-            </div>
-            <div class="item">
-              <div>
-                <strong>Netflix</strong><br />
-                <span style="color: rgba(255,255,255,.65); font-size: 13px;">email • • • • • •</span>
-              </div>
-              <span class="pill ok">Chiffré</span>
-            </div>
-          </div>
-        </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+        <a class="btn primary" href="register.html">Commencer gratuitement</a>
+        <a class="btn" href="offers.html">Voir les offres</a>
+        <a class="btn ghost" href="login.html">J’ai déjà un compte</a>
       </div>
 
-      <div class="hr"></div>
-
-      <div class="grid3" id="how">
-        <div class="feature">
-          <div class="icon">⚡</div>
-          <h3>Recherche instantanée</h3>
-          <p>Retrouve n’importe quel mot de passe en 2 secondes grâce à la barre de recherche.</p>
-        </div>
-        <div class="feature">
-          <div class="icon">🛡️</div>
-          <h3>Chiffré côté navigateur</h3>
-          <p>Les secrets sont chiffrés avant d’arriver en base. Même la base ne peut pas lire tes mots de passe.</p>
-        </div>
-        <div class="feature">
-          <div class="icon">🔓</div>
-          <h3>Déverrouillage sécurisé</h3>
-          <p>Pour afficher/copier, tu retapes ton mot de passe. Le coffre se reverrouille automatiquement.</p>
-        </div>
+      <div class="hero-note" style="margin-top:12px;">
+        Offre gratuite : jusqu’à 15 éléments. Premium : illimité + copie PDF.
       </div>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Des offres simples.</h2>
-      <p class="section-subtitle">Commence gratuitement. Passe premium quand tu veux.</p>
+    <!-- PROBLÈME -->
+    <div class="hr"></div>
 
-      <div class="pricing">
-        <div class="card price-card">
-          <div class="name">Gratuit</div>
-          <div class="price">0€</div>
-          <p class="desc">Pour démarrer sans stress.</p>
-          <ul>
-            <li>Jusqu’à <strong>15</strong> mots de passe</li>
-            <li>Recherche instantanée</li>
-            <li>Chiffrement côté client</li>
-          </ul>
-          <div class="hr"></div>
-          <a class="btn primary" href="register.html">Créer mon coffre</a>
-        </div>
-
-        <div class="card price-card featured">
-          <div class="name">Abonnement <span class="tag">Le plus choisi</span></div>
-          <div class="price">30€ <span style="font-size:14px;color:var(--muted)">/ an</span></div>
-          <p class="desc">Pour une tranquillité totale au quotidien.</p>
-          <ul>
-            <li>Mots de passe <strong>illimités</strong></li>
-            <li>Priorité support</li>
-            <li>Fonctions premium (v1+)</li>
-          </ul>
-          <div class="hr"></div>
-          <a class="btn primary" href="offers.html">Choisir l’abonnement</a>
-        </div>
-
-        <div class="card price-card">
-          <div class="name">À vie</div>
-          <div class="price">99€</div>
-          <p class="desc">Tu payes une fois. C’est terminé.</p>
-          <ul>
-            <li>Mots de passe <strong>illimités</strong></li>
-            <li>Accès à vie</li>
-            <li>Badge “Lifetime”</li>
-          </ul>
-          <div class="hr"></div>
-          <a class="btn" href="offers.html">Prendre à vie</a>
-        </div>
+    <div class="grid2">
+      <div class="card pad">
+        <h2 style="margin:0 0 8px;">Tu connais ça ?</h2>
+        <ul style="margin:0; padding-left:18px; color:var(--muted);">
+          <li>“Mot de passe oublié” → reset → perte de temps</li>
+          <li>Notes sur papier / dans le téléphone → pas pratique</li>
+          <li>Trop de comptes → trop d’erreurs</li>
+          <li>Tu veux quelque chose de simple, sans prise de tête</li>
+        </ul>
       </div>
-
-      <div class="hr"></div>
 
       <div class="card pad">
-        <div class="grid2">
-          <div>
-            <h3 style="margin:0 0 6px;">Tu veux vérifier la sécurité ?</h3>
-            <p style="margin:0;color:var(--muted);">
-              Le principe : la base stocke du chiffré. Pour afficher un secret, le coffre exige de retaper le mot de passe.
-              On détaillera tout ça dans la FAQ et dans l’implémentation crypto.
-            </p>
-          </div>
-          <div style="display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap;">
-            <a class="btn" href="faq.html">Lire la FAQ</a>
-            <a class="btn primary" href="register.html">Créer mon coffre</a>
-          </div>
+        <h2 style="margin:0 0 8px;">La solution Clavis</h2>
+        <p style="margin:0;color:var(--muted);">
+          Tu retiens <strong>un seul mot de passe</strong> pour ouvrir ton coffre.
+          Ensuite, tu retrouves tout en 3 secondes, avec une recherche rapide.
+        </p>
+        <div class="hr"></div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="register.html">Créer mon coffre</a>
+          <a class="btn" href="faq.html">Comment ça marche ?</a>
         </div>
       </div>
-
     </div>
-  </section>
+
+    <!-- COMMENT ÇA MARCHE -->
+    <div class="hr"></div>
+
+    <div class="page-hero" style="padding-top:0;">
+      <h2 style="margin:0 0 8px;">Comment ça marche (simplement)</h2>
+      <p style="margin:0; max-width:760px;">
+        En 3 étapes. Pas besoin d’être “tech”.
+      </p>
+    </div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <span class="badge">1</span>
+        <h3 style="margin:8px 0 6px;">Tu crées ton coffre</h3>
+        <p style="margin:0;color:var(--muted);">
+          Tu te connectes avec ton email. Ton coffre est prêt.
+        </p>
+      </div>
+      <div class="card pad">
+        <span class="badge">2</span>
+        <h3 style="margin:8px 0 6px;">Tu ajoutes tes informations</h3>
+        <p style="margin:0;color:var(--muted);">
+          Nom, identifiant, mot de passe, site… c’est tout.
+        </p>
+      </div>
+      <div class="card pad">
+        <span class="badge">3</span>
+        <h3 style="margin:8px 0 6px;">Tu retrouves et tu copies</h3>
+        <p style="margin:0;color:var(--muted);">
+          Recherche rapide, affichage, copie en un clic.
+        </p>
+      </div>
+      <div class="card pad">
+        <span class="badge">+</span>
+        <h3 style="margin:8px 0 6px;">Avec Premium</h3>
+        <p style="margin:0;color:var(--muted);">
+          Éléments illimités + possibilité de faire une copie PDF de tout ton contenu.
+        </p>
+      </div>
+    </div>
+
+    <!-- PREUVES / RASSURANCE -->
+    <div class="hr"></div>
+
+    <div class="page-hero" style="padding-top:0;">
+      <h2 style="margin:0 0 8px;">Pourquoi les gens aiment Clavis</h2>
+      <p style="margin:0; max-width:760px;">
+        Parce que c’est fait pour être clair, rapide, et rassurant.
+      </p>
+    </div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Tu gardes le contrôle</h3>
+        <p style="margin:0;color:var(--muted);">
+          Ton coffre reste fermé tant que tu ne l’ouvres pas.
+          Et il se referme automatiquement si tu oublies.
+        </p>
+      </div>
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Pensé pour le quotidien</h3>
+        <p style="margin:0;color:var(--muted);">
+          Une recherche, une liste, des boutons “copier”. C’est tout.
+        </p>
+      </div>
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Tu peux commencer gratuitement</h3>
+        <p style="margin:0;color:var(--muted);">
+          Tu testes avec 15 éléments. Ensuite tu passes Premium si tu en as envie.
+        </p>
+      </div>
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Tu peux faire une copie PDF</h3>
+        <p style="margin:0;color:var(--muted);">
+          Pratique si tu veux garder une sauvegarde de tout ton contenu (Premium).
+        </p>
+      </div>
+    </div>
+
+    <!-- OFFRES -->
+    <div class="hr"></div>
+
+    <div class="card pad">
+      <div class="grid2">
+        <div>
+          <h2 style="margin:0 0 8px;">Choisis ton rythme</h2>
+          <p style="margin:0;color:var(--muted);">
+            Gratuit pour démarrer. Premium pour être tranquille.
+          </p>
+        </div>
+        <div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
+          <a class="btn" href="offers.html">Comparer les offres</a>
+          <a class="btn primary" href="register.html">Commencer gratuit</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="hr"></div>
+
+    <div class="card pad">
+      <h2 style="margin:0 0 8px;">Prêt à arrêter les “mot de passe oublié” ?</h2>
+      <p style="margin:0;color:var(--muted); max-width: 760px;">
+        Crée ton coffre maintenant. Tu peux rester en gratuit, et passer Premium plus tard si tu veux.
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+        <a class="btn primary" href="register.html">Créer mon coffre</a>
+        <a class="btn" href="faq.html">Lire la FAQ</a>
+        <a class="btn ghost" href="contact.html">Nous contacter</a>
+      </div>
+    </div>
+
+  </div>
 </main>
 
 <footer class="footer">
   <div class="container">
     <div class="footer-row">
-      <div>© <span data-year></span> Clavis-security • “Un mot de passe pour tous les retenir.”</div>
+      <div>© <span data-year></span> Clavis-security</div>
       <div style="display:flex; gap:14px; flex-wrap:wrap;">
         <a href="offers.html">Offres</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="login.html">Connexion</a>
       </div>
     </div>
   </div>

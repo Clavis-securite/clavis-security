@@ -4,10 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FAQ — Clavis-security</title>
-  <meta name="description" content="FAQ Clavis-security : chiffrement, zéro-knowledge, déverrouillage du coffre, offres." />
+  <meta name="description" content="Toutes les réponses simples aux questions les plus fréquentes." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+
 <header class="topbar">
   <div class="container">
     <div class="nav">
@@ -15,17 +16,20 @@
         <div class="logo" aria-hidden="true"></div>
         <span>Clavis-security</span>
       </a>
-      <nav class="navlinks">
+
+      <nav class="navlinks" aria-label="Navigation principale">
         <a href="offers.html">Offres</a>
-        <a href="faq.html">FAQ</a>
+        <a href="faq.html" aria-current="page">FAQ</a>
         <a href="contact.html">Contact</a>
       </nav>
+
       <div class="navcta">
         <a class="btn small ghost" href="login.html">Connexion</a>
         <a class="btn small primary" href="register.html">Créer mon coffre</a>
-        <button class="btn small mobile-toggle" data-mobile-toggle>Menu</button>
+        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
       </div>
     </div>
+
     <div class="mobile-menu" data-mobile-menu>
       <a href="offers.html">Offres</a>
       <a href="faq.html">FAQ</a>
@@ -38,50 +42,84 @@
 
 <main class="section">
   <div class="container">
+
     <div class="page-hero">
-      <span class="badge">📌 Réponses claires, sans blabla</span>
-      <h1>FAQ</h1>
-      <p>Les questions les plus fréquentes sur Clavis-security.</p>
+      <span class="badge">🙋 FAQ</span>
+      <h1>On répond simplement.</h1>
+      <p style="max-width: 760px;">
+        Ici, pas de grands mots. Juste des réponses claires pour te rassurer.
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+        <a class="btn primary" href="register.html">Commencer gratuitement</a>
+        <a class="btn" href="offers.html">Voir les offres</a>
+      </div>
     </div>
 
-    <div class="faq">
-      <details open>
-        <summary>Est-ce que Clavis-security peut voir mes mots de passe ?</summary>
-        <p>
-          Non. L’objectif est “zéro-knowledge” : tes secrets sont chiffrés côté navigateur avant d’être stockés.
-          Sans ton mot de passe, ils restent illisibles.
-        </p>
-      </details>
+    <div class="grid2">
 
-      <details>
-        <summary>Pourquoi dois-je retaper mon mot de passe pour voir un secret ?</summary>
-        <p>
-          Parce que c’est ce qui déverrouille le coffre : on dérive une clé depuis ton mot de passe (KDF),
-          puis on déchiffre uniquement dans ton navigateur.
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">À quoi ça sert ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          À garder tes identifiants et mots de passe au même endroit, et à les retrouver en 3 secondes.
+          Tu peux aussi copier en un clic.
         </p>
-      </details>
+      </div>
 
-      <details>
-        <summary>Et si j’oublie mon mot de passe ?</summary>
-        <p>
-          Comme on vise le zéro-knowledge, on ne peut pas “récupérer” tes secrets sans ce mot de passe.
-          Tu pourras réinitialiser ton compte, mais pas déchiffrer les anciens secrets.
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">Est-ce que c’est compliqué ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Non. Tu ajoutes un nom, un identifiant, un mot de passe, et éventuellement un site.
+          Ensuite, tu recherches et tu copies.
         </p>
-      </details>
+      </div>
 
-      <details>
-        <summary>Quels sont les plans ?</summary>
-        <p>
-          Gratuit : 15 mots de passe. Abonnement : 30€/an. À vie : 99€ (paiement unique).
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">Est-ce que mes informations sont en sécurité ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Ton coffre est fermé par défaut. Pour voir tes informations, tu dois l’ouvrir avec ton mot de passe.
+          Et il se referme automatiquement si tu oublies.
         </p>
-      </details>
+      </div>
 
-      <details>
-        <summary>Où sont stockées mes données ?</summary>
-        <p>
-          Les comptes et les données chiffrées sont stockés dans une base Supabase. Le site est hébergé sur Netlify.
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">Vous pouvez voir mes mots de passe ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Non. Tes informations ne sont visibles que quand tu ouvres ton coffre avec ton mot de passe.
+          Sans ça, personne ne peut les lire.
         </p>
-      </details>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">Et si j’oublie mon mot de passe ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Tu peux réinitialiser l’accès à ton compte (comme sur la plupart des sites).
+          Par contre, pour protéger au maximum, tes informations ne pourront pas être affichées sans le bon mot de passe.
+        </p>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">Je peux essayer sans payer ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Oui. L’offre gratuite te permet d’enregistrer jusqu’à 15 éléments.
+          Tu passes Premium quand tu veux.
+        </p>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">Qu’est-ce que j’ai en Premium ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Tu peux enregistrer un nombre illimité d’éléments, et tu peux faire une copie PDF de tout ton contenu.
+        </p>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;">C’est pour qui ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Pour monsieur et madame tout le monde : ceux qui veulent arrêter de chercher et de réinitialiser,
+          et garder tout en ordre.
+        </p>
+      </div>
+
     </div>
 
     <div class="hr"></div>
@@ -89,11 +127,13 @@
     <div class="card pad">
       <div class="grid2">
         <div>
-          <h3 style="margin:0 0 6px;">Tu veux te lancer ?</h3>
-          <p style="margin:0;color:var(--muted);">Crée ton coffre et commence à enregistrer tes premiers accès.</p>
+          <h2 style="margin:0 0 8px;">Tu as encore un doute ?</h2>
+          <p style="margin:0;color:var(--muted);">
+            Écris-nous, on te répond simplement.
+          </p>
         </div>
-        <div style="display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap;">
-          <a class="btn" href="offers.html">Voir les offres</a>
+        <div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
+          <a class="btn" href="contact.html">Contact</a>
           <a class="btn primary" href="register.html">Créer mon coffre</a>
         </div>
       </div>
@@ -107,7 +147,6 @@
     <div class="footer-row">
       <div>© <span data-year></span> Clavis-security</div>
       <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="index.html">Accueil</a>
         <a href="offers.html">Offres</a>
         <a href="contact.html">Contact</a>
       </div>

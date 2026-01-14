@@ -4,10 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Clavis-security</title>
-  <meta name="description" content="Contacter Clavis-security. Support, questions, demande pro." />
+  <meta name="description" content="Une question ? Un souci ? Écris-nous, on te répond vite." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+
 <header class="topbar">
   <div class="container">
     <div class="nav">
@@ -15,17 +16,20 @@
         <div class="logo" aria-hidden="true"></div>
         <span>Clavis-security</span>
       </a>
-      <nav class="navlinks">
+
+      <nav class="navlinks" aria-label="Navigation principale">
         <a href="offers.html">Offres</a>
         <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
+
       <div class="navcta">
         <a class="btn small ghost" href="login.html">Connexion</a>
         <a class="btn small primary" href="register.html">Créer mon coffre</a>
-        <button class="btn small mobile-toggle" data-mobile-toggle>Menu</button>
+        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
       </div>
     </div>
+
     <div class="mobile-menu" data-mobile-menu>
       <a href="offers.html">Offres</a>
       <a href="faq.html">FAQ</a>
@@ -38,45 +42,84 @@
 
 <main class="section">
   <div class="container">
+
     <div class="page-hero">
-      <span class="badge">✉️ Réponse rapide</span>
-      <h1>Contact</h1>
-      <p>Une question, une demande pro, un bug ? Écris-nous ici. (On branchera l’envoi Brevo à l’étape Brevo.)</p>
+      <span class="badge">💬 Contact</span>
+      <h1>On te répond vite.</h1>
+      <p style="max-width: 760px;">
+        Une question, une idée, un souci ? Écris-nous ici. On te répond simplement, sans blabla.
+      </p>
     </div>
 
     <div class="grid2">
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Formulaire</h3>
-        <form class="form" onsubmit="event.preventDefault(); alert('Formulaire prêt. Envoi Brevo à l’étape 10.');">
+        <h2 style="margin:0 0 10px;">Envoyer un message</h2>
+
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
+          <input type="hidden" name="form-name" value="contact" />
+          <p style="display:none;">
+            <label>Ne pas remplir : <input name="bot-field" /></label>
+          </p>
+
           <div class="field">
-            <label for="name">Nom</label>
-            <input id="name" name="name" placeholder="Ton nom" required />
+            <label for="name">Ton prénom</label>
+            <input id="name" name="name" required />
           </div>
+
           <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="ton@email.com" required />
+            <label for="email">Ton email</label>
+            <input id="email" name="email" type="email" required />
           </div>
+
           <div class="field">
-            <label for="msg">Message</label>
-            <textarea id="msg" name="msg" placeholder="Explique ton besoin…" required></textarea>
+            <label for="topic">Sujet</label>
+            <input id="topic" name="topic" placeholder="ex : question, suggestion, souci…" required />
           </div>
+
+          <div class="field">
+            <label for="message">Ton message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Dis-nous simplement ce qu’il se passe 🙂" required></textarea>
+          </div>
+
           <button class="btn primary" type="submit">Envoyer</button>
-          <div class="hero-note">⚠️ Pour l’instant, ça affiche juste un message. On branche Brevo ensuite.</div>
+          <div class="hero-note">On répond généralement sous 24–48h.</div>
         </form>
       </div>
 
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Support</h3>
+        <h2 style="margin:0 0 10px;">Avant d’écrire</h2>
         <p style="margin:0;color:var(--muted);">
-          Quand Brevo sera branché, tu recevras :
-          <br/>• un accusé de réception
-          <br/>• une réponse support
-          <br/>• (optionnel) un suivi de ticket
+          Tu peux aussi jeter un œil à la FAQ : elle répond aux questions les plus fréquentes.
         </p>
         <div class="hr"></div>
-        <p style="margin:0;color:var(--muted);">
-          🔒 Rappel : ne colle jamais tes mots de passe en clair dans un message de support.
-        </p>
+
+        <div class="card pad" style="background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.10);">
+          <h3 style="margin:0 0 6px;">Besoin d’aller vite ?</h3>
+          <p style="margin:0;color:var(--muted);">
+            Donne-nous :
+            <br>• ton email
+            <br>• ce que tu voulais faire
+            <br>• ce que tu as vu à l’écran
+          </p>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+          <a class="btn" href="faq.html">Lire la FAQ</a>
+          <a class="btn primary" href="register.html">Créer mon coffre</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="card pad">
+      <h2 style="margin:0 0 8px;">Tu veux surtout être tranquille ?</h2>
+      <p style="margin:0;color:var(--muted); max-width: 760px;">
+        Commence gratuitement, et passe Premium si tu as besoin d’illimité + copie PDF.
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+        <a class="btn primary" href="register.html">Commencer gratuit</a>
+        <a class="btn" href="offers.html">Voir les offres</a>
       </div>
     </div>
 
@@ -88,9 +131,8 @@
     <div class="footer-row">
       <div>© <span data-year></span> Clavis-security</div>
       <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="index.html">Accueil</a>
-        <a href="faq.html">FAQ</a>
         <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
       </div>
     </div>
   </div>
