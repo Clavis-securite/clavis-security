@@ -173,15 +173,15 @@
   let profile = null;
   let items = [];
 
-  let opened = false;        // coffre ouvert ?
-  let vaultKey = null;       // clé en mémoire (jamais stockée)
+  let opened = false;
+  let vaultKey = null;
   let vaultSaltB64 = null;
 
   let autoLockTimer = null;
   const AUTO_LOCK_MS = 10 * 60 * 1000; // 10 minutes
 
   // ==========================
-  // Petites utilités
+  // Utilitaires
   // ==========================
   function message(txt){ alert(txt); }
 
@@ -263,10 +263,8 @@
     if (profile.plan === "annual") offerText = "Premium (abonnement)";
     if (profile.plan === "lifetime") offerText = "Premium (à vie)";
 
-    document.getElementById("planLine").textContent =
-      `Offre : ${offerText}`;
+    document.getElementById("planLine").textContent = `Offre : ${offerText}`;
 
-    // petit message sous le formulaire
     if (profile.plan === "free") {
       document.getElementById("limitNote").textContent = "Vous êtes en offre gratuite : 15 éléments maximum.";
     } else {
@@ -381,6 +379,7 @@
       `;
 
       function getIVs(item){
+        // ✅ compat : si tu as 1 seul IV, on prend crypto_iv
         return {
           uiv: item.username_iv || item.crypto_iv,
           piv: item.password_iv || item.crypto_iv,
@@ -389,7 +388,6 @@
         };
       }
 
-      // Voir
       row.querySelector('[data-action="view"]').addEventListener('click', async () => {
         if (!opened || !vaultKey) return message("Ouvrez votre coffre pour afficher.");
 
@@ -411,7 +409,6 @@
         }
       });
 
-      // Copier identifiant
       row.querySelector('[data-action="copy-user"]').addEventListener('click', async () => {
         if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
 
@@ -425,7 +422,6 @@
         }
       });
 
-      // Copier mot de passe
       row.querySelector('[data-action="copy-pass"]').addEventListener('click', async () => {
         if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
 
@@ -439,7 +435,6 @@
         }
       });
 
-      // Supprimer
       row.querySelector('[data-action="delete"]').addEventListener('click', async () => {
         if (!confirm(`Supprimer "${it.title}" ?`)) return;
 
@@ -456,14 +451,13 @@
   }
 
   // ==========================
-  // Ajouter
+  // Ajouter (✅ corrigé pour table actuelle)
   // ==========================
   async function addItem(e) {
     e.preventDefault();
 
     if (!opened || !vaultKey) return message("Ouvrez votre coffre avant d’enregistrer.");
 
-    // limite gratuit
     if (profile.plan === "free" && items.length >= 15) {
       document.getElementById("limitNote").textContent =
         "Limite atteinte (15). Passez en Premium dans la page Offres.";
@@ -479,16 +473,13 @@
     try {
       await ensureVaultSalt();
 
-      // IV par champ
-      const usernameIv = CryptoV1.newIvB64();
-      const passwordIv = CryptoV1.newIvB64();
-      const urlIv = CryptoV1.newIvB64();
-      const notesIv = CryptoV1.newIvB64();
+      // ✅ 1 seul IV pour tous les champs (compat “ancienne table”)
+      const iv = CryptoV1.newIvB64();
 
-      const usernameEnc = await CryptoV1.encryptText(username, vaultKey, usernameIv);
-      const passwordEnc = await CryptoV1.encryptText(password, vaultKey, passwordIv);
-      const urlEnc = url ? await CryptoV1.encryptText(url, vaultKey, urlIv) : null;
-      const notesEnc = notes ? await CryptoV1.encryptText(notes, vaultKey, notesIv) : null;
+      const usernameEnc = await CryptoV1.encryptText(username, vaultKey, iv);
+      const passwordEnc = await CryptoV1.encryptText(password, vaultKey, iv);
+      const urlEnc = url ? await CryptoV1.encryptText(url, vaultKey, iv) : null;
+      const notesEnc = notes ? await CryptoV1.encryptText(notes, vaultKey, iv) : null;
 
       const payload = {
         user_id: session.user.id,
@@ -499,13 +490,8 @@
         url_encrypted: urlEnc,
         notes_encrypted: notesEnc,
 
-        username_iv: usernameIv,
-        password_iv: passwordIv,
-        url_iv: url ? urlIv : null,
-        notes_iv: notes ? notesIv : null,
-
-        crypto_salt: vaultSaltB64,
-        crypto_version: 2
+        crypto_iv: iv,
+        crypto_salt: vaultSaltB64
       };
 
       const { data, error } = await supabaseClient
@@ -529,7 +515,7 @@
   }
 
   // ==========================
-  // PDF (Premium uniquement)
+  // PDF (Premium)
   // ==========================
   async function exportAllToPdf() {
     if (!isPremium()) return message("Cette option est réservée aux abonnés Premium.");
@@ -656,7 +642,6 @@
 
     document.getElementById("unlockBtn").addEventListener("click", openUnlockModal);
     document.getElementById("lockBtn").addEventListener("click", () => closeCoffre(false));
-
     document.getElementById("exportPdfBtn").addEventListener("click", exportAllToPdf);
 
     document.getElementById("unlockCancel").addEventListener("click", closeUnlockModal);
@@ -677,7 +662,6 @@
 
     document.getElementById("addForm").addEventListener("submit", addItem);
 
-    // si l’utilisateur change d’onglet → on ferme par sécurité
     document.addEventListener("visibilitychange", () => {
       if (document.hidden && opened) closeCoffre(true);
     });
