@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Merci — Clavis-security</title>
+  <meta name="description" content="Merci ! Ton accès Premium est en cours d’activation." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -16,7 +17,7 @@
         <span>Clavis-security</span>
       </a>
       <div class="navcta">
-        <a class="btn small" href="dashboard.html">Dashboard</a>
+        <a class="btn small" href="dashboard.html">Aller à mon coffre</a>
       </div>
     </div>
   </div>
@@ -24,19 +25,85 @@
 
 <main class="section">
   <div class="container">
+
     <div class="card pad">
-      <h1 style="margin:0 0 8px;">✅ Paiement validé</h1>
-      <p style="margin:0;color:var(--muted);">
-        Merci ! Ton plan est mis à jour automatiquement via webhook Stripe.
-        Si tu ne vois pas le changement tout de suite, recharge le dashboard.
+      <span class="badge">✅ Paiement confirmé</span>
+      <h1 style="margin:8px 0 8px;">Merci ! Tu es prêt.</h1>
+
+      <p style="margin:0;color:var(--muted); max-width: 760px;">
+        Ton accès est activé automatiquement. Si tu ne vois pas la différence tout de suite,
+        recharge simplement la page du coffre.
       </p>
+
       <div class="hr"></div>
-      <a class="btn primary" href="dashboard.html">Aller au dashboard</a>
-      <a class="btn" href="offers.html">Retour aux offres</a>
+
+      <div class="grid2">
+        <div>
+          <h3 style="margin:0 0 6px;">Ce que tu peux faire maintenant</h3>
+          <ul style="margin:0; padding-left: 18px; color: var(--muted);">
+            <li>Ajouter autant d’éléments que tu veux</li>
+            <li>Retrouver tout instantanément grâce à la recherche</li>
+            <li>Faire une <strong>copie PDF</strong> de tout ton contenu (dans le coffre)</li>
+          </ul>
+        </div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
+          <a class="btn primary" href="dashboard.html">Ouvrir mon coffre</a>
+          <a class="btn" href="offers.html">Voir les offres</a>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="hero-note">
+        Astuce : pour une meilleure tranquillité, pense à fermer ton coffre quand tu as fini.
+      </div>
     </div>
+
+    <div class="grid2" style="margin-top: 14px;">
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Une question ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Va sur la FAQ ou contacte-nous, on répond vite.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <a class="btn" href="faq.html">FAQ</a>
+          <a class="btn" href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Bien joué 👌</h3>
+        <p style="margin:0;color:var(--muted);">
+          Tu viens de te simplifier la vie. Moins d’oublis, plus de sérénité.
+        </p>
+      </div>
+    </div>
+
   </div>
 </main>
 
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="index.html">Accueil</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <script src="js/app.js"></script>
+<script>
+  // Petit message optionnel si tu veux
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") !== "1") return;
+    // Rien de technique, juste une confirmation douce
+  })();
+</script>
 </body>
 </html>
