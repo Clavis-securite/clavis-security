@@ -1,7 +1,6 @@
 // netlify/functions/stripe-webhook.js
 const Stripe = require("stripe");
 const { createClient } = require("@supabase/supabase-js");
-const fetch = require("node-fetch");
 
 exports.handler = async (event) => {
   const {
@@ -9,6 +8,7 @@ exports.handler = async (event) => {
     STRIPE_WEBHOOK_SECRET,
     SUPABASE_URL,
     SUPABASE_SERVICE_ROLE_KEY,
+
     BREVO_API_KEY,
     BREVO_SENDER_EMAIL,
     BREVO_SENDER_NAME,
@@ -16,43 +16,45 @@ exports.handler = async (event) => {
     BREVO_TEMPLATE_PREMIUM_LIFETIME
   } = process.env;
 
-  if (
-    !STRIPE_SECRET_KEY ||
-    !STRIPE_WEBHOOK_SECRET ||
-    !SUPABASE_URL ||
-    !SUPABASE_SERVICE_ROLE_KEY ||
-    !BREVO_API_KEY
-  ) {
+  if (!STRIPE_SECRET_KEY || !STRIPE_WEBHOOK_SECRET || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     return { statusCode: 500, body: "Missing environment variables." };
   }
 
   const stripe = new Stripe(STRIPE_SECRET_KEY);
   const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-  // --- helper Brevo ---
+  // ✅ helper Brevo (sans node-fetch)
   async function sendBrevoEmail({ toEmail, templateId, params = {} }) {
-    await fetch("https://api.brevo.com/v3/smtp/email", {
+    // Si Brevo pas configuré, on ne bloque pas le webhook
+    if (!BREVO_API_KEY || !BREVO_SENDER_EMAIL || !BREVO_SENDER_NAME || !templateId) return;
+
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
-        "accept": "application/json",
+        accept: "application/json",
         "content-type": "application/json",
         "api-key": BREVO_API_KEY
       },
       body: JSON.stringify({
-        sender: {
-          email: BREVO_SENDER_EMAIL,
-          name: BREVO_SENDER_NAME
-        },
+        sender: { email: BREVO_SENDER_EMAIL, name: BREVO_SENDER_NAME },
         to: [{ email: toEmail }],
         templateId: Number(templateId),
         params
       })
     });
+
+    // On ne casse pas Stripe si Brevo a un souci
+    if (!res.ok) {
+      const txt = await res.text().catch(() => "");
+      console.log("Brevo send failed:", res.status, txt);
+    }
   }
 
   try {
     const sig = event.headers["stripe-signature"];
-    const rawBody = event.body;
+    const rawBody = event.isBase64Encoded
+      ? Buffer.from(event.body, "base64").toString("utf8")
+      : event.body;
 
     const stripeEvent = stripe.webhooks.constructEvent(
       rawBody,
@@ -60,19 +62,16 @@ exports.handler = async (event) => {
       STRIPE_WEBHOOK_SECRET
     );
 
-    // ===============================
-    // 1) Paiement terminé
-    // ===============================
+    // 1) Paiement OK
     if (stripeEvent.type === "checkout.session.completed") {
-      const session = stripeEvent.data.object;
+      const s = stripeEvent.data.object;
 
-      const user_id = session.metadata?.user_id;
-      const plan = session.metadata?.plan;
-      const customerId = session.customer;
-      const email = session.customer_details?.email;
+      const user_id = s.metadata?.user_id;
+      const plan = s.metadata?.plan; // annual | lifetime
+      const customerId = s.customer;
+      const email = s.customer_details?.email;
 
       if (user_id && email && (plan === "annual" || plan === "lifetime")) {
-        // Mise à jour du profil
         const { error } = await supabaseAdmin
           .from("profiles")
           .update({
@@ -83,32 +82,27 @@ exports.handler = async (event) => {
 
         if (error) throw error;
 
-        // Envoi email Brevo (silencieux côté utilisateur)
-        if (plan === "annual" && BREVO_TEMPLATE_PREMIUM_ANNUAL) {
+        const site_url = process.env.URL || "https://clavis-security.netlify.app";
+
+        if (plan === "annual") {
           await sendBrevoEmail({
             toEmail: email,
             templateId: BREVO_TEMPLATE_PREMIUM_ANNUAL,
-            params: {
-              site_url: "https://clavis-security.netlify.app"
-            }
+            params: { site_url }
           });
         }
 
-        if (plan === "lifetime" && BREVO_TEMPLATE_PREMIUM_LIFETIME) {
+        if (plan === "lifetime") {
           await sendBrevoEmail({
             toEmail: email,
             templateId: BREVO_TEMPLATE_PREMIUM_LIFETIME,
-            params: {
-              site_url: "https://clavis-security.netlify.app"
-            }
+            params: { site_url }
           });
         }
       }
     }
 
-    // ===============================
-    // 2) Abonnement annulé → retour FREE
-    // ===============================
+    // 2) Abonnement annulé → retour free
     if (stripeEvent.type === "customer.subscription.deleted") {
       const sub = stripeEvent.data.object;
       const customerId = sub.customer;
