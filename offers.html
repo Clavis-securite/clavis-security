@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Offres — Clavis-security</title>
-  <meta name="description" content="Offres Clavis-security : Gratuit, Abonnement 30€/an, À vie 99€." />
+  <meta name="description" content="Un mot de passe pour tous les retenir. Choisis ton offre : gratuit, premium annuel, ou à vie." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -18,7 +18,7 @@
       </a>
 
       <nav class="navlinks" aria-label="Navigation principale">
-        <a href="offers.html">Offres</a>
+        <a href="offers.html" aria-current="page">Offres</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -42,69 +42,130 @@
 
 <main class="section">
   <div class="container">
+
+    <!-- HERO -->
     <div class="page-hero">
-      <span class="badge">💳 Paiement sécurisé via Stripe</span>
-      <h1>Choisis ton offre.</h1>
-      <p>Tu peux commencer gratuitement (15 mots de passe), puis passer premium quand tu veux.</p>
-      <p id="statusLine" style="margin:10px 0 0; color: var(--muted);"></p>
+      <span class="badge">✨ Un mot de passe pour tous les retenir.</span>
+      <h1>Choisis l’offre qui te simplifie la vie.</h1>
+      <p style="max-width: 720px;">
+        Tu en as marre de chercher, oublier, réinitialiser ? Avec Clavis-security, tu gardes tout au même endroit, et tu retrouves en 3 secondes.
+      </p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+        <a class="btn primary" href="register.html">Commencer gratuitement</a>
+        <a class="btn" href="#tarifs">Voir les offres</a>
+      </div>
+
+      <p id="statusLine" style="margin:12px 0 0; color: var(--muted);"></p>
     </div>
 
-    <div class="pricing">
-      <div class="card price-card">
-        <div class="name">Gratuit</div>
-        <div class="price">0€</div>
-        <p class="desc">Idéal pour tester Clavis.</p>
-        <ul>
-          <li><strong>15</strong> mots de passe maximum</li>
-          <li>Recherche instantanée</li>
-          <li>Chiffrement côté client</li>
-        </ul>
-        <div class="hr"></div>
-        <a class="btn primary" href="register.html">Commencer gratuit</a>
+    <!-- TRUST / REASSURANCE -->
+    <div class="grid2" style="margin-top: 18px;">
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Tout est fait pour être simple.</h3>
+        <p style="margin:0;color:var(--muted);">
+          Tu ajoutes une info, tu la retrouves avec la recherche, et tu peux copier en un clic.
+        </p>
       </div>
-
-      <div class="card price-card featured">
-        <div class="name">Abonnement <span class="tag">30€ / an</span></div>
-        <div class="price">30€ <span style="font-size:14px;color:var(--muted)">/ an</span></div>
-        <p class="desc">La meilleure option pour la majorité.</p>
-        <ul>
-          <li>Mots de passe <strong>illimités</strong></li>
-          <li>Support prioritaire</li>
-          <li>Accès premium</li>
-        </ul>
-        <div class="hr"></div>
-        <button class="btn primary" id="buyAnnual">Choisir l’abonnement</button>
-        <div class="hero-note">Tu dois être connecté pour payer.</div>
-      </div>
-
-      <div class="card price-card">
-        <div class="name">À vie</div>
-        <div class="price">99€</div>
-        <p class="desc">Paiement unique, accès pour toujours.</p>
-        <ul>
-          <li>Mots de passe <strong>illimités</strong></li>
-          <li>Accès à vie</li>
-          <li>Badge “Lifetime”</li>
-        </ul>
-        <div class="hr"></div>
-        <button class="btn" id="buyLifetime">Prendre à vie</button>
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Tu gardes le contrôle.</h3>
+        <p style="margin:0;color:var(--muted);">
+          Ton coffre reste fermé tant que tu ne l’ouvres pas. Et il se referme automatiquement si tu oublies.
+        </p>
       </div>
     </div>
 
     <div class="hr"></div>
 
+    <!-- PRICING -->
+    <div id="tarifs" class="page-hero" style="padding-top:0;">
+      <h2 style="margin:0 0 8px;">Tarifs</h2>
+      <p style="margin:0; max-width: 720px;">
+        Commence gratuit. Passe Premium quand tu veux. Tu peux même choisir l’accès à vie.
+      </p>
+    </div>
+
+    <div class="pricing">
+
+      <!-- FREE -->
+      <div class="card price-card">
+        <div class="name">Gratuit</div>
+        <div class="price">0€</div>
+        <p class="desc">Parfait pour tester et commencer.</p>
+        <ul>
+          <li>Jusqu’à <strong>15</strong> éléments</li>
+          <li>Recherche rapide</li>
+          <li>Copie en un clic</li>
+        </ul>
+        <div class="hr"></div>
+        <a class="btn primary" href="register.html">Créer mon coffre</a>
+        <div class="hero-note">Aucun paiement, tu peux arrêter quand tu veux.</div>
+      </div>
+
+      <!-- ANNUAL -->
+      <div class="card price-card featured">
+        <div class="name">Premium</div>
+        <div class="price">30€ <span style="font-size:14px;color:var(--muted)">/ an</span></div>
+        <p class="desc">Le meilleur choix pour être tranquille toute l’année.</p>
+        <ul>
+          <li>Éléments <strong>illimités</strong></li>
+          <li><strong>Copie PDF</strong> de toutes tes infos</li>
+          <li>Priorité aux nouveautés</li>
+        </ul>
+        <div class="hr"></div>
+        <button class="btn primary" id="buyAnnual">Passer en Premium</button>
+        <div class="hero-note">Tu dois être connecté pour payer.</div>
+      </div>
+
+      <!-- LIFETIME -->
+      <div class="card price-card">
+        <div class="name">À vie</div>
+        <div class="price">99€</div>
+        <p class="desc">Un seul paiement. Et c’est réglé pour toujours.</p>
+        <ul>
+          <li>Éléments <strong>illimités</strong></li>
+          <li><strong>Copie PDF</strong> de toutes tes infos</li>
+          <li>Accès à vie</li>
+        </ul>
+        <div class="hr"></div>
+        <button class="btn" id="buyLifetime">Prendre à vie</button>
+        <div class="hero-note">Idéal si tu veux être “tranquille pour de bon”.</div>
+      </div>
+
+    </div>
+
+    <!-- CONVERSION BLOCK -->
+    <div class="hr"></div>
+
     <div class="card pad">
       <div class="grid2">
         <div>
-          <h3 style="margin:0 0 6px;">Garantie sécurité</h3>
+          <h3 style="margin:0 0 6px;">En vrai, ça te fait gagner du temps.</h3>
           <p style="margin:0;color:var(--muted);">
-            Tes mots de passe sont chiffrés avant d’être stockés. Pour les afficher, tu déverrouilles le coffre en retapant ton mot de passe.
+            Moins de “mot de passe oublié”, moins de prises de tête, plus de tranquillité.
+            Et avec Premium, tu peux faire une copie PDF de tout ton contenu quand tu veux.
           </p>
         </div>
         <div style="display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap;">
-          <a class="btn" href="faq.html">Voir la FAQ</a>
-          <a class="btn primary" href="dashboard.html">Aller au dashboard</a>
+          <a class="btn" href="faq.html">J’ai des questions</a>
+          <a class="btn primary" href="register.html">Commencer gratuitement</a>
         </div>
+      </div>
+    </div>
+
+    <!-- MINI FAQ (conversion) -->
+    <div class="grid2" style="margin-top: 14px;">
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Je peux essayer sans payer ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Oui. L’offre gratuite te permet de démarrer et de voir si ça te convient.
+        </p>
+      </div>
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Et si je change d’avis ?</h3>
+        <p style="margin:0;color:var(--muted);">
+          Tu gardes ton compte. Tu peux passer Premium (ou non) quand tu veux.
+        </p>
       </div>
     </div>
 
@@ -124,14 +185,15 @@
   </div>
 </footer>
 
+<!-- Scripts (Stripe checkout via Netlify Functions) -->
 <script src="js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
 
 <script>
   async function startCheckout(plan) {
-    const session = await getSession();
-    if (!session) {
+    const s = await getSession();
+    if (!s) {
       alert("Connecte-toi d'abord 🙂");
       window.location.href = "login.html";
       return;
@@ -144,33 +206,38 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         plan,
-        user_id: session.user.id,
-        user_email: session.user.email,
+        user_id: s.user.id,
+        user_email: s.user.email,
         site_url
       })
     });
 
     const data = await res.json();
     if (!res.ok) {
-      alert("Erreur Stripe : " + (data?.error || res.statusText));
+      alert("Oups… ça n’a pas marché. Réessaie dans une minute.");
       return;
     }
 
     window.location.href = data.url;
   }
 
-  document.getElementById("buyAnnual").addEventListener("click", () => startCheckout("annual"));
-  document.getElementById("buyLifetime").addEventListener("click", () => startCheckout("lifetime"));
+  document.getElementById("buyAnnual")?.addEventListener("click", () => startCheckout("annual"));
+  document.getElementById("buyLifetime")?.addEventListener("click", () => startCheckout("lifetime"));
 
-  // petite info UX : affiche si connecté
   (async () => {
     try {
       const s = await getSession();
       document.getElementById("statusLine").textContent = s
         ? `Connecté : ${s.user.email}`
-        : "Non connecté : connecte-toi pour payer.";
+        : "Tu n’es pas connecté : connecte-toi si tu veux passer Premium.";
     } catch {
-      document.getElementById("statusLine").textContent = "Non connecté : connecte-toi pour payer.";
+      document.getElementById("statusLine").textContent = "Tu n’es pas connecté : connecte-toi si tu veux passer Premium.";
+    }
+
+    // Petit message si retour de Stripe
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("canceled") === "1") {
+      alert("Paiement annulé. Aucun souci 🙂 Tu peux réessayer quand tu veux.");
     }
   })();
 </script>
