@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dashboard — Clavis-security</title>
-  <meta name="description" content="Coffre Clavis-security" />
+  <title>Mon coffre — Clavis-security</title>
+  <meta name="description" content="Retrouve facilement tes informations en toute simplicité." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -42,31 +42,34 @@
 <main class="section">
   <div class="container">
     <div class="page-hero">
-      <span class="badge">🔒 Coffre chiffré côté navigateur</span>
-      <h1>Dashboard</h1>
+      <span class="badge">🔒 Mon coffre personnel</span>
+      <h1>Mon coffre</h1>
       <p id="planLine">Chargement…</p>
     </div>
 
     <div class="grid2">
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Déverrouiller le coffre</h3>
+        <h3 style="margin:0 0 10px;">Ouvrir / fermer mon coffre</h3>
+
         <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-          <span class="pill lock" id="vaultState">LOCKED</span>
-          <button class="btn primary" id="unlockBtn">Déverrouiller</button>
-          <button class="btn" id="lockBtn" disabled>Verrouiller</button>
+          <span class="pill lock" id="vaultState">FERMÉ</span>
+          <button class="btn primary" id="unlockBtn">Ouvrir mon coffre</button>
+          <button class="btn" id="lockBtn" disabled>Fermer</button>
+          <button class="btn" id="exportPdfBtn" disabled>Faire une copie PDF</button>
         </div>
+
         <div class="hero-note" id="vaultNote">
-          Pour afficher/copier les secrets, tu dois retaper ton mot de passe.
+          Pour afficher ou copier vos informations, vous devez ouvrir votre coffre.
         </div>
       </div>
 
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Recherche</h3>
+        <h3 style="margin:0 0 10px;">Rechercher</h3>
         <div class="field">
-          <label for="search">Rechercher</label>
-          <input id="search" placeholder="ex: banque, gmail, netflix…" />
+          <label for="search">Tapez un nom</label>
+          <input id="search" placeholder="ex : banque, gmail, netflix…" />
         </div>
-        <div class="hero-note">Le titre est en clair pour permettre la recherche. Le reste est chiffré.</div>
+        <div class="hero-note">Le nom sert juste à retrouver plus vite.</div>
       </div>
     </div>
 
@@ -74,16 +77,16 @@
 
     <div class="grid2">
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Ajouter un mot de passe</h3>
+        <h3 style="margin:0 0 10px;">Ajouter une information</h3>
 
         <form class="form" id="addForm">
           <div class="field">
-            <label for="title">Titre (ex: Gmail)</label>
+            <label for="title">Nom (ex : Gmail)</label>
             <input id="title" required />
           </div>
 
           <div class="field">
-            <label for="username">Identifiant / email</label>
+            <label for="username">Identifiant</label>
             <input id="username" required />
           </div>
 
@@ -93,35 +96,35 @@
           </div>
 
           <div class="field">
-            <label for="url">URL (optionnel)</label>
+            <label for="url">Site (optionnel)</label>
             <input id="url" placeholder="https://..." />
           </div>
 
           <div class="field">
-            <label for="notes">Notes (optionnel)</label>
-            <textarea id="notes" placeholder="Ex: 2FA activé, remarque…"></textarea>
+            <label for="notes">Remarques (optionnel)</label>
+            <textarea id="notes" placeholder="Ex : code de secours, rappel…"></textarea>
           </div>
 
-          <button class="btn primary" type="submit">Enregistrer (chiffré)</button>
+          <button class="btn primary" type="submit">Enregistrer</button>
           <div class="hero-note" id="limitNote"></div>
         </form>
       </div>
 
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Mes entrées</h3>
+        <h3 style="margin:0 0 10px;">Mes informations</h3>
         <div class="hero-note" id="itemsInfo">Chargement…</div>
         <div id="itemsList" style="display:grid; gap:10px; margin-top:12px;"></div>
       </div>
     </div>
   </div>
 
-  <!-- Modal Unlock -->
+  <!-- Fenêtre "Ouvrir mon coffre" -->
   <div id="unlockModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter: blur(6px); z-index:999;">
     <div class="container" style="height:100%; display:grid; place-items:center;">
       <div class="card pad" style="width:min(520px, 92vw);">
-        <h3 style="margin:0 0 8px;">Déverrouiller le coffre</h3>
+        <h3 style="margin:0 0 8px;">Ouvrir mon coffre</h3>
         <p style="margin:0 0 14px; color:var(--muted);">
-          Retape ton mot de passe. Il sert à dériver la clé de déchiffrement (zéro-knowledge).
+          Pour protéger vos informations, on vous demande votre mot de passe.
         </p>
 
         <form class="form" id="unlockForm">
@@ -132,7 +135,7 @@
 
           <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
             <button class="btn" type="button" id="unlockCancel">Annuler</button>
-            <button class="btn primary" type="submit">Déverrouiller</button>
+            <button class="btn primary" type="submit">Ouvrir</button>
           </div>
 
           <div class="hero-note" id="unlockError" style="color: rgba(239,68,68,.95); display:none;"></div>
@@ -160,26 +163,27 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
 <script src="js/crypto.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
 <script>
   // ==========================
-  // State
+  // État
   // ==========================
   let session = null;
   let profile = null;
   let items = [];
 
-  let unlocked = false;
-  let vaultKey = null;
+  let opened = false;        // coffre ouvert ?
+  let vaultKey = null;       // clé en mémoire (jamais stockée)
   let vaultSaltB64 = null;
 
   let autoLockTimer = null;
-  const AUTO_LOCK_MS = 10 * 60 * 1000; // 10 min
+  const AUTO_LOCK_MS = 10 * 60 * 1000; // 10 minutes
 
   // ==========================
-  // Utils
+  // Petites utilités
   // ==========================
-  function toast(msg){ alert(msg); }
+  function message(txt){ alert(txt); }
 
   function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, s => ({
@@ -190,7 +194,7 @@
   async function copyToClipboard(text) {
     try {
       await navigator.clipboard.writeText(text);
-      toast("✅ Copié !");
+      message("✅ Copié !");
     } catch {
       const ta = document.createElement("textarea");
       ta.value = text;
@@ -198,40 +202,52 @@
       ta.select();
       document.execCommand("copy");
       ta.remove();
-      toast("✅ Copié !");
+      message("✅ Copié !");
     }
+  }
+
+  function isPremium() {
+    return profile && (profile.plan === "annual" || profile.plan === "lifetime");
   }
 
   function startAutoLockTimer() {
     if (autoLockTimer) clearTimeout(autoLockTimer);
-    autoLockTimer = setTimeout(() => lockVault(true), AUTO_LOCK_MS);
+    autoLockTimer = setTimeout(() => closeCoffre(true), AUTO_LOCK_MS);
   }
 
-  function setVaultUI() {
+  function updatePdfButton() {
+    const btn = document.getElementById("exportPdfBtn");
+    if (!btn) return;
+    btn.disabled = !(opened && vaultKey && isPremium());
+  }
+
+  function setCoffreUI() {
     const pill = document.getElementById('vaultState');
-    const unlockBtn = document.getElementById('unlockBtn');
-    const lockBtn = document.getElementById('lockBtn');
+    const openBtn = document.getElementById('unlockBtn');
+    const closeBtn = document.getElementById('lockBtn');
     const note = document.getElementById('vaultNote');
 
-    if (unlocked) {
-      pill.textContent = "UNLOCKED";
+    if (opened) {
+      pill.textContent = "OUVERT";
       pill.classList.remove("lock");
       pill.classList.add("ok");
-      unlockBtn.disabled = true;
-      lockBtn.disabled = false;
-      note.textContent = "Coffre déverrouillé. Tu peux afficher/copier/ajouter. Auto-lock: 10 min.";
+      openBtn.disabled = true;
+      closeBtn.disabled = false;
+      note.textContent = "Votre coffre est ouvert. Pensez à le fermer quand vous avez fini (fermeture auto).";
     } else {
-      pill.textContent = "LOCKED";
+      pill.textContent = "FERMÉ";
       pill.classList.add("lock");
       pill.classList.remove("ok");
-      unlockBtn.disabled = false;
-      lockBtn.disabled = true;
-      note.textContent = "Coffre verrouillé. Déverrouille pour afficher/copier/ajouter.";
+      openBtn.disabled = false;
+      closeBtn.disabled = true;
+      note.textContent = "Votre coffre est fermé. Ouvrez-le pour afficher ou copier vos informations.";
     }
+
+    updatePdfButton();
   }
 
   // ==========================
-  // Supabase Data
+  // Supabase
   // ==========================
   async function loadProfile() {
     const { data, error } = await supabaseClient
@@ -243,8 +259,19 @@
     if (error) throw error;
     profile = data;
 
+    let offerText = "Gratuit (jusqu’à 15 éléments)";
+    if (profile.plan === "annual") offerText = "Premium (abonnement)";
+    if (profile.plan === "lifetime") offerText = "Premium (à vie)";
+
     document.getElementById("planLine").textContent =
-      `Plan: ${profile.plan.toUpperCase()} — Gratuit: 15 mots de passe • Premium: illimité`;
+      `Offre : ${offerText}`;
+
+    // petit message sous le formulaire
+    if (profile.plan === "free") {
+      document.getElementById("limitNote").textContent = "Vous êtes en offre gratuite : 15 éléments maximum.";
+    } else {
+      document.getElementById("limitNote").textContent = "Offre Premium : éléments illimités + copie PDF.";
+    }
   }
 
   async function ensureVaultSalt() {
@@ -274,12 +301,12 @@
 
     if (error) throw error;
     items = data || [];
-    document.getElementById("itemsInfo").textContent = `${items.length} entrée(s) enregistrée(s).`;
+    document.getElementById("itemsInfo").textContent = `${items.length} élément(s) enregistré(s).`;
     renderItems();
   }
 
   // ==========================
-  // Vault unlock modal
+  // Fenêtre "ouvrir"
   // ==========================
   function openUnlockModal() {
     document.getElementById("unlockError").style.display = "none";
@@ -293,27 +320,27 @@
     document.getElementById("unlockModal").style.display = "none";
   }
 
-  async function unlockWithPassword(pwd) {
+  async function openCoffreWithPassword(pwd) {
     await ensureVaultSalt();
     vaultKey = await CryptoV1.deriveKeyFromPassword(pwd, vaultSaltB64);
-    unlocked = true;
-    setVaultUI();
+    opened = true;
+    setCoffreUI();
     renderItems();
     startAutoLockTimer();
   }
 
-  function lockVault(isAuto = false) {
-    unlocked = false;
+  function closeCoffre(isAuto = false) {
+    opened = false;
     vaultKey = null;
     if (autoLockTimer) clearTimeout(autoLockTimer);
     autoLockTimer = null;
-    setVaultUI();
+    setCoffreUI();
     renderItems();
-    toast(isAuto ? "🔒 Coffre reverrouillé automatiquement." : "🔒 Coffre verrouillé.");
+    message(isAuto ? "🔒 Coffre fermé automatiquement." : "🔒 Coffre fermé.");
   }
 
   // ==========================
-  // Render list
+  // Liste
   // ==========================
   function renderItems() {
     const q = (document.getElementById("search").value || "").toLowerCase();
@@ -342,75 +369,85 @@
         <div>
           <strong>${escapeHtml(it.title)}</strong><br />
           <span style="color: rgba(255,255,255,.65); font-size: 13px;">
-            ${unlocked ? "déverrouillé" : "••••••"}
+            ${opened ? "coffre ouvert" : "coffre fermé"}
           </span>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
           <button class="btn small" data-action="view">Voir</button>
-          <button class="btn small" data-action="copy-user">Copier ID</button>
-          <button class="btn small" data-action="copy-pass">Copier MDP</button>
-          <button class="btn small" data-action="delete">Suppr.</button>
+          <button class="btn small" data-action="copy-user">Copier identifiant</button>
+          <button class="btn small" data-action="copy-pass">Copier mot de passe</button>
+          <button class="btn small" data-action="delete">Supprimer</button>
         </div>
       `;
 
-      // View
+      function getIVs(item){
+        return {
+          uiv: item.username_iv || item.crypto_iv,
+          piv: item.password_iv || item.crypto_iv,
+          urliv: item.url_iv || item.crypto_iv,
+          niv: item.notes_iv || item.crypto_iv
+        };
+      }
+
+      // Voir
       row.querySelector('[data-action="view"]').addEventListener('click', async () => {
-        if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre pour afficher.");
+        if (!opened || !vaultKey) return message("Ouvrez votre coffre pour afficher.");
 
         try {
-          const uiv = it.username_iv || it.crypto_iv;
-          const piv = it.password_iv || it.crypto_iv;
-          const urliv = it.url_iv || it.crypto_iv;
-          const niv = it.notes_iv || it.crypto_iv;
-
+          const { uiv, piv, urliv, niv } = getIVs(it);
           const username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
           const pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
           const url = it.url_encrypted ? await CryptoV1.decryptText(it.url_encrypted, urliv, vaultKey) : "";
           const notes = it.notes_encrypted ? await CryptoV1.decryptText(it.notes_encrypted, niv, vaultKey) : "";
 
           startAutoLockTimer();
-          toast(`🔐 ${it.title}\n\nIdentifiant: ${username}\nMot de passe: ${pwd}\nURL: ${url}\nNotes: ${notes}`);
-        } catch (e) {
-          toast("❌ Déchiffrement impossible (mauvais mot de passe ?).");
+          message(
+            `${it.title}\n\nIdentifiant : ${username}\nMot de passe : ${pwd}` +
+            (url ? `\nSite : ${url}` : "") +
+            (notes ? `\nRemarques : ${notes}` : "")
+          );
+        } catch {
+          message("Oups… impossible d’afficher. Vérifiez que le coffre est bien ouvert.");
         }
       });
 
-      // Copy username
+      // Copier identifiant
       row.querySelector('[data-action="copy-user"]').addEventListener('click', async () => {
-        if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre.");
+        if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
 
         try {
-          const uiv = it.username_iv || it.crypto_iv;
+          const { uiv } = getIVs(it);
           const username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
           await copyToClipboard(username);
           startAutoLockTimer();
         } catch {
-          toast("❌ Impossible de copier.");
+          message("Oups… impossible de copier.");
         }
       });
 
-      // Copy password
+      // Copier mot de passe
       row.querySelector('[data-action="copy-pass"]').addEventListener('click', async () => {
-        if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre.");
+        if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
 
         try {
-          const piv = it.password_iv || it.crypto_iv;
+          const { piv } = getIVs(it);
           const pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
           await copyToClipboard(pwd);
           startAutoLockTimer();
         } catch {
-          toast("❌ Impossible de copier.");
+          message("Oups… impossible de copier.");
         }
       });
 
-      // Delete
+      // Supprimer
       row.querySelector('[data-action="delete"]').addEventListener('click', async () => {
         if (!confirm(`Supprimer "${it.title}" ?`)) return;
+
         const { error } = await supabaseClient.from("vault_items").delete().eq("id", it.id);
-        if (error) return toast("❌ Suppression impossible : " + error.message);
+        if (error) return message("Oups… impossible de supprimer.");
 
         items = items.filter(x => x.id !== it.id);
-        document.getElementById("itemsInfo").textContent = `${items.length} entrée(s) enregistrée(s).`;
+        document.getElementById("itemsInfo").textContent = `${items.length} élément(s) enregistré(s).`;
         renderItems();
       });
 
@@ -419,19 +456,18 @@
   }
 
   // ==========================
-  // Add item (crypto v2)
+  // Ajouter
   // ==========================
   async function addItem(e) {
     e.preventDefault();
 
-    if (!unlocked || !vaultKey) return toast("🔒 Déverrouille le coffre avant d’ajouter.");
+    if (!opened || !vaultKey) return message("Ouvrez votre coffre avant d’enregistrer.");
 
-    const isFree = (profile.plan === "free");
-    if (isFree && items.length >= 15) {
-      document.getElementById("limitNote").textContent = "⚠️ Limite atteinte (15). Passe premium dans Offres.";
-      return toast("⚠️ Limite free atteinte (15).");
-    } else {
-      document.getElementById("limitNote").textContent = "";
+    // limite gratuit
+    if (profile.plan === "free" && items.length >= 15) {
+      document.getElementById("limitNote").textContent =
+        "Limite atteinte (15). Passez en Premium dans la page Offres.";
+      return message("Vous avez atteint la limite de l’offre gratuite.");
     }
 
     const title = document.getElementById("title").value.trim();
@@ -443,6 +479,7 @@
     try {
       await ensureVaultSalt();
 
+      // IV par champ
       const usernameIv = CryptoV1.newIvB64();
       const passwordIv = CryptoV1.newIvB64();
       const urlIv = CryptoV1.newIvB64();
@@ -481,14 +518,116 @@
 
       document.getElementById("addForm").reset();
       items.unshift(data);
-      document.getElementById("itemsInfo").textContent = `${items.length} entrée(s) enregistrée(s).`;
+      document.getElementById("itemsInfo").textContent = `${items.length} élément(s) enregistré(s).`;
       renderItems();
-
       startAutoLockTimer();
-      toast("✅ Ajouté (chiffré).");
-    } catch (err) {
-      toast("❌ Ajout impossible : " + (err?.message || err));
+
+      message("✅ Enregistré.");
+    } catch {
+      message("Oups… impossible d’enregistrer. Réessayez.");
     }
+  }
+
+  // ==========================
+  // PDF (Premium uniquement)
+  // ==========================
+  async function exportAllToPdf() {
+    if (!isPremium()) return message("Cette option est réservée aux abonnés Premium.");
+    if (!opened || !vaultKey) return message("Ouvrez votre coffre pour faire une copie PDF.");
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+
+    const left = 14;
+    let y = 18;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Clavis-security — Copie PDF", left, y);
+
+    y += 8;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(`Compte : ${session.user.email}`, left, y);
+    y += 6;
+
+    const offer = (profile.plan === "lifetime") ? "Premium à vie" : "Premium (abonnement)";
+    doc.text(`Offre : ${offer}`, left, y);
+    y += 6;
+
+    const now = new Date();
+    doc.text(`Date : ${now.toLocaleString("fr-FR")}`, left, y);
+    y += 10;
+
+    doc.setFontSize(9);
+    doc.text("Mes informations :", left, y);
+    y += 6;
+
+    doc.line(left, y, 196, y);
+    y += 6;
+
+    for (let i = 0; i < items.length; i++) {
+      const it = items[i];
+
+      const uiv = it.username_iv || it.crypto_iv;
+      const piv = it.password_iv || it.crypto_iv;
+      const urliv = it.url_iv || it.crypto_iv;
+      const niv = it.notes_iv || it.crypto_iv;
+
+      let username = "";
+      let pwd = "";
+      let url = "";
+      let notes = "";
+
+      try {
+        username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
+        pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
+        url = it.url_encrypted ? await CryptoV1.decryptText(it.url_encrypted, urliv, vaultKey) : "";
+        notes = it.notes_encrypted ? await CryptoV1.decryptText(it.notes_encrypted, niv, vaultKey) : "";
+      } catch {
+        username = "(illisible)";
+        pwd = "(illisible)";
+      }
+
+      const block = [
+        `• ${it.title}`,
+        `  Identifiant : ${username}`,
+        `  Mot de passe : ${pwd}`,
+        url ? `  Site : ${url}` : null,
+        notes ? `  Remarques : ${notes}` : null
+      ].filter(Boolean);
+
+      const needed = block.length * 5 + 6;
+      if (y + needed > 285) {
+        doc.addPage();
+        y = 18;
+      }
+
+      doc.setFont("helvetica", "bold");
+      doc.text(block[0], left, y);
+      y += 5;
+
+      doc.setFont("helvetica", "normal");
+      for (let j = 1; j < block.length; j++) {
+        const lines = doc.splitTextToSize(block[j], 180);
+        for (const line of lines) {
+          if (y > 285) {
+            doc.addPage();
+            y = 18;
+          }
+          doc.text(line, left, y);
+          y += 5;
+        }
+      }
+
+      y += 4;
+      doc.line(left, y, 196, y);
+      y += 6;
+    }
+
+    const safeDate = now.toISOString().slice(0, 10);
+    doc.save(`clavis-copie-${safeDate}.pdf`);
+    startAutoLockTimer();
   }
 
   // ==========================
@@ -516,7 +655,9 @@
     document.getElementById("search").addEventListener("input", renderItems);
 
     document.getElementById("unlockBtn").addEventListener("click", openUnlockModal);
-    document.getElementById("lockBtn").addEventListener("click", () => lockVault(false));
+    document.getElementById("lockBtn").addEventListener("click", () => closeCoffre(false));
+
+    document.getElementById("exportPdfBtn").addEventListener("click", exportAllToPdf);
 
     document.getElementById("unlockCancel").addEventListener("click", closeUnlockModal);
     document.getElementById("unlockForm").addEventListener("submit", async (e) => {
@@ -524,28 +665,28 @@
       const pwd = document.getElementById("unlockPassword").value;
 
       try {
-        await unlockWithPassword(pwd);
+        await openCoffreWithPassword(pwd);
         closeUnlockModal();
-        toast("✅ Coffre déverrouillé.");
+        message("✅ Coffre ouvert.");
       } catch {
         const el = document.getElementById("unlockError");
         el.style.display = "block";
-        el.textContent = "Mot de passe incorrect ou déverrouillage impossible.";
+        el.textContent = "Mot de passe incorrect. Réessayez.";
       }
     });
 
     document.getElementById("addForm").addEventListener("submit", addItem);
 
-    // auto-lock on tab hidden
+    // si l’utilisateur change d’onglet → on ferme par sécurité
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden && unlocked) lockVault(true);
+      if (document.hidden && opened) closeCoffre(true);
     });
 
-    setVaultUI();
+    setCoffreUI();
   }
 
-  init().catch(err => {
-    alert("Erreur dashboard : " + (err?.message || err));
+  init().catch(() => {
+    alert("Oups… impossible d’ouvrir cette page. Reconnectez-vous.");
     window.location.href = "login.html";
   });
 </script>
