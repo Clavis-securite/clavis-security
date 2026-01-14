@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Clavis-security — Un mot de passe pour tous les retenir.</title>
-  <meta name="description" content="Retiens un seul mot de passe. Retrouve tous les autres en 3 secondes. Simple, rapide, rassurant." />
+  <meta name="description" content="Clavis-security te permet de retrouver tes mots de passe en quelques secondes. Un mot de passe pour tous les retenir." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -12,7 +12,7 @@
 <header class="topbar">
   <div class="container">
     <div class="nav">
-      <a class="brand" href="index.html" aria-current="page">
+      <a class="brand" href="index.html" aria-label="Accueil Clavis-security">
         <div class="logo" aria-hidden="true"></div>
         <span>Clavis-security</span>
       </a>
@@ -40,170 +40,160 @@
   </div>
 </header>
 
-<main class="section">
-  <div class="container">
+<main>
 
-    <!-- HERO -->
-    <div class="page-hero">
-      <span class="badge">✨ Un mot de passe pour tous les retenir.</span>
-      <h1>Moins d’oublis. Plus de tranquillité.</h1>
-      <p style="max-width: 760px;">
-        Tu gardes tout au même endroit : identifiants, mots de passe, sites, remarques.
-        Tu retrouves ce que tu cherches en quelques secondes, et tu peux copier en un clic.
-      </p>
+  <!-- HERO (pas de cartes empilées) -->
+  <section class="hero-slim">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="badge">🔒 Simple. Clair. Rassurant.</div>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-        <a class="btn primary" href="register.html">Commencer gratuitement</a>
-        <a class="btn" href="offers.html">Voir les offres</a>
-        <a class="btn ghost" href="login.html">J’ai déjà un compte</a>
-      </div>
+          <h1 style="margin:14px 0 10px;">
+            Un mot de passe<br/>
+            <span style="opacity:.9;">pour tous les retenir.</span>
+          </h1>
 
-      <div class="hero-note" style="margin-top:12px;">
-        Offre gratuite : jusqu’à 15 éléments. Premium : illimité + copie PDF.
-      </div>
-    </div>
+          <p style="max-width:620px; margin:0 0 18px; color:var(--muted);">
+            Clavis-security te permet de retrouver tes informations en quelques secondes.
+            Tu crées ton compte, tu ranges tout au même endroit, et tu retrouves facilement grâce à la recherche.
+          </p>
 
-    <!-- PROBLÈME -->
-    <div class="hr"></div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn primary" href="register.html">Créer mon coffre</a>
+            <a class="btn ghost" href="offers.html">Voir les offres</a>
+          </div>
 
-    <div class="grid2">
-      <div class="card pad">
-        <h2 style="margin:0 0 8px;">Tu connais ça ?</h2>
-        <ul style="margin:0; padding-left:18px; color:var(--muted);">
-          <li>“Mot de passe oublié” → reset → perte de temps</li>
-          <li>Notes sur papier / dans le téléphone → pas pratique</li>
-          <li>Trop de comptes → trop d’erreurs</li>
-          <li>Tu veux quelque chose de simple, sans prise de tête</li>
-        </ul>
-      </div>
+          <div class="hero-sub" style="margin-top:12px;">
+            Gratuit jusqu’à 15 éléments • Premium annuel 30€ • À vie 99€
+          </div>
+        </div>
 
-      <div class="card pad">
-        <h2 style="margin:0 0 8px;">La solution Clavis</h2>
-        <p style="margin:0;color:var(--muted);">
-          Tu retiens <strong>un seul mot de passe</strong> pour ouvrir ton coffre.
-          Ensuite, tu retrouves tout en 3 secondes, avec une recherche rapide.
-        </p>
-        <div class="hr"></div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn primary" href="register.html">Créer mon coffre</a>
-          <a class="btn" href="faq.html">Comment ça marche ?</a>
+        <div class="hero-visual" aria-hidden="true">
+          <!-- un seul bloc visuel, léger -->
+          <div class="glass">
+            <div class="glass-top">
+              <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <div class="glass-body">
+              <div class="mini-title">Recherche</div>
+              <div class="mini-input">banque, gmail, netflix…</div>
+
+              <div style="height:14px;"></div>
+
+              <div class="mini-row">
+                <div class="mini-pill">Gmail</div>
+                <div class="mini-pill">Banque</div>
+                <div class="mini-pill">Netflix</div>
+              </div>
+
+              <div style="height:16px;"></div>
+
+              <div class="mini-note">
+                Ouvre ton coffre pour afficher ou copier.
+              </div>
+
+              <div style="height:12px;"></div>
+              <div class="mini-cta">
+                <span class="mini-lock">🔒</span>
+                Coffre personnel
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <div class="fade-divider"></div>
     </div>
+  </section>
 
-    <!-- COMMENT ÇA MARCHE -->
-    <div class="hr"></div>
+  <!-- 3 bénéfices (pas des cartes sur cartes) -->
+  <section class="section">
+    <div class="container">
 
-    <div class="page-hero" style="padding-top:0;">
-      <h2 style="margin:0 0 8px;">Comment ça marche (simplement)</h2>
-      <p style="margin:0; max-width:760px;">
-        En 3 étapes. Pas besoin d’être “tech”.
-      </p>
+      <div class="split-head">
+        <h2 style="margin:0;">Tout retrouver, sans prise de tête.</h2>
+        <p style="margin:0; color:var(--muted); max-width:520px;">
+          Clavis-security est pensé pour monsieur et madame tout le monde :
+          simple à utiliser, agréable, et fait pour le quotidien.
+        </p>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature">
+          <div class="icon">🔎</div>
+          <h3>Recherche instantanée</h3>
+          <p>Tu tapes un nom, tu retrouves tout de suite ce que tu cherches.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">🧠</div>
+          <h3>Un seul mot de passe</h3>
+          <p>Tu retiens l’essentiel, le reste est rangé au bon endroit.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">🛡️</div>
+          <h3>Rassurant</h3>
+          <p>Pour afficher, tu ouvres ton coffre. Tu peux le refermer quand tu as fini.</p>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <div class="grid2">
-      <div class="card pad">
-        <span class="badge">1</span>
-        <h3 style="margin:8px 0 6px;">Tu crées ton coffre</h3>
-        <p style="margin:0;color:var(--muted);">
-          Tu te connectes avec ton email. Ton coffre est prêt.
-        </p>
-      </div>
-      <div class="card pad">
-        <span class="badge">2</span>
-        <h3 style="margin:8px 0 6px;">Tu ajoutes tes informations</h3>
-        <p style="margin:0;color:var(--muted);">
-          Nom, identifiant, mot de passe, site… c’est tout.
-        </p>
-      </div>
-      <div class="card pad">
-        <span class="badge">3</span>
-        <h3 style="margin:8px 0 6px;">Tu retrouves et tu copies</h3>
-        <p style="margin:0;color:var(--muted);">
-          Recherche rapide, affichage, copie en un clic.
-        </p>
-      </div>
-      <div class="card pad">
-        <span class="badge">+</span>
-        <h3 style="margin:8px 0 6px;">Avec Premium</h3>
-        <p style="margin:0;color:var(--muted);">
-          Éléments illimités + possibilité de faire une copie PDF de tout ton contenu.
-        </p>
-      </div>
-    </div>
-
-    <!-- PREUVES / RASSURANCE -->
-    <div class="hr"></div>
-
-    <div class="page-hero" style="padding-top:0;">
-      <h2 style="margin:0 0 8px;">Pourquoi les gens aiment Clavis</h2>
-      <p style="margin:0; max-width:760px;">
-        Parce que c’est fait pour être clair, rapide, et rassurant.
-      </p>
-    </div>
-
-    <div class="grid2">
-      <div class="card pad">
-        <h3 style="margin:0 0 6px;">Tu gardes le contrôle</h3>
-        <p style="margin:0;color:var(--muted);">
-          Ton coffre reste fermé tant que tu ne l’ouvres pas.
-          Et il se referme automatiquement si tu oublies.
-        </p>
-      </div>
-      <div class="card pad">
-        <h3 style="margin:0 0 6px;">Pensé pour le quotidien</h3>
-        <p style="margin:0;color:var(--muted);">
-          Une recherche, une liste, des boutons “copier”. C’est tout.
-        </p>
-      </div>
-      <div class="card pad">
-        <h3 style="margin:0 0 6px;">Tu peux commencer gratuitement</h3>
-        <p style="margin:0;color:var(--muted);">
-          Tu testes avec 15 éléments. Ensuite tu passes Premium si tu en as envie.
-        </p>
-      </div>
-      <div class="card pad">
-        <h3 style="margin:0 0 6px;">Tu peux faire une copie PDF</h3>
-        <p style="margin:0;color:var(--muted);">
-          Pratique si tu veux garder une sauvegarde de tout ton contenu (Premium).
-        </p>
-      </div>
-    </div>
-
-    <!-- OFFRES -->
-    <div class="hr"></div>
-
-    <div class="card pad">
-      <div class="grid2">
+  <!-- Bandeau CTA (léger, un seul bloc) -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band">
         <div>
-          <h2 style="margin:0 0 8px;">Choisis ton rythme</h2>
-          <p style="margin:0;color:var(--muted);">
-            Gratuit pour démarrer. Premium pour être tranquille.
+          <div class="badge">✨ Astuce</div>
+          <h2 style="margin:10px 0 6px;">Commence gratuit, passe Premium quand tu veux.</h2>
+          <p style="margin:0; color:rgba(255,255,255,.7); max-width:720px;">
+            Quand ton coffre grandit, Premium te donne des éléments illimités et une copie PDF complète.
           </p>
         </div>
-        <div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
-          <a class="btn" href="offers.html">Comparer les offres</a>
-          <a class="btn primary" href="register.html">Commencer gratuit</a>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+          <a class="btn ghost" href="offers.html">Comparer</a>
+          <a class="btn primary" href="register.html">Créer mon coffre</a>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- CTA FINAL -->
-    <div class="hr"></div>
+  <!-- Mini FAQ (juste 3 questions, pas un mur) -->
+  <section class="section">
+    <div class="container">
+      <div class="split-head">
+        <h2 style="margin:0;">Questions rapides</h2>
+        <p style="margin:0;color:var(--muted); max-width:520px;">
+          Tu peux lire la FAQ complète quand tu veux.
+        </p>
+      </div>
 
-    <div class="card pad">
-      <h2 style="margin:0 0 8px;">Prêt à arrêter les “mot de passe oublié” ?</h2>
-      <p style="margin:0;color:var(--muted); max-width: 760px;">
-        Crée ton coffre maintenant. Tu peux rester en gratuit, et passer Premium plus tard si tu veux.
-      </p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-        <a class="btn primary" href="register.html">Créer mon coffre</a>
-        <a class="btn" href="faq.html">Lire la FAQ</a>
-        <a class="btn ghost" href="contact.html">Nous contacter</a>
+      <div class="faq-lite">
+        <details class="faq-item">
+          <summary>Est-ce que je peux commencer gratuitement ?</summary>
+          <p>Oui. L’offre gratuite te permet d’enregistrer jusqu’à 15 éléments.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Comment je retrouve mes informations ?</summary>
+          <p>Tu utilises la recherche, puis tu ouvres ton coffre pour afficher ou copier.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Et si je veux une copie ?</summary>
+          <p>En Premium, tu peux générer une copie PDF complète depuis ton coffre.</p>
+        </details>
+      </div>
+
+      <div style="margin-top:14px;">
+        <a class="btn ghost" href="faq.html">Voir toute la FAQ</a>
       </div>
     </div>
+  </section>
 
-  </div>
 </main>
 
 <footer class="footer">
@@ -220,5 +210,151 @@
 </footer>
 
 <script src="js/app.js"></script>
+
+<!-- Styles locaux landing : léger et sans modifier ton CSS global -->
+<style>
+  .hero-slim{
+    padding: 72px 0 22px;
+    background: radial-gradient(900px 500px at 10% 10%, rgba(59,130,246,.18), transparent 60%),
+                radial-gradient(900px 500px at 85% 25%, rgba(34,197,94,.14), transparent 60%);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 28px;
+    align-items: center;
+  }
+  @media (max-width: 920px){
+    .hero-grid{ grid-template-columns: 1fr; }
+  }
+  .hero-sub{
+    font-size: 13px;
+    color: rgba(255,255,255,.62);
+  }
+  .hero-visual{ display:flex; justify-content:flex-end; }
+  @media (max-width: 920px){ .hero-visual{ justify-content:flex-start; } }
+
+  .glass{
+    width: min(420px, 92vw);
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+  .glass-top{
+    display:flex; gap:6px;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+  }
+  .dot{
+    width:10px; height:10px; border-radius:99px;
+    background: rgba(255,255,255,.22);
+  }
+  .glass-body{ padding: 16px 16px 18px; }
+  .mini-title{ font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 6px; }
+  .mini-input{
+    border-radius: 14px;
+    padding: 12px 12px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.18);
+    color: rgba(255,255,255,.78);
+    font-size: 13px;
+  }
+  .mini-row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mini-pill{
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.05);
+    font-size: 12px;
+    color: rgba(255,255,255,.72);
+  }
+  .mini-note{
+    font-size: 12px;
+    color: rgba(255,255,255,.6);
+  }
+  .mini-cta{
+    display:flex; align-items:center; gap:8px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(59,130,246,.12);
+    color: rgba(255,255,255,.82);
+    font-size: 13px;
+  }
+  .fade-divider{
+    height: 1px;
+    margin-top: 22px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
+  }
+
+  .split-head{
+    display:flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .feature-row{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 900px){ .feature-row{ grid-template-columns: 1fr; } }
+  .feature{
+    padding: 18px 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+  }
+  .feature .icon{
+    font-size: 20px;
+    width: 42px; height: 42px;
+    display:grid; place-items:center;
+    border-radius: 14px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.10);
+    margin-bottom: 10px;
+  }
+  .feature h3{ margin: 0 0 6px; }
+  .feature p{ margin: 0; color: var(--muted); }
+
+  .cta-band{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 18px;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: linear-gradient(90deg, rgba(59,130,246,.20), rgba(34,197,94,.12));
+    box-shadow: 0 18px 60px rgba(0,0,0,.28);
+    flex-wrap: wrap;
+  }
+
+  .faq-lite{
+    display:grid;
+    gap: 10px;
+  }
+  .faq-item{
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+    padding: 12px 14px;
+  }
+  .faq-item summary{
+    cursor:pointer;
+    font-weight: 600;
+  }
+  .faq-item p{
+    margin: 10px 0 0;
+    color: var(--muted);
+  }
+</style>
+
 </body>
 </html>
