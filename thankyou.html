@@ -27,17 +27,17 @@
   <div class="container">
 
     <div class="card pad">
-      <span class="badge">✅ Paiement confirmé</span>
-      <h1 style="margin:8px 0 8px;">Merci ! Tu es prêt.</h1>
+      <span class="badge" id="ty-badge">✅ Paiement confirmé</span>
+      <h1 style="margin:8px 0 8px;" id="ty-title">Merci ! Tu es prêt.</h1>
 
-      <p style="margin:0;color:var(--muted); max-width: 760px;">
+      <p style="margin:0;color:var(--muted); max-width: 760px;" id="ty-lead">
         Ton accès est activé automatiquement. Si tu ne vois pas la différence tout de suite,
         recharge simplement la page du coffre.
       </p>
 
       <div class="hr"></div>
 
-      <div class="grid2">
+      <div class="grid2" id="ty-actions">
         <div>
           <h3 style="margin:0 0 6px;">Ce que tu peux faire maintenant</h3>
           <ul style="margin:0; padding-left: 18px; color: var(--muted);">
@@ -48,8 +48,8 @@
         </div>
 
         <div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
-          <a class="btn primary" href="dashboard.html">Ouvrir mon coffre</a>
-          <a class="btn" href="offers.html">Voir les offres</a>
+          <a class="btn primary" href="dashboard.html" id="ty-primary">Ouvrir mon coffre</a>
+          <a class="btn" href="offers.html" id="ty-secondary">Voir les offres</a>
         </div>
       </div>
 
@@ -101,6 +101,34 @@
   // Petit message optionnel si tu veux
   (function(){
     const params = new URLSearchParams(window.location.search);
+    const isRegistered = params.get("registered") === "1";
+
+    // Si c'est une inscription : page merci + invitation a verifier l'email
+    if (isRegistered) {
+      const email = params.get("email") || "";
+      const badge = document.getElementById("ty-badge");
+      const title = document.getElementById("ty-title");
+      const lead = document.getElementById("ty-lead");
+      const primary = document.getElementById("ty-primary");
+      const secondary = document.getElementById("ty-secondary");
+
+      if (badge) badge.textContent = "✅ Compte créé";
+      if (title) title.textContent = "Merci ! Dernière petite étape.";
+      if (lead) {
+        lead.innerHTML = "On vient de t'envoyer un email pour confirmer ton adresse" + (email ? (" <strong>" + email + "</strong>") : "") + ".<br>Ouvre-le et confirme : ensuite tu pourras te connecter.";
+      }
+      if (primary) {
+        primary.textContent = "Aller à la connexion";
+        primary.setAttribute("href", email ? ("login.html?email=" + encodeURIComponent(email)) : "login.html");
+      }
+      if (secondary) {
+        secondary.textContent = "Voir les offres";
+        secondary.setAttribute("href", "offers.html");
+      }
+      return;
+    }
+
+    // Paiement confirme (comportement actuel)
     if (params.get("success") !== "1") return;
     // Rien de technique, juste une confirmation douce
   })();
