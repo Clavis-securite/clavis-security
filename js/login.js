@@ -1,28 +1,42 @@
-(() => {
+// js/login.js
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");
   if (!form) return;
-  try {
-    const p = new URLSearchParams(window.location.search);
-    const e = p.get("email");
-    if (e) {
-      const input = form.querySelector("input[name=\\"email\\"]");
-      if (input) input.value = e;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const emailInput = form.querySelector('input[name="email"]');
+    const passwordInput = form.querySelector('input[name="password"]');
+
+    if (!emailInput || !passwordInput) {
+      alert("Formulaire incomplet.");
+      return;
     }
-  } catch (err) {}
-  form.addEventListener("submit", async (ev) => {
-    ev.preventDefault();
-    const email = (form.querySelector("input[name=\\"email\\"]")?.value || "").trim();
-    const password = form.querySelector("input[name=\\"password\\"]")?.value || "";
-    const btn = form.querySelector("button[type=\\"submit\\"]");
-    const old = btn ? btn.textContent : "";
-    if (btn) { btn.disabled = true; btn.textContent = "Connexion..."; }
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      alert("Merci de renseigner ton email et ton mot de passe.");
+      return;
+    }
+
     try {
-      await signIn(email, password);
-      window.location.href = "dashboard.html";
-    } catch (e) {
-      alert("Oups... email ou mot de passe incorrect. Réessaie.");
-    } finally {
-      if (btn) { btn.disabled = false; btn.textContent = old; }
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+        alert("Email ou mot de passe incorrect.");
+        return;
+      }
+
+      window.location.href = "/dashboard.html";
+    } catch (err) {
+      console.error(err);
+      alert("Une erreur est survenue. Réessaie.");
     }
   });
-})();
+});
