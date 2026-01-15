@@ -33,6 +33,15 @@ async function getSession() {
 // Protège une page : si pas connecté -> login
 async function requireAuth() {
   const session = await getSession();
-  if (!session) window.location.href = "login.html";
+  if (!session) window.location.href = "/login.html";
   return session;
 }
+
+
+// Expose helpers globally (pages use plain <script>)
+window.supabaseClient = supabaseClient;
+window.signUp = signUp;
+window.signIn = signIn;
+window.signOut = signOut;
+window.getSession = getSession;
+window.requireAuth = requireAuth;
