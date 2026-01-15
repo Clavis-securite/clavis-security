@@ -4,15 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Connexion — Clavis-security</title>
-  <meta name="description" content="Connecte-toi à ton coffre Clavis-security." />
 
-  <!-- PWA -->
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <!-- Icônes -->
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
 
@@ -23,12 +17,12 @@
 
 <header class="cs-topbar">
   <div class="cs-container cs-nav">
-    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+    <a class="cs-brand" href="index.html">
       <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
       <span class="cs-brand-name">Clavis-security</span>
     </a>
 
-    <nav class="cs-links" aria-label="Navigation">
+    <nav class="cs-links">
       <a href="offers.html">Offres</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
@@ -52,58 +46,39 @@
   <div class="cs-container cs-auth-grid">
 
     <section class="cs-auth-left" aria-hidden="true">
-      <div class="cs-auth-hero">
-        <img src="/assets/icons/icon-512.png" alt="" class="cs-auth-icon">
-        <div class="cs-badge">🔒 Ton coffre personnel</div>
-        <h1 class="cs-h1" style="margin-top:14px;">Content de te revoir.</h1>
-        <p class="cs-lead">
-          Connecte-toi et retrouve tes informations en quelques secondes.
-        </p>
-        <div class="cs-trust-row">
-          <div class="cs-trust">✅ Recherche rapide</div>
-          <div class="cs-trust">✅ Simple à utiliser</div>
-          <div class="cs-trust">✅ Sur téléphone & PC</div>
-        </div>
-      </div>
+      <img src="/assets/icons/icon-512.png" alt="" class="cs-auth-icon">
+      <div class="cs-badge">🔒 Ton coffre personnel</div>
+      <h1 class="cs-h1">Content de te revoir.</h1>
+      <p class="cs-lead">Connecte-toi et retrouve tes informations en quelques secondes.</p>
     </section>
 
     <section class="cs-auth-card">
-      <div class="cs-auth-head">
-        <h2 class="cs-h2" style="margin:0;">Connexion</h2>
-        <p class="cs-muted" style="margin:6px 0 0;">Ouvre ton coffre.</p>
-      </div>
+      <h2 class="cs-h2" style="margin:0;">Connexion</h2>
+      <p class="cs-muted" style="margin:6px 0 0;">Ouvre ton coffre.</p>
 
-      <!-- ⚠️ IMPORTANT : on garde ton id pour que ton JS actuel marche -->
       <form id="login-form" class="cs-form">
         <label class="cs-label">
           Email
-          <input name="email" type="email" autocomplete="email" placeholder="ex: nom@gmail.com" required class="cs-input">
+          <input name="email" type="email" autocomplete="email" required class="cs-input" placeholder="ex: nom@gmail.com">
         </label>
 
         <label class="cs-label">
           Mot de passe
           <div class="cs-pass">
-            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required class="cs-input cs-input-pass">
-            <button type="button" class="cs-eye" data-toggle-password aria-label="Afficher le mot de passe">👁️</button>
+            <input id="login_password" name="password" type="password" autocomplete="current-password"
+                   required class="cs-input cs-input-pass" placeholder="••••••••">
+            <button type="button" class="cs-eye" data-toggle-password data-target="login_password"
+                    aria-label="Afficher le mot de passe">👁️</button>
           </div>
         </label>
 
-        <button class="cs-btn cs-primary cs-btn-full" type="submit">
-          Se connecter
-        </button>
+        <button class="cs-btn cs-primary cs-btn-full" type="submit">Se connecter</button>
 
         <div class="cs-form-foot">
           <span class="cs-muted">Pas encore de coffre ?</span>
           <a href="register.html" class="cs-link">Créer un compte</a>
         </div>
       </form>
-
-      <div class="cs-help">
-        <div class="cs-help-row">
-          <span class="cs-muted">Tu veux une offre Premium ?</span>
-          <a class="cs-link" href="offers.html">Voir les offres</a>
-        </div>
-      </div>
     </section>
 
   </div>
@@ -123,26 +98,6 @@
   </div>
 </footer>
 
-<script>
-  document.querySelector('[data-year]')?.textContent = new Date().getFullYear();
-
-  const toggle = document.querySelector('[data-mobile-toggle]');
-  const menu = document.querySelector('[data-mobile-menu]');
-  toggle?.addEventListener('click', () => menu?.classList.toggle('open'));
-
-  // ✅ Afficher / masquer mot de passe
-  const btnEye = document.querySelector('[data-toggle-password]');
-  const pwd = document.getElementById('password');
-  btnEye?.addEventListener('click', () => {
-    if (!pwd) return;
-    const isHidden = pwd.type === 'password';
-    pwd.type = isHidden ? 'text' : 'password';
-    btnEye.textContent = isHidden ? '🙈' : '👁️';
-    btnEye.setAttribute('aria-label', isHidden ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
-  });
-</script>
-
-<!-- tes scripts existants -->
 <script src="js/app.js"></script>
 <script src="/js/pwa.js" defer></script>
 
@@ -150,76 +105,142 @@
 <script src="js/supabase.js"></script>
 <script src="js/login.js"></script>
 
+<script>
+  // ✅ Année + menu
+  document.querySelector('[data-year]')?.textContent = new Date().getFullYear();
+  document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
+    document.querySelector('[data-mobile-menu]')?.classList.toggle('open');
+  });
+
+  // ✅ Toggle mot de passe (robuste)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-toggle-password]');
+    if (!btn) return;
+
+    const targetId = btn.getAttribute('data-target');
+    const input = document.getElementById(targetId);
+    if (!input) return;
+
+    const hidden = input.type === 'password';
+    input.type = hidden ? 'text' : 'password';
+    btn.textContent = hidden ? '🙈' : '👁️';
+    btn.setAttribute('aria-label', hidden ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+  });
+</script>
+
 <style>
-  /* Cohérent avec ta landing, sans casser ton styles.css */
+  /* ⚠️ Styles “anti-écrasement” : on force le rendu même si ton styles.css fait n’importe quoi */
   :root{
     --bg:#070b14;
     --border: rgba(255,255,255,.10);
     --muted: rgba(255,255,255,.70);
     --text: rgba(255,255,255,.92);
   }
-  body{ background: var(--bg); color: var(--text); }
-  .cs-auth{ padding: 38px 0 46px; }
-  .cs-auth-grid{
-    display:grid;
-    grid-template-columns: 1.05fr .95fr;
-    gap: 18px;
-    align-items: stretch;
+  body{ background:var(--bg); color:var(--text); }
+
+  .cs-container{ width:min(1100px, 92vw); margin:0 auto; }
+  .cs-topbar{
+    position:sticky; top:0; z-index:50;
+    background: rgba(7,11,20,.70);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
   }
+  .cs-nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0; }
+  .cs-brand{ display:flex; align-items:center; gap:10px; color:inherit; }
+  .cs-brand-icon{ border-radius:12px; }
+  .cs-brand-name{ font-weight:800; }
+  .cs-links{ display:flex; gap:16px; opacity:.9; }
+  .cs-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .cs-menu{ display:none; }
+  .cs-mobile{ display:none; padding:0 0 14px; }
+  .cs-mobile a{ display:block; padding:10px 0; border-top: 1px solid rgba(255,255,255,.06); }
+  .cs-mobile.open{ display:block; }
+
+  .cs-auth{ padding: 38px 0 46px; }
+  .cs-auth-grid{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 18px; }
   .cs-auth-left{
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,.10);
+    border-radius:24px; border:1px solid rgba(255,255,255,.10);
     background:
       radial-gradient(900px 520px at 12% 10%, rgba(14,165,233,.18), transparent 60%),
       radial-gradient(900px 520px at 86% 25%, rgba(34,197,94,.14), transparent 60%),
       rgba(255,255,255,.02);
-    overflow:hidden;
-    display:flex;
-    padding: 18px;
+    padding:18px;
   }
-  .cs-auth-hero{ width:100%; }
-  .cs-auth-icon{
-    width: 110px; height:auto; border-radius: 22px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.45);
-    display:block;
+  .cs-auth-icon{ width:110px; border-radius:22px; display:block; }
+  .cs-badge{
+    display:inline-flex; padding:8px 12px; border-radius:999px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10);
+    font-weight:800; font-size:13px; margin-top:14px;
   }
+  .cs-h1{ font-size: clamp(30px, 4.2vw, 48px); margin: 14px 0 10px; }
+  .cs-h2{ font-size: 24px; }
+  .cs-lead{ color: var(--muted); }
+
   .cs-auth-card{
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,.10);
+    border-radius:24px; border:1px solid rgba(255,255,255,.10);
     background: rgba(255,255,255,.04);
-    padding: 18px;
+    padding:18px;
     box-shadow: 0 20px 80px rgba(0,0,0,.35);
   }
+
   .cs-form{ display:grid; gap: 12px; margin-top: 10px; }
-  .cs-label{ display:grid; gap: 6px; font-weight: 800; }
+  .cs-label{ display:grid; gap:6px; font-weight:800; }
   .cs-input{
-    width: 100%;
-    padding: 12px 12px;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,.12);
-    background: rgba(0,0,0,.18);
-    color: rgba(255,255,255,.9);
-    outline: none;
+    width:100%;
+    padding:12px 12px !important;
+    border-radius:16px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    background: rgba(0,0,0,.18) !important;
+    color: rgba(255,255,255,.92) !important;
+    outline:none !important;
   }
-  .cs-input:focus{ border-color: rgba(14,165,233,.45); box-shadow: 0 0 0 4px rgba(14,165,233,.12); }
-  .cs-pass{ position: relative; }
-  .cs-input-pass{ padding-right: 50px; }
+  .cs-pass{ position:relative; }
+  .cs-input-pass{ padding-right:56px !important; }
+
   .cs-eye{
-    position:absolute; top: 50%; right: 10px; transform: translateY(-50%);
-    border: 1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.06);
-    color: rgba(255,255,255,.85);
-    border-radius: 12px;
-    padding: 8px 10px;
-    cursor:pointer;
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    z-index:10;
+    pointer-events:auto;
+    border-radius:12px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    background: rgba(255,255,255,.08) !important;
+    color: rgba(255,255,255,.95) !important;
+    padding:8px 10px !important;
+    cursor:pointer !important;
   }
-  .cs-eye:hover{ background: rgba(255,255,255,.10); }
-  .cs-btn-full{ width: 100%; justify-content:center; }
-  .cs-form-foot{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; font-size: 14px; margin-top: 4px; }
-  .cs-link{ font-weight: 900; text-decoration: underline; text-underline-offset: 3px; }
-  .cs-help{ margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.08); }
-  .cs-help-row{ display:flex; justify-content:space-between; gap: 10px; flex-wrap:wrap; }
-  @media (max-width: 980px){
+
+  .cs-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px !important;
+    padding:10px 14px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    background: rgba(255,255,255,.06) !important;
+    color: rgba(255,255,255,.92) !important;
+    font-weight:900 !important;
+    cursor:pointer !important;
+    text-decoration:none !important;
+  }
+  .cs-primary{
+    background: linear-gradient(90deg, rgba(14,165,233,.95), rgba(34,197,94,.70)) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+  }
+  .cs-ghost{ background: rgba(255,255,255,.04) !important; }
+  .cs-btn-full{ width:100%; }
+
+  .cs-form-foot{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; font-size:14px; margin-top:4px; }
+  .cs-link{ font-weight:900; text-decoration:underline; text-underline-offset:3px; }
+
+  .cs-footer{ padding:18px 0; border-top:1px solid rgba(255,255,255,.06); background: rgba(0,0,0,.18); }
+  .cs-footer-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+  .cs-footer-left{ display:flex; align-items:center; gap:10px; color: rgba(255,255,255,.72); }
+  .cs-footer-links{ display:flex; gap:14px; color: rgba(255,255,255,.65); }
+
+  @media (max-width:980px){
+    .cs-links{ display:none; }
+    .cs-menu{ display:inline-flex; }
     .cs-auth-grid{ grid-template-columns: 1fr; }
     .cs-auth-left{ display:none; }
   }
