@@ -4,15 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Clavis-security — Un mot de passe pour tous les retenir.</title>
-  <meta name="description" content="Clavis-security te permet de retrouver tes mots de passe en quelques secondes. Un mot de passe pour tous les retenir." />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#0ea5e9">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-</head>
-<script src="js/pwa.js"></script>
+  <meta name="description" content="Range tes informations au même endroit. Retrouve-les en quelques secondes grâce à la recherche. Un mot de passe pour tous les retenir." />
 
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 <body>
 
 <header class="topbar">
@@ -48,7 +49,6 @@
 
 <main>
 
-  <!-- HERO (pas de cartes empilées) -->
   <section class="hero-slim">
     <div class="container">
       <div class="hero-grid">
@@ -62,12 +62,17 @@
 
           <p style="max-width:620px; margin:0 0 18px; color:var(--muted);">
             Clavis-security te permet de retrouver tes informations en quelques secondes.
-            Tu crées ton compte, tu ranges tout au même endroit, et tu retrouves facilement grâce à la recherche.
+            Tu ranges tout au même endroit, et tu retrouves facilement grâce à la recherche.
           </p>
 
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
             <a class="btn primary" href="register.html">Créer mon coffre</a>
             <a class="btn ghost" href="offers.html">Voir les offres</a>
+
+            <!-- ✅ Bouton Installer (affiché seulement si possible) -->
+            <button class="btn primary" id="installBtn" style="display:none;">
+              Installer l’app
+            </button>
           </div>
 
           <div class="hero-sub" style="margin-top:12px;">
@@ -76,7 +81,6 @@
         </div>
 
         <div class="hero-visual" aria-hidden="true">
-          <!-- un seul bloc visuel, léger -->
           <div class="glass">
             <div class="glass-top">
               <div class="dot"></div><div class="dot"></div><div class="dot"></div>
@@ -113,14 +117,13 @@
     </div>
   </section>
 
-  <!-- 3 bénéfices (pas des cartes sur cartes) -->
   <section class="section">
     <div class="container">
 
       <div class="split-head">
         <h2 style="margin:0;">Tout retrouver, sans prise de tête.</h2>
         <p style="margin:0; color:var(--muted); max-width:520px;">
-          Clavis-security est pensé pour monsieur et madame tout le monde :
+          Pensé pour monsieur et madame tout le monde :
           simple à utiliser, agréable, et fait pour le quotidien.
         </p>
       </div>
@@ -148,7 +151,6 @@
     </div>
   </section>
 
-  <!-- Bandeau CTA (léger, un seul bloc) -->
   <section class="section">
     <div class="container">
       <div class="cta-band">
@@ -163,39 +165,6 @@
           <a class="btn ghost" href="offers.html">Comparer</a>
           <a class="btn primary" href="register.html">Créer mon coffre</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mini FAQ (juste 3 questions, pas un mur) -->
-  <section class="section">
-    <div class="container">
-      <div class="split-head">
-        <h2 style="margin:0;">Questions rapides</h2>
-        <p style="margin:0;color:var(--muted); max-width:520px;">
-          Tu peux lire la FAQ complète quand tu veux.
-        </p>
-      </div>
-
-      <div class="faq-lite">
-        <details class="faq-item">
-          <summary>Est-ce que je peux commencer gratuitement ?</summary>
-          <p>Oui. L’offre gratuite te permet d’enregistrer jusqu’à 15 éléments.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Comment je retrouve mes informations ?</summary>
-          <p>Tu utilises la recherche, puis tu ouvres ton coffre pour afficher ou copier.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Et si je veux une copie ?</summary>
-          <p>En Premium, tu peux générer une copie PDF complète depuis ton coffre.</p>
-        </details>
-      </div>
-
-      <div style="margin-top:14px;">
-        <a class="btn ghost" href="faq.html">Voir toute la FAQ</a>
       </div>
     </div>
   </section>
@@ -216,8 +185,8 @@
 </footer>
 
 <script src="js/app.js"></script>
+<script src="js/pwa.js"></script>
 
-<!-- Styles locaux landing : léger et sans modifier ton CSS global -->
 <style>
   .hero-slim{
     padding: 72px 0 22px;
@@ -233,10 +202,7 @@
   @media (max-width: 920px){
     .hero-grid{ grid-template-columns: 1fr; }
   }
-  .hero-sub{
-    font-size: 13px;
-    color: rgba(255,255,255,.62);
-  }
+  .hero-sub{ font-size: 13px; color: rgba(255,255,255,.62); }
   .hero-visual{ display:flex; justify-content:flex-end; }
   @media (max-width: 920px){ .hero-visual{ justify-content:flex-start; } }
 
@@ -254,10 +220,7 @@
     border-bottom: 1px solid rgba(255,255,255,.10);
     background: rgba(255,255,255,.04);
   }
-  .dot{
-    width:10px; height:10px; border-radius:99px;
-    background: rgba(255,255,255,.22);
-  }
+  .dot{ width:10px; height:10px; border-radius:99px; background: rgba(255,255,255,.22); }
   .glass-body{ padding: 16px 16px 18px; }
   .mini-title{ font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 6px; }
   .mini-input{
@@ -277,10 +240,7 @@
     font-size: 12px;
     color: rgba(255,255,255,.72);
   }
-  .mini-note{
-    font-size: 12px;
-    color: rgba(255,255,255,.6);
-  }
+  .mini-note{ font-size: 12px; color: rgba(255,255,255,.6); }
   .mini-cta{
     display:flex; align-items:center; gap:8px;
     padding: 10px 12px;
@@ -295,7 +255,6 @@
     margin-top: 22px;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
   }
-
   .split-head{
     display:flex;
     justify-content: space-between;
@@ -304,7 +263,6 @@
     margin-bottom: 18px;
     flex-wrap: wrap;
   }
-
   .feature-row{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
@@ -328,7 +286,6 @@
   }
   .feature h3{ margin: 0 0 6px; }
   .feature p{ margin: 0; color: var(--muted); }
-
   .cta-band{
     display:flex;
     justify-content: space-between;
@@ -340,25 +297,6 @@
     background: linear-gradient(90deg, rgba(59,130,246,.20), rgba(34,197,94,.12));
     box-shadow: 0 18px 60px rgba(0,0,0,.28);
     flex-wrap: wrap;
-  }
-
-  .faq-lite{
-    display:grid;
-    gap: 10px;
-  }
-  .faq-item{
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-    padding: 12px 14px;
-  }
-  .faq-item summary{
-    cursor:pointer;
-    font-weight: 600;
-  }
-  .faq-item p{
-    margin: 10px 0 0;
-    color: var(--muted);
   }
 </style>
 
