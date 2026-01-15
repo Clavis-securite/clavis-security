@@ -315,7 +315,8 @@
 
 <!-- JS -->
 <script>
-  document.querySelector('[data-year]')?.textContent = new Date().getFullYear();
+  const _y = document.querySelector('[data-year]');
+  if (_y) _y.textContent = String(new Date().getFullYear());
 
   // menu mobile simple
   const toggle = document.querySelector('[data-mobile-toggle]');

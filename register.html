@@ -107,7 +107,8 @@
 <script src="js/register.js"></script>
 
 <script>
-  document.querySelector('[data-year]')?.textContent = new Date().getFullYear();
+  const _y = document.querySelector('[data-year]');
+  if (_y) _y.textContent = String(new Date().getFullYear());
   document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
     document.querySelector('[data-mobile-menu]')?.classList.toggle('open');
   });
