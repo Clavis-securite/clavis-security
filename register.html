@@ -3,158 +3,228 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Créer un compte — Clavis-security</title>
-  <meta name="description" content="Créer un compte Clavis-security" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <title>Créer mon coffre — Clavis-security</title>
+  <meta name="description" content="Crée ton coffre Clavis-security. Simple, rapide, et pensé pour le quotidien." />
+
+  <!-- PWA -->
   <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#0ea5e9">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Icônes -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/supabase.js"></script>
-<script src="js/pwa.js"></script>
 
 <body>
 
-<header class="topbar">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="index.html">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Clavis-security</span>
-      </a>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-      <nav class="navlinks" aria-label="Navigation principale">
-        <a href="offers.html">Offres</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-
-      <div class="navcta">
-        <a class="btn small ghost" href="login.html">Connexion</a>
-        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
-      </div>
-    </div>
-
-    <div class="mobile-menu" data-mobile-menu>
+    <nav class="cs-links" aria-label="Navigation">
       <a href="offers.html">Offres</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-      <a href="login.html">Connexion</a>
+    </nav>
+
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
     </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
   </div>
 </header>
 
-<main class="section">
-  <div class="container">
-    <div class="page-hero">
-      <span class="badge">🧠 Un mot de passe pour tous les retenir</span>
-      <h1>Créer ton coffre</h1>
-      <p>Ton mot de passe est la clé. Il sert à sécuriser ton compte et à déverrouiller le coffre (zéro-knowledge).</p>
-    </div>
+<main class="cs-auth">
+  <div class="cs-container cs-auth-grid">
 
-    <div class="grid2">
-      <div class="card pad">
-        <h3 style="margin:0 0 10px;">Inscription</h3>
-
-        <form class="form" id="registerForm">
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="ton@email.com" required />
-          </div>
-
-          <div class="field">
-            <label for="password">Mot de passe (clé du coffre)</label>
-            <input id="password" name="password" type="password" placeholder="12+ caractères recommandé" required />
-          </div>
-
-          <div class="field">
-            <label for="password2">Confirmer le mot de passe</label>
-            <input id="password2" name="password2" type="password" placeholder="Retape le même mot de passe" required />
-          </div>
-
-          <button class="btn primary" type="submit">Créer mon compte</button>
-
-          <div class="hero-note">
-            Supabase + email Brevo seront branchés ensuite. Là on valide d’abord l’interface.
-          </div>
-        </form>
-
-        <div class="hr"></div>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-          <span style="color:var(--muted); font-size:14px;">Déjà un compte ?</span>
-          <a class="btn" href="login.html">Me connecter</a>
+    <section class="cs-auth-left" aria-hidden="true">
+      <div class="cs-auth-hero">
+        <img src="/assets/icons/icon-512.png" alt="" class="cs-auth-icon">
+        <div class="cs-badge">✨ Commence en gratuit</div>
+        <h1 class="cs-h1" style="margin-top:14px;">Crée ton coffre.</h1>
+        <p class="cs-lead">
+          Tu peux démarrer gratuitement (15 éléments). Et passer en Premium plus tard.
+        </p>
+        <div class="cs-trust-row">
+          <div class="cs-trust">✅ Simple à utiliser</div>
+          <div class="cs-trust">✅ Recherche rapide</div>
+          <div class="cs-trust">✅ Sur téléphone & PC</div>
         </div>
       </div>
+    </section>
 
-      <div class="card pad">
-        <h3 style="margin:0 0 10px;">Important (à lire)</h3>
-        <p style="margin:0;color:var(--muted);">
-          Comme Clavis-security vise le “zéro-knowledge” :<br>
-          • tes mots de passe sont chiffrés côté navigateur<br>
-          • sans ton mot de passe, on ne peut pas déchiffrer tes secrets<br>
-          • si tu le perds, on ne pourra pas “récupérer” l’ancien coffre
-        </p>
-        <div class="hr"></div>
-        <p style="margin:0;color:var(--muted);">
-          ✅ Recommandation : une phrase longue + chiffres + symbole.
-        </p>
+    <section class="cs-auth-card">
+      <div class="cs-auth-head">
+        <h2 class="cs-h2" style="margin:0;">Créer mon coffre</h2>
+        <p class="cs-muted" style="margin:6px 0 0;">En 30 secondes, c’est fait.</p>
       </div>
-    </div>
+
+      <!-- ⚠️ IMPORTANT : on garde ton id pour que ton JS actuel marche -->
+      <form id="register-form" class="cs-form">
+        <label class="cs-label">
+          Email
+          <input name="email" type="email" autocomplete="email" placeholder="ex: nom@gmail.com" required class="cs-input">
+        </label>
+
+        <label class="cs-label">
+          Mot de passe
+          <div class="cs-pass">
+            <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Choisis un bon mot de passe" required class="cs-input cs-input-pass">
+            <button type="button" class="cs-eye" data-toggle-password aria-label="Afficher le mot de passe">👁️</button>
+          </div>
+          <div class="cs-hint">Astuce : au moins 8 caractères, facile à retenir pour toi.</div>
+        </label>
+
+        <button class="cs-btn cs-primary cs-btn-full" type="submit">
+          Créer mon coffre
+        </button>
+
+        <div class="cs-form-foot">
+          <span class="cs-muted">Déjà un compte ?</span>
+          <a href="login.html" class="cs-link">Se connecter</a>
+        </div>
+      </form>
+
+      <div class="cs-help">
+        <div class="cs-help-row">
+          <span class="cs-muted">Tu veux comparer ?</span>
+          <a class="cs-link" href="offers.html">Voir les offres</a>
+        </div>
+      </div>
+    </section>
+
   </div>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span data-year></span> Clavis-security</div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="index.html">Accueil</a>
-        <a href="offers.html">Offres</a>
-        <a href="faq.html">FAQ</a>
-      </div>
+<footer class="cs-footer">
+  <div class="cs-container cs-footer-row">
+    <div class="cs-footer-left">
+      <img src="/assets/icons/icon-192.png" alt="" width="28" height="28">
+      <span>© <span data-year></span> Clavis-security</span>
+    </div>
+    <div class="cs-footer-links">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
-<script src="js/app.js"></script>
 <script>
-  document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+  document.querySelector('[data-year]')?.textContent = new Date().getFullYear();
 
-    const email = document.getElementById('email').value.trim();
-    const p1 = document.getElementById('password').value;
-    const p2 = document.getElementById('password2').value;
+  const toggle = document.querySelector('[data-mobile-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('open'));
 
-    if (p1.length < 12) {
-      alert("⚠️ Mets au moins 12 caractères (recommandé).");
-      return;
-    }
-    if (p1 !== p2) {
-      alert("❌ Les mots de passe ne correspondent pas.");
-      return;
-    }
-
-    try {
-      const data = await signUp(email, p1);
-
-      // Selon ta config Supabase, tu peux avoir confirmation email.
-      // Si confirmation activée : l'utilisateur doit cliquer le lien reçu.
-      if (data?.user && !data?.session) {
-        alert("✅ Compte créé ! Vérifie ta boîte mail pour confirmer ton adresse.");
-        window.location.href = "login.html";
-        return;
-      }
-
-      alert("✅ Compte créé et connecté !");
-      window.location.href = "dashboard.html";
-    } catch (err) {
-      alert("❌ Inscription impossible : " + (err?.message || err));
-    }
+  // ✅ Afficher / masquer mot de passe
+  const btnEye = document.querySelector('[data-toggle-password]');
+  const pwd = document.getElementById('password');
+  btnEye?.addEventListener('click', () => {
+    if (!pwd) return;
+    const isHidden = pwd.type === 'password';
+    pwd.type = isHidden ? 'text' : 'password';
+    btnEye.textContent = isHidden ? '🙈' : '👁️';
+    btnEye.setAttribute('aria-label', isHidden ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
   });
 </script>
+
+<!-- tes scripts existants -->
+<script src="js/app.js"></script>
+<script src="/js/pwa.js" defer></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/register.js"></script>
+
+<style>
+  :root{
+    --bg:#070b14;
+    --border: rgba(255,255,255,.10);
+    --muted: rgba(255,255,255,.70);
+    --text: rgba(255,255,255,.92);
+  }
+  body{ background: var(--bg); color: var(--text); }
+  .cs-auth{ padding: 38px 0 46px; }
+  .cs-auth-grid{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+  .cs-auth-left{
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,.10);
+    background:
+      radial-gradient(900px 520px at 12% 10%, rgba(14,165,233,.18), transparent 60%),
+      radial-gradient(900px 520px at 86% 25%, rgba(34,197,94,.14), transparent 60%),
+      rgba(255,255,255,.02);
+    overflow:hidden;
+    display:flex;
+    padding: 18px;
+  }
+  .cs-auth-hero{ width:100%; }
+  .cs-auth-icon{
+    width: 110px; height:auto; border-radius: 22px;
+    box-shadow: 0 20px 70px rgba(0,0,0,.45);
+    display:block;
+  }
+  .cs-auth-card{
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+    padding: 18px;
+    box-shadow: 0 20px 80px rgba(0,0,0,.35);
+  }
+  .cs-form{ display:grid; gap: 12px; margin-top: 10px; }
+  .cs-label{ display:grid; gap: 6px; font-weight: 800; }
+  .cs-input{
+    width: 100%;
+    padding: 12px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.18);
+    color: rgba(255,255,255,.9);
+    outline: none;
+  }
+  .cs-input:focus{ border-color: rgba(14,165,233,.45); box-shadow: 0 0 0 4px rgba(14,165,233,.12); }
+  .cs-pass{ position: relative; }
+  .cs-input-pass{ padding-right: 50px; }
+  .cs-eye{
+    position:absolute; top: 50%; right: 10px; transform: translateY(-50%);
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.85);
+    border-radius: 12px;
+    padding: 8px 10px;
+    cursor:pointer;
+  }
+  .cs-eye:hover{ background: rgba(255,255,255,.10); }
+  .cs-hint{ font-size: 12.5px; color: rgba(255,255,255,.62); margin-top: 6px; }
+  .cs-btn-full{ width: 100%; justify-content:center; }
+  .cs-form-foot{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; font-size: 14px; margin-top: 4px; }
+  .cs-link{ font-weight: 900; text-decoration: underline; text-underline-offset: 3px; }
+  .cs-help{ margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.08); }
+  .cs-help-row{ display:flex; justify-content:space-between; gap: 10px; flex-wrap:wrap; }
+  @media (max-width: 980px){
+    .cs-auth-grid{ grid-template-columns: 1fr; }
+    .cs-auth-left{ display:none; }
+  }
+</style>
 
 </body>
 </html>
