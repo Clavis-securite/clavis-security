@@ -4,13 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Créer mon coffre — Clavis-security</title>
-  <meta name="description" content="Crée ton coffre personnel et commence gratuitement." />
 
-  <!-- PWA -->
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
 
@@ -19,105 +15,86 @@
 
 <body>
 
-<header class="topbar">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="/index.html">
-        <img src="/assets/icons/icon-192.png" alt="" width="36" height="36" style="border-radius:12px;" />
-        <span>Clavis-security</span>
-      </a>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-      <nav class="navlinks" aria-label="Navigation principale">
-        <a href="/offers.html">Offres</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/contact.html">Contact</a>
-      </nav>
+    <nav class="cs-links">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-      <div class="navcta">
-        <a class="btn small ghost" href="/login.html">Connexion</a>
-        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
-      </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
     </div>
+  </div>
 
-    <div class="mobile-menu" data-mobile-menu>
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/login.html">Connexion</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
   </div>
 </header>
 
-<main class="auth-wrap">
-  <div class="container">
-    <div class="auth-grid">
+<main class="cs-auth">
+  <div class="cs-container cs-auth-grid">
 
-      <section class="card auth-hero" aria-hidden="true">
-        <span class="badge">✨ Démarre en 30 secondes</span>
-        <h1>Un mot de passe pour tous les retenir.</h1>
-        <p>
-          Crée ton coffre, ajoute tes infos, et retrouve tout en un clin d’œil.
-          Tu peux commencer gratuitement (jusqu’à 15 éléments).
-        </p>
-        <div class="hr"></div>
-        <div class="grid2">
-          <div class="feature">
-            <div class="icon">🧾</div>
-            <h3>Ordonné</h3>
-            <p>Tout au même endroit, sans fouiller.</p>
+    <section class="cs-auth-left" aria-hidden="true">
+      <img src="/assets/icons/icon-512.png" alt="" class="cs-auth-icon">
+      <div class="cs-badge">✨ Commence en gratuit</div>
+      <h1 class="cs-h1">Crée ton coffre.</h1>
+      <p class="cs-lead">Tu peux démarrer gratuitement (15 éléments). Et passer en Premium plus tard.</p>
+    </section>
+
+    <section class="cs-auth-card">
+      <h2 class="cs-h2" style="margin:0;">Créer mon coffre</h2>
+      <p class="cs-muted" style="margin:6px 0 0;">En 30 secondes, c’est fait.</p>
+
+      <form id="register-form" class="cs-form">
+        <label class="cs-label">
+          Email
+          <input name="email" type="email" autocomplete="email" required class="cs-input" placeholder="ex: nom@gmail.com">
+        </label>
+
+        <label class="cs-label">
+          Mot de passe
+          <div class="cs-pass">
+            <input id="register_password" name="password" type="password" autocomplete="new-password"
+                   required class="cs-input cs-input-pass" placeholder="Choisis un bon mot de passe">
+            <button type="button" class="cs-eye" data-toggle-password data-target="register_password"
+                    aria-label="Afficher le mot de passe">👁️</button>
           </div>
-          <div class="feature">
-            <div class="icon">🔒</div>
-            <h3>Rassurant</h3>
-            <p>Ton coffre reste fermé tant que tu ne l’ouvres pas.</p>
-          </div>
+          <div class="cs-muted" style="font-size:12.5px;">Astuce : 8 caractères minimum, facile à retenir pour toi.</div>
+        </label>
+
+        <button class="cs-btn cs-primary cs-btn-full" type="submit">Créer mon coffre</button>
+
+        <div class="cs-form-foot">
+          <span class="cs-muted">Déjà un compte ?</span>
+          <a href="login.html" class="cs-link">Se connecter</a>
         </div>
-      </section>
+      </form>
+    </section>
 
-      <section class="card auth-card">
-        <h2>Créer mon coffre</h2>
-        <p class="sub">Gratuit, puis Premium si tu veux l’illimité + copie PDF.</p>
-
-        <form id="register-form" class="form" style="margin-top:12px;">
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required placeholder="ex : nom@gmail.com" />
-          </div>
-
-          <div class="field">
-            <label for="password">Mot de passe</label>
-            <div class="input-row">
-              <input id="password" name="password" type="password" autocomplete="new-password" required placeholder="••••••••" />
-              <button class="pw-toggle" type="button" data-toggle-password="password" aria-label="Afficher le mot de passe">👁️</button>
-            </div>
-            <div class="hero-note">Conseil : 8 caractères minimum, mélange lettres + chiffres.</div>
-          </div>
-
-          <button class="btn primary" type="submit" style="width:100%; padding:12px 14px;">Créer mon compte</button>
-
-          <div class="form-foot">
-            <span>Déjà un compte ?</span>
-            <a href="/login.html">Se connecter</a>
-          </div>
-        </form>
-      </section>
-
-    </div>
   </div>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <img src="/assets/icons/icon-192.png" alt="" width="28" height="28" style="border-radius:10px;" />
-        <div>© <span data-year></span> Clavis-security</div>
-      </div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="/offers.html">Offres</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/contact.html">Contact</a>
-      </div>
+<footer class="cs-footer">
+  <div class="cs-container cs-footer-row">
+    <div class="cs-footer-left">
+      <img src="/assets/icons/icon-192.png" alt="" width="28" height="28">
+      <span>© <span data-year></span> Clavis-security</span>
+    </div>
+    <div class="cs-footer-links">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
@@ -130,24 +107,143 @@
 <script src="/js/register.js"></script>
 
 <script>
-  // Année + menu
-  const y = document.querySelector('[data-year]');
-  if (y) y.textContent = String(new Date().getFullYear());
+  const _y = document.querySelector('[data-year]');
+  if (_y) _y.textContent = String(new Date().getFullYear());
   document.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => {
     document.querySelector('[data-mobile-menu]')?.classList.toggle('open');
   });
 
-  // Afficher / masquer le mot de passe
+  // ✅ Toggle mot de passe (robuste)
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-toggle-password]');
     if (!btn) return;
-    const id = btn.getAttribute('data-toggle-password');
-    const input = document.getElementById(id);
+
+    const targetId = btn.getAttribute('data-target');
+    const input = document.getElementById(targetId);
     if (!input) return;
-    input.type = (input.type === 'password') ? 'text' : 'password';
-    btn.textContent = (input.type === 'password') ? '👁️' : '🙈';
+
+    const hidden = input.type === 'password';
+    input.type = hidden ? 'text' : 'password';
+    btn.textContent = hidden ? '🙈' : '👁️';
+    btn.setAttribute('aria-label', hidden ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
   });
 </script>
+
+<!-- mêmes styles que login (copie identique) -->
+<style>
+  /* (Copie-colle EXACTEMENT le bloc <style> du login.html ici) */
+  /* Pour éviter les doublons dans le futur : on mettra ça dans un css commun, mais là c’est “anti-erreur”. */
+  :root{
+    --bg:#070b14;
+    --border: rgba(255,255,255,.10);
+    --muted: rgba(255,255,255,.70);
+    --text: rgba(255,255,255,.92);
+  }
+  body{ background:var(--bg); color:var(--text); }
+  .cs-container{ width:min(1100px, 92vw); margin:0 auto; }
+  .cs-topbar{
+    position:sticky; top:0; z-index:50;
+    background: rgba(7,11,20,.70);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .cs-nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0; }
+  .cs-brand{ display:flex; align-items:center; gap:10px; color:inherit; }
+  .cs-brand-icon{ border-radius:12px; }
+  .cs-brand-name{ font-weight:800; }
+  .cs-links{ display:flex; gap:16px; opacity:.9; }
+  .cs-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .cs-menu{ display:none; }
+  .cs-mobile{ display:none; padding:0 0 14px; }
+  .cs-mobile a{ display:block; padding:10px 0; border-top: 1px solid rgba(255,255,255,.06); }
+  .cs-mobile.open{ display:block; }
+
+  .cs-auth{ padding: 38px 0 46px; }
+  .cs-auth-grid{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 18px; }
+  .cs-auth-left{
+    border-radius:24px; border:1px solid rgba(255,255,255,.10);
+    background:
+      radial-gradient(900px 520px at 12% 10%, rgba(14,165,233,.18), transparent 60%),
+      radial-gradient(900px 520px at 86% 25%, rgba(34,197,94,.14), transparent 60%),
+      rgba(255,255,255,.02);
+    padding:18px;
+  }
+  .cs-auth-icon{ width:110px; border-radius:22px; display:block; }
+  .cs-badge{
+    display:inline-flex; padding:8px 12px; border-radius:999px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10);
+    font-weight:800; font-size:13px; margin-top:14px;
+  }
+  .cs-h1{ font-size: clamp(30px, 4.2vw, 48px); margin: 14px 0 10px; }
+  .cs-h2{ font-size: 24px; }
+  .cs-lead{ color: var(--muted); }
+
+  .cs-auth-card{
+    border-radius:24px; border:1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+    padding:18px;
+    box-shadow: 0 20px 80px rgba(0,0,0,.35);
+  }
+
+  .cs-form{ display:grid; gap: 12px; margin-top: 10px; }
+  .cs-label{ display:grid; gap:6px; font-weight:800; }
+  .cs-input{
+    width:100%;
+    padding:12px 12px !important;
+    border-radius:16px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    background: rgba(0,0,0,.18) !important;
+    color: rgba(255,255,255,.92) !important;
+    outline:none !important;
+  }
+  .cs-pass{ position:relative; }
+  .cs-input-pass{ padding-right:56px !important; }
+
+  .cs-eye{
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    z-index:10; pointer-events:auto;
+    border-radius:12px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    background: rgba(255,255,255,.08) !important;
+    color: rgba(255,255,255,.95) !important;
+    padding:8px 10px !important;
+    cursor:pointer !important;
+  }
+
+  .cs-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    border-radius:999px !important;
+    padding:10px 14px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    background: rgba(255,255,255,.06) !important;
+    color: rgba(255,255,255,.92) !important;
+    font-weight:900 !important;
+    cursor:pointer !important;
+    text-decoration:none !important;
+  }
+  .cs-primary{
+    background: linear-gradient(90deg, rgba(14,165,233,.95), rgba(34,197,94,.70)) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+  }
+  .cs-ghost{ background: rgba(255,255,255,.04) !important; }
+  .cs-btn-full{ width:100%; }
+
+  .cs-form-foot{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; font-size:14px; margin-top:4px; }
+  .cs-link{ font-weight:900; text-decoration:underline; text-underline-offset:3px; }
+
+  .cs-footer{ padding:18px 0; border-top:1px solid rgba(255,255,255,.06); background: rgba(0,0,0,.18); }
+  .cs-footer-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+  .cs-footer-left{ display:flex; align-items:center; gap:10px; color: rgba(255,255,255,.72); }
+  .cs-footer-links{ display:flex; gap:14px; color: rgba(255,255,255,.65); }
+
+  @media (max-width:980px){
+    .cs-links{ display:none; }
+    .cs-menu{ display:inline-flex; }
+    .cs-auth-grid{ grid-template-columns: 1fr; }
+    .cs-auth-left{ display:none; }
+  }
+</style>
 
 </body>
 </html>

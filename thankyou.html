@@ -6,25 +6,19 @@
   <title>Merci — Clavis-security</title>
   <meta name="description" content="Merci ! Ton accès Premium est en cours d’activation." />
   <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/cs.css" />
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
 </head>
 <body>
 
-<header class="cs-topbar">
-  <div class="cs-container cs-nav">
-    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
-      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
-      <span class="cs-brand-name">Clavis-security</span>
-    </a>
-
-    <div class="cs-actions">
-      <a class="cs-btn cs-primary" href="dashboard.html">Aller à mon coffre</a>
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+      <div class="navcta">
+        <a class="btn small" href="dashboard.html">Aller à mon coffre</a>
+      </div>
     </div>
   </div>
 </header>
@@ -139,6 +133,5 @@
     // Rien de technique, juste une confirmation douce
   })();
 </script>
-<script src="/js/pwa.js" defer></script>
 </body>
 </html>
