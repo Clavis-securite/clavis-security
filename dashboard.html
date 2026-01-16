@@ -14,6 +14,25 @@
 <script src="/js/pwa.js"></script>
 <script src="/js/app-mode.js" defer></script>
 
+<nav class="app-bottom" style="display:none;">
+  <div class="app-bottom-nav">
+    <a class="app-tab active" href="/dashboard.html"><div class="ico">🔐</div><span>Coffre</span></a>
+    <a class="app-tab" href="/offers.html"><div class="ico">⭐</div><span>Premium</span></a>
+    <a class="app-tab" href="/faq.html"><div class="ico">❓</div><span>Aide</span></a>
+    <a class="app-tab" href="/contact.html"><div class="ico">✉️</div><span>Contact</span></a>
+  </div>
+</nav>
+
+<button class="app-fab" id="btnAdd" style="display:none;" aria-label="Ajouter">＋</button>
+
+<script>
+  // n'affiche que si app-mode
+  if (document.documentElement.classList.contains("app-mode")) {
+    document.querySelector(".app-bottom").style.display = "block";
+    document.getElementById("btnAdd").style.display = "grid";
+  }
+</script>
+
 <body>
 
 <header class="topbar">
