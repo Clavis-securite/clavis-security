@@ -6,13 +6,11 @@
   <title>Offres — Clavis-security</title>
   <meta name="description" content="Choisis ton offre Clavis-security : Gratuit, Premium 30€/an, ou À vie 99€." />
 
-  <!-- PWA -->
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#0ea5e9">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- Icônes -->
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
 
@@ -53,15 +51,30 @@
 
 <main>
 
-  <section class="cs-hero" style="padding-bottom:26px;">
+  <!-- HERO (grand, aéré) -->
+  <section class="cs-hero">
     <div class="cs-container cs-hero-grid">
       <div class="cs-hero-copy">
         <div class="cs-badge">⭐ Offres simples et claires</div>
-        <h1 class="cs-h1">Choisis ton offre.</h1>
+
+        <h1 class="cs-h1">
+          Choisis l’offre qui te met vraiment <span class="cs-soft">tranquille.</span>
+        </h1>
+
         <p class="cs-lead">
-          Commence gratuitement (15 éléments), puis passe Premium quand tu veux.
-          Le but : être tranquille et tout retrouver rapidement.
+          Commence en gratuit (15 éléments) et passe Premium quand tu veux.
+          L’objectif : tout retrouver vite, sans prise de tête.
         </p>
+
+        <div class="cs-cta-row">
+          <a class="cs-btn cs-primary" href="/register.html">Créer mon coffre</a>
+          <a class="cs-btn cs-ghost" href="#pricing">Voir les offres</a>
+        </div>
+
+        <div class="cs-micro">
+          Gratuit jusqu’à <strong>15</strong> • Premium <strong>30€/an</strong> • À vie <strong>99€</strong>
+        </div>
+
         <div class="cs-trust-row">
           <div class="cs-trust">✅ Recherche rapide</div>
           <div class="cs-trust">✅ Coffre personnel</div>
@@ -73,12 +86,22 @@
         <div class="cs-hero-card-top">
           <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
         </div>
+
         <div class="cs-hero-card-body">
           <div class="cs-hero-visual">
             <img src="/assets/icons/icon-512.png" alt="" class="cs-hero-icon">
           </div>
+
+          <div class="cs-mini-title">Le plus important</div>
           <div class="cs-mini-note">
-            Premium = éléments illimités + copie PDF + tranquillité.
+            Tu gardes l’essentiel : <b>un coffre simple</b>, et tu retrouves tout grâce à la recherche.
+          </div>
+
+          <div class="cs-mini-pill-row">
+            <span class="cs-mini-pill">Banque</span>
+            <span class="cs-mini-pill">Mail</span>
+            <span class="cs-mini-pill">Assurance</span>
+            <span class="cs-mini-pill">Abonnements</span>
           </div>
         </div>
       </div>
@@ -87,11 +110,42 @@
     <div class="cs-container cs-divider"></div>
   </section>
 
+  <!-- BENEFICES -->
   <section class="cs-section">
     <div class="cs-container">
       <div class="cs-section-head">
-        <h2 class="cs-h2">Les 3 offres</h2>
-        <p class="cs-muted">Pas de piège : tu peux changer plus tard.</p>
+        <h2 class="cs-h2">Ce que tu gagnes avec Premium</h2>
+        <p class="cs-muted">Concret, utile, et pensé pour la vraie vie.</p>
+      </div>
+
+      <div class="cs-grid3">
+        <article class="cs-card">
+          <div class="cs-card-icon">∞</div>
+          <h3>Éléments illimités</h3>
+          <p>Tu ranges tout : pro, perso, abonnements, paperasse… sans limite.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">📄</div>
+          <h3>Copie PDF (Premium)</h3>
+          <p>Tu peux générer une copie PDF de tes informations (pratique et pro).</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">⚡</div>
+          <h3>Plus simple au quotidien</h3>
+          <p>Tu cherches, tu trouves, tu copies. Fini le stress et les notes partout.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="cs-section cs-alt">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Les offres</h2>
+        <p class="cs-muted">Tu peux commencer petit et évoluer ensuite.</p>
       </div>
 
       <div class="cs-pricing">
@@ -101,7 +155,7 @@
           <ul>
             <li>Jusqu’à <b>15</b> éléments</li>
             <li>Recherche rapide</li>
-            <li>Parfait pour tester</li>
+            <li>Parfait pour démarrer</li>
           </ul>
           <a class="cs-btn cs-primary" href="/register.html">Commencer</a>
         </div>
@@ -112,16 +166,16 @@
           <ul>
             <li>Éléments <b>illimités</b></li>
             <li>Copie PDF (Premium)</li>
-            <li>Support prioritaire</li>
+            <li>Le meilleur choix pour être tranquille</li>
           </ul>
 
-          <!-- ⚠️ On garde le data-plan pour ton JS Stripe -->
+          <!-- On garde data-plan pour ton JS Stripe -->
           <button class="cs-btn cs-primary" data-plan="annual" type="button">
             Passer en Premium
           </button>
 
-          <div class="cs-muted" style="font-size:12.5px; margin-top:10px;">
-            Idéal si tu veux un coffre complet toute l’année.
+          <div class="cs-muted" style="font-size:12.5px; margin-top:12px;">
+            Recommandé si tu veux un coffre complet et simple.
           </div>
         </div>
 
@@ -134,29 +188,58 @@
             <li>Copie PDF (Premium)</li>
           </ul>
 
-          <!-- ⚠️ On garde le data-plan pour ton JS Stripe -->
           <button class="cs-btn cs-primary" data-plan="lifetime" type="button">
             Prendre à vie
           </button>
 
-          <div class="cs-muted" style="font-size:12.5px; margin-top:10px;">
-            Le plus rentable si tu veux être tranquille une bonne fois pour toutes.
+          <div class="cs-muted" style="font-size:12.5px; margin-top:12px;">
+            Le plus rentable sur le long terme.
           </div>
         </div>
       </div>
 
-      <div class="cs-cta-band" style="margin-top:18px;">
+      <div class="cs-cta-band" style="margin-top:22px;">
         <div>
           <div class="cs-badge">💡 Conseil</div>
-          <h3 style="margin:10px 0 6px;">Si tu hésites, commence en gratuit</h3>
+          <h3 style="margin:10px 0 6px;">Commence en gratuit, puis upgrade</h3>
           <p class="cs-muted" style="margin:0;">
-            Tu mets déjà tes 15 premiers éléments, et tu passes Premium quand tu veux.
+            Mets déjà tes 15 premiers éléments. Tu verras tout de suite la différence.
           </p>
         </div>
         <div class="cs-cta-row">
           <a class="cs-btn cs-ghost" href="/faq.html">Questions</a>
           <a class="cs-btn cs-primary" href="/register.html">Créer mon coffre</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RASSURANCE -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Tu hésites ?</h2>
+        <p class="cs-muted">Tu peux tester, et décider ensuite.</p>
+      </div>
+
+      <div class="cs-grid3">
+        <article class="cs-card">
+          <div class="cs-card-icon">🧪</div>
+          <h3>Teste gratuitement</h3>
+          <p>15 éléments pour voir si ça te convient, sans engagement.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">🔁</div>
+          <h3>Upgrade quand tu veux</h3>
+          <p>Tu passes Premium au moment où tu sens que tu en as besoin.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">❤️</div>
+          <h3>Simple, pas prise de tête</h3>
+          <p>Le but c’est d’être tranquille, pas de te compliquer la vie.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -178,19 +261,14 @@
 </footer>
 
 <script>
-  // année (sans optional chaining + assign)
   var y = document.querySelector('[data-year]');
   if (y) y.textContent = String(new Date().getFullYear());
-
-  // menu mobile
   var t = document.querySelector('[data-mobile-toggle]');
   var m = document.querySelector('[data-mobile-menu]');
   if (t && m) t.addEventListener('click', function(){ m.classList.toggle('open'); });
 </script>
 
 <script src="/js/pwa.js" defer></script>
-
-<!-- ⚠️ ton JS existant (Stripe checkout) -->
 <script src="/js/offers.js"></script>
 
 </body>
