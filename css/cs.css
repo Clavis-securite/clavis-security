@@ -1,0 +1,63 @@
+/* Shared "cs-*" design system used by index.html
+   Kept in its own file so every page can share the same look & feel. */
+
+:root{
+  --cs-bg:#070b14;
+  --cs-border: rgba(255,255,255,.10);
+  --cs-text: rgba(255,255,255,.92);
+  --cs-muted: rgba(255,255,255,.70);
+  --cs-brand:#0ea5e9;
+  --cs-brand2:#22c55e;
+}
+
+body{ background:var(--cs-bg); color:var(--cs-text); }
+a{ color:inherit; text-decoration:none; }
+
+.cs-container{ width:min(1100px, 92vw); margin:0 auto; }
+
+.cs-topbar{
+  position:sticky; top:0; z-index:50;
+  background: rgba(7,11,20,.70);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.cs-nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0; }
+.cs-brand{ display:flex; align-items:center; gap:10px; }
+.cs-brand-icon{ border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.cs-brand-name{ font-weight:800; letter-spacing:.2px; }
+.cs-links{ display:flex; gap:16px; opacity:.9; }
+.cs-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
+.cs-btn{
+  border: 1px solid var(--cs-border);
+  background: rgba(255,255,255,.06);
+  color: var(--cs-text);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight:700;
+}
+.cs-btn:hover{ background: rgba(255,255,255,.10); }
+.cs-primary{ background: linear-gradient(90deg, rgba(14,165,233,.9), rgba(34,197,94,.65)); border-color: transparent; }
+.cs-primary:hover{ filter: brightness(1.04); }
+.cs-ghost{ background: rgba(255,255,255,.04); }
+
+.cs-menu{ display:none; }
+
+.cs-mobile{ display:none; padding:0 0 14px; }
+.cs-mobile a{ display:block; padding:10px 0; border-top: 1px solid rgba(255,255,255,.06); }
+.cs-mobile.open{ display:block; }
+
+.cs-footer{
+  padding: 26px 0;
+  border-top: 1px solid rgba(255,255,255,.10);
+  color: var(--cs-muted);
+  font-size: 14px;
+}
+.cs-footer-row{ display:flex; justify-content:space-between; align-items:center; gap: 16px; flex-wrap:wrap; }
+.cs-footer-links{ display:flex; gap:14px; flex-wrap:wrap; }
+
+@media (max-width: 940px){
+  .cs-links{ display:none; }
+  .cs-menu{ display:inline-flex; }
+}

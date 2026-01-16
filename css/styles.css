@@ -292,3 +292,37 @@ details p{ margin: 10px 0 0; color: var(--muted); }
 .install-btn:hover {
   background: #0284c7;
 }
+
+/* --- Auth pages (login/register) --- */
+.auth-wrap{ padding: 54px 0 72px; }
+.auth-grid{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 16px; align-items: stretch; }
+.auth-hero{ padding: 18px; }
+.auth-hero h1{ font-size: 44px; line-height: 1.08; margin: 12px 0 10px; letter-spacing: -0.04em; }
+.auth-hero p{ margin:0; color: var(--muted); font-size: 16px; max-width: 62ch; }
+.auth-card{ padding: 18px; }
+.auth-card h2{ margin: 0; }
+.auth-card .sub{ margin: 6px 0 0; color: var(--muted); }
+.input-row{ position:relative; }
+.input-row input{ padding-right: 46px; }
+.pw-toggle{
+  position:absolute; top: 50%; right: 8px; transform: translateY(-50%);
+  width: 34px; height: 34px;
+  border-radius: 12px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.85);
+  display:grid; place-items:center;
+  cursor:pointer;
+}
+.pw-toggle:hover{ background: rgba(255,255,255,.10); }
+.form-foot{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top: 10px; color: var(--muted); font-size: 14px; }
+.form-foot a{ color: rgba(34,211,238,.95); }
+.form-foot a:hover{ text-decoration: underline; }
+
+/* 404 */
+.center{ text-align:center; }
+
+@media (max-width: 940px){
+  .auth-grid{ grid-template-columns: 1fr; }
+  .auth-hero h1{ font-size: 40px; }
+}

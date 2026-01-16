@@ -13,41 +13,39 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/cs.css" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
 </head>
 <body>
 
-<header class="topbar">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="index.html">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Clavis-security</span>
-      </a>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-      <nav class="navlinks" aria-label="Navigation principale">
-        <a href="offers.html" aria-current="page">Offres</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-
-      <div class="navcta" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <!-- ✅ Bouton Installer (affiché seulement si possible) -->
-        <button class="btn small" id="installBtn" style="display:none;">Installer l’app</button>
-
-        <a class="btn small ghost" href="login.html">Connexion</a>
-        <a class="btn small primary" href="register.html">Créer mon coffre</a>
-
-        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
-      </div>
-    </div>
-
-    <div class="mobile-menu" data-mobile-menu>
-      <a href="offers.html">Offres</a>
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html" aria-current="page">Offres</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-      <a href="login.html">Connexion</a>
-      <a href="register.html">Créer mon coffre</a>
+    </nav>
+
+    <div class="cs-actions">
+      <button class="cs-btn cs-primary" id="installBtn" style="display:none;">Installer l’app</button>
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
     </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
@@ -215,6 +213,8 @@
     }
   })();
 </script>
+
+<script src="/js/pwa.js" defer></script>
 
 </body>
 </html>
