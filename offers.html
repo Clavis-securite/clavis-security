@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Offres — Clavis-security</title>
-  <meta name="description" content="Commence gratuitement, passe en Premium quand tu veux. Premium annuel 30€, Premium à vie 99€." />
+  <meta name="description" content="Choisis ton offre Clavis-security : Gratuit, Premium 30€/an, ou À vie 99€." />
 
   <!-- PWA -->
   <link rel="manifest" href="/manifest.webmanifest">
@@ -12,211 +12,186 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+  <!-- Icônes -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
-<script src="/js/app-mode.js" defer></script>
 
 <body>
 
-<header class="topbar">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="index.html">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Clavis-security</span>
-      </a>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="/index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-      <nav class="navlinks" aria-label="Navigation principale">
-        <a href="offers.html" aria-current="page">Offres</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="/offers.html">Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
 
-      <div class="navcta" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <!-- ✅ Bouton Installer (affiché seulement si possible) -->
-        <button class="btn small" id="installBtn" style="display:none;">Installer l’app</button>
-
-        <a class="btn small ghost" href="login.html">Connexion</a>
-        <a class="btn small primary" href="register.html">Créer mon coffre</a>
-
-        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
-      </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="/login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="/register.html">Créer mon coffre</a>
+      <button class="cs-btn cs-primary cs-install" id="installAppBtn" hidden>Installer l’app</button>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
     </div>
+  </div>
 
-    <div class="mobile-menu" data-mobile-menu>
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Connexion</a>
-      <a href="register.html">Créer mon coffre</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="/offers.html">Offres</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/login.html">Connexion</a>
+    <a href="/register.html">Créer mon coffre</a>
   </div>
 </header>
 
-<main class="section">
-  <div class="container">
+<main>
 
-    <div class="page-hero">
-      <span class="badge">💡 Simple. Clair. Rassurant.</span>
-      <h1>Choisis l’offre qui te convient.</h1>
-      <p style="max-width:720px;">
-        Commence gratuitement, puis passe en Premium quand tu veux.
-      </p>
-
-      <div class="hero-note" id="statusLine" style="margin-top:10px;"></div>
-      <div class="hero-note" id="bannerLine" style="margin-top:6px;"></div>
-    </div>
-
-    <div class="pricing">
-      <div class="card price-card">
-        <div class="name">Gratuit</div>
-        <div class="price">0€</div>
-        <p class="desc">Parfait pour démarrer sans réfléchir.</p>
-        <ul>
-          <li>Jusqu’à <strong>15</strong> éléments</li>
-          <li>Recherche rapide</li>
-          <li>Tu peux tout organiser</li>
-        </ul>
-        <div class="hr"></div>
-        <a class="btn primary" href="register.html">Commencer maintenant</a>
-        <div class="hero-note">Tu peux passer en Premium plus tard.</div>
+  <section class="cs-hero" style="padding-bottom:26px;">
+    <div class="cs-container cs-hero-grid">
+      <div class="cs-hero-copy">
+        <div class="cs-badge">⭐ Offres simples et claires</div>
+        <h1 class="cs-h1">Choisis ton offre.</h1>
+        <p class="cs-lead">
+          Commence gratuitement (15 éléments), puis passe Premium quand tu veux.
+          Le but : être tranquille et tout retrouver rapidement.
+        </p>
+        <div class="cs-trust-row">
+          <div class="cs-trust">✅ Recherche rapide</div>
+          <div class="cs-trust">✅ Coffre personnel</div>
+          <div class="cs-trust">✅ Sur téléphone & PC</div>
+        </div>
       </div>
 
-      <div class="card price-card featured">
-        <div class="name">Premium</div>
-        <div class="price">30€ <span style="font-size:14px;color:var(--muted)">/ an</span></div>
-        <p class="desc">
-          Pour être tranquille toute l’année : pas de limite, et une copie PDF si besoin.
-        </p>
-        <ul>
-          <li>Éléments <strong>illimités</strong></li>
-          <li><strong>Copie PDF</strong> de toutes tes infos</li>
-          <li>Pour toi, et ton quotidien</li>
-        </ul>
-        <div class="hr"></div>
-        <button class="btn primary" id="buyAnnual">Passer en Premium</button>
-        <div class="hero-note">Paiement sécurisé. Il faut être connecté.</div>
-      </div>
-
-      <div class="card price-card">
-        <div class="name">Premium à vie</div>
-        <div class="price">99€</div>
-        <p class="desc">
-          Une fois, et c’est fait. Pour ceux qui veulent “le garder pour toujours”.
-        </p>
-        <ul>
-          <li>Éléments <strong>illimités</strong></li>
-          <li><strong>Copie PDF</strong> de toutes tes infos</li>
-          <li>Accès Premium <strong>à vie</strong></li>
-        </ul>
-        <div class="hr"></div>
-        <button class="btn" id="buyLifetime">Prendre à vie</button>
-        <div class="hero-note">Paiement sécurisé. Il faut être connecté.</div>
+      <div class="cs-hero-card" aria-hidden="true">
+        <div class="cs-hero-card-top">
+          <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+        </div>
+        <div class="cs-hero-card-body">
+          <div class="cs-hero-visual">
+            <img src="/assets/icons/icon-512.png" alt="" class="cs-hero-icon">
+          </div>
+          <div class="cs-mini-note">
+            Premium = éléments illimités + copie PDF + tranquillité.
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="hr"></div>
+    <div class="cs-container cs-divider"></div>
+  </section>
 
-    <div class="card pad">
-      <div class="grid2">
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Les 3 offres</h2>
+        <p class="cs-muted">Pas de piège : tu peux changer plus tard.</p>
+      </div>
+
+      <div class="cs-pricing">
+        <div class="cs-price">
+          <div class="cs-price-name">Gratuit</div>
+          <div class="cs-price-val">0€</div>
+          <ul>
+            <li>Jusqu’à <b>15</b> éléments</li>
+            <li>Recherche rapide</li>
+            <li>Parfait pour tester</li>
+          </ul>
+          <a class="cs-btn cs-primary" href="/register.html">Commencer</a>
+        </div>
+
+        <div class="cs-price cs-featured">
+          <div class="cs-price-name">Premium</div>
+          <div class="cs-price-val">30€ <span class="cs-muted">/ an</span></div>
+          <ul>
+            <li>Éléments <b>illimités</b></li>
+            <li>Copie PDF (Premium)</li>
+            <li>Support prioritaire</li>
+          </ul>
+
+          <!-- ⚠️ On garde le data-plan pour ton JS Stripe -->
+          <button class="cs-btn cs-primary" data-plan="annual" type="button">
+            Passer en Premium
+          </button>
+
+          <div class="cs-muted" style="font-size:12.5px; margin-top:10px;">
+            Idéal si tu veux un coffre complet toute l’année.
+          </div>
+        </div>
+
+        <div class="cs-price">
+          <div class="cs-price-name">À vie</div>
+          <div class="cs-price-val">99€</div>
+          <ul>
+            <li>Paiement unique</li>
+            <li>Premium <b>à vie</b></li>
+            <li>Copie PDF (Premium)</li>
+          </ul>
+
+          <!-- ⚠️ On garde le data-plan pour ton JS Stripe -->
+          <button class="cs-btn cs-primary" data-plan="lifetime" type="button">
+            Prendre à vie
+          </button>
+
+          <div class="cs-muted" style="font-size:12.5px; margin-top:10px;">
+            Le plus rentable si tu veux être tranquille une bonne fois pour toutes.
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-cta-band" style="margin-top:18px;">
         <div>
-          <h3 style="margin:0 0 6px;">Pourquoi Premium ?</h3>
-          <p style="margin:0;color:var(--muted); max-width:680px;">
-            Au bout d’un moment, on dépasse vite 15 éléments :
-            banques, sites, abonnements, assurances, box internet…
-            Premium te laisse tout garder au même endroit, et tu peux même faire une copie PDF.
+          <div class="cs-badge">💡 Conseil</div>
+          <h3 style="margin:10px 0 6px;">Si tu hésites, commence en gratuit</h3>
+          <p class="cs-muted" style="margin:0;">
+            Tu mets déjà tes 15 premiers éléments, et tu passes Premium quand tu veux.
           </p>
         </div>
-        <div style="display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap;">
-          <a class="btn" href="faq.html">Lire la FAQ</a>
-          <a class="btn primary" href="register.html">Créer mon coffre</a>
+        <div class="cs-cta-row">
+          <a class="cs-btn cs-ghost" href="/faq.html">Questions</a>
+          <a class="cs-btn cs-primary" href="/register.html">Créer mon coffre</a>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span data-year></span> Clavis-security</div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="index.html">Accueil</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </div>
+<footer class="cs-footer">
+  <div class="cs-container cs-footer-row">
+    <div class="cs-footer-left">
+      <img src="/assets/icons/icon-192.png" alt="" width="28" height="28">
+      <span>© <span data-year></span> Clavis-security</span>
+    </div>
+    <div class="cs-footer-links">
+      <a href="/offers.html">Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
-<script src="/js/app.js"></script>
-<script src="/js/pwa.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/js/supabase.js"></script>
-
 <script>
-  function setBanner(text) {
-    const el = document.getElementById("bannerLine");
-    if (el) el.textContent = text || "";
-  }
+  // année (sans optional chaining + assign)
+  var y = document.querySelector('[data-year]');
+  if (y) y.textContent = String(new Date().getFullYear());
 
-  async function startCheckout(plan) {
-    const session = await getSession();
-    if (!session) {
-      alert("Connecte-toi d’abord, puis tu pourras choisir une offre 🙂");
-      window.location.href = "login.html";
-      return;
-    }
-
-    const site_url = window.location.origin;
-
-    const res = await fetch("/.netlify/functions/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        plan,
-        user_id: session.user.id,
-        user_email: session.user.email,
-        site_url
-      })
-    });
-
-    const data = await res.json();
-    if (!res.ok || !data.url) {
-      alert("Oups… impossible d’ouvrir le paiement. Réessaie dans un instant.");
-      return;
-    }
-
-    window.location.href = data.url;
-  }
-
-  document.getElementById("buyAnnual")?.addEventListener("click", () => startCheckout("annual"));
-  document.getElementById("buyLifetime")?.addEventListener("click", () => startCheckout("lifetime"));
-
-  (async () => {
-    const el = document.getElementById("statusLine");
-    try {
-      const s = await getSession();
-      if (s) {
-        el.textContent = `Connecté : ${s.user.email}`;
-        setBanner("Astuce : Premium te permet aussi de faire une copie PDF de tout.");
-      } else {
-        el.textContent = "Pas connecté : connecte-toi pour choisir une offre.";
-        setBanner("Tu peux déjà créer ton coffre gratuitement (15 éléments).");
-      }
-    } catch {
-      el.textContent = "Pas connecté : connecte-toi pour choisir une offre.";
-      setBanner("Tu peux déjà créer ton coffre gratuitement (15 éléments).");
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("canceled") === "1") {
-      setBanner("Pas de souci. Tu peux reprendre plus tard, ou rester en gratuit.");
-    }
-  })();
+  // menu mobile
+  var t = document.querySelector('[data-mobile-toggle]');
+  var m = document.querySelector('[data-mobile-menu]');
+  if (t && m) t.addEventListener('click', function(){ m.classList.toggle('open'); });
 </script>
+
+<script src="/js/pwa.js" defer></script>
+
+<!-- ⚠️ ton JS existant (Stripe checkout) -->
+<script src="/js/offers.js"></script>
 
 </body>
 </html>

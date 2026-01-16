@@ -4,142 +4,179 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Clavis-security</title>
-  <meta name="description" content="Une question ? Un souci ? Écris-nous, on te répond vite." />
-  <link rel="stylesheet" href="/css/styles.css" />
-  <script src="/js/app-mode.js" defer></script>
+  <meta name="description" content="Contacte l’équipe Clavis-security." />
 
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
+
 <body>
 
-<header class="topbar">
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="index.html">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Clavis-security</span>
-      </a>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="/index.html">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-      <nav class="navlinks" aria-label="Navigation principale">
-        <a href="offers.html">Offres</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html" aria-current="page">Contact</a>
-      </nav>
+    <nav class="cs-links">
+      <a href="/offers.html">Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
 
-      <div class="navcta">
-        <a class="btn small ghost" href="login.html">Connexion</a>
-        <a class="btn small primary" href="register.html">Créer mon coffre</a>
-        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
-      </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="/login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="/register.html">Créer mon coffre</a>
+      <button class="cs-btn cs-primary cs-install" id="installAppBtn" hidden>Installer l’app</button>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
     </div>
+  </div>
 
-    <div class="mobile-menu" data-mobile-menu>
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Connexion</a>
-      <a href="register.html">Créer mon coffre</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="/offers.html">Offres</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/login.html">Connexion</a>
+    <a href="/register.html">Créer mon coffre</a>
   </div>
 </header>
 
-<main class="section">
-  <div class="container">
+<main>
 
-    <div class="page-hero">
-      <span class="badge">💬 Contact</span>
-      <h1>On te répond vite.</h1>
-      <p style="max-width: 760px;">
-        Une question, une idée, un souci ? Écris-nous ici. On te répond simplement, sans blabla.
-      </p>
-    </div>
-
-    <div class="grid2">
-      <div class="card pad">
-        <h2 style="margin:0 0 10px;">Envoyer un message</h2>
-
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
-          <input type="hidden" name="form-name" value="contact" />
-          <p style="display:none;">
-            <label>Ne pas remplir : <input name="bot-field" /></label>
-          </p>
-
-          <div class="field">
-            <label for="name">Ton prénom</label>
-            <input id="name" name="name" required />
-          </div>
-
-          <div class="field">
-            <label for="email">Ton email</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-
-          <div class="field">
-            <label for="topic">Sujet</label>
-            <input id="topic" name="topic" placeholder="ex : question, suggestion, souci…" required />
-          </div>
-
-          <div class="field">
-            <label for="message">Ton message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Dis-nous simplement ce qu’il se passe 🙂" required></textarea>
-          </div>
-
-          <button class="btn primary" type="submit">Envoyer</button>
-          <div class="hero-note">On répond généralement sous 24–48h.</div>
-        </form>
-      </div>
-
-      <div class="card pad">
-        <h2 style="margin:0 0 10px;">Avant d’écrire</h2>
-        <p style="margin:0;color:var(--muted);">
-          Tu peux aussi jeter un œil à la FAQ : elle répond aux questions les plus fréquentes.
+  <section class="cs-hero" style="padding-bottom:26px;">
+    <div class="cs-container cs-hero-grid">
+      <div>
+        <div class="cs-badge">✉️ Contact</div>
+        <h1 class="cs-h1">On te répond rapidement.</h1>
+        <p class="cs-lead">
+          Une question ? Un souci ? Écris-nous.
+          On te répond simplement, sans te balader.
         </p>
-        <div class="hr"></div>
+        <div class="cs-trust-row">
+          <div class="cs-trust">✅ Support humain</div>
+          <div class="cs-trust">✅ Réponse claire</div>
+          <div class="cs-trust">✅ On t’aide vraiment</div>
+        </div>
+      </div>
 
-        <div class="card pad" style="background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.10);">
-          <h3 style="margin:0 0 6px;">Besoin d’aller vite ?</h3>
-          <p style="margin:0;color:var(--muted);">
-            Donne-nous :
-            <br>• ton email
-            <br>• ce que tu voulais faire
-            <br>• ce que tu as vu à l’écran
+      <div class="cs-hero-card" aria-hidden="true">
+        <div class="cs-hero-card-top">
+          <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+        </div>
+        <div class="cs-hero-card-body">
+          <div class="cs-mini-title">Avant d’écrire</div>
+          <div class="cs-mini-note">
+            Regarde la FAQ : tu peux avoir la réponse en 10 secondes.
+          </div>
+          <div style="margin-top:12px;">
+            <a class="cs-btn cs-ghost" href="/faq.html">Ouvrir la FAQ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-container cs-divider"></div>
+  </section>
+
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Formulaire</h2>
+        <p class="cs-muted">On lit tout. Promis.</p>
+      </div>
+
+      <div class="cs-grid3" style="grid-template-columns: 1.1fr .9fr .9fr;">
+        <div class="cs-card" style="grid-column: 1 / -1;">
+          <!-- Form simple : tu peux le brancher plus tard à une Netlify Function/Brevo si tu veux -->
+          <form id="contact-form" class="cs-form" style="display:grid; gap:12px; max-width:720px;">
+            <label class="cs-label" style="display:grid; gap:6px; font-weight:800;">
+              Ton email
+              <input name="email" type="email" required placeholder="ex: nom@gmail.com"
+                     style="width:100%; padding:12px 12px; border-radius:16px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.18); color:rgba(255,255,255,.92); outline:none;">
+            </label>
+
+            <label class="cs-label" style="display:grid; gap:6px; font-weight:800;">
+              Sujet
+              <input name="subject" type="text" required placeholder="ex: problème de connexion"
+                     style="width:100%; padding:12px 12px; border-radius:16px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.18); color:rgba(255,255,255,.92); outline:none;">
+            </label>
+
+            <label class="cs-label" style="display:grid; gap:6px; font-weight:800;">
+              Ton message
+              <textarea name="message" rows="6" required placeholder="Explique simplement, on s’occupe du reste."
+                        style="width:100%; padding:12px 12px; border-radius:16px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.18); color:rgba(255,255,255,.92); outline:none; resize:vertical;"></textarea>
+            </label>
+
+            <button class="cs-btn cs-primary" type="submit" style="width:fit-content;">
+              Envoyer
+            </button>
+
+            <div class="cs-muted" style="font-size:12.5px;">
+              Astuce : si tu es sur iPhone, précise si tu utilises Safari ou l’app installée.
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="cs-cta-band" style="margin-top:18px;">
+        <div>
+          <div class="cs-badge">🚀 En attendant</div>
+          <h3 style="margin:10px 0 6px;">Tu peux déjà créer ton coffre</h3>
+          <p class="cs-muted" style="margin:0;">
+            Gratuit jusqu’à 15 éléments. Tu verras si tu aimes.
           </p>
         </div>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-          <a class="btn" href="faq.html">Lire la FAQ</a>
-          <a class="btn primary" href="register.html">Créer mon coffre</a>
+        <div class="cs-cta-row">
+          <a class="cs-btn cs-ghost" href="/offers.html">Voir les offres</a>
+          <a class="cs-btn cs-primary" href="/register.html">Créer mon coffre</a>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="hr"></div>
-
-    <div class="card pad">
-      <h2 style="margin:0 0 8px;">Tu veux surtout être tranquille ?</h2>
-      <p style="margin:0;color:var(--muted); max-width: 760px;">
-        Commence gratuitement, et passe Premium si tu as besoin d’illimité + copie PDF.
-      </p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-        <a class="btn primary" href="register.html">Commencer gratuit</a>
-        <a class="btn" href="offers.html">Voir les offres</a>
-      </div>
-    </div>
-
-  </div>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span data-year></span> Clavis-security</div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="offers.html">Offres</a>
-        <a href="faq.html">FAQ</a>
-      </div>
+<footer class="cs-footer">
+  <div class="cs-container cs-footer-row">
+    <div class="cs-footer-left">
+      <img src="/assets/icons/icon-192.png" alt="" width="28" height="28">
+      <span>© <span data-year></span> Clavis-security</span>
+    </div>
+    <div class="cs-footer-links">
+      <a href="/offers.html">Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
-<script src="/js/app.js"></script>
+<script>
+  var y = document.querySelector('[data-year]');
+  if (y) y.textContent = String(new Date().getFullYear());
+  var t = document.querySelector('[data-mobile-toggle]');
+  var m = document.querySelector('[data-mobile-menu]');
+  if (t && m) t.addEventListener('click', function(){ m.classList.toggle('open'); });
+
+  // Form simple (pour ne pas faire "rien")
+  var f = document.getElementById('contact-form');
+  if (f) {
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      alert("Merci ! Ton message est bien prêt. (On peut le brancher à l’envoi automatique quand tu veux.)");
+      f.reset();
+    });
+  }
+</script>
+
+<script src="/js/pwa.js" defer></script>
+
 </body>
 </html>
