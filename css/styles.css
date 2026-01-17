@@ -736,3 +736,333 @@ body{
   color: rgba(255,255,255,.65);
   text-align:center;
 }
+/* =========================================================
+   CLAVIS – SaaS Pages (OFFERS / FAQ / CONTACT)
+   Scope: only pages with <body class="csx-page">
+   ========================================================= */
+
+.csx-page{
+  overflow-x:hidden;
+}
+
+.csx-wrap{
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.csx-hero{
+  padding: 88px 0 26px;
+  text-align: center;
+}
+
+.csx-hero h1{
+  font-size: clamp(2.1rem, 4.5vw, 3.35rem);
+  line-height: 1.06;
+  margin: 0 0 14px;
+  letter-spacing: -0.6px;
+}
+
+.csx-grad{
+  background: linear-gradient(90deg, rgba(14,165,233,1), rgba(34,197,94,1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.csx-lead{
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  opacity: .86;
+}
+
+.csx-proof{
+  margin-top: 18px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.csx-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  font-weight: 700;
+  opacity: .92;
+}
+
+.csx-section{
+  padding: 24px 0 70px;
+}
+
+.csx-surface{
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  border-radius: 22px;
+  box-shadow: 0 24px 90px rgba(0,0,0,.42);
+}
+
+.csx-grid-3{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+@media (max-width: 940px){
+  .csx-grid-3{ grid-template-columns: 1fr; }
+}
+
+/* Pricing cards */
+.csx-plan{
+  padding: 24px;
+  position: relative;
+  overflow:hidden;
+}
+
+.csx-plan h3{
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  letter-spacing: -0.2px;
+}
+
+.csx-price{
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.7px;
+  margin: 8px 0 6px;
+}
+
+.csx-sub{
+  opacity:.75;
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.csx-list{
+  list-style:none;
+  padding:0;
+  margin: 14px 0 18px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.csx-list li{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  opacity:.9;
+}
+
+.csx-list li::before{
+  content:"✓";
+  font-weight: 900;
+  opacity:.95;
+  margin-top: 1px;
+}
+
+.csx-ctaRow{
+  display:flex;
+  gap: 10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.csx-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  text-decoration:none;
+  cursor:pointer;
+  font-weight: 900;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.csx-btn:hover{ transform: translateY(-1px); }
+
+.csx-btnPrimary{
+  background: linear-gradient(90deg, rgba(14,165,233,.95), rgba(34,197,94,.75));
+  border-color: rgba(14,165,233,.25);
+  box-shadow: 0 16px 70px rgba(14,165,233,.18);
+  color: #fff;
+}
+
+.csx-btnGhost{
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+}
+
+.csx-small{
+  font-size: 12px;
+  opacity:.72;
+  margin-top: 10px;
+}
+
+.csx-badge{
+  position:absolute;
+  top: 14px;
+  right: 14px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(14,165,233,.28);
+  background: rgba(14,165,233,.14);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.csx-highlight{
+  border-color: rgba(14,165,233,.30);
+  background: linear-gradient(180deg, rgba(14,165,233,.10), rgba(255,255,255,.03));
+}
+
+@media (max-width: 940px){
+  .csx-highlight{ transform:none; }
+}
+
+/* Trust strip */
+.csx-trust{
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.csx-trust strong{
+  font-weight: 900;
+}
+
+.csx-trust a{
+  color: rgba(255,255,255,.9);
+  font-weight: 900;
+}
+
+/* FAQ */
+.csx-faq{
+  margin-top: 18px;
+  display:grid;
+  gap: 12px;
+}
+
+.csx-faq details{
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  padding: 16px 18px;
+}
+
+.csx-faq summary{
+  cursor:pointer;
+  font-weight: 900;
+  list-style:none;
+}
+
+.csx-faq summary::-webkit-details-marker{ display:none; }
+
+.csx-faq summary::after{
+  content:"＋";
+  float:right;
+  opacity:.75;
+}
+
+.csx-faq details[open] summary::after{ content:"－"; }
+
+.csx-faq p{
+  margin: 12px 0 0;
+  opacity:.80;
+  line-height: 1.55;
+}
+
+/* Contact form */
+.csx-formWrap{
+  margin-top: 22px;
+  padding: 22px;
+}
+
+.csx-form{
+  display:grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.csx-form label{
+  display:grid;
+  gap: 8px;
+  font-weight: 900;
+  opacity: .92;
+}
+
+.csx-form input,
+.csx-form textarea{
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  padding: 12px 12px;
+  color: rgba(255,255,255,.92);
+  outline:none;
+}
+
+.csx-form input:focus,
+.csx-form textarea:focus{
+  border-color: rgba(14,165,233,.45);
+  box-shadow: 0 0 0 4px rgba(14,165,233,.12);
+}
+
+.csx-split{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+@media (max-width: 940px){
+  .csx-split{ grid-template-columns: 1fr; }
+}
+
+.csx-side{
+  padding: 18px;
+}
+
+.csx-side h3{ margin: 0 0 10px; }
+.csx-side p{ margin: 0; opacity:.78; line-height:1.5; }
+
+.csx-kpis{
+  margin-top: 14px;
+  display:grid;
+  gap: 10px;
+}
+
+.csx-kpi{
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  padding: 12px;
+}
+
+.csx-kpi b{
+  display:block;
+  font-size: 1.05rem;
+  letter-spacing: -.2px;
+  margin-bottom: 4px;
+}
+.csx-kpi span{ opacity:.75; }
+
+/* Footer spacing helpers */
+.csx-footerSpace{ padding-bottom: 30px; }
