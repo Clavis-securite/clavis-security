@@ -19,6 +19,7 @@
 
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
+
 <script src="/js/app-mode.js" defer></script>
 
 <body>
@@ -30,7 +31,9 @@
       <span class="cs-brand-name">Clavis-security</span>
     </a>
 
+    <!-- ✅ Raccourcis (barre du haut) -->
     <nav class="cs-links" aria-label="Navigation">
+      <a href="index.html">Accueil</a>
       <a href="offers.html">Offres</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
@@ -49,12 +52,17 @@
     </div>
   </div>
 
+  <!-- Menu mobile -->
   <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="index.html">Accueil</a>
     <a href="offers.html">Offres</a>
     <a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a>
     <a href="login.html">Connexion</a>
     <a href="register.html">Créer mon coffre</a>
+    <button id="installAppBtnMobile" class="cs-btn cs-primary cs-install" type="button" hidden style="margin-top:12px;width:100%;">
+      Installer l’app
+    </button>
   </div>
 </header>
 
@@ -307,12 +315,26 @@
       <span>© <span data-year></span> Clavis-security</span>
     </div>
     <div class="cs-footer-links">
+      <a href="index.html">Accueil</a>
       <a href="offers.html">Offres</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
+
+<!-- ✅ Panneau iPhone/iPad “Installer l’app” (propre, sans alert) -->
+<div class="cs-install-hint" id="csInstallHint" hidden>
+  <div class="cs-install-title">Installer Clavis-security</div>
+  <div class="cs-install-text">
+    Sur iPhone/iPad : appuie sur <strong>Partager</strong> (carré + flèche),
+    puis <strong>“Sur l’écran d’accueil”</strong>.
+  </div>
+  <div class="cs-install-row">
+    <span class="cs-install-muted">Après ça, Clavis apparaît comme une vraie app ✅</span>
+    <button class="cs-btn cs-ghost" type="button" id="csInstallClose">OK</button>
+  </div>
+</div>
 
 <!-- JS -->
 <script>
@@ -323,6 +345,43 @@
   const toggle = document.querySelector('[data-mobile-toggle]');
   const menu = document.querySelector('[data-mobile-menu]');
   toggle?.addEventListener('click', () => menu?.classList.toggle('open'));
+
+  // ✅ Relais bouton install mobile (même comportement que desktop)
+  const installTop = document.getElementById('installAppBtn');
+  const installMobile = document.getElementById('installAppBtnMobile');
+
+  // si le bouton top devient visible, on rend visible aussi le bouton mobile
+  const mo = new MutationObserver(() => {
+    if (!installTop || !installMobile) return;
+    if (!installTop.hidden) installMobile.hidden = false;
+  });
+  if (installTop) mo.observe(installTop, { attributes: true, attributeFilter: ['hidden'] });
+
+  // si on clique sur le bouton mobile, on déclenche le clic du bouton top
+  installMobile?.addEventListener('click', () => installTop?.click());
+
+  // ✅ iOS : au clic, on affiche le panneau (et on évite un alert)
+  const hint = document.getElementById('csInstallHint');
+  const close = document.getElementById('csInstallClose');
+
+  function isIOS() {
+    return /iphone|ipad|ipod/i.test(navigator.userAgent);
+  }
+  function isStandalone() {
+    return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+  }
+
+  // Intercepte le clic en CAPTURE pour iOS et stoppe l’autre handler si besoin
+  installTop?.addEventListener('click', (e) => {
+    if (!isIOS() || isStandalone()) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (hint) hint.hidden = false;
+  }, true);
+
+  close?.addEventListener('click', () => {
+    if (hint) hint.hidden = true;
+  });
 </script>
 
 <!-- IMPORTANT : defer pour que le bouton existe avant le script -->
@@ -566,6 +625,32 @@
     .cs-steps{ grid-template-columns: 1fr; }
     .cs-pricing{ grid-template-columns: 1fr; }
   }
+
+  /* ✅ Panneau install iOS (léger, premium) */
+  .cs-install-hint{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 16px;
+    width: min(560px, 92vw);
+    z-index: 9999;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(10,14,24,.88);
+    backdrop-filter: blur(14px);
+    border-radius: 18px;
+    padding: 14px 14px;
+    box-shadow: 0 24px 90px rgba(0,0,0,.45);
+  }
+  .cs-install-title{ font-weight: 900; font-size: 15px; }
+  .cs-install-text{ margin-top: 8px; color: rgba(255,255,255,.82); line-height: 1.45; }
+  .cs-install-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .cs-install-muted{ color: rgba(255,255,255,.68); font-size: 12.5px; }
 </style>
 
 </body>
