@@ -65,3 +65,9 @@ if (installBtn) {
 
   if (installBtn && isInStandalone) installBtn.hidden = true;
 })();
+// Auto refresh quand un nouveau SW prend la main
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    window.location.reload();
+  });
+}
