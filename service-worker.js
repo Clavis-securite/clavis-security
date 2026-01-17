@@ -1,40 +1,47 @@
 /* service-worker.js */
-const CACHE_NAME = "clavis-v12"; // <-- incrémente à chaque mise à jour
+const CACHE_NAME = "clavis-v11"; // <-- incrémente à chaque push important
 
 self.addEventListener("install", (event) => {
-  self.skipWaiting(); // prend la main tout de suite
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil((async () => {
-    // supprime les anciens caches
     const keys = await caches.keys();
     await Promise.all(keys.map(k => (k !== CACHE_NAME ? caches.delete(k) : null)));
-    await self.clients.claim(); // contrôle toutes les pages ouvertes
+    await self.clients.claim();
   })());
 });
 
 self.addEventListener("fetch", (event) => {
-  // ✅ IMPORTANT: ne jamais cacher les HTML → toujours réseau d’abord
   const req = event.request;
-  const url = new URL(req.url);
 
-  // Ignore les requêtes non-GET
+  // ✅ Ignore non-GET
   if (req.method !== "GET") return;
 
-  // Ignore les fonctions Netlify / API / Supabase
+  // ✅ IMPORTANT : ignore tout ce qui n’est pas http/https
+  const url = new URL(req.url);
+  if (url.protocol !== "http:" && url.protocol !== "https:") return;
+
+  // ✅ Ignore les extensions / devtools / etc (sécurité)
+  if (
+    url.protocol.startsWith("chrome-extension") ||
+    url.protocol.startsWith("moz-extension") ||
+    url.protocol.startsWith("safari-extension")
+  ) return;
+
+  // ✅ Ignore les endpoints Netlify functions
   if (url.pathname.startsWith("/.netlify/")) return;
 
-  const isHTML = req.headers.get("accept")?.includes("text/html");
+  const accept = req.headers.get("accept") || "";
+  const isHTML = accept.includes("text/html");
 
+  // ✅ HTML : network-first (sinon tu restes bloqué sur l’ancienne version)
   if (isHTML) {
-    // HTML: network-first (sinon t'as exactement ton bug)
     event.respondWith((async () => {
       try {
-        const fresh = await fetch(req);
-        return fresh;
+        return await fetch(req, { cache: "no-store" });
       } catch (e) {
-        // fallback offline éventuel
         const cached = await caches.match(req);
         return cached || caches.match("/index.html");
       }
@@ -42,10 +49,11 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // CSS/JS/images: cache-first + update en arrière-plan
+  // ✅ CSS/JS/images : stale-while-revalidate (cache + update)
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cached = await cache.match(req);
+
     const fetchPromise = fetch(req).then((res) => {
       if (res && res.status === 200) cache.put(req, res.clone());
       return res;
