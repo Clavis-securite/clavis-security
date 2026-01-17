@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Offres – Clavis Security</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Choisissez l’offre Clavis Security qui vous correspond. Gratuit, abonnement annuel ou accès à vie.">
+  <meta name="description" content="Choisissez l’offre Clavis Security : gratuit, premium annuel ou accès à vie.">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
       <span>Clavis Security</span>
     </div>
     <nav class="cs-links">
-      <a href="/">Accueil</a>
+      <a href="/index.html">Accueil</a>
       <a href="/offers.html" class="active">Offres</a>
       <a href="/faq.html">Aide</a>
       <a href="/login.html" class="btn">Connexion</a>
@@ -24,72 +24,77 @@
   </div>
 </header>
 
-<main class="cs-section">
-  <div class="cs-container cs-center">
-    <h1>Une seule application pour <span class="cs-accent">tout retenir</span></h1>
-    <p class="cs-lead">
-      Clavis sécurise vos mots de passe, sans complexité.  
-      Choisissez la formule qui vous correspond, vous pouvez changer à tout moment.
-    </p>
-  </div>
+<main>
+  <section class="cs-hero">
+    <div class="cs-container cs-hero-content">
+      <h1>Une seule application pour <span class="cs-accent">tout retenir</span></h1>
+      <p class="cs-lead">
+        Clavis garde vos mots de passe à portée de main, sans prise de tête.
+        Vous choisissez votre formule, et vous pouvez évoluer à tout moment.
+      </p>
+      <p class="cs-sublead">
+        ✅ Simple à utiliser • ✅ Recherche instantanée • ✅ Accès sur tous vos appareils
+      </p>
+    </div>
+  </section>
 
-  <div class="cs-container cs-grid-3">
+  <section class="cs-section">
+    <div class="cs-container cs-grid-3">
 
-    <!-- Gratuit -->
-    <div class="cs-card price-card">
-      <h3>Gratuit</h3>
-      <p class="price">0 €</p>
-      <p class="muted">Pour découvrir Clavis</p>
-      <ul class="cs-list">
-        <li>Jusqu’à 15 mots de passe</li>
-        <li>Recherche rapide</li>
-        <li>Données chiffrées</li>
-        <li>Accès sur tous vos appareils</li>
-      </ul>
-      <a href="/register.html" class="btn-outline">Commencer gratuitement</a>
+      <article class="cs-card price-card">
+        <h3>Gratuit</h3>
+        <div class="price">0 €</div>
+        <div class="muted">Parfait pour commencer</div>
+        <ul class="cs-list">
+          <li>Jusqu’à 15 mots de passe</li>
+          <li>Recherche rapide</li>
+          <li>Vos informations restent privées</li>
+          <li>Accès multi-appareils</li>
+        </ul>
+        <a class="btn-outline" href="/register.html">Commencer gratuitement</a>
+      </article>
+
+      <article class="cs-card price-card highlight">
+        <div class="badge">⭐ Le plus choisi</div>
+        <h3>Premium</h3>
+        <div class="price">30 € / an</div>
+        <div class="muted">Pour être tranquille toute l’année</div>
+        <ul class="cs-list">
+          <li>Mots de passe illimités</li>
+          <li>Recherche instantanée</li>
+          <li>Export PDF sécurisé</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <button class="btn-primary" id="buyAnnual">Passer en Premium</button>
+      </article>
+
+      <article class="cs-card price-card">
+        <h3>À vie</h3>
+        <div class="price">99 €</div>
+        <div class="muted">Un paiement, puis c’est fini</div>
+        <ul class="cs-list">
+          <li>Toutes les fonctionnalités Premium</li>
+          <li>Aucun abonnement</li>
+          <li>Accès illimité à vie</li>
+          <li>Mises à jour incluses</li>
+        </ul>
+        <button class="btn-outline" id="buyLifetime">Accès à vie</button>
+      </article>
+
     </div>
 
-    <!-- Annuel -->
-    <div class="cs-card price-card highlight">
-      <h3>Premium</h3>
-      <p class="price">30 € / an</p>
-      <p class="muted">La tranquillité toute l’année</p>
-      <ul class="cs-list">
-        <li>Mots de passe illimités</li>
-        <li>Recherche instantanée</li>
-        <li>Export PDF sécurisé</li>
-        <li>Support prioritaire</li>
-      </ul>
-      <button class="btn-primary" id="buyAnnual">Passer en Premium</button>
+    <div class="cs-container cs-note-box">
+      <div class="cs-note">
+        🔒 <strong>Confidentialité totale :</strong> vos informations sont protégées et restent lisibles uniquement par vous.
+        Clavis est là pour vous simplifier la vie, pas pour compliquer.
+      </div>
     </div>
-
-    <!-- À vie -->
-    <div class="cs-card price-card">
-      <h3>À vie</h3>
-      <p class="price">99 €</p>
-      <p class="muted">Payez une fois, profitez toujours</p>
-      <ul class="cs-list">
-        <li>Toutes les fonctionnalités Premium</li>
-        <li>Aucun abonnement</li>
-        <li>Accès illimité à vie</li>
-        <li>Mises à jour incluses</li>
-      </ul>
-      <button class="btn-outline" id="buyLifetime">Accès à vie</button>
-    </div>
-
-  </div>
-
-  <div class="cs-container cs-center cs-note">
-    <p>
-      🔒 Vos données sont chiffrées et lisibles uniquement par vous.  
-      Même Clavis ne peut pas voir vos mots de passe.
-    </p>
-  </div>
+  </section>
 </main>
 
 <footer class="cs-footer">
   <div class="cs-container">
-    <p>© <span data-year></span> Clavis Security – Tous droits réservés</p>
+    © <span data-year></span> Clavis Security – Tous droits réservés
   </div>
 </footer>
 
