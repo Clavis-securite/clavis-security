@@ -1,70 +1,56 @@
-// service-worker.js
-const CACHE_NAME = "clavis-v1";
-
-const CORE_ASSETS = [
-  "/",
-  "/index.html",
-  "/offers.html",
-  "/faq.html",
-  "/contact.html",
-  "/login.html",
-  "/register.html",
-  "/dashboard.html",
-  "/thankyou.html",
-  "/404.html",
-
-  "/css/styles.css",
-  "/js/app.js",
-  "/js/pwa.js",
-
-  "/assets/icons/icon-192.png",
-  "/assets/icons/icon-512.png"
-];
+/* service-worker.js */
+const CACHE_NAME = "clavis-v10"; // <-- incrémente à chaque mise à jour
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS)));
-  self.skipWaiting();
+  self.skipWaiting(); // prend la main tout de suite
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.map((k) => (k !== CACHE_NAME ? caches.delete(k) : null)))
-    )
-  );
-  self.clients.claim();
+  event.waitUntil((async () => {
+    // supprime les anciens caches
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => (k !== CACHE_NAME ? caches.delete(k) : null)));
+    await self.clients.claim(); // contrôle toutes les pages ouvertes
+  })());
 });
 
 self.addEventListener("fetch", (event) => {
+  // ✅ IMPORTANT: ne jamais cacher les HTML → toujours réseau d’abord
   const req = event.request;
   const url = new URL(req.url);
 
-  if (url.origin !== location.origin) return;
+  // Ignore les requêtes non-GET
+  if (req.method !== "GET") return;
 
-  // HTML → network-first
-  const accept = req.headers.get("accept") || "";
-  if (req.mode === "navigate" || accept.includes("text/html")) {
-    event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-          return res;
-        })
-        .catch(() => caches.match(req).then((c) => c || caches.match("/index.html")))
-    );
+  // Ignore les fonctions Netlify / API / Supabase
+  if (url.pathname.startsWith("/.netlify/")) return;
+
+  const isHTML = req.headers.get("accept")?.includes("text/html");
+
+  if (isHTML) {
+    // HTML: network-first (sinon t'as exactement ton bug)
+    event.respondWith((async () => {
+      try {
+        const fresh = await fetch(req);
+        return fresh;
+      } catch (e) {
+        // fallback offline éventuel
+        const cached = await caches.match(req);
+        return cached || caches.match("/index.html");
+      }
+    })());
     return;
   }
 
-  // Assets → cache-first
-  event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-        return res;
-      });
-    })
-  );
+  // CSS/JS/images: cache-first + update en arrière-plan
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(req);
+    const fetchPromise = fetch(req).then((res) => {
+      if (res && res.status === 200) cache.put(req, res.clone());
+      return res;
+    }).catch(() => cached);
+
+    return cached || fetchPromise;
+  })());
 });
