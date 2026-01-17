@@ -1,84 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Offres – Clavis-security</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <link rel="stylesheet" href="/css/styles.css" />
+  <meta charset="UTF-8">
+  <title>Offres – Clavis Security</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choisissez l’offre Clavis Security qui vous correspond. Gratuit, abonnement annuel ou accès à vie.">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
-
 <body>
+
 <header class="cs-topbar">
   <div class="cs-container cs-nav">
     <div class="cs-logo">
       <img src="/assets/icons/icon-192.png" alt="Clavis">
-      <span>Clavis</span>
+      <span>Clavis Security</span>
     </div>
     <nav class="cs-links">
       <a href="/">Accueil</a>
       <a href="/offers.html" class="active">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/login.html" class="btn-outline">Connexion</a>
+      <a href="/faq.html">Aide</a>
+      <a href="/login.html" class="btn">Connexion</a>
     </nav>
   </div>
 </header>
 
 <main class="cs-section">
   <div class="cs-container cs-center">
-    <h1 class="cs-title">Choisissez la tranquillité</h1>
-    <p class="cs-subtitle">
-      Un seul mot de passe pour tout retrouver.  
-      Simple, sécurisé, sans jargon.
+    <h1>Une seule application pour <span class="cs-accent">tout retenir</span></h1>
+    <p class="cs-lead">
+      Clavis sécurise vos mots de passe, sans complexité.  
+      Choisissez la formule qui vous correspond, vous pouvez changer à tout moment.
     </p>
+  </div>
 
-    <div class="cs-grid cs-3">
-      <!-- Gratuit -->
-      <div class="cs-card price-card">
-        <h3>Gratuit</h3>
-        <p class="price">0 €</p>
-        <ul>
-          <li>✔ Jusqu’à 15 mots de passe</li>
-          <li>✔ Recherche rapide</li>
-          <li>✔ Sécurité intégrée</li>
-        </ul>
-        <a href="/register.html" class="btn-secondary full">Commencer</a>
-      </div>
+  <div class="cs-container cs-grid-3">
 
-      <!-- Annuel -->
-      <div class="cs-card price-card highlight">
-        <h3>Premium</h3>
-        <p class="price">30 € / an</p>
-        <ul>
-          <li>✔ Mots de passe illimités</li>
-          <li>✔ Export PDF</li>
-          <li>✔ Sauvegarde sécurisée</li>
-          <li>✔ Support prioritaire</li>
-        </ul>
-        <button id="btnAnnual" class="btn-primary full">Passer Premium</button>
-      </div>
-
-      <!-- Lifetime -->
-      <div class="cs-card price-card">
-        <h3>À vie</h3>
-        <p class="price">99 €</p>
-        <ul>
-          <li>✔ Tout le Premium</li>
-          <li>✔ Paiement unique</li>
-          <li>✔ Accès à vie</li>
-        </ul>
-        <button id="btnLifetime" class="btn-secondary full">Accès à vie</button>
-      </div>
+    <!-- Gratuit -->
+    <div class="cs-card price-card">
+      <h3>Gratuit</h3>
+      <p class="price">0 €</p>
+      <p class="muted">Pour découvrir Clavis</p>
+      <ul class="cs-list">
+        <li>Jusqu’à 15 mots de passe</li>
+        <li>Recherche rapide</li>
+        <li>Données chiffrées</li>
+        <li>Accès sur tous vos appareils</li>
+      </ul>
+      <a href="/register.html" class="btn-outline">Commencer gratuitement</a>
     </div>
+
+    <!-- Annuel -->
+    <div class="cs-card price-card highlight">
+      <h3>Premium</h3>
+      <p class="price">30 € / an</p>
+      <p class="muted">La tranquillité toute l’année</p>
+      <ul class="cs-list">
+        <li>Mots de passe illimités</li>
+        <li>Recherche instantanée</li>
+        <li>Export PDF sécurisé</li>
+        <li>Support prioritaire</li>
+      </ul>
+      <button class="btn-primary" id="buyAnnual">Passer en Premium</button>
+    </div>
+
+    <!-- À vie -->
+    <div class="cs-card price-card">
+      <h3>À vie</h3>
+      <p class="price">99 €</p>
+      <p class="muted">Payez une fois, profitez toujours</p>
+      <ul class="cs-list">
+        <li>Toutes les fonctionnalités Premium</li>
+        <li>Aucun abonnement</li>
+        <li>Accès illimité à vie</li>
+        <li>Mises à jour incluses</li>
+      </ul>
+      <button class="btn-outline" id="buyLifetime">Accès à vie</button>
+    </div>
+
+  </div>
+
+  <div class="cs-container cs-center cs-note">
+    <p>
+      🔒 Vos données sont chiffrées et lisibles uniquement par vous.  
+      Même Clavis ne peut pas voir vos mots de passe.
+    </p>
   </div>
 </main>
 
 <footer class="cs-footer">
-  <p>© <span data-year></span> Clavis-security</p>
+  <div class="cs-container">
+    <p>© <span data-year></span> Clavis Security – Tous droits réservés</p>
+  </div>
 </footer>
 
-<script src="/js/app.js"></script>
-<script src="/js/checkout.js"></script>
+<script>
+  const y = document.querySelector('[data-year]');
+  if (y) y.textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
