@@ -1,5 +1,5 @@
 /* service-worker.js */
-const CACHE_NAME = "clavis-v11"; // <-- incrémente à chaque push important
+const CACHE_NAME = "clavis-v12"; // <-- incrémente à chaque push important
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
