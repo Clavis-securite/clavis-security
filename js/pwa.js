@@ -1,120 +1,85 @@
-// js/pwa.js — Install banner (sans pop-up) + mémorisation fermeture
-(() => {
-  let deferredPrompt = null;
+// js/pwa.js
+// - Android/PC (Chrome/Edge): bouton "Installer l'app" -> prompt natif.
+// - iPhone/iPad (Safari): bouton -> affiche une aide inline (pas de banniere, pas de popup).
 
-  // Bannière install (présente sur index/offers/faq/contact si tu veux)
-  const banner = document.getElementById("installBanner");
-  const btnNow = document.getElementById("installNowBtn");
-  const btnHow = document.getElementById("installHowBtn");
-  const btnClose = document.getElementById("installCloseBtn");
-  const iosHint = document.getElementById("iosHint");
+let deferredPrompt = null;
 
-  // Ancien bouton éventuel (si certaines pages l'ont encore)
-  const legacyInstallBtn =
-    document.getElementById("installAppBtn") ||
-    document.getElementById("installBtn");
+const installButtons = Array.from(document.querySelectorAll('.js-install'));
+const helpBox = document.getElementById('installHelp');
 
-  const ua = navigator.userAgent.toLowerCase();
-  const isIOS = /iphone|ipad|ipod/.test(ua);
+function detectIOS() {
+  return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+}
 
-  const isStandalone = () => {
-    return (
-      window.navigator.standalone === true ||
-      (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)
-    );
-  };
+function isStandalone() {
+  // iOS
+  if (window.navigator.standalone === true) return true;
+  // Android/desktop
+  return !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+}
 
-  // 1) Enregistre le SW (comme tu faisais)
-  window.addEventListener("load", async () => {
-    try {
-      if ("serviceWorker" in navigator) {
-        await navigator.serviceWorker.register("/service-worker.js");
+function showInstallButtons() {
+  installButtons.forEach((b) => (b.hidden = false));
+}
+
+function hideInstallButtons() {
+  installButtons.forEach((b) => (b.hidden = true));
+}
+
+function showIOSHelp() {
+  if (!helpBox) return;
+  helpBox.hidden = false;
+  helpBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideIOSHelp() {
+  if (!helpBox) return;
+  helpBox.hidden = true;
+}
+
+// Etat initial
+if (isStandalone()) {
+  hideInstallButtons();
+  hideIOSHelp();
+} else if (detectIOS()) {
+  // iOS: pas de beforeinstallprompt -> on montre le bouton tout de suite
+  showInstallButtons();
+}
+
+// Android/PC: on recupere l'evenement pour declencher le prompt via NOTRE bouton
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone()) showInstallButtons();
+});
+
+// Clic sur le bouton
+installButtons.forEach((btn) => {
+  btn.addEventListener('click', async () => {
+    // Android/PC
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      try {
+        await deferredPrompt.userChoice;
+      } catch (_) {
+        // ignore
       }
-    } catch (err) {
-      console.warn("Service Worker non enregistré:", err);
-    }
-  });
-
-  // Déjà installé => on cache tout
-  if (isStandalone()) {
-    if (banner) banner.hidden = true;
-    if (legacyInstallBtn) legacyInstallBtn.hidden = true;
-    return;
-  }
-
-  // Si l'utilisateur a fermé la bannière une fois, on ne la montre plus
-  const dismissed = localStorage.getItem("clavis_install_dismissed") === "1";
-  if (dismissed) {
-    if (banner) banner.hidden = true;
-    if (legacyInstallBtn) legacyInstallBtn.hidden = true;
-    return;
-  }
-
-  // Helpers
-  const showBanner = () => {
-    if (banner) banner.hidden = false;
-  };
-  const hideBanner = (remember = false) => {
-    if (remember) localStorage.setItem("clavis_install_dismissed", "1");
-    if (banner) banner.hidden = true;
-    if (legacyInstallBtn) legacyInstallBtn.hidden = true;
-  };
-
-  // Fermeture bannière
-  btnClose?.addEventListener("click", () => hideBanner(true));
-
-  // iOS : pas de prompt => on affiche la bannière + bouton "Comment faire"
-  if (isIOS) {
-    showBanner();
-    if (btnHow) btnHow.hidden = false;
-    if (btnNow) btnNow.hidden = true;
-
-    btnHow?.addEventListener("click", () => {
-      if (!iosHint) return;
-      iosHint.hidden = !iosHint.hidden;
-    });
-
-    // Si tu as encore un vieux bouton sur une page, on le masque
-    if (legacyInstallBtn) legacyInstallBtn.hidden = true;
-
-    return;
-  }
-
-  // Android / PC : capture prompt
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    // On montre la bannière
-    showBanner();
-    if (btnNow) btnNow.hidden = false;
-    if (btnHow) btnHow.hidden = true;
-
-    // On masque un bouton legacy s'il existe
-    if (legacyInstallBtn) legacyInstallBtn.hidden = true;
-  });
-
-  // Clic installer
-  btnNow?.addEventListener("click", async () => {
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-    try {
-      await deferredPrompt.userChoice;
-    } finally {
       deferredPrompt = null;
-      hideBanner(true);
+      // Le navigateur gerera la suite; on masque le bouton pour eviter de spam.
+      hideInstallButtons();
+      hideIOSHelp();
+      return;
+    }
+
+    // iOS (ou autre cas sans prompt): on affiche l'aide inline
+    if (detectIOS()) {
+      showIOSHelp();
     }
   });
+});
 
-  window.addEventListener("appinstalled", () => {
-    hideBanner(true);
-  });
-
-  // Auto refresh quand un nouveau SW prend la main (anti-cache)
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.addEventListener("controllerchange", () => {
-      window.location.reload();
-    });
-  }
-})();
+// Quand l'app est installee
+window.addEventListener('appinstalled', () => {
+  hideInstallButtons();
+  hideIOSHelp();
+});
