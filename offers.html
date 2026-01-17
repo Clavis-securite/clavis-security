@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Offres – Clavis Security</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Choisissez l’offre Clavis Security : gratuit, premium annuel ou accès à vie.">
+  <meta name="description" content="Choisissez votre offre Clavis Security : gratuit, Premium annuel ou accès à vie.">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
+<body class="csx-page">
 
 <header class="cs-topbar">
   <div class="cs-container cs-nav">
@@ -25,69 +25,98 @@
 </header>
 
 <main>
-  <section class="cs-hero">
-    <div class="cs-container cs-hero-content">
-      <h1>Une seule application pour <span class="cs-accent">tout retenir</span></h1>
-      <p class="cs-lead">
-        Clavis garde vos mots de passe à portée de main, sans prise de tête.
-        Vous choisissez votre formule, et vous pouvez évoluer à tout moment.
+  <section class="csx-hero">
+    <div class="csx-wrap">
+      <h1>Choisissez votre tranquillité <span class="csx-grad">en 30 secondes</span></h1>
+      <p class="csx-lead">
+        Clavis vous aide à retrouver vos mots de passe instantanément, sans stress.
+        Commencez gratuitement, puis passez à l’illimité quand vous en avez besoin.
       </p>
-      <p class="cs-sublead">
-        ✅ Simple à utiliser • ✅ Recherche instantanée • ✅ Accès sur tous vos appareils
-      </p>
+
+      <div class="csx-proof">
+        <div class="csx-pill">🔎 Recherche immédiate</div>
+        <div class="csx-pill">📱 Sur tous vos appareils</div>
+        <div class="csx-pill">🔒 Coffre privé</div>
+      </div>
     </div>
   </section>
 
-  <section class="cs-section">
-    <div class="cs-container cs-grid-3">
+  <section class="csx-section">
+    <div class="csx-wrap">
 
-      <article class="cs-card price-card">
-        <h3>Gratuit</h3>
-        <div class="price">0 €</div>
-        <div class="muted">Parfait pour commencer</div>
-        <ul class="cs-list">
-          <li>Jusqu’à 15 mots de passe</li>
-          <li>Recherche rapide</li>
-          <li>Vos informations restent privées</li>
-          <li>Accès multi-appareils</li>
-        </ul>
-        <a class="btn-outline" href="/register.html">Commencer gratuitement</a>
-      </article>
+      <div class="csx-grid-3">
 
-      <article class="cs-card price-card highlight">
-        <div class="badge">⭐ Le plus choisi</div>
-        <h3>Premium</h3>
-        <div class="price">30 € / an</div>
-        <div class="muted">Pour être tranquille toute l’année</div>
-        <ul class="cs-list">
-          <li>Mots de passe illimités</li>
-          <li>Recherche instantanée</li>
-          <li>Export PDF sécurisé</li>
-          <li>Support prioritaire</li>
-        </ul>
-        <button class="btn-primary" id="buyAnnual">Passer en Premium</button>
-      </article>
+        <article class="csx-surface csx-plan">
+          <h3>Gratuit</h3>
+          <div class="csx-price">0 €</div>
+          <p class="csx-sub">Parfait pour tester et prendre l’habitude.</p>
 
-      <article class="cs-card price-card">
-        <h3>À vie</h3>
-        <div class="price">99 €</div>
-        <div class="muted">Un paiement, puis c’est fini</div>
-        <ul class="cs-list">
-          <li>Toutes les fonctionnalités Premium</li>
-          <li>Aucun abonnement</li>
-          <li>Accès illimité à vie</li>
-          <li>Mises à jour incluses</li>
-        </ul>
-        <button class="btn-outline" id="buyLifetime">Accès à vie</button>
-      </article>
+          <ul class="csx-list">
+            <li>Jusqu’à 15 mots de passe</li>
+            <li>Recherche rapide</li>
+            <li>Accès sur téléphone et ordinateur</li>
+            <li>Ajout / copie en un clic</li>
+          </ul>
 
-    </div>
+          <div class="csx-ctaRow">
+            <a class="csx-btn csx-btnGhost" href="/register.html">Commencer gratuitement</a>
+          </div>
 
-    <div class="cs-container cs-note-box">
-      <div class="cs-note">
-        🔒 <strong>Confidentialité totale :</strong> vos informations sont protégées et restent lisibles uniquement par vous.
-        Clavis est là pour vous simplifier la vie, pas pour compliquer.
+          <div class="csx-small">Idéal si vous voulez “voir comment ça marche”.</div>
+        </article>
+
+        <article class="csx-surface csx-plan csx-highlight">
+          <div class="csx-badge">⭐ Le plus choisi</div>
+          <h3>Premium</h3>
+          <div class="csx-price">30 € / an</div>
+          <p class="csx-sub">L’option simple : vous ne comptez plus.</p>
+
+          <ul class="csx-list">
+            <li>Mots de passe illimités</li>
+            <li>Export PDF (copie complète)</li>
+            <li>Accès prioritaire aux nouveautés</li>
+            <li>Support prioritaire</li>
+          </ul>
+
+          <div class="csx-ctaRow">
+            <button class="csx-btn csx-btnPrimary" id="buyAnnual">Passer en Premium</button>
+            <a class="csx-btn csx-btnGhost" href="/register.html">Créer mon compte</a>
+          </div>
+
+          <div class="csx-small">Recommandé si vous voulez la solution “je suis tranquille”.</div>
+        </article>
+
+        <article class="csx-surface csx-plan">
+          <h3>À vie</h3>
+          <div class="csx-price">99 €</div>
+          <p class="csx-sub">Un paiement unique, et c’est réglé pour toujours.</p>
+
+          <ul class="csx-list">
+            <li>Tout Premium inclus</li>
+            <li>Aucun abonnement</li>
+            <li>Accès illimité à vie</li>
+            <li>Mises à jour incluses</li>
+          </ul>
+
+          <div class="csx-ctaRow">
+            <button class="csx-btn csx-btnGhost" id="buyLifetime">Accès à vie</button>
+          </div>
+
+          <div class="csx-small">Parfait si vous détestez les abonnements.</div>
+        </article>
+
       </div>
+
+      <div class="csx-trust csx-surface">
+        <div>
+          <strong>Confidentialité totale :</strong> votre coffre est privé. Personne ne peut le lire à votre place.
+        </div>
+        <div>
+          <a href="/faq.html">Voir les réponses →</a>
+        </div>
+      </div>
+
+      <div class="csx-footerSpace"></div>
     </div>
   </section>
 </main>
