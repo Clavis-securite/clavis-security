@@ -2,7 +2,7 @@
    IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v8"; // ⬅️ change en v8 quand tu modifies le SW
+const CACHE_VERSION = "v8"; // ⬅️ incrémente à chaque changement du SW
 const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 
@@ -23,6 +23,8 @@ const PRECACHE_URLS = [
 
   "/js/pwa.js",
   "/js/app-mode.js",
+  "/js/app-shell.js",
+  "/js/app.js",
 
   "/manifest.webmanifest",
   "/assets/icons/icon-192.png",
@@ -66,12 +68,23 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// Permet au site de forcer l'activation d'une nouvelle version (sans pop-up)
+self.addEventListener("message", (event) => {
+  if (event?.data?.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
 // -------- FETCH --------
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
   // On ignore tout ce qui n’est pas http/https (corrige chrome-extension://)
   if (!req.url.startsWith("http")) return;
+
+  // Évite une erreur classique : "only-if-cached" + cross-origin
+  // (peut arriver via certains navigateurs / extensions)
+  if (req.cache === "only-if-cached" && req.mode !== "same-origin") return;
 
   // On ne cache que les GET
   if (req.method !== "GET") return;
@@ -146,4 +159,3 @@ self.addEventListener("fetch", (event) => {
     })()
   );
 });
-

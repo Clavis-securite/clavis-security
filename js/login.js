@@ -42,7 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       await signIn(email, password);
-      window.location.href = '/dashboard.html';
+
+      // Optional return path (?next=/offers.html)
+      let next = null;
+      try {
+        const params = new URLSearchParams(window.location.search);
+        next = params.get('next');
+      } catch (_) {}
+
+      // Safety: allow only same-origin relative paths
+      if (next && typeof next === 'string' && next.startsWith('/') && !next.startsWith('//')) {
+        window.location.href = next;
+      } else {
+        window.location.href = '/dashboard.html';
+      }
     } catch (err) {
       console.error('Login error:', err);
       alert('Oups… email ou mot de passe incorrect.');

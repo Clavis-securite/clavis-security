@@ -4,68 +4,78 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Page introuvable — Clavis-security</title>
-  <meta name="description" content="Cette page n'existe pas (ou plus)." />
-
-  <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/cs.css" />
+  <meta name="description" content="Page introuvable." />
 
   <!-- PWA -->
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+  <script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
+
 <body>
+
+<nav class="app-bottom" style="display:none;">
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/" href="/index.html"><div class="ico">🏠</div><span>Accueil</span></a>
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span>Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span>Offres</span></a>
+    <a class="app-tab" data-path="/faq.html" href="/faq.html"><div class="ico">❓</div><span>Aide</span></a>
+  </div>
+</nav>
 
 <header class="cs-topbar">
   <div class="cs-container cs-nav">
-    <a class="cs-brand" href="/index.html" aria-label="Accueil Clavis-security">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
       <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
       <span class="cs-brand-name">Clavis-security</span>
     </a>
 
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
     <div class="cs-actions">
-      <a class="cs-btn cs-ghost" href="/offers.html">Voir les offres</a>
-      <a class="cs-btn cs-primary" href="/dashboard.html">Mon coffre</a>
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
     </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
-<main class="section">
-  <div class="container">
-    <div class="card pad" style="text-align:center;">
-      <span class="badge">404</span>
-      <h1 style="margin:10px 0 8px;">Cette page n’existe pas.</h1>
-      <p style="margin:0; color:var(--muted); max-width:720px; margin-inline:auto;">
-        Pas grave. Reviens à l’accueil, ou va directement à ton coffre.
-      </p>
-
-      <div class="hr"></div>
-
-      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-        <a class="btn primary" href="/index.html">Retour à l’accueil</a>
-        <a class="btn" href="/dashboard.html">Aller au coffre</a>
-        <a class="btn" href="/contact.html">Besoin d’aide ?</a>
+<main class="csx-section">
+  <div class="csx-wrap">
+    <div class="csx-surface" style="padding: 22px;">
+      <h1 style="margin:0 0 8px;">Oups… cette page n’existe pas.</h1>
+      <p style="margin:0; opacity:.82;">Tu peux revenir à l’accueil, ou ouvrir ton coffre.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;">
+        <a class="csx-btn csx-btnPrimary" href="/index.html">Retour à l’accueil</a>
+        <a class="csx-btn csx-btnGhost" href="/dashboard.html">Aller à mon coffre</a>
       </div>
     </div>
   </div>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span data-year></span> Clavis-security</div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="/faq.html">FAQ</a>
-        <a href="/contact.html">Contact</a>
-      </div>
-    </div>
-  </div>
+<footer class="cs-footer">
+  <div class="cs-container">© <span data-year></span> Clavis-security</div>
 </footer>
 
-<script src="/js/app.js"></script>
-<script src="/js/pwa.js" defer></script>
 </body>
 </html>
