@@ -1,0 +1,136 @@
+/* css/app.css
+   Styles appliqués UNIQUEMENT en mode "app" (PWA installée / standalone).
+   Objectif : expérience smartphone pensée "1 pouce".
+   IMPORTANT : ne jamais impacter la version site web.
+*/
+
+/* Espace pour la barre du bas */
+.app-mode body {
+  padding-bottom: 78px; /* hauteur nav */
+}
+
+/* Header : plus compact en app */
+.app-mode .cs-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.app-mode .cs-links,
+.app-mode [data-mobile-toggle],
+.app-mode [data-mobile-menu] {
+  display: none !important;
+}
+
+.app-mode .cs-actions {
+  gap: 10px;
+}
+
+.app-mode .cs-install {
+  display: none !important;
+}
+
+/* Boutons : zones plus faciles à toucher */
+.app-mode .cs-btn {
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: 14px;
+}
+
+/* Titres et sections : plus courts */
+.app-mode .cs-hero,
+.app-mode .cs-section {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/* Grilles : une colonne en app (sans changer le web) */
+.app-mode .cs-grid3,
+.app-mode .cs-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+}
+
+/* Auth (connexion / inscription) : version app plus directe */
+.app-mode .cs-auth-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.app-mode .cs-auth-left {
+  display: none !important;
+}
+
+.app-mode .cs-auth-card {
+  margin: 0 auto;
+  width: min(560px, 100%);
+}
+
+.app-mode .cs-container {
+  width: min(720px, 100%);
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Cartes : compactes */
+.app-mode .cs-card {
+  padding: 14px;
+  border-radius: 16px;
+}
+
+/* Page Offres : meilleure lisibilité en app */
+.app-mode .pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+}
+
+/* Bottom nav (déjà dans HTML) : style app */
+.app-mode .app-bottom {
+  display: block !important;
+}
+
+.app-mode .app-bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 66px;
+  padding: 8px 10px 10px;
+  background: rgba(11, 18, 32, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.10);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  z-index: 999;
+}
+
+.app-mode .app-tab {
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: rgba(255,255,255,.75);
+  border-radius: 14px;
+  padding: 6px 4px;
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+.app-mode .app-tab .ico {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.app-mode .app-tab.active {
+  background: rgba(14,165,233,.14);
+  color: rgba(255,255,255,.95);
+}
+
+/* Évite un flash de la page marketing si /index.html est ouvert depuis l'app */
+.app-mode body[data-page="home"] .cs-hero,
+.app-mode body[data-page="home"] .cs-divider,
+.app-mode body[data-page="home"] .cs-section {
+  display: none;
+}
+

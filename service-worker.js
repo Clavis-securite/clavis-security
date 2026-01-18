@@ -2,13 +2,14 @@
    IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v8"; // ⬅️ incrémente à chaque changement du SW
+const CACHE_VERSION = "v9"; // ⬅️ incrémente à chaque changement du SW
 const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 
 // Pages + assets essentiels (si un fichier n’existe pas, on ne casse pas l’installation)
 const PRECACHE_URLS = [
   "/",
+  "/app.html",
   "/index.html",
   "/offers.html",
   "/faq.html",
@@ -20,6 +21,7 @@ const PRECACHE_URLS = [
   "/404.html",
 
   "/css/styles.css",
+  "/css/app.css",
 
   "/js/pwa.js",
   "/js/app-mode.js",

@@ -2,7 +2,7 @@
   "name": "Clavis-security",
   "short_name": "Clavis",
   "description": "Un mot de passe pour tout retenir. Simple, clair et rassurant.",
-  "start_url": "/index.html",
+  "start_url": "/app.html",
   "scope": "/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
