@@ -1,15 +1,14 @@
-/* service-worker.js — Clavis-security (stable PWA)
-   - HTML: network-first (évite les vieilles pages)
-   - Assets: cache-first (rapide)
-   - Ignore non-http(s) requests (fix chrome-extension issue)
+/* service-worker.js — Clavis-security
+   IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v14"; // <-- INCREMENTE A CHAQUE GROS CHANGEMENT
-const CACHE_NAME = `clavis-cache-${CACHE_VERSION}`;
+const CACHE_VERSION = "v7"; // ⬅️ change en v8 quand tu modifies le SW
+const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
+const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 
-// Optionnel : pré-cache minimal (tu peux laisser vide si tu veux)
-const CORE_ASSETS = [
-  "/", // nécessaire
+// Pages + assets essentiels (si un fichier n’existe pas, on ne casse pas l’installation)
+const PRECACHE_URLS = [
+  "/",
   "/index.html",
   "/offers.html",
   "/faq.html",
@@ -18,138 +17,131 @@ const CORE_ASSETS = [
   "/register.html",
   "/dashboard.html",
   "/thankyou.html",
+  "/404.html",
+
   "/css/styles.css",
+
   "/js/pwa.js",
-  "/js/supabase.js",
+  "/js/app-mode.js",
+
   "/manifest.webmanifest",
-  "/icon-192.png",
-  "/icon-512.png",
+  "/assets/icons/icon-192.png",
+  "/assets/icons/icon-512.png",
 ];
 
-// --- INSTALL: precache + activate asap
+// -------- INSTALL --------
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
   event.waitUntil(
     (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      // On precache en "best effort" (si un fichier manque, ça n'empêche pas l'installation)
-      await Promise.all(
-        CORE_ASSETS.map(async (url) => {
-          try {
-            const req = new Request(url, { cache: "reload" });
-            const res = await fetch(req);
-            if (res && res.ok) await cache.put(req, res);
-          } catch (_) {
-            // ignore
-          }
+      const cache = await caches.open(STATIC_CACHE);
+
+      // On évite de planter si une ressource manque
+      await Promise.allSettled(
+        PRECACHE_URLS.map((url) => {
+          const req = new Request(url, { cache: "reload" });
+          return cache.add(req);
         })
       );
+
+      self.skipWaiting();
     })()
   );
 });
 
-// --- ACTIVATE: delete old caches + take control
+// -------- ACTIVATE --------
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
+      // Supprime tous les anciens caches
       const keys = await caches.keys();
-      await Promise.all(keys.map((k) => (k !== CACHE_NAME ? caches.delete(k) : null)));
+      await Promise.all(
+        keys
+          .filter((k) => ![STATIC_CACHE, RUNTIME_CACHE].includes(k))
+          .map((k) => caches.delete(k))
+      );
+
+      // Prend le contrôle tout de suite
       await self.clients.claim();
     })()
   );
 });
 
-// Helpers
-function isHttpRequest(request) {
-  try {
-    const url = new URL(request.url);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
-function isNavigationRequest(request) {
-  return request.mode === "navigate" || (request.headers.get("accept") || "").includes("text/html");
-}
-
-function isAssetRequest(request) {
-  const url = new URL(request.url);
-  return (
-    request.destination === "style" ||
-    request.destination === "script" ||
-    request.destination === "image" ||
-    request.destination === "font" ||
-    url.pathname.endsWith(".css") ||
-    url.pathname.endsWith(".js") ||
-    url.pathname.endsWith(".png") ||
-    url.pathname.endsWith(".jpg") ||
-    url.pathname.endsWith(".jpeg") ||
-    url.pathname.endsWith(".webp") ||
-    url.pathname.endsWith(".svg") ||
-    url.pathname.endsWith(".woff") ||
-    url.pathname.endsWith(".woff2")
-  );
-}
-
-// --- FETCH
+// -------- FETCH --------
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
-  // IMPORTANT: ignore chrome-extension://, blob:, data:, etc.
-  if (!isHttpRequest(req)) return;
+  // On ignore tout ce qui n’est pas http/https (corrige chrome-extension://)
+  if (!req.url.startsWith("http")) return;
 
-  // 1) Pages (HTML): Network-first (évite l'ancienne version)
-  if (isNavigationRequest(req)) {
+  // On ne cache que les GET
+  if (req.method !== "GET") return;
+
+  const url = new URL(req.url);
+  const sameOrigin = url.origin === self.location.origin;
+
+  // 1) NAVIGATION (HTML) : Network-first => évite "ancienne page" dans l'app
+  if (req.mode === "navigate") {
     event.respondWith(
       (async () => {
+        const cache = await caches.open(RUNTIME_CACHE);
+
+        // Normalisation : "/" et "/index.html" doivent toujours servir la même version
+        const normalizedKey =
+          url.pathname === "/" ? new Request("/index.html") : req;
+
         try {
           const fresh = await fetch(req);
-          const cache = await caches.open(CACHE_NAME);
-          cache.put(req, fresh.clone());
+
+          // On met en cache la réponse fraîche
+          cache.put(normalizedKey, fresh.clone());
+
           return fresh;
-        } catch (err) {
-          const cached = await caches.match(req);
+        } catch (e) {
+          // Offline / erreur réseau => on sert le cache
+          const cached = await cache.match(normalizedKey);
           if (cached) return cached;
 
-          // fallback: page d'accueil si offline
-          const fallback = await caches.match("/index.html");
-          return fallback || new Response("Hors connexion.", { status: 200, headers: { "Content-Type": "text/plain" } });
+          const cachedIndex = await caches.match("/index.html");
+          if (cachedIndex) return cachedIndex;
+
+          const fallback404 = await caches.match("/404.html");
+          return fallback404 || new Response("Hors connexion", { status: 503 });
         }
       })()
     );
     return;
   }
 
-  // 2) Fichiers statiques: Cache-first (rapide)
-  if (isAssetRequest(req)) {
-    event.respondWith(
-      (async () => {
-        const cached = await caches.match(req);
-        if (cached) return cached;
+  // 2) ASSETS (CSS/JS/IMG) : Cache-first + update en arrière plan
+  // On ne gère que les fichiers du même domaine
+  if (!sameOrigin) return;
 
-        try {
-          const fresh = await fetch(req);
-          const cache = await caches.open(CACHE_NAME);
-          cache.put(req, fresh.clone());
-          return fresh;
-        } catch (err) {
-          // Pas de fallback asset : renvoie l'erreur
-          throw err;
-        }
-      })()
-    );
-    return;
-  }
-
-  // 3) API / autres requêtes: Network-first léger (ne casse pas Supabase/Stripe)
   event.respondWith(
     (async () => {
+      const cache = await caches.open(RUNTIME_CACHE);
+      const cached = await cache.match(req);
+
+      if (cached) {
+        // Mise à jour en arrière plan (sans bloquer l’affichage)
+        event.waitUntil(
+          (async () => {
+            try {
+              const fresh = await fetch(req);
+              cache.put(req, fresh.clone());
+            } catch (_) {}
+          })()
+        );
+        return cached;
+      }
+
+      // Pas en cache -> fetch -> cache
       try {
-        return await fetch(req);
-      } catch (err) {
-        const cached = await caches.match(req);
-        return cached || new Response("", { status: 503 });
+        const fresh = await fetch(req);
+        cache.put(req, fresh.clone());
+        return fresh;
+      } catch (e) {
+        // Si image/CSS indisponible offline, on laisse tomber sans casser
+        return new Response("", { status: 204 });
       }
     })()
   );
