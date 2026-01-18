@@ -2,7 +2,7 @@
    IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v7"; // ⬅️ change en v8 quand tu modifies le SW
+const CACHE_VERSION = "v8"; // ⬅️ change en v8 quand tu modifies le SW
 const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 
@@ -146,3 +146,4 @@ self.addEventListener("fetch", (event) => {
     })()
   );
 });
+
