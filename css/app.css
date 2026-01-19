@@ -8,7 +8,7 @@
 
 /* Espace pour la barre du bas */
 .app-phone body {
-  padding-bottom: 78px; /* hauteur nav */
+  padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); /* hauteur nav */
 }
 
 /* Base anti débordements */
@@ -108,13 +108,14 @@
 /* Bottom nav (déjà dans HTML) : style app */
 .app-mode .app-bottom {
   display: block !important;
-}
-
-.app-mode .app-bottom-nav {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 999;
+}
+
+.app-mode .app-bottom-nav {
   height: 66px;
   padding: 8px 10px 10px;
   background: rgba(11, 18, 32, 0.92);
@@ -124,6 +125,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
   z-index: 999;
+  pointer-events: auto;
 }
 
 .app-mode .app-tab {

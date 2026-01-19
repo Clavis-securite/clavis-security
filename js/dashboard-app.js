@@ -110,7 +110,7 @@
       const note = document.createElement('p');
       note.className = 'app-add-note';
       note.setAttribute('data-i18n', 'add_note');
-      note.textContent = "Renseigne juste l'identifiant et le mot de passe.";
+      note.textContent = "Renseigne le nom, l'identifiant et le mot de passe.";
       screenAdd.insertBefore(note, addCard);
 
       container.appendChild(screenAdd);
@@ -229,15 +229,14 @@
     function simplifyAddForm() {
       if (!addForm) return;
 
-      // Title: keep required but auto-fill to something useful
+      // Title (Nom) : visible et simple
       if (titleInput) {
-        titleInput.required = false;
-        titleInput.value = titleInput.value || (usernameInput && usernameInput.value ? usernameInput.value : 'Compte');
+        titleInput.required = true;
+        if (!titleInput.placeholder) titleInput.placeholder = 'ex : Gmail';
       }
 
-      // Hide title field row (but keep input in DOM)
       const titleField = titleInput ? titleInput.closest('.field') : null;
-      if (titleField) titleField.style.display = 'none';
+      if (titleField) titleField.style.display = '';
 
       // Hide URL and Notes fields
       const urlField = urlInput ? urlInput.closest('.field') : null;
@@ -254,14 +253,9 @@
       // Make sure inputs are password type
       if (passwordInput && passwordInput.type !== 'password') passwordInput.type = 'password';
 
-      // When user types, keep title in sync (so list/search has a name)
-      if (usernameInput && titleInput) {
-        usernameInput.addEventListener('input', () => {
-          if (!titleInput.value || titleInput.value === 'Compte') {
-            titleInput.value = usernameInput.value || 'Compte';
-          }
-        }, { once: true });
-      }
+      // Labels: make sure "Nom" is clear
+      const tLabel = titleInput ? addForm.querySelector('label[for="title"]') : null;
+      if (tLabel) tLabel.textContent = 'Nom';
 
       // Ensure submit button is full width
       const submit = addForm.querySelector('button[type="submit"]');

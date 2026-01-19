@@ -441,6 +441,14 @@ body{
   padding: 14px 0;
 }
 
+/* Mobile: prevent overlaps in the top bar (keep same UI, just allow wrapping) */
+@media (max-width: 520px){
+  .cs-nav{ flex-wrap: wrap; }
+  .cs-actions{ flex-wrap: wrap; width: 100%; justify-content: flex-end; }
+  .cs-lang-select{ max-width: 100%; }
+  .cs-pill{ max-width: 100%; }
+}
+
 .cs-logo{
   display:flex;
   align-items:center;
