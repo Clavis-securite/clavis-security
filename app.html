@@ -32,9 +32,17 @@
         );
       }
 
+      function isPhoneLike() {
+        const w = Math.min(window.innerWidth || 0, (screen && screen.width) ? screen.width : 9999);
+        const small = w <= 900;
+        const coarse = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : true;
+        return small && coarse;
+      }
+
       async function boot() {
         // Si quelqu’un ouvre /app.html dans un navigateur normal : on renvoie vers le site web.
-        if (!isStandalone()) {
+        // Ou si c'est une PWA sur desktop/tablette : on garde le site web.
+        if (!isStandalone() || !isPhoneLike()) {
           window.location.replace('/index.html');
           return;
         }

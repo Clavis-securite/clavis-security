@@ -2,7 +2,7 @@
    IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v9"; // ⬅️ incrémente à chaque changement du SW
+const CACHE_VERSION = "v11"; // ⬅️ incrémente à chaque changement du SW
 const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 
@@ -26,6 +26,8 @@ const PRECACHE_URLS = [
   "/js/pwa.js",
   "/js/app-mode.js",
   "/js/app-shell.js",
+  "/js/dashboard-app.js",
+  "/js/i18n.js",
   "/js/app.js",
 
   "/manifest.webmanifest",

@@ -4,9 +4,29 @@
    IMPORTANT : ne jamais impacter la version site web.
 */
 
+/* IMPORTANT : l'app s'applique uniquement quand la classe app-phone est presente */
+
 /* Espace pour la barre du bas */
-.app-mode body {
+.app-phone body {
   padding-bottom: 78px; /* hauteur nav */
+}
+
+/* Base anti débordements */
+.app-phone html,
+.app-phone body {
+  overflow-x: hidden;
+}
+
+.app-phone *,
+.app-phone *::before,
+.app-phone *::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.app-phone img, .app-phone video, .app-phone canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Header : plus compact en app */
@@ -126,6 +146,190 @@
   background: rgba(14,165,233,.14);
   color: rgba(255,255,255,.95);
 }
+
+/* ============ Dashboard (app) ============ */
+
+/* En app : on évite l'en-tête/footers "site" sur le coffre pour rester simple */
+.app-phone body[data-page="dashboard"] .cs-topbar,
+.app-phone body[data-page="dashboard"] .footer {
+  display: none !important;
+}
+
+/* On respire, sans rien hors champ */
+.app-phone body[data-page="dashboard"] .section {
+  padding: 14px 0 18px;
+}
+
+.app-phone body[data-page="dashboard"] .container {
+  width: min(720px, 100%);
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Les grilles du dashboard passent en une colonne */
+.app-phone body[data-page="dashboard"] .grid2 {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+}
+
+/* Cache le "hero" marketing interne au dashboard en mode app */
+.app-phone body[data-page="dashboard"] .page-hero,
+.app-phone body[data-page="dashboard"] .hr {
+  display: none !important;
+}
+
+/* Dashboard en app : on masque le header/footer "site" pour une sensation appli */
+.app-mode body[data-page="dashboard"] .cs-topbar,
+.app-mode body[data-page="dashboard"] .footer {
+  display: none !important;
+}
+
+/* Hero plus compact */
+.app-mode body[data-page="dashboard"] .page-hero {
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.app-mode body[data-page="dashboard"] .page-hero h1 {
+  font-size: 22px;
+  margin: 8px 0 6px;
+}
+
+/* Barre "actions" compacte (ouvrir/fermer, export) */
+.app-mode body[data-page="dashboard"] .card.pad {
+  padding: 14px;
+  border-radius: 18px;
+}
+
+.app-mode body[data-page="dashboard"] .card.pad h3 {
+  font-size: 16px;
+}
+
+/* Liste d'items : plus dense */
+.app-mode body[data-page="dashboard"] #itemsList {
+  gap: 10px !important;
+}
+
+/* Inputs sans débordement */
+.app-mode body[data-page="dashboard"] input,
+.app-mode body[data-page="dashboard"] textarea,
+.app-mode body[data-page="dashboard"] button {
+  max-width: 100%;
+}
+
+/* Bouton + (FAB) au-dessus de la barre du bas */
+.app-phone .app-fab {
+  position: fixed;
+  right: 14px;
+  bottom: 86px; /* au-dessus de la bottom-nav */
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(14,165,233,.25);
+  color: rgba(255,255,255,.95);
+  font-size: 28px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  z-index: 1200;
+}
+
+/* ============ Dashboard "app" : header + vues (sans superposition) ============ */
+
+.app-phone body[data-page="dashboard"] {
+  background: #0b1220;
+}
+
+.app-phone .app-dash-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(11, 18, 32, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.app-phone .app-dash-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  gap: 10px;
+}
+
+.app-phone .app-dash-title {
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.app-phone .app-dash-actions { display: flex; gap: 8px; }
+
+.app-phone .app-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.95);
+  font-size: 18px;
+}
+
+.app-phone .app-dash-row {
+  padding: 0 14px 12px;
+}
+
+.app-phone .app-search {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  padding: 12px 12px;
+}
+
+.app-phone .app-lang-label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.app-phone .app-lang-select {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  padding: 10px 12px;
+}
+
+.app-phone .app-screen { padding-top: 12px; }
+
+.app-phone .app-add-head {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 8px;
+}
+
+.app-phone .app-back {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.95);
+  font-size: 18px;
+}
+
+.app-phone .app-add-title { font-weight: 900; }
+.app-phone .app-add-note { margin: 0 0 10px; opacity: .85; }
+
+.app-phone .app-primary { width: 100%; }
 
 /* Évite un flash de la page marketing si /index.html est ouvert depuis l'app */
 .app-mode body[data-page="home"] .cs-hero,

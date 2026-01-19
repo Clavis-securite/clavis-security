@@ -12,11 +12,25 @@
     );
   }
 
-  const standalone = isStandalone();
+  // L'expérience "App" doit s'appliquer UNIQUEMENT sur téléphone.
+  // - PWA installée (standalone)
+  // - écran <= 900px
+  // - pointeur tactile quand dispo
+  function isPhoneLike() {
+    const w = Math.min(window.innerWidth || 0, (screen && screen.width) ? screen.width : 9999);
+    const small = w <= 900;
+    const coarse = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : true;
+    return small && coarse;
+  }
 
+  const standalone = isStandalone();
   if (!standalone) return; // IMPORTANT : en navigateur normal, aucune différence.
 
+  // Standalone sur desktop/tablette : on garde le style "site web".
+  if (!isPhoneLike()) return;
+
   document.documentElement.classList.add("app-mode");
+  document.documentElement.classList.add("app-phone");
 
   // Charge la CSS app uniquement en standalone (ne touche jamais le site web)
   try {

@@ -15,6 +15,7 @@
   <!-- JS (defer) -->
   <script src="/js/app-mode.js" defer></script>
   <script src="/js/pwa.js" defer></script>
+  <script src="/js/i18n.js" defer></script>
   <script src="/js/app-shell.js" defer></script>
   <script src="/js/app.js" defer></script>
 </head>
@@ -23,9 +24,9 @@
 
 <nav class="app-bottom" style="display:none;">
   <div class="app-bottom-nav">
-    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span>Coffre</span></a>
-    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span>Offres</span></a>
-    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span>Compte</span></a>
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
   </div>
 </nav>
 

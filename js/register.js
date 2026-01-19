@@ -1,7 +1,7 @@
 // /js/register.js
 // Inscription (Supabase) — redirige vers thankyou (vérif email).
 
-document.addEventListener('DOMContentLoaded', () => {
+function initRegister(){
   const form = document.getElementById('register-form');
   if (!form) return;
 
@@ -47,4 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-});
+}
+
+// Le script est parfois chargé après DOMContentLoaded (script en bas de page).
+// Dans ce cas, l'écouteur ne se déclenche jamais => le formulaire "recharge".
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRegister);
+} else {
+  initRegister();
+}
