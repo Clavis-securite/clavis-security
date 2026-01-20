@@ -1,297 +1,347 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Clavis-security — Un mot de passe pour tous les retenir.</title>
-<meta content="Clavis-security : range tes informations au même endroit et retrouve-les en quelques secondes grâce à la recherche. Un mot de passe pour tous les retenir." name="description"/>
-<!-- PWA -->
-<link href="/manifest.webmanifest" rel="manifest"/>
-<meta content="#0ea5e9" name="theme-color"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<!-- Icônes (depuis vos icons) -->
-<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/assets/icons/icon-512.png" rel="icon" sizes="512x512" type="image/png"/>
-<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
-<link href="/css/styles.css" rel="stylesheet"/>
-<!-- JS (defer) -->
-<script defer="" src="/js/app-mode.js"></script>
-<script defer="" src="/js/pwa.js"></script>
-<script defer="" src="/js/i18n.js"></script>
-<script defer="" src="/js/app-shell.js"></script>
-<script defer="" src="/js/app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clavis-security — Un mot de passe pour tous les retenir.</title>
+  <meta name="description" content="Clavis-security : range tes informations au même endroit et retrouve-les en quelques secondes grâce à la recherche. Un mot de passe pour tous les retenir." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Icônes (depuis vos icons) -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/icon-512.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+    <script src="/js/i18n.js" defer></script>
+<script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
+
 <body data-page="home">
+
 <!-- Navigation basse (visible uniquement en mode app installé) -->
 <nav class="app-bottom" style="display:none;">
-<div class="app-bottom-nav">
-<a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-<a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-<a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-</div>
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+  </div>
 </nav>
+
 <header class="cs-topbar">
-<div class="cs-container cs-nav">
-<a aria-label="Accueil Clavis-security" class="cs-brand" href="index.html">
-<img alt="" class="cs-brand-icon" height="34" src="/assets/icons/icon-192.png" width="34"/>
-<span class="cs-brand-name">Clavis-security</span>
-</a>
-<nav aria-label="Navigation" class="cs-links">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-</nav>
-<div class="cs-actions">
-<a class="cs-btn cs-ghost" data-i18n="nav_login" href="login.html">Connexion</a>
-<a class="cs-btn cs-primary" data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-<!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
-<button class="cs-btn cs-primary cs-install js-install" data-i18n="btn_install" hidden="" type="button">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
+
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+
+      <!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
+      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>
         Installer l’app
       </button>
-<div class="cs-lang"><span>🌐</span><select aria-label="Langue" id="webLangSelect"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="it">IT</option></select></div><button class="cs-btn cs-ghost cs-menu" data-i18n="nav_menu" data-mobile-toggle="" type="button">Menu</button>
-</div>
-</div>
-<div class="cs-container cs-mobile" data-mobile-menu="">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-<a data-i18n="nav_login" href="login.html">Connexion</a>
-<a data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-</div>
+
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
+  </div>
 </header>
+
 <main>
-<!-- HERO -->
-<section class="cs-hero">
-<div class="cs-container cs-hero-grid">
-<div class="cs-hero-copy">
-<div class="cs-badge">🔒 Simple • Clair • Rassurant</div>
-<h1 class="cs-h1">
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="cs-container cs-hero-grid">
+      <div class="cs-hero-copy">
+        <div class="cs-badge">🔒 Simple • Clair • Rassurant</div>
+
+        <h1 class="cs-h1">
           Un mot de passe <span class="cs-soft">pour tous les retenir.</span>
-</h1>
-<p class="cs-lead">
+        </h1>
+
+        <p class="cs-lead">
           Clavis-security te permet de <strong>ranger tes informations</strong> au même endroit
           et de <strong>les retrouver en quelques secondes</strong> grâce à la recherche.
         </p>
-<div class="cs-cta-row">
-<a class="cs-btn cs-primary" data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-<a class="cs-btn cs-ghost" href="offers.html">Voir les offres</a>
-<!-- ✅ Même bouton dans le Hero (plus visible) -->
-<button class="cs-btn cs-ghost cs-install js-install" data-i18n="btn_install" hidden="" type="button">
+
+        <div class="cs-cta-row">
+          <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+          <a class="cs-btn cs-ghost" href="offers.html">Voir les offres</a>
+
+          <!-- ✅ Même bouton dans le Hero (plus visible) -->
+          <button class="cs-btn cs-ghost cs-install js-install" type="button" hidden>
             Installer l’app
           </button>
-</div>
-<!-- ✅ Aide iPhone/iPad (pas de bannière, pas de popup) -->
-<div class="cs-install-help" hidden="" id="installHelp">
-<div class="cs-install-help-title">Installer sur iPhone / iPad</div>
-<div class="cs-install-help-text">
+        </div>
+
+        <!-- ✅ Aide iPhone/iPad (pas de bannière, pas de popup) -->
+        <div id="installHelp" class="cs-install-help" hidden>
+          <div class="cs-install-help-title">Installer sur iPhone / iPad</div>
+          <div class="cs-install-help-text">
             Ouvre le menu <strong>Partager</strong> (⬆️), puis choisis <strong>Sur l’écran d’accueil</strong>.
           </div>
-</div>
-<div class="cs-micro">
+        </div>
+
+        <div class="cs-micro">
           Gratuit jusqu’à <strong>15</strong> éléments • Premium <strong>30€/an</strong> • À vie <strong>99€</strong>
-</div>
-<div class="cs-trust-row">
-<div class="cs-trust">✅ Recherche rapide</div>
-<div class="cs-trust">✅ Coffre personnel</div>
-<div class="cs-trust">✅ Ouverture en 1 geste</div>
-</div>
-</div>
-<div aria-hidden="true" class="cs-hero-card">
-<div class="cs-hero-card-top">
-<span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
-</div>
-<div class="cs-hero-card-body">
-<div class="cs-hero-visual">
-<!-- ✅ Icône utilisée comme “image” principale -->
-<img alt="" class="cs-hero-icon" src="/assets/icons/icon-512.png"/>
-</div>
-<div class="cs-mini-title">Exemple</div>
-<div class="cs-mini-input">banque, gmail, netflix…</div>
-<div class="cs-mini-note">
+        </div>
+
+        <div class="cs-trust-row">
+          <div class="cs-trust">✅ Recherche rapide</div>
+          <div class="cs-trust">✅ Coffre personnel</div>
+          <div class="cs-trust">✅ Ouverture en 1 geste</div>
+        </div>
+      </div>
+
+      <div class="cs-hero-card" aria-hidden="true">
+        <div class="cs-hero-card-top">
+          <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+        </div>
+
+        <div class="cs-hero-card-body">
+          <div class="cs-hero-visual">
+            <!-- ✅ Icône utilisée comme “image” principale -->
+            <img src="/assets/icons/icon-512.png" alt="" class="cs-hero-icon">
+          </div>
+
+          <div class="cs-mini-title">Exemple</div>
+          <div class="cs-mini-input">banque, gmail, netflix…</div>
+
+          <div class="cs-mini-note">
             Retrouve ce que tu cherches, puis ouvre ton coffre pour afficher/copier.
           </div>
-<div class="cs-mini-pill-row">
-<span class="cs-mini-pill">Gmail</span>
-<span class="cs-mini-pill">Banque</span>
-<span class="cs-mini-pill">Netflix</span>
-</div>
-</div>
-</div>
-</div>
-<div class="cs-container cs-divider"></div>
-</section>
-<!-- BENEFICES -->
-<section class="cs-section">
-<div class="cs-container">
-<div class="cs-section-head">
-<h2 class="cs-h2">Pourquoi tu vas adorer Clavis-security</h2>
-<p class="cs-muted">
+
+          <div class="cs-mini-pill-row">
+            <span class="cs-mini-pill">Gmail</span>
+            <span class="cs-mini-pill">Banque</span>
+            <span class="cs-mini-pill">Netflix</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-container cs-divider"></div>
+  </section>
+
+  <!-- BENEFICES -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Pourquoi tu vas adorer Clavis-security</h2>
+        <p class="cs-muted">
           Pensé pour monsieur et madame tout le monde : pas de mots compliqués, juste une expérience simple et efficace.
         </p>
-</div>
-<div class="cs-grid3">
-<article class="cs-card">
-<div class="cs-card-icon">🔎</div>
-<h3>Tu retrouves en 2 secondes</h3>
-<p>Tu tapes un nom… et tu tombes directement sur ce que tu cherches.</p>
-</article>
-<article class="cs-card">
-<div class="cs-card-icon">🧠</div>
-<h3>Tu retiens l’essentiel</h3>
-<p>Un seul mot de passe à retenir. Le reste est rangé proprement.</p>
-</article>
-<article class="cs-card">
-<div class="cs-card-icon">🧩</div>
-<h3>Tu ranges comme tu veux</h3>
-<p>Banque, box internet, assurances, abonnements… tout a sa place.</p>
-</article>
-<article class="cs-card">
-<div class="cs-card-icon">🛡️</div>
-<h3>Tu ouvres / tu refermes</h3>
-<p>Tu affiches seulement quand tu en as besoin, puis tu refermes ton coffre.</p>
-</article>
-<article class="cs-card">
-<div class="cs-card-icon">📱</div>
-<h3>Sur ordinateur et téléphone</h3>
-<p>Tu peux l’utiliser partout. Et même l’installer comme une application.</p>
-</article>
-<article class="cs-card">
-<div class="cs-card-icon">📄</div>
-<h3>Copie PDF (Premium)</h3>
-<p>Pour les abonnés Premium : exporter une copie PDF de tes informations.</p>
-</article>
-</div>
-</div>
-</section>
-<!-- COMMENT CA MARCHE -->
-<section class="cs-section cs-alt">
-<div class="cs-container">
-<div class="cs-section-head">
-<h2 class="cs-h2">Comment ça marche (vraiment simple)</h2>
-<p class="cs-muted">3 étapes, pas plus.</p>
-</div>
-<div class="cs-steps">
-<div class="cs-step">
-<div class="cs-step-n">1</div>
-<div>
-<h3>Tu crées ton coffre</h3>
-<p>Avec ton email et ton mot de passe.</p>
-</div>
-</div>
-<div class="cs-step">
-<div class="cs-step-n">2</div>
-<div>
-<h3>Tu ajoutes tes infos</h3>
-<p>Un titre simple, et tes détails dedans.</p>
-</div>
-</div>
-<div class="cs-step">
-<div class="cs-step-n">3</div>
-<div>
-<h3>Tu retrouves quand tu veux</h3>
-<p>Grâce à la recherche, tu gagnes du temps (et de l’énergie).</p>
-</div>
-</div>
-</div>
-<div class="cs-cta-band">
-<div>
-<div class="cs-badge">✨ Astuce</div>
-<h3 style="margin:10px 0 6px;">Commence gratuit, passe Premium quand tu veux</h3>
-<p class="cs-muted" style="margin:0;">
+      </div>
+
+      <div class="cs-grid3">
+        <article class="cs-card">
+          <div class="cs-card-icon">🔎</div>
+          <h3>Tu retrouves en 2 secondes</h3>
+          <p>Tu tapes un nom… et tu tombes directement sur ce que tu cherches.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">🧠</div>
+          <h3>Tu retiens l’essentiel</h3>
+          <p>Un seul mot de passe à retenir. Le reste est rangé proprement.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">🧩</div>
+          <h3>Tu ranges comme tu veux</h3>
+          <p>Banque, box internet, assurances, abonnements… tout a sa place.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">🛡️</div>
+          <h3>Tu ouvres / tu refermes</h3>
+          <p>Tu affiches seulement quand tu en as besoin, puis tu refermes ton coffre.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">📱</div>
+          <h3>Sur ordinateur et téléphone</h3>
+          <p>Tu peux l’utiliser partout. Et même l’installer comme une application.</p>
+        </article>
+
+        <article class="cs-card">
+          <div class="cs-card-icon">📄</div>
+          <h3>Copie PDF (Premium)</h3>
+          <p>Pour les abonnés Premium : exporter une copie PDF de tes informations.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENT CA MARCHE -->
+  <section class="cs-section cs-alt">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Comment ça marche (vraiment simple)</h2>
+        <p class="cs-muted">3 étapes, pas plus.</p>
+      </div>
+
+      <div class="cs-steps">
+        <div class="cs-step">
+          <div class="cs-step-n">1</div>
+          <div>
+            <h3>Tu crées ton coffre</h3>
+            <p>Avec ton email et ton mot de passe.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <div class="cs-step-n">2</div>
+          <div>
+            <h3>Tu ajoutes tes infos</h3>
+            <p>Un titre simple, et tes détails dedans.</p>
+          </div>
+        </div>
+
+        <div class="cs-step">
+          <div class="cs-step-n">3</div>
+          <div>
+            <h3>Tu retrouves quand tu veux</h3>
+            <p>Grâce à la recherche, tu gagnes du temps (et de l’énergie).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-cta-band">
+        <div>
+          <div class="cs-badge">✨ Astuce</div>
+          <h3 style="margin:10px 0 6px;">Commence gratuit, passe Premium quand tu veux</h3>
+          <p class="cs-muted" style="margin:0;">
             Tu peux démarrer gratuitement (15 éléments) et évoluer ensuite.
           </p>
-</div>
-<div class="cs-cta-row">
-<a class="cs-btn cs-ghost" href="offers.html">Comparer les offres</a>
-<a class="cs-btn cs-primary" data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-</div>
-</div>
-</div>
-</section>
-<!-- OFFRES (résumé) -->
-<section class="cs-section">
-<div class="cs-container">
-<div class="cs-section-head">
-<h2 class="cs-h2">Offres simples et claires</h2>
-<p class="cs-muted">Choisis ce qui te convient. Tu peux changer plus tard.</p>
-</div>
-<div class="cs-pricing">
-<div class="cs-price">
-<div class="cs-price-name">Gratuit</div>
-<div class="cs-price-val">0€</div>
-<ul>
-<li>Jusqu’à 15 éléments</li>
-<li>Recherche rapide</li>
-<li>Parfait pour démarrer</li>
-</ul>
-<a class="cs-btn cs-primary" href="register.html">Commencer</a>
-</div>
-<div class="cs-price cs-featured">
-<div class="cs-price-name">Premium</div>
-<div class="cs-price-val">30€ <span class="cs-muted">/ an</span></div>
-<ul>
-<li>Éléments illimités</li>
-<li>Copie PDF (Premium)</li>
-<li>Pour être tranquille</li>
-</ul>
-<a class="cs-btn cs-primary" href="offers.html">Passer en Premium</a>
-</div>
-<div class="cs-price">
-<div class="cs-price-name">À vie</div>
-<div class="cs-price-val">99€</div>
-<ul>
-<li>Paiement unique</li>
-<li>Accès Premium à vie</li>
-<li>Copie PDF (Premium)</li>
-</ul>
-<a class="cs-btn cs-primary" href="offers.html">Prendre à vie</a>
-</div>
-</div>
-</div>
-</section>
-<!-- MINI FAQ -->
-<section class="cs-section cs-alt">
-<div class="cs-container">
-<div class="cs-section-head">
-<h2 class="cs-h2">Questions fréquentes</h2>
-<p class="cs-muted">Réponses simples, sans jargon.</p>
-</div>
-<div class="cs-faq">
-<details class="cs-faq-item">
-<summary>Est-ce que c’est compliqué ?</summary>
-<p>Non. Tu crées ton coffre, tu ajoutes tes infos, tu retrouves grâce à la recherche.</p>
-</details>
-<details class="cs-faq-item">
-<summary>Je peux l’utiliser sur téléphone ?</summary>
-<p>Oui. Et tu peux même l’installer comme une application (bouton “Installer l’app”).</p>
-</details>
-<details class="cs-faq-item">
-<summary>Et si je veux une copie ?</summary>
-<p>Les abonnés Premium peuvent générer une copie PDF de leurs informations.</p>
-</details>
-<div class="cs-faq-cta">
-<a class="cs-btn cs-ghost" href="faq.html">Voir toute la FAQ</a>
-<a class="cs-btn cs-primary" data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-</div>
-</div>
-</div>
-</section>
+        </div>
+        <div class="cs-cta-row">
+          <a class="cs-btn cs-ghost" href="offers.html">Comparer les offres</a>
+          <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFRES (résumé) -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Offres simples et claires</h2>
+        <p class="cs-muted">Choisis ce qui te convient. Tu peux changer plus tard.</p>
+      </div>
+
+      <div class="cs-pricing">
+        <div class="cs-price">
+          <div class="cs-price-name">Gratuit</div>
+          <div class="cs-price-val">0€</div>
+          <ul>
+            <li>Jusqu’à 15 éléments</li>
+            <li>Recherche rapide</li>
+            <li>Parfait pour démarrer</li>
+          </ul>
+          <a class="cs-btn cs-primary" href="register.html">Commencer</a>
+        </div>
+
+        <div class="cs-price cs-featured">
+          <div class="cs-price-name">Premium</div>
+          <div class="cs-price-val">30€ <span class="cs-muted">/ an</span></div>
+          <ul>
+            <li>Éléments illimités</li>
+            <li>Copie PDF (Premium)</li>
+            <li>Pour être tranquille</li>
+          </ul>
+          <a class="cs-btn cs-primary" href="offers.html">Passer en Premium</a>
+        </div>
+
+        <div class="cs-price">
+          <div class="cs-price-name">À vie</div>
+          <div class="cs-price-val">99€</div>
+          <ul>
+            <li>Paiement unique</li>
+            <li>Accès Premium à vie</li>
+            <li>Copie PDF (Premium)</li>
+          </ul>
+          <a class="cs-btn cs-primary" href="offers.html">Prendre à vie</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINI FAQ -->
+  <section class="cs-section cs-alt">
+    <div class="cs-container">
+      <div class="cs-section-head">
+        <h2 class="cs-h2">Questions fréquentes</h2>
+        <p class="cs-muted">Réponses simples, sans jargon.</p>
+      </div>
+
+      <div class="cs-faq">
+        <details class="cs-faq-item">
+          <summary>Est-ce que c’est compliqué ?</summary>
+          <p>Non. Tu crées ton coffre, tu ajoutes tes infos, tu retrouves grâce à la recherche.</p>
+        </details>
+
+        <details class="cs-faq-item">
+          <summary>Je peux l’utiliser sur téléphone ?</summary>
+          <p>Oui. Et tu peux même l’installer comme une application (bouton “Installer l’app”).</p>
+        </details>
+
+        <details class="cs-faq-item">
+          <summary>Et si je veux une copie ?</summary>
+          <p>Les abonnés Premium peuvent générer une copie PDF de leurs informations.</p>
+        </details>
+
+        <div class="cs-faq-cta">
+          <a class="cs-btn cs-ghost" href="faq.html">Voir toute la FAQ</a>
+          <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
+
 <footer class="cs-footer">
-<div class="cs-container cs-footer-row">
-<div class="cs-footer-left">
-<img alt="" height="28" src="/assets/icons/icon-192.png" width="28"/>
-<span>© <span data-year=""></span> Clavis-security</span>
-</div>
-<div class="cs-footer-links">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-</div>
-</div>
+  <div class="cs-container cs-footer-row">
+    <div class="cs-footer-left">
+      <img src="/assets/icons/icon-192.png" alt="" width="28" height="28">
+      <span>© <span data-year></span> Clavis-security</span>
+    </div>
+    <div class="cs-footer-links">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
 </footer>
+
 <!-- JS -->
 <script>
   const _y = document.querySelector('[data-year]');
@@ -302,9 +352,11 @@
   const menu = document.querySelector('[data-mobile-menu]');
   toggle?.addEventListener('click', () => menu?.classList.toggle('open'));
 </script>
+
 <!-- IMPORTANT : defer pour que le bouton existe avant le script -->
-<script defer="" src="/js/pwa.js"></script>
-<script defer="" src="/js/i18n.js"></script>
+<script src="/js/pwa.js" defer></script>
+
+  <script src="/js/i18n.js" defer></script>
 <style>
   /* --- Styles de sécurité (si ton CSS n'a pas ces classes) --- */
   :root{
@@ -556,5 +608,6 @@
     .cs-pricing{ grid-template-columns: 1fr; }
   }
 </style>
+
 </body>
 </html>

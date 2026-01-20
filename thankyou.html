@@ -1,117 +1,138 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Merci — Clavis-security</title>
-<meta content="Merci ! Ton coffre est prêt." name="description"/>
-<!-- PWA -->
-<link href="/manifest.webmanifest" rel="manifest"/>
-<meta content="#0ea5e9" name="theme-color"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
-<link href="/css/styles.css" rel="stylesheet"/>
-<!-- JS (defer) -->
-<script defer="" src="/js/app-mode.js"></script>
-<script defer="" src="/js/pwa.js"></script>
-<script defer="" src="/js/i18n.js"></script>
-<script defer="" src="/js/app-shell.js"></script>
-<script defer="" src="/js/app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Merci — Clavis-security</title>
+  <meta name="description" content="Merci ! Ton coffre est prêt." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+    <script src="/js/i18n.js" defer></script>
+<script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
+
 <body data-page="thankyou">
+
 <nav class="app-bottom" style="display:none;">
-<div class="app-bottom-nav">
-<a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-<a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-<a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-</div>
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+  </div>
 </nav>
+
 <header class="cs-topbar">
-<div class="cs-container cs-nav">
-<a aria-label="Accueil Clavis-security" class="cs-brand" href="index.html">
-<img alt="" class="cs-brand-icon" height="34" src="/assets/icons/icon-192.png" width="34"/>
-<span class="cs-brand-name">Clavis-security</span>
-</a>
-<nav aria-label="Navigation" class="cs-links">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-</nav>
-<div class="cs-actions">
-<a class="cs-btn cs-primary" href="dashboard.html">Aller à mon coffre</a>
-<div class="cs-lang"><span>🌐</span><select aria-label="Langue" id="webLangSelect"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="it">IT</option></select></div><button class="cs-btn cs-ghost cs-menu" data-i18n="nav_menu" data-mobile-toggle="" type="button">Menu</button>
-</div>
-</div>
-<div class="cs-container cs-mobile" data-mobile-menu="">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-<a href="dashboard.html">Mon coffre</a>
-</div>
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
+
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="cs-actions">
+      <a class="cs-btn cs-primary" href="dashboard.html">Aller à mon coffre</a>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="dashboard.html">Mon coffre</a>
+  </div>
 </header>
+
 <main class="section">
-<div class="container">
-<div class="card pad">
-<span class="badge" id="ty-badge">✅ C’est bon</span>
-<h1 id="ty-title" style="margin:8px 0 8px;">Merci !</h1>
-<p id="ty-lead" style="margin:0;color:var(--muted); max-width: 760px;">
+  <div class="container">
+
+    <div class="card pad">
+      <span class="badge" id="ty-badge">✅ C’est bon</span>
+      <h1 style="margin:8px 0 8px;" id="ty-title">Merci !</h1>
+
+      <p style="margin:0;color:var(--muted); max-width: 760px;" id="ty-lead">
         Ton coffre est prêt. Si tu reviens d’un paiement, l’activation peut prendre quelques secondes.
       </p>
-<div class="hr"></div>
-<div class="grid2" id="ty-actions">
-<div>
-<h3 style="margin:0 0 6px;">La suite</h3>
-<ul style="margin:0; padding-left: 18px; color: var(--muted);">
-<li>Ouvre ton coffre</li>
-<li>Ajoute tes informations</li>
-<li>Retrouve tout grâce à la recherche</li>
-</ul>
-</div>
-<div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
-<a class="btn primary" data-i18n="unlock_heading" href="dashboard.html" id="ty-primary">Ouvrir mon coffre</a>
-<a class="btn" href="faq.html" id="ty-secondary">Voir l’aide</a>
-</div>
-</div>
-<div class="hr"></div>
-<div class="hero-note">
+
+      <div class="hr"></div>
+
+      <div class="grid2" id="ty-actions">
+        <div>
+          <h3 style="margin:0 0 6px;">La suite</h3>
+          <ul style="margin:0; padding-left: 18px; color: var(--muted);">
+            <li>Ouvre ton coffre</li>
+            <li>Ajoute tes informations</li>
+            <li>Retrouve tout grâce à la recherche</li>
+          </ul>
+        </div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
+          <a class="btn primary" href="dashboard.html" id="ty-primary">Ouvrir mon coffre</a>
+          <a class="btn" href="faq.html" id="ty-secondary">Voir l’aide</a>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="hero-note">
         Astuce : sur téléphone, tu peux installer Clavis comme une application (icône sur l’écran d’accueil).
       </div>
-</div>
-<div class="grid2" style="margin-top: 14px;">
-<div class="card pad">
-<h3 style="margin:0 0 6px;">Besoin d’un coup de main ?</h3>
-<p style="margin:0;color:var(--muted);">
+    </div>
+
+    <div class="grid2" style="margin-top: 14px;">
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Besoin d’un coup de main ?</h3>
+        <p style="margin:0;color:var(--muted);">
           Écris-nous, on répond en général sous 24h (jours ouvrés).
         </p>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-<a class="btn" data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a class="btn" data-i18n="nav_contact" href="contact.html">Contact</a>
-</div>
-</div>
-<div class="card pad">
-<h3 style="margin:0 0 6px;">Tranquille 👌</h3>
-<p style="margin:0;color:var(--muted);">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <a class="btn" href="faq.html">FAQ</a>
+          <a class="btn" href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;">Tranquille 👌</h3>
+        <p style="margin:0;color:var(--muted);">
           Moins d’oublis, plus de sérénité.
         </p>
-</div>
-</div>
-</div>
+      </div>
+    </div>
+
+  </div>
 </main>
+
 <footer class="footer">
-<div class="container">
-<div class="footer-row">
-<div>© <span data-year=""></span> Clavis-security</div>
-<div style="display:flex; gap:14px; flex-wrap:wrap;">
-<a data-i18n="nav_home" href="index.html">Accueil</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-</div>
-</div>
-</div>
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="index.html">Accueil</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
 <script>
   (function(){
     const params = new URLSearchParams(window.location.search);
@@ -154,5 +175,6 @@
     }
   })();
 </script>
+
 </body>
 </html>

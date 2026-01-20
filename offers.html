@@ -1,160 +1,193 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Offres — Clavis-security</title>
-<meta content="Choisissez votre offre Clavis-security : gratuit, Premium annuel ou accès à vie." name="description"/>
-<!-- PWA -->
-<link href="/manifest.webmanifest" rel="manifest"/>
-<meta content="#0ea5e9" name="theme-color"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
-<link href="/css/styles.css" rel="stylesheet"/>
-<!-- JS (defer) -->
-<script defer="" src="/js/app-mode.js"></script>
-<script defer="" src="/js/pwa.js"></script>
-<script defer="" src="/js/i18n.js"></script>
-<script defer="" src="/js/app-shell.js"></script>
-<script defer="" src="/js/app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Offres — Clavis-security</title>
+  <meta name="description" content="Choisissez votre offre Clavis-security : gratuit, Premium annuel ou accès à vie." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+    <script src="/js/i18n.js" defer></script>
+<script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
+
 <body class="csx-page" data-page="offers">
+
 <nav class="app-bottom" style="display:none;">
-<div class="app-bottom-nav">
-<a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-<a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-<a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-</div>
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+  </div>
 </nav>
+
 <header class="cs-topbar">
-<div class="cs-container cs-nav">
-<a aria-label="Accueil Clavis-security" class="cs-brand" href="index.html">
-<img alt="" class="cs-brand-icon" height="34" src="/assets/icons/icon-192.png" width="34"/>
-<span class="cs-brand-name">Clavis-security</span>
-</a>
-<nav aria-label="Navigation" class="cs-links">
-<a class="active" data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_help" href="faq.html">Aide</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-</nav>
-<div class="cs-actions">
-<a class="cs-btn cs-ghost" data-i18n="nav_login" href="login.html">Connexion</a>
-<a class="cs-btn cs-primary" data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-<button class="cs-btn cs-ghost cs-install js-install" hidden="" type="button">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
+
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html" class="active">Offres</a>
+      <a href="faq.html">Aide</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+
+      <button class="cs-btn cs-ghost cs-install js-install" type="button" hidden>
         Installer l’application
       </button>
-<div class="cs-lang"><span>🌐</span><select aria-label="Langue" id="webLangSelect"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="it">IT</option></select></div><button class="cs-btn cs-ghost cs-menu" data-i18n="nav_menu" data-mobile-toggle="" type="button">Menu</button>
-</div>
-</div>
-<div class="cs-container cs-mobile" data-mobile-menu="">
-<a class="active" data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_help" href="faq.html">Aide</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-<a data-i18n="nav_login" href="login.html">Connexion</a>
-<a data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-</div>
+
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html" class="active">Offres</a>
+    <a href="faq.html">Aide</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
+  </div>
 </header>
+
 <main>
-<section class="csx-hero">
-<div class="csx-wrap">
-<h1>Choisissez votre <span class="csx-grad">tranquillité</span></h1>
-<p class="csx-lead">
+  <section class="csx-hero">
+    <div class="csx-wrap">
+      <h1>Choisissez votre <span class="csx-grad">tranquillité</span></h1>
+      <p class="csx-lead">
         Commencez gratuit, puis passez à l’illimité quand vous en avez besoin.
         Tout est pensé pour être simple, rapide, et rassurant.
       </p>
-<div class="csx-proof">
-<div class="csx-pill">🔎 Retrouver en 2 secondes</div>
-<div class="csx-pill">📱 Sur téléphone et ordinateur</div>
-<div class="csx-pill">🧠 Un seul mot de passe à retenir</div>
-</div>
-<div aria-live="polite" class="csx-msg" hidden="" id="offerMsg" role="status"></div>
-<!-- Aide iPhone/iPad (install) : pas de pop-up, juste une aide claire -->
-<div class="cs-install-help" hidden="" id="installHelp">
-<div class="cs-install-help-title">Installer sur iPhone / iPad</div>
-<div class="cs-install-help-text">
+
+      <div class="csx-proof">
+        <div class="csx-pill">🔎 Retrouver en 2 secondes</div>
+        <div class="csx-pill">📱 Sur téléphone et ordinateur</div>
+        <div class="csx-pill">🧠 Un seul mot de passe à retenir</div>
+      </div>
+
+      <div id="offerMsg" class="csx-msg" role="status" aria-live="polite" hidden></div>
+
+      <!-- Aide iPhone/iPad (install) : pas de pop-up, juste une aide claire -->
+      <div id="installHelp" class="cs-install-help" hidden>
+        <div class="cs-install-help-title">Installer sur iPhone / iPad</div>
+        <div class="cs-install-help-text">
           Appuie sur <strong>Partager</strong> (⬆️), puis <strong>Sur l’écran d’accueil</strong>.
         </div>
-<div class="cs-install-help-actions">
-<button class="cs-btn cs-ghost" data-copy-install-link="" type="button">Copier le lien</button>
-</div>
-</div>
-</div>
-</section>
-<section class="csx-section">
-<div class="csx-wrap">
-<div class="csx-grid-3">
-<article class="csx-surface csx-plan">
-<h3>Gratuit</h3>
-<div class="csx-price">0 €</div>
-<p class="csx-sub">Parfait pour démarrer sans se poser de questions.</p>
-<ul class="csx-list">
-<li>Jusqu’à 15 éléments</li>
-<li>Recherche rapide</li>
-<li>Ajout et copie en un geste</li>
-<li>Sur téléphone et ordinateur</li>
-</ul>
-<div class="csx-ctaRow">
-<a class="csx-btn csx-btnGhost" href="/register.html">Commencer gratuitement</a>
-</div>
-<div class="csx-small">Idéal pour prendre l’habitude.</div>
-</article>
-<article class="csx-surface csx-plan csx-highlight">
-<div class="csx-badge">⭐ Le plus choisi</div>
-<h3>Premium</h3>
-<div class="csx-price">30 € / an</div>
-<p class="csx-sub">L’option simple : vous rangez tout, sans limite.</p>
-<ul class="csx-list">
-<li>Éléments illimités</li>
-<li>Copie PDF (pour garder un double)</li>
-<li>Nouveautés en priorité</li>
-<li>Réponse plus rapide si besoin</li>
-</ul>
-<div class="csx-ctaRow">
-<button class="csx-btn csx-btnPrimary" id="buyAnnual" type="button">Passer en Premium</button>
-<a class="csx-btn csx-btnGhost" data-i18n="btn_create_account" href="/register.html">Créer mon compte</a>
-</div>
-<div class="csx-small">Recommandé si vous voulez être tranquille.</div>
-</article>
-<article class="csx-surface csx-plan">
-<h3>À vie</h3>
-<div class="csx-price">99 €</div>
-<p class="csx-sub">Un paiement unique, et c’est réglé.</p>
-<ul class="csx-list">
-<li>Tout Premium inclus</li>
-<li>Aucun abonnement</li>
-<li>Accès illimité à vie</li>
-<li>Mises à jour incluses</li>
-</ul>
-<div class="csx-ctaRow">
-<button class="csx-btn csx-btnGhost" id="buyLifetime" type="button">Accès à vie</button>
-</div>
-<div class="csx-small">Parfait si vous détestez les abonnements.</div>
-</article>
-</div>
-<div class="csx-trust csx-surface">
-<div>
-<strong>Et si je perds mon mot de passe ?</strong> On vous explique simplement quoi faire dans l’aide.
+        <div class="cs-install-help-actions">
+          <button class="cs-btn cs-ghost" type="button" data-copy-install-link>Copier le lien</button>
         </div>
-<div>
-<a href="/faq.html">Voir les réponses →</a>
-</div>
-</div>
-<div class="csx-footerSpace"></div>
-</div>
-</section>
+      </div>
+    </div>
+  </section>
+
+  <section class="csx-section">
+    <div class="csx-wrap">
+      <div class="csx-grid-3">
+
+        <article class="csx-surface csx-plan">
+          <h3>Gratuit</h3>
+          <div class="csx-price">0 €</div>
+          <p class="csx-sub">Parfait pour démarrer sans se poser de questions.</p>
+
+          <ul class="csx-list">
+            <li>Jusqu’à 15 éléments</li>
+            <li>Recherche rapide</li>
+            <li>Ajout et copie en un geste</li>
+            <li>Sur téléphone et ordinateur</li>
+          </ul>
+
+          <div class="csx-ctaRow">
+            <a class="csx-btn csx-btnGhost" href="/register.html">Commencer gratuitement</a>
+          </div>
+
+          <div class="csx-small">Idéal pour prendre l’habitude.</div>
+        </article>
+
+        <article class="csx-surface csx-plan csx-highlight">
+          <div class="csx-badge">⭐ Le plus choisi</div>
+          <h3>Premium</h3>
+          <div class="csx-price">30 € / an</div>
+          <p class="csx-sub">L’option simple : vous rangez tout, sans limite.</p>
+
+          <ul class="csx-list">
+            <li>Éléments illimités</li>
+            <li>Copie PDF (pour garder un double)</li>
+            <li>Nouveautés en priorité</li>
+            <li>Réponse plus rapide si besoin</li>
+          </ul>
+
+          <div class="csx-ctaRow">
+            <button class="csx-btn csx-btnPrimary" id="buyAnnual" type="button">Passer en Premium</button>
+            <a class="csx-btn csx-btnGhost" href="/register.html">Créer mon compte</a>
+          </div>
+
+          <div class="csx-small">Recommandé si vous voulez être tranquille.</div>
+        </article>
+
+        <article class="csx-surface csx-plan">
+          <h3>À vie</h3>
+          <div class="csx-price">99 €</div>
+          <p class="csx-sub">Un paiement unique, et c’est réglé.</p>
+
+          <ul class="csx-list">
+            <li>Tout Premium inclus</li>
+            <li>Aucun abonnement</li>
+            <li>Accès illimité à vie</li>
+            <li>Mises à jour incluses</li>
+          </ul>
+
+          <div class="csx-ctaRow">
+            <button class="csx-btn csx-btnGhost" id="buyLifetime" type="button">Accès à vie</button>
+          </div>
+
+          <div class="csx-small">Parfait si vous détestez les abonnements.</div>
+        </article>
+
+      </div>
+
+      <div class="csx-trust csx-surface">
+        <div>
+          <strong>Et si je perds mon mot de passe ?</strong> On vous explique simplement quoi faire dans l’aide.
+        </div>
+        <div>
+          <a href="/faq.html">Voir les réponses →</a>
+        </div>
+      </div>
+
+      <div class="csx-footerSpace"></div>
+    </div>
+  </section>
 </main>
+
 <footer class="cs-footer">
-<div class="cs-container">
-    © <span data-year=""></span> Clavis-security
+  <div class="cs-container">
+    © <span data-year></span> Clavis-security
   </div>
 </footer>
+
 <script>
   const y = document.querySelector('[data-year]');
   if (y) y.textContent = new Date().getFullYear();
 </script>
+
 <!-- Supabase (session) + checkout -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase.js"></script>
@@ -247,5 +280,6 @@
     }catch(_){ }
   })();
 </script>
+
 </body>
 </html>

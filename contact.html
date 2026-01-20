@@ -1,111 +1,130 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Contact — Clavis-security</title>
-<meta content="Contactez Clavis-security : question, aide, retour. Réponse rapide et simple." name="description"/>
-<!-- PWA -->
-<link href="/manifest.webmanifest" rel="manifest"/>
-<meta content="#0ea5e9" name="theme-color"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
-<link href="/css/styles.css" rel="stylesheet"/>
-<!-- JS (defer) -->
-<script defer="" src="/js/app-mode.js"></script>
-<script defer="" src="/js/pwa.js"></script>
-<script defer="" src="/js/i18n.js"></script>
-<script defer="" src="/js/app-shell.js"></script>
-<script defer="" src="/js/app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Clavis-security</title>
+  <meta name="description" content="Contactez Clavis-security : question, aide, retour. Réponse rapide et simple." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+    <script src="/js/i18n.js" defer></script>
+<script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
+
 <body class="csx-page" data-page="contact">
+
 <nav class="app-bottom" style="display:none;">
-<div class="app-bottom-nav">
-<a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-<a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-<a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-</div>
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+  </div>
 </nav>
+
 <header class="cs-topbar">
-<div class="cs-container cs-nav">
-<a aria-label="Accueil Clavis-security" class="cs-brand" href="index.html">
-<img alt="" class="cs-brand-icon" height="34" src="/assets/icons/icon-192.png" width="34"/>
-<span class="cs-brand-name">Clavis-security</span>
-</a>
-<nav aria-label="Navigation" class="cs-links">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_help" href="faq.html">Aide</a>
-<a class="active" data-i18n="nav_contact" href="contact.html">Contact</a>
-</nav>
-<div class="cs-actions">
-<a class="cs-btn cs-ghost" data-i18n="nav_login" href="login.html">Connexion</a>
-<a class="cs-btn cs-primary" data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-<button class="cs-btn cs-ghost cs-install js-install" hidden="" type="button">Installer l’application</button>
-<div class="cs-lang"><span>🌐</span><select aria-label="Langue" id="webLangSelect"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="it">IT</option></select></div><button class="cs-btn cs-ghost cs-menu" data-i18n="nav_menu" data-mobile-toggle="" type="button">Menu</button>
-</div>
-</div>
-<div class="cs-container cs-mobile" data-mobile-menu="">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_help" href="faq.html">Aide</a>
-<a data-i18n="nav_login" href="login.html">Connexion</a>
-<a data-i18n="nav_register" href="register.html">Créer mon coffre</a>
-</div>
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
+
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">Aide</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+      <button class="cs-btn cs-ghost cs-install js-install" type="button" hidden>Installer l’application</button>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">Aide</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
+  </div>
 </header>
+
 <main>
-<section class="csx-hero">
-<div class="csx-wrap">
-<h1>On te répond <span class="csx-grad">simplement</span></h1>
-<p class="csx-lead">Une question, un bug, une demande ? Écris-nous ici. Réponse habituelle : <strong>sous 24h</strong> (jours ouvrés).</p>
-<div class="csx-proof">
-<div class="csx-pill">✉️ Réponse claire</div>
-<div class="csx-pill">🕒 24h (ouvrés)</div>
-<div class="csx-pill">🙂 Sans prise de tête</div>
-</div>
-<div class="cs-install-help" hidden="" id="installHelp" style="max-width:760px;margin:18px auto 0;">
-<div class="cs-install-help-title">Installer sur iPhone / iPad</div>
-<div class="cs-install-help-text">
+  <section class="csx-hero">
+    <div class="csx-wrap">
+      <h1>On te répond <span class="csx-grad">simplement</span></h1>
+      <p class="csx-lead">Une question, un bug, une demande ? Écris-nous ici. Réponse habituelle : <strong>sous 24h</strong> (jours ouvrés).</p>
+
+      <div class="csx-proof">
+        <div class="csx-pill">✉️ Réponse claire</div>
+        <div class="csx-pill">🕒 24h (ouvrés)</div>
+        <div class="csx-pill">🙂 Sans prise de tête</div>
+      </div>
+
+      <div id="installHelp" class="cs-install-help" hidden style="max-width:760px;margin:18px auto 0;">
+        <div class="cs-install-help-title">Installer sur iPhone / iPad</div>
+        <div class="cs-install-help-text">
           Ouvre le menu <strong>Partager</strong> (⬆️), puis choisis <strong>Sur l’écran d’accueil</strong>.
         </div>
-<div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-<button class="cs-btn cs-ghost" data-copy-install-link="" type="button">Copier le lien</button>
-<a class="cs-btn cs-ghost" href="/faq.html">Voir l’aide</a>
-</div>
-</div>
-</div>
-</section>
-<section class="csx-section">
-<div class="csx-wrap">
-<div class="csx-surface" style="padding: 22px;">
-<form class="cs-form" data-netlify="true" method="POST" name="contact">
-<input name="form-name" type="hidden" value="contact"/>
-<label>
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="cs-btn cs-ghost" type="button" data-copy-install-link>Copier le lien</button>
+          <a class="cs-btn cs-ghost" href="/faq.html">Voir l’aide</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="csx-section">
+    <div class="csx-wrap">
+      <div class="csx-surface" style="padding: 22px;">
+        <form class="cs-form" name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
+
+          <label>
             Ton email
-            <input autocomplete="email" name="email" placeholder="ex : nom@gmail.com" required="" type="email"/>
-<span class="cs-hint">On s’en sert uniquement pour te répondre.</span>
-</label>
-<label>
+            <input name="email" type="email" autocomplete="email" required placeholder="ex : nom@gmail.com" />
+            <span class="cs-hint">On s’en sert uniquement pour te répondre.</span>
+          </label>
+
+          <label>
             Sujet
-            <input name="subject" placeholder="ex : Je n'arrive pas à me connecter" required="" type="text"/>
-</label>
-<label>
+            <input name="subject" type="text" required placeholder="ex : Je n'arrive pas à me connecter" />
+          </label>
+
+          <label>
             Message
-            <textarea name="message" placeholder="Explique en 2-3 phrases, on s’occupe du reste." required=""></textarea>
-<span class="cs-hint">Astuce : indique la page concernée (Accueil, Coffre, Offres…) et ce que tu vois à l’écran.</span>
-</label>
-<div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:4px;">
-<button class="cs-btn cs-primary" type="submit">Envoyer</button>
-<span class="cs-muted">On te répond au plus vite.</span>
-</div>
-</form>
-</div>
-</div>
-</section>
+            <textarea name="message" required placeholder="Explique en 2-3 phrases, on s’occupe du reste."></textarea>
+            <span class="cs-hint">Astuce : indique la page concernée (Accueil, Coffre, Offres…) et ce que tu vois à l’écran.</span>
+          </label>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:4px;">
+            <button class="cs-btn cs-primary" type="submit">Envoyer</button>
+            <span class="cs-muted">On te répond au plus vite.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
+
 <footer class="cs-footer">
-<div class="cs-container">© <span data-year=""></span> Clavis-security — Contact</div>
+  <div class="cs-container">© <span data-year></span> Clavis-security — Contact</div>
 </footer>
+
 </body>
 </html>

@@ -1,186 +1,197 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Mon coffre — Clavis-security</title>
-<meta content="Retrouve facilement tes informations en toute simplicité." name="description"/>
-<link href="/css/styles.css" rel="stylesheet"/>
-<!-- PWA -->
-<link href="/manifest.webmanifest" rel="manifest"/>
-<meta content="#0ea5e9" name="theme-color"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
-<!-- JS (defer) -->
-<script defer="" src="/js/app-mode.js"></script>
-<script defer="" src="/js/pwa.js"></script>
-<script defer="" src="/js/i18n.js"></script>
-<script defer="" src="/js/app-shell.js"></script>
-<script defer="" src="/js/dashboard-app.js"></script>
-<script defer="" src="/js/app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mon coffre — Clavis-security</title>
+  <meta name="description" content="Retrouve facilement tes informations en toute simplicité." />
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/app-shell.js" defer></script>
+  <script src="/js/dashboard-app.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
+
 <body data-page="dashboard">
+
 <nav class="app-bottom" style="display:none;">
-<div class="app-bottom-nav">
-<a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-<a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-<a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-</div>
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+  </div>
 </nav>
-<button aria-label="Ajouter" class="app-fab" id="btnAdd" style="display:none;">＋</button>
+
+<button class="app-fab" id="btnAdd" style="display:none;" aria-label="Ajouter">＋</button>
+
 <header class="cs-topbar">
-<div class="cs-container cs-nav">
-<a aria-label="Accueil Clavis-security" class="cs-brand" href="index.html">
-<img alt="" class="cs-brand-icon" height="34" src="/assets/icons/icon-192.png" width="34"/>
-<span class="cs-brand-name">Clavis-security</span>
-</a>
-<nav aria-label="Navigation" class="cs-links">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-</nav>
-<div class="cs-actions">
-<span class="cs-pill" id="userBadge">👤 …</span>
-<button class="cs-btn cs-ghost" data-i18n="btn_logout" id="logoutBtn" type="button">Déconnexion</button>
-<div class="cs-lang"><span>🌐</span><select aria-label="Langue" id="webLangSelect"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="it">IT</option></select></div><button class="cs-btn cs-ghost cs-menu" data-i18n="nav_menu" data-mobile-toggle="" type="button">Menu</button>
-</div>
-</div>
-<div class="cs-container cs-mobile" data-mobile-menu="">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-<button class="cs-btn cs-ghost" data-i18n="btn_logout" id="logoutBtnMobile" type="button">Déconnexion</button>
-</div>
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
+
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="cs-actions">
+      <span class="cs-pill" id="userBadge">👤 …</span>
+      <button class="cs-btn cs-ghost" id="logoutBtn" type="button">Déconnexion</button>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <button class="cs-btn cs-ghost" id="logoutBtnMobile" type="button">Déconnexion</button>
+  </div>
 </header>
+
 <main class="section">
+  <div class="container">
+    <div class="page-hero">
+      <span class="badge">🔒 Mon coffre personnel</span>
+      <h1>Mon coffre</h1>
+      <p id="planLine">Chargement…</p>
+    </div>
 
-  <!-- App toolbar (standalone phone only) -->
-  <div class="app-topbar" data-app-only hidden>
-    <button type="button" id="appSearchBtn" class="app-icon-btn" aria-label="Rechercher">🔍</button>
-    <div class="app-top-title" data-i18n="vault_title">Coffre</div>
-    <button type="button" id="appLangBtn" class="app-icon-btn" aria-label="Langue">🌐</button>
-  </div>
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Ouvrir / fermer mon coffre</h3>
 
-  <div id="appSearchRow" class="app-top-row" hidden></div>
-  <div id="appLangRow" class="app-top-row" hidden>
-    <select id="appLangSelect" aria-label="Langue">
-      <option value="fr">FR</option>
-      <option value="en">EN</option>
-      <option value="es">ES</option>
-      <option value="it">IT</option>
-    </select>
-  </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <span class="pill lock" id="vaultState">FERMÉ</span>
+          <button class="btn primary" id="unlockBtn">Ouvrir mon coffre</button>
+          <button class="btn" id="lockBtn" disabled>Fermer</button>
+          <button class="btn" id="exportPdfBtn" disabled>Faire une copie PDF</button>
+        </div>
 
-<div class="container">
-<div class="page-hero">
-<span class="badge">🔒 Mon coffre personnel</span>
-<h1>Mon coffre</h1>
-<p data-i18n="loading" id="planLine">Chargement…</p>
-</div>
-<div class="grid2">
-<div class="card pad">
-<h3 style="margin:0 0 10px;">Ouvrir / fermer mon coffre</h3>
-<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-<span class="pill lock" id="vaultState">FERMÉ</span>
-<button class="btn primary" data-i18n="unlock_heading" id="unlockBtn">Ouvrir mon coffre</button>
-<button class="btn" disabled="" id="lockBtn">Fermer</button>
-<button class="btn" disabled="" id="exportPdfBtn">Faire une copie PDF</button>
-</div>
-<div class="hero-note" id="vaultNote">
+        <div class="hero-note" id="vaultNote">
           Pour afficher ou copier vos informations, vous devez ouvrir votre coffre.
         </div>
-</div>
-<div class="card pad">
-<h3 style="margin:0 0 10px;">Rechercher</h3>
-<div class="field">
-<label for="search">Tapez un nom</label>
-<input id="search" placeholder="ex : banque, gmail, netflix…"/>
-</div>
-<div class="hero-note">Le nom sert juste à retrouver plus vite.</div>
-</div>
-</div>
-<div class="hr"></div>
-<div class="grid2">
-<div class="card pad">
-<h3 data-i18n="add_info_heading" style="margin:0 0 10px;">Ajouter une information</h3>
-<form class="form" id="addForm">
-<div class="field">
-<label data-i18n="field_name" for="title">Nom (ex : Gmail)</label>
-<input id="title" required=""/>
-</div>
-<div class="field">
-<label data-i18n="label_username" for="username">Identifiant</label>
-<input id="username" required=""/>
-</div>
-<div class="field">
-<label data-i18n="label_password" for="secretPassword">Mot de passe</label>
-<input id="secretPassword" required=""/>
-</div>
-<div class="field">
-<label for="url">Site (optionnel)</label>
-<input id="url" placeholder="https://..."/>
-</div>
-<div class="field">
-<label for="notes">Remarques (optionnel)</label>
-<textarea id="notes" placeholder="Ex : code de secours, rappel…"></textarea>
-</div>
-<button class="btn primary" type="submit">Enregistrer</button>
-<div class="hero-note" id="limitNote"></div>
-</form>
-</div>
-<div class="card pad">
-<h3 data-i18n="my_info_heading" style="margin:0 0 10px;">Mes informations</h3>
-<div class="hero-note" data-i18n="loading" id="itemsInfo">Chargement…</div>
-<div id="itemsList" style="display:grid; gap:10px; margin-top:12px;"></div>
-<div class="app-detail" hidden="" id="appDetail"></div>
-</div>
-</div>
-</div>
-<!-- Fenêtre "Ouvrir mon coffre" -->
-<div id="unlockModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter: blur(6px); z-index:999;">
-<div class="container" style="height:100%; display:grid; place-items:center;">
-<div class="card pad" style="width:min(520px, 92vw);">
-<h3 data-i18n="unlock_heading" style="margin:0 0 8px;">Ouvrir mon coffre</h3>
-<p style="margin:0 0 14px; color:var(--muted);">
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Rechercher</h3>
+        <div class="field">
+          <label for="search">Tapez un nom</label>
+          <input id="search" placeholder="ex : banque, gmail, netflix…" />
+        </div>
+        <div class="hero-note">Le nom sert juste à retrouver plus vite.</div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="grid2">
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Ajouter une information</h3>
+
+        <form class="form" id="addForm">
+          <div class="field">
+            <label for="title">Nom (ex : Gmail)</label>
+            <input id="title" required />
+          </div>
+
+          <div class="field">
+            <label for="username">Identifiant</label>
+            <input id="username" required />
+          </div>
+
+          <div class="field">
+            <label for="secretPassword">Mot de passe</label>
+            <input id="secretPassword" required />
+          </div>
+
+          <div class="field">
+            <label for="url">Site (optionnel)</label>
+            <input id="url" placeholder="https://..." />
+          </div>
+
+          <div class="field">
+            <label for="notes">Remarques (optionnel)</label>
+            <textarea id="notes" placeholder="Ex : code de secours, rappel…"></textarea>
+          </div>
+
+          <button class="btn primary" type="submit">Enregistrer</button>
+          <div class="hero-note" id="limitNote"></div>
+        </form>
+      </div>
+
+      <div class="card pad">
+        <h3 style="margin:0 0 10px;">Mes informations</h3>
+        <div class="hero-note" id="itemsInfo">Chargement…</div>
+        <div id="itemsList" style="display:grid; gap:10px; margin-top:12px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fenêtre "Ouvrir mon coffre" -->
+  <div id="unlockModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter: blur(6px); z-index:999;">
+    <div class="container" style="height:100%; display:grid; place-items:center;">
+      <div class="card pad" style="width:min(520px, 92vw);">
+        <h3 style="margin:0 0 8px;">Ouvrir mon coffre</h3>
+        <p style="margin:0 0 14px; color:var(--muted);">
           Pour protéger vos informations, on vous demande votre mot de passe.
         </p>
-<form class="form" id="unlockForm">
-<div class="field">
-<label data-i18n="label_password" for="unlockPassword">Mot de passe</label>
-<input id="unlockPassword" placeholder="••••••••••" required="" type="password"/>
-</div>
-<div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
-<button class="btn" data-i18n="btn_cancel" id="unlockCancel" type="button">Annuler</button>
-<button class="btn primary" data-i18n="unlock_open" type="submit">Ouvrir</button>
-</div>
-<div class="hero-note" id="unlockError" style="color: rgba(239,68,68,.95); display:none;"></div>
-</form>
-</div>
-</div>
-</div>
+
+        <form class="form" id="unlockForm">
+          <div class="field">
+            <label for="unlockPassword">Mot de passe</label>
+            <input id="unlockPassword" type="password" placeholder="••••••••••" required />
+          </div>
+
+          <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+            <button class="btn" type="button" id="unlockCancel">Annuler</button>
+            <button class="btn primary" type="submit">Ouvrir</button>
+          </div>
+
+          <div class="hero-note" id="unlockError" style="color: rgba(239,68,68,.95); display:none;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </main>
+
 <footer class="footer">
-<div class="container">
-<div class="footer-row">
-<div>© <span data-year=""></span> Clavis-security</div>
-<div style="display:flex; gap:14px; flex-wrap:wrap;">
-<a data-i18n="nav_offers" href="offers.html">Offres</a>
-<a data-i18n="nav_faq" href="faq.html">FAQ</a>
-<a data-i18n="nav_contact" href="contact.html">Contact</a>
-</div>
-</div>
-</div>
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span data-year></span> Clavis-security</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
 <script src="/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase.js"></script>
 <script src="/js/crypto.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
 <script>
-// ==========================
+  // ==========================
   // État
   // ==========================
   let session = null;
@@ -208,7 +219,7 @@
   async function copyToClipboard(text) {
     try {
       await navigator.clipboard.writeText(text);
-      message((window.clavisT?window.clavisT("msg_copied"):"✅ Copié !"));
+      message("✅ Copié !");
     } catch {
       const ta = document.createElement("textarea");
       ta.value = text;
@@ -216,7 +227,7 @@
       ta.select();
       document.execCommand("copy");
       ta.remove();
-      message((window.clavisT?window.clavisT("msg_copied"):"✅ Copié !"));
+      message("✅ Copié !");
     }
   }
 
@@ -313,20 +324,9 @@
 
     if (error) throw error;
     items = data || [];
-    document.getElementById("itemsInfo").textContent = (window.clavisT?window.clavisT("items_count",{count:items.length}):(window.clavisT?window.clavisT("items_count",{count:items.length}):`${items.length} élément(s) enregistré(s).`));
+    document.getElementById("itemsInfo").textContent = `${items.length} élément(s) enregistré(s).`;
     renderItems();
   }
-
-  async function deleteItem(it) {
-    const t = (k, vars) => { try { return window.clavisT ? window.clavisT(k, vars) : k; } catch (_) { return k; } };
-    const { error } = await supabaseClient.from("vault_items").delete().eq("id", it.id);
-    if (error) return message(t("msg_delete_failed"));
-
-    items = items.filter(x => x.id !== it.id);
-    document.getElementById("itemsInfo").textContent = t("items_count", { count: items.length });
-    renderItems();
-  }
-
 
   // ==========================
   // Fenêtre "ouvrir"
@@ -365,129 +365,23 @@
   // ==========================
   // Liste
   // ==========================
-  
   function renderItems() {
-    const isApp = document.documentElement.classList.contains("app-phone");
-    const t = (k, vars) => {
-      try { return window.clavisT ? window.clavisT(k, vars) : k; } catch (_) { return k; }
-    };
-
     const q = (document.getElementById("search").value || "").toLowerCase();
     const list = document.getElementById("itemsList");
-    const detail = document.getElementById("appDetail");
-    if (detail) detail.hidden = true;
-    list.hidden = false;
-
     list.innerHTML = "";
 
     const filtered = items.filter(it => (it.title || "").toLowerCase().includes(q));
 
     if (filtered.length === 0) {
-      list.innerHTML = `<div class="muted">${t("no_results")}</div>`;
+      list.innerHTML = `<div style="color:var(--muted);">Aucun résultat.</div>`;
       return;
-    }
-
-    function getIVs(item){
-      // compat : si tu as 1 seul IV, on prend crypto_iv
-      return {
-        uiv: item.username_iv || item.crypto_iv,
-        piv: item.password_iv || item.crypto_iv,
-        urliv: item.url_iv || item.crypto_iv,
-        niv: item.notes_iv || item.crypto_iv
-      };
-    }
-
-    async function openDetailView(it) {
-      if (!detail) return;
-      if (!opened || !vaultKey) return message(t("msg_open_vault_first"));
-
-      try {
-        const { uiv, piv } = getIVs(it);
-        const username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
-        const pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
-
-        // Detail screen
-        detail.innerHTML = `
-          <div class="app-detail-head">
-            <button type="button" class="app-icon-btn" data-detail-back aria-label="${t("btn_back")}">←</button>
-            <div class="app-detail-title">
-              <div class="h">${escapeHtml(it.title || "")}</div>
-              <div class="s">${t("details_subtitle")}</div>
-            </div>
-            <div style="width:44px;"></div>
-          </div>
-
-          <div class="app-detail-body">
-            <div class="field">
-              <label>${t("label_username")}</label>
-              <input value="${escapeAttr(username)}" readonly />
-            </div>
-
-            <div class="field">
-              <label>${t("label_password")}</label>
-              <input value="${escapeAttr(pwd)}" readonly />
-            </div>
-
-            <div class="app-detail-actions">
-              <button type="button" class="btn" data-detail-copy-user>${t("btn_copy_username")}</button>
-              <button type="button" class="btn" data-detail-copy-pass>${t("btn_copy_password")}</button>
-              <button type="button" class="btn danger" data-detail-delete>${t("btn_delete")}</button>
-            </div>
-          </div>
-        `;
-
-        // Wire actions
-        detail.querySelector("[data-detail-back]").addEventListener("click", () => {
-          detail.hidden = true;
-          list.hidden = false;
-        });
-
-        detail.querySelector("[data-detail-copy-user]").addEventListener("click", async () => {
-          try { await navigator.clipboard.writeText(username); message(t("msg_copied")); }
-          catch (_) { message(t("msg_copy_failed")); }
-        });
-
-        detail.querySelector("[data-detail-copy-pass]").addEventListener("click", async () => {
-          try { await navigator.clipboard.writeText(pwd); message(t("msg_copied")); }
-          catch (_) { message(t("msg_copy_failed")); }
-        });
-
-        detail.querySelector("[data-detail-delete]").addEventListener("click", async () => {
-          const ok = confirm(t("confirm_delete", { name: it.title || "" }));
-          if (!ok) return;
-          await deleteItem(it);
-          detail.hidden = true;
-          list.hidden = false;
-        });
-
-        list.hidden = true;
-        detail.hidden = false;
-      } catch (e) {
-        message(t("msg_cannot_show"));
-      }
     }
 
     filtered.forEach(it => {
       const row = document.createElement("div");
-      row.className = isApp ? "app-row" : "vault-row";
-
-      if (isApp) {
-        row.innerHTML = `
-          <div class="app-row-main">
-            <div class="app-row-title">${escapeHtml(it.title)}</div>
-            <div class="app-row-sub">${opened ? t("vault_open") : t("vault_closed")}</div>
-          </div>
-          <div class="app-row-go" aria-hidden="true">›</div>
-        `;
-        row.addEventListener("click", () => openDetailView(it));
-        list.appendChild(row);
-        return;
-      }
-
-      // Web/desktop rendering (unchanged)
       row.style.borderRadius = "16px";
       row.style.padding = "10px 12px";
-      row.style.background = "rgba(255,255,255,.04)";
+      row.style.background = "rgba(255,255,255,.05)";
       row.style.border = "1px solid rgba(255,255,255,.12)";
       row.style.display = "flex";
       row.style.justifyContent = "space-between";
@@ -498,19 +392,29 @@
         <div>
           <strong>${escapeHtml(it.title)}</strong><br />
           <span style="color: rgba(255,255,255,.65); font-size: 13px;">
-            ${opened ? t("vault_open_small") : t("vault_closed_small")}
+            ${opened ? "coffre ouvert" : "coffre fermé"}
           </span>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
-          <button class="btn small" data-action="view">${t("btn_view")}</button>
-          <button class="btn small" data-action="copy-user">${t("btn_copy_username")}</button>
-          <button class="btn small" data-action="copy-pass">${t("btn_copy_password")}</button>
-          <button class="btn small" data-action="delete">${t("btn_delete")}</button>
+          <button class="btn small" data-action="view">Voir</button>
+          <button class="btn small" data-action="copy-user">Copier identifiant</button>
+          <button class="btn small" data-action="copy-pass">Copier mot de passe</button>
+          <button class="btn small" data-action="delete">Supprimer</button>
         </div>
       `;
 
+      function getIVs(item){
+        // ✅ compat : si tu as 1 seul IV, on prend crypto_iv
+        return {
+          uiv: item.username_iv || item.crypto_iv,
+          piv: item.password_iv || item.crypto_iv,
+          urliv: item.url_iv || item.crypto_iv,
+          niv: item.notes_iv || item.crypto_iv
+        };
+      }
+
       row.querySelector('[data-action="view"]').addEventListener('click', async () => {
-        if (!opened || !vaultKey) return message(t("msg_open_vault_first"));
+        if (!opened || !vaultKey) return message("Ouvrez votre coffre pour afficher.");
 
         try {
           const { uiv, piv, urliv, niv } = getIVs(it);
@@ -519,49 +423,57 @@
           const url = it.url_encrypted ? await CryptoV1.decryptText(it.url_encrypted, urliv, vaultKey) : "";
           const notes = it.notes_encrypted ? await CryptoV1.decryptText(it.notes_encrypted, niv, vaultKey) : "";
 
-          alert(`${it.title}\n\n${t("label_username")} : ${username}\n${t("label_password")} : ${pwd}` +
-            (url ? `\nURL : ${url}` : "") +
-            (notes ? `\n\n${notes}` : "")
+          startAutoLockTimer();
+          message(
+            `${it.title}\n\nIdentifiant : ${username}\nMot de passe : ${pwd}` +
+            (url ? `\nSite : ${url}` : "") +
+            (notes ? `\nRemarques : ${notes}` : "")
           );
-        } catch (e) {
-          message(t("msg_cannot_show"));
+        } catch {
+          message("Oups… impossible d’afficher. Vérifiez que le coffre est bien ouvert.");
         }
       });
 
       row.querySelector('[data-action="copy-user"]').addEventListener('click', async () => {
-        if (!opened || !vaultKey) return message(t("msg_open_vault_first"));
+        if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
+
         try {
           const { uiv } = getIVs(it);
           const username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
-          await navigator.clipboard.writeText(username);
-          message(t("msg_copied"));
-        } catch (e) {
-          message(t("msg_copy_failed"));
+          await copyToClipboard(username);
+          startAutoLockTimer();
+        } catch {
+          message("Oups… impossible de copier.");
         }
       });
 
       row.querySelector('[data-action="copy-pass"]').addEventListener('click', async () => {
-        if (!opened || !vaultKey) return message(t("msg_open_vault_first"));
+        if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
+
         try {
           const { piv } = getIVs(it);
           const pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
-          await navigator.clipboard.writeText(pwd);
-          message(t("msg_copied"));
-        } catch (e) {
-          message(t("msg_copy_failed"));
+          await copyToClipboard(pwd);
+          startAutoLockTimer();
+        } catch {
+          message("Oups… impossible de copier.");
         }
       });
 
       row.querySelector('[data-action="delete"]').addEventListener('click', async () => {
-        const ok = confirm(t("confirm_delete", { name: it.title || "" }));
-        if (!ok) return;
-        await deleteItem(it);
+        if (!confirm(`Supprimer "${it.title}" ?`)) return;
+
+        const { error } = await supabaseClient.from("vault_items").delete().eq("id", it.id);
+        if (error) return message("Oups… impossible de supprimer.");
+
+        items = items.filter(x => x.id !== it.id);
+        document.getElementById("itemsInfo").textContent = `${items.length} élément(s) enregistré(s).`;
+        renderItems();
       });
 
       list.appendChild(row);
     });
   }
-
 
   // ==========================
   // Ajouter (✅ corrigé pour table actuelle)
@@ -569,7 +481,7 @@
   async function addItem(e) {
     e.preventDefault();
 
-    if (!opened || !vaultKey) return message((window.clavisT?window.clavisT("msg_open_vault_first"):"Ouvrez votre coffre avant d’enregistrer."));
+    if (!opened || !vaultKey) return message("Ouvrez votre coffre avant d’enregistrer.");
 
     if (profile.plan === "free" && items.length >= 15) {
       document.getElementById("limitNote").textContent =
@@ -617,7 +529,7 @@
 
       document.getElementById("addForm").reset();
       items.unshift(data);
-      document.getElementById("itemsInfo").textContent = (window.clavisT?window.clavisT("items_count",{count:items.length}):(window.clavisT?window.clavisT("items_count",{count:items.length}):`${items.length} élément(s) enregistré(s).`));
+      document.getElementById("itemsInfo").textContent = `${items.length} élément(s) enregistré(s).`;
       renderItems();
       startAutoLockTimer();
 
@@ -642,7 +554,7 @@
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(14);
-    doc.text((window.clavisT?window.clavisT("pdf_title"):"Clavis-security — Copie PDF"), left, y);
+    doc.text("Clavis-security — Copie PDF", left, y);
 
     y += 8;
     doc.setFont("helvetica", "normal");
@@ -769,7 +681,7 @@
       } catch {
         const el = document.getElementById("unlockError");
         el.style.display = "block";
-        el.textContent = (window.clavisT?window.clavisT("unlock_wrong"): "Mot de passe incorrect. Réessayez.");
+        el.textContent = "Mot de passe incorrect. Réessayez.";
       }
     });
 
@@ -786,13 +698,7 @@
     alert("Oups… impossible d’ouvrir cette page. Reconnectez-vous.");
     window.location.href = "login.html";
   });
-
-  function escapeAttr(s){
-    return String(s||"").replace(/&/g,"&amp;")
-      .replace(/</g,"&lt;").replace(/>/g,"&gt;")
-      .replace(/"/g,"&quot;")
-      .replace(/'/g,"&#39;");
-  }
 </script>
+
 </body>
 </html>

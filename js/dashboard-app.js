@@ -1,19 +1,18 @@
 // /js/dashboard-app.js
-// Dashboard APP (PWA installed on phone): simple, no overlays.
-// Views:
-// - List (items)
-// - Add (form)
-// - Detail (handled by inline script)
-// Controls:
-// - 🔍 toggles search
-// - 🌐 toggles language selector
-// - ＋ opens Add view
+// Dashboard "APP" (PWA installee sur telephone) : UX simple, pratique, sans superposition.
+// - Bouton + : ouvre une vue "Ajouter" (pas de modal)
+// - Loupe : affiche/masque la recherche
+// - Ajout ultra simple : Identifiant + Mot de passe
+// - Reutilise le formulaire existant (ne casse rien)
+
 (function () {
   function isAppPhone() {
     return document.documentElement.classList.contains('app-phone');
   }
 
-  const qs = (sel, root) => (root || document).querySelector(sel);
+  function qs(sel, root) {
+    return (root || document).querySelector(sel);
+  }
 
   function setHidden(el, hidden) {
     if (!el) return;
@@ -22,129 +21,259 @@
 
   function init() {
     if (!isAppPhone()) return;
+    if (!document.body || document.body.getAttribute('data-page') !== 'dashboard') return;
 
-    const topbar = qs('.app-topbar[data-app-only]');
-    const searchBtn = qs('#appSearchBtn');
-    const langBtn = qs('#appLangBtn');
-    const searchRow = qs('#appSearchRow');
-    const langRow = qs('#appLangRow');
-    const langSelect = qs('#appLangSelect');
+    const main = qs('main');
+    const container = qs('main .container');
+    if (!main || !container) return;
 
-    const addBtn = qs('#btnAdd');
-    const addForm = qs('#addForm');
+    const fab = document.getElementById('btnAdd');
+    const searchInput = document.getElementById('search');
+    const addForm = document.getElementById('addForm');
     const addCard = addForm ? addForm.closest('.card') : null;
 
-    const list = qs('#itemsList');
-    const listCard = list ? list.closest('.card') : null;
-    const detail = qs('#appDetail'); // injected container
+    const titleInput = document.getElementById('title');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('secretPassword');
+    const urlInput = document.getElementById('url');
+    const notesInput = document.getElementById('notes');
 
-    // Show app topbar
-    if (topbar) topbar.hidden = false;
+    // Elements list side
+    const listCard = document.getElementById('itemsList') ? document.getElementById('itemsList').closest('.card') : null;
+    const grid2Blocks = Array.from(container.querySelectorAll('.grid2'));
 
-    // Ensure + button is visible and above bottom nav
-    if (addBtn) addBtn.style.display = 'grid';
-
-    // Move the existing search input into the app search row
-    const searchInput = qs('#search');
-    if (searchInput && searchRow && !searchRow.contains(searchInput)) {
-      searchRow.appendChild(searchInput);
-      searchInput.placeholder = (window.clavisT ? window.clavisT('search_placeholder') : (searchInput.placeholder || 'Rechercher…'));
+    // --- Build App Header (no overlay) ---
+    let appHeader = document.getElementById('appDashHeader');
+    if (!appHeader) {
+      appHeader = document.createElement('header');
+      appHeader.id = 'appDashHeader';
+      appHeader.className = 'app-dash-header';
+      appHeader.innerHTML = `
+        <div class="app-dash-bar">
+          <div class="app-dash-title" data-i18n="vault_title">Coffre</div>
+          <div class="app-dash-actions">
+            <button type="button" class="app-icon-btn" id="appSearchBtn" aria-label="Rechercher">\uD83D\uDD0D</button>
+            <button type="button" class="app-icon-btn" id="appLangBtn" aria-label="Langue">\uD83C\uDF10</button>
+          </div>
+        </div>
+        <div class="app-dash-row" id="appSearchRow" hidden>
+          <input id="appSearchClone" class="app-search" type="text" placeholder="Rechercher..." data-i18n-placeholder="search_ph" />
+        </div>
+        <div class="app-dash-row" id="appLangRow" hidden>
+          <label class="app-lang-label" data-i18n="language">Langue</label>
+          <select id="appLangSelect" class="app-lang-select" aria-label="Langue">
+            <option value="fr">Francais</option>
+            <option value="en">English</option>
+            <option value="es">Espanol</option>
+            <option value="it">Italiano</option>
+          </select>
+        </div>
+      `;
+      document.body.insertBefore(appHeader, document.body.firstChild);
     }
 
-    // Simplify add form: show only Name + Username + Password in app
-    function simplifyAddForm() {
-      const title = qs('#title');
-      const username = qs('#username');
-      const pwd = qs('#secretPassword');
-      const url = qs('#url');
-      const notes = qs('#notes');
+    // --- Screens: LIST and ADD (no sheet/modal) ---
+    let screenList = document.getElementById('appScreenList');
+    let screenAdd = document.getElementById('appScreenAdd');
 
-      if (title) {
-        title.required = true;
-        title.placeholder = title.placeholder || 'ex : Gmail';
+    if (!screenList) {
+      screenList = document.createElement('section');
+      screenList.id = 'appScreenList';
+      screenList.className = 'app-screen';
+      // Move existing content blocks (vault controls, search card, list card) into list screen
+      // We keep original nodes to preserve all existing event listeners on buttons.
+      grid2Blocks.forEach((g) => screenList.appendChild(g));
+      container.appendChild(screenList);
+    }
+
+    if (!screenAdd) {
+      screenAdd = document.createElement('section');
+      screenAdd.id = 'appScreenAdd';
+      screenAdd.className = 'app-screen';
+      screenAdd.hidden = true;
+
+      const head = document.createElement('div');
+      head.className = 'app-add-head';
+      head.innerHTML = `
+        <button type="button" class="app-back" id="appAddBack" aria-label="Retour">\u2190</button>
+        <div class="app-add-title" data-i18n="add_title">Ajouter</div>
+      `;
+
+      screenAdd.appendChild(head);
+
+      if (addCard) {
+        // Move the existing addCard into add screen
+        screenAdd.appendChild(addCard);
       }
 
-      if (url) url.closest('.field')?.classList.add('app-hide');
-      if (notes) notes.closest('.field')?.classList.add('app-hide');
+      // Add a small helper note
+      const note = document.createElement('p');
+      note.className = 'app-add-note';
+      note.setAttribute('data-i18n', 'add_note');
+      note.textContent = "Renseigne le nom, l'identifiant et le mot de passe.";
+      screenAdd.insertBefore(note, addCard);
 
-      // keep fields present (no breaking), only hide in app
-      if (username) username.placeholder = username.placeholder || '';
-      if (pwd) pwd.placeholder = pwd.placeholder || '';
-    }
-    simplifyAddForm();
-
-    function showList() {
-      setHidden(searchRow, true);
-      setHidden(langRow, true);
-      if (detail) setHidden(detail, true);
-      if (addCard) addCard.style.display = 'none';
-      if (listCard) listCard.style.display = 'block';
-      if (addBtn) addBtn.hidden = false;
+      container.appendChild(screenAdd);
     }
 
     function showAdd() {
-      setHidden(searchRow, true);
-      setHidden(langRow, true);
-      if (detail) setHidden(detail, true);
-      if (listCard) listCard.style.display = 'none';
-      if (addCard) addCard.style.display = 'block';
-      if (addBtn) addBtn.hidden = true;
-      // focus first field
-      setTimeout(() => { qs('#title')?.focus(); }, 50);
+      screenList.hidden = true;
+      screenAdd.hidden = false;
+      // Force the form to be simple
+      simplifyAddForm();
+      // Focus identifier
+      setTimeout(() => usernameInput && usernameInput.focus(), 50);
     }
 
-    // Buttons
-    if (searchBtn) {
+    function showList() {
+      screenAdd.hidden = true;
+      screenList.hidden = false;
+      // Close rows
+      setHidden(qs('#appLangRow'), true);
+      setHidden(qs('#appSearchRow'), true);
+    }
+
+    // + button
+    if (fab) {
+      fab.style.display = 'grid';
+      fab.addEventListener('click', (e) => {
+        e.preventDefault();
+        showAdd();
+      });
+    }
+
+    // Back in add screen
+    const backBtn = document.getElementById('appAddBack');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showList();
+      });
+    }
+
+    // When saved, go back to list (does not change logic)
+    if (addForm) {
+      addForm.addEventListener('submit', () => {
+        setTimeout(() => {
+          showList();
+        }, 250);
+      });
+    }
+
+    // --- Search: clone input in header, keep original id=search for existing logic ---
+    const searchBtn = document.getElementById('appSearchBtn');
+    const searchRow = document.getElementById('appSearchRow');
+    const searchClone = document.getElementById('appSearchClone');
+
+    if (searchInput && searchClone) {
+      // Keep values in sync both ways
+      const sync = (from, to) => {
+        to.value = from.value;
+        // Trigger input on the original field so existing filtering runs
+        if (to === searchInput) {
+          try { searchInput.dispatchEvent(new Event('input', { bubbles: true })); } catch (_) {}
+        }
+      };
+
+      searchClone.value = searchInput.value || '';
+      searchInput.style.display = 'none'; // avoid double field
+
+      searchClone.addEventListener('input', () => {
+        searchInput.value = searchClone.value;
+        try { searchInput.dispatchEvent(new Event('input', { bubbles: true })); } catch (_) {}
+      });
+
+      searchInput.addEventListener('input', () => {
+        if (searchClone.value !== searchInput.value) searchClone.value = searchInput.value;
+      });
+    }
+
+    if (searchBtn && searchRow) {
       searchBtn.addEventListener('click', () => {
-        const nowOpen = !searchRow.hidden;
-        setHidden(searchRow, nowOpen);
-        if (!nowOpen) {
-          setHidden(langRow, true);
-          qs('#search')?.focus();
+        const open = !searchRow.hidden;
+        setHidden(searchRow, open);
+        if (!open) {
+          setHidden(qs('#appLangRow'), true);
+          setTimeout(() => searchClone && searchClone.focus(), 50);
         }
       });
     }
 
-    if (langBtn) {
+    // --- Language row ---
+    const langBtn = document.getElementById('appLangBtn');
+    const langRow = document.getElementById('appLangRow');
+    const langSelect = document.getElementById('appLangSelect');
+
+    if (langSelect) {
+      try {
+        langSelect.value = localStorage.getItem('clavis_lang') || 'fr';
+      } catch (_) {}
+    }
+
+    if (langBtn && langRow) {
       langBtn.addEventListener('click', () => {
-        const nowOpen = !langRow.hidden;
-        setHidden(langRow, nowOpen);
-        if (!nowOpen) setHidden(searchRow, true);
+        const open = !langRow.hidden;
+        setHidden(langRow, open);
+        if (!open) setHidden(qs('#appSearchRow'), true);
       });
     }
 
     if (langSelect) {
-      try { langSelect.value = localStorage.getItem('clavis_lang') || 'fr'; } catch (_) {}
       langSelect.addEventListener('change', () => {
         try { localStorage.setItem('clavis_lang', langSelect.value); } catch (_) {}
-        if (window.clavisSetLang) window.clavisSetLang(langSelect.value);
+        try { window.dispatchEvent(new CustomEvent('clavis:lang', { detail: { lang: langSelect.value } })); } catch (_) {}
       });
     }
 
-    if (addBtn) addBtn.addEventListener('click', showAdd);
+    // --- Simplify add form: keep only identifier + password visible ---
+    function simplifyAddForm() {
+      if (!addForm) return;
 
-    // When add form submits successfully, inline script already refreshes list.
-    // We return to list on submit (safe).
-    if (addForm) {
-      addForm.addEventListener('submit', () => {
-        setTimeout(showList, 250);
-      });
+      // Title (Nom) : visible et simple
+      if (titleInput) {
+        titleInput.required = true;
+        if (!titleInput.placeholder) titleInput.placeholder = 'ex : Gmail';
+      }
+
+      const titleField = titleInput ? titleInput.closest('.field') : null;
+      if (titleField) titleField.style.display = '';
+
+      // Hide URL and Notes fields
+      const urlField = urlInput ? urlInput.closest('.field') : null;
+      if (urlField) urlField.style.display = 'none';
+      const notesField = notesInput ? notesInput.closest('.field') : null;
+      if (notesField) notesField.style.display = 'none';
+
+      // Relabel visible fields (no jargon)
+      const uLabel = usernameInput ? addForm.querySelector('label[for="username"]') : null;
+      if (uLabel) uLabel.textContent = 'Identifiant';
+      const pLabel = passwordInput ? addForm.querySelector('label[for="secretPassword"]') : null;
+      if (pLabel) pLabel.textContent = 'Mot de passe';
+
+      // Make sure inputs are password type
+      if (passwordInput && passwordInput.type !== 'password') passwordInput.type = 'password';
+
+      // Labels: make sure "Nom" is clear
+      const tLabel = titleInput ? addForm.querySelector('label[for="title"]') : null;
+      if (tLabel) tLabel.textContent = 'Nom';
+
+      // Ensure submit button is full width
+      const submit = addForm.querySelector('button[type="submit"]');
+      if (submit) submit.classList.add('app-primary');
     }
 
-    // If user taps "Compte" tab, login page handles account screen in app.
-    // Start on list.
+    // Ensure we start on list screen
     showList();
 
-    // If user changed language elsewhere, keep select in sync
-    window.addEventListener('clavis:lang', () => {
-      try {
-        const lang = localStorage.getItem('clavis_lang') || 'fr';
-        if (langSelect && langSelect.value !== lang) langSelect.value = lang;
-        if (searchInput) searchInput.placeholder = (window.clavisT ? window.clavisT('search_placeholder') : searchInput.placeholder);
-      } catch (_) {}
-    });
+    // Make sure list card is not pushed off screen
+    if (listCard) {
+      listCard.style.width = '100%';
+    }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
