@@ -221,15 +221,23 @@
     const main = $('mainContent');
     if (!modal || !main) return;
 
+    // IMPORTANT:
+    // In dashboard.html the unlock modal sits INSIDE <main id="mainContent">.
+    // If we hide the whole <main>, we also hide the modal -> user sees a "black screen".
+    // We only hide the main *content container* while keeping the modal visible.
+    const mainContainer = main.querySelector(':scope > .container');
+
     // Observe display changes
     const obs = new MutationObserver(() => {
       const open = modal.style.display !== 'none';
       if (open) {
         document.body.classList.add('vault-locked');
-        main.style.display = 'none';
+        if (mainContainer) mainContainer.style.display = 'none';
+        // Keep the modal above everything
+        modal.style.zIndex = '99999';
       } else {
         document.body.classList.remove('vault-locked');
-        main.style.display = '';
+        if (mainContainer) mainContainer.style.display = '';
       }
     });
     obs.observe(modal, { attributes: true, attributeFilter: ['style'] });

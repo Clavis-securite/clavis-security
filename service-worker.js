@@ -2,7 +2,7 @@
    IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v21"; // ⬅️ change en v8 quand tu modifies le SW
+const CACHE_VERSION = "v22"; // ⬅️ bump après correctif coffre (évite écran noir)
 const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 
@@ -28,6 +28,7 @@ const PRECACHE_URLS = [
   "/js/app-mode.js",
   "/js/premium.js",
   "/js/app-entry.js",
+  "/js/app-dashboard.js",
 
   "/manifest.webmanifest",
   "/assets/icons/icon-192.png",
