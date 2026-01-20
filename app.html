@@ -1,29 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Clavis — Application</title>
-  <meta name="robots" content="noindex" />
-
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
-
-  <link rel="stylesheet" href="/css/styles.css" />
-
-  <script src="/js/app-mode.js" defer></script>
-  <script src="/js/pwa.js" defer></script>
-
-  <!-- Supabase (pour savoir si on ouvre directement le coffre) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="/js/supabase.js" defer></script>
-
-  <script defer>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Clavis — Application</title>
+<meta content="noindex" name="robots"/>
+<link href="/manifest.webmanifest" rel="manifest"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="/css/styles.css" rel="stylesheet"/>
+<script defer="" src="/js/app-mode.js"></script>
+<script defer="" src="/js/pwa.js"></script>
+<!-- Supabase (pour savoir si on ouvre directement le coffre) -->
+<script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer="" src="/js/supabase.js"></script>
+<script defer="">
     (function () {
       function isStandalone() {
         return (
@@ -63,8 +58,7 @@
       window.addEventListener('load', boot);
     })();
   </script>
-
-  <style>
+<style>
     /* Mini écran d'attente ultra léger */
     html, body { height: 100%; }
     body {
@@ -95,10 +89,10 @@
   </style>
 </head>
 <body>
-  <div class="splash" role="status" aria-live="polite">
-    <img class="logo" src="/assets/icons/icon-192.png" alt="" />
-    <p class="t">Clavis</p>
-    <p class="s">Ouverture…</p>
-  </div>
+<div aria-live="polite" class="splash" role="status">
+<img alt="" class="logo" src="/assets/icons/icon-192.png"/>
+<p class="t">Clavis</p>
+<p class="s">Ouverture…</p>
+</div>
 </body>
 </html>

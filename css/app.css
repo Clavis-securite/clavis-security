@@ -109,6 +109,7 @@
 .app-mode .app-bottom {
   display: block !important;
   position: fixed;
+  pointer-events: auto;
   left: 0;
   right: 0;
   bottom: 0;
@@ -340,3 +341,127 @@
   display: none;
 }
 
+
+
+/* --- App dashboard list (no overlays) --- */
+.app-phone #itemsList { display: grid; gap: 10px; }
+.app-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  max-width:100%;
+}
+.app-row-main{ min-width:0; flex:1; }
+.app-row-title{
+  font-weight:700;
+  font-size:15px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.app-row-sub{
+  margin-top:2px;
+  font-size:12.5px;
+  color: rgba(255,255,255,.65);
+}
+.app-row-go{
+  flex:0 0 auto;
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border-radius:999px;
+  background: rgba(255,255,255,.06);
+}
+
+/* Detail view */
+.app-detail{
+  max-width:100%;
+}
+.app-detail[hidden]{ display:none !important; }
+.app-detail-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 2px 6px;
+}
+.app-detail-title{ min-width:0; flex:1; text-align:center; }
+.app-detail-title .h{
+  font-weight:800;
+  font-size:16px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.app-detail-title .s{
+  font-size:12.5px;
+  color: rgba(255,255,255,.65);
+  margin-top:2px;
+}
+.app-detail-body{
+  display:grid;
+  gap:12px;
+  margin-top:8px;
+}
+.app-detail-actions{
+  display:grid;
+  gap:10px;
+  margin-top:6px;
+}
+.app-detail-actions .btn{
+  width:100%;
+}
+.btn.danger{
+  border-color: rgba(239,68,68,.45);
+  background: rgba(239,68,68,.12);
+}
+
+/* Strong anti-overflow for app */
+.app-mode, .app-mode *{
+  box-sizing: border-box;
+}
+.app-mode{
+  overflow-x:hidden;
+}
+.app-mode main, .app-mode .cs-container, .app-mode .container{
+  max-width:100%;
+}
+
+
+/* App topbar */
+.app-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:6px 2px 10px;
+}
+.app-top-title{
+  font-weight:900;
+  font-size:16px;
+}
+.app-icon-btn{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+  color: inherit;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.app-top-row{
+  padding: 0 0 10px;
+}
+.app-top-row input, .app-top-row select{
+  width:100%;
+  max-width:100%;
+}
+.app-hide{ display:none !important; }

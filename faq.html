@@ -1,150 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aide — Clavis-security</title>
-  <meta name="description" content="Aide Clavis-security : réponses simples, sans mots compliqués." />
-
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
-
-  <link rel="stylesheet" href="/css/styles.css">
-
-  <!-- JS (defer) -->
-  <script src="/js/app-mode.js" defer></script>
-  <script src="/js/pwa.js" defer></script>
-    <script src="/js/i18n.js" defer></script>
-<script src="/js/app-shell.js" defer></script>
-  <script src="/js/app.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Aide — Clavis-security</title>
+<meta content="Aide Clavis-security : réponses simples, sans mots compliqués." name="description"/>
+<!-- PWA -->
+<link href="/manifest.webmanifest" rel="manifest"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="/css/styles.css" rel="stylesheet"/>
+<!-- JS (defer) -->
+<script defer="" src="/js/app-mode.js"></script>
+<script defer="" src="/js/pwa.js"></script>
+<script defer="" src="/js/i18n.js"></script>
+<script defer="" src="/js/app-shell.js"></script>
+<script defer="" src="/js/app.js"></script>
 </head>
-
 <body class="csx-page" data-page="faq">
-
 <nav class="app-bottom" style="display:none;">
-  <div class="app-bottom-nav">
-    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-  </div>
+<div class="app-bottom-nav">
+<a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+<a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+<a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+</div>
 </nav>
-
 <header class="cs-topbar">
-  <div class="cs-container cs-nav">
-    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
-      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
-      <span class="cs-brand-name">Clavis-security</span>
-    </a>
-
-    <nav class="cs-links" aria-label="Navigation">
-      <a href="offers.html">Offres</a>
-      <a href="faq.html" class="active">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="cs-actions">
-      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
-      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
-      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>Installer l’application</button>
-      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
-    </div>
-  </div>
-
-  <div class="cs-container cs-mobile" data-mobile-menu>
-    <a href="offers.html">Offres</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <a href="login.html">Connexion</a>
-    <a href="register.html">Créer mon coffre</a>
-  </div>
+<div class="cs-container cs-nav">
+<a aria-label="Accueil Clavis-security" class="cs-brand" href="index.html">
+<img alt="" class="cs-brand-icon" height="34" src="/assets/icons/icon-192.png" width="34"/>
+<span class="cs-brand-name">Clavis-security</span>
+</a>
+<nav aria-label="Navigation" class="cs-links">
+<a data-i18n="nav_offers" href="offers.html">Offres</a>
+<a class="active" data-i18n="nav_faq" href="faq.html">FAQ</a>
+<a data-i18n="nav_contact" href="contact.html">Contact</a>
+</nav>
+<div class="cs-actions">
+<a class="cs-btn cs-ghost" data-i18n="nav_login" href="login.html">Connexion</a>
+<a class="cs-btn cs-primary" data-i18n="nav_register" href="register.html">Créer mon coffre</a>
+<button class="cs-btn cs-primary cs-install js-install" hidden="" type="button">Installer l’application</button>
+<div class="cs-lang"><span>🌐</span><select aria-label="Langue" id="webLangSelect"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="it">IT</option></select></div><button class="cs-btn cs-ghost cs-menu" data-i18n="nav_menu" data-mobile-toggle="" type="button">Menu</button>
+</div>
+</div>
+<div class="cs-container cs-mobile" data-mobile-menu="">
+<a data-i18n="nav_offers" href="offers.html">Offres</a>
+<a data-i18n="nav_faq" href="faq.html">FAQ</a>
+<a data-i18n="nav_contact" href="contact.html">Contact</a>
+<a data-i18n="nav_login" href="login.html">Connexion</a>
+<a data-i18n="nav_register" href="register.html">Créer mon coffre</a>
+</div>
 </header>
-
 <main>
-  <section class="csx-hero">
-    <div class="csx-wrap">
-      <h1>Des réponses <span class="csx-grad">simples</span>, sans prise de tête</h1>
-      <p class="csx-lead">Le but : te rassurer et te guider, en 2 minutes.</p>
-
-      <div class="csx-proof">
-        <div class="csx-pill">✅ Facile</div>
-        <div class="csx-pill">✅ Clair</div>
-        <div class="csx-pill">✅ Sur téléphone</div>
-      </div>
-
-      <div id="installHelp" class="cs-install-help" hidden>
-        <div class="cs-install-help-title">Installer sur iPhone / iPad</div>
-        <div class="cs-install-help-text">
+<section class="csx-hero">
+<div class="csx-wrap">
+<h1>Des réponses <span class="csx-grad">simples</span>, sans prise de tête</h1>
+<p class="csx-lead">Le but : te rassurer et te guider, en 2 minutes.</p>
+<div class="csx-proof">
+<div class="csx-pill">✅ Facile</div>
+<div class="csx-pill">✅ Clair</div>
+<div class="csx-pill">✅ Sur téléphone</div>
+</div>
+<div class="cs-install-help" hidden="" id="installHelp">
+<div class="cs-install-help-title">Installer sur iPhone / iPad</div>
+<div class="cs-install-help-text">
           Appuie sur <strong>Partager</strong> (⬆️), puis <strong>Sur l’écran d’accueil</strong>.
           <div class="cs-install-help-actions">
-            <button class="cs-btn cs-ghost" type="button" data-copy-install-link>Copier le lien</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="csx-section">
-    <div class="csx-wrap">
-      <div class="csx-surface" style="padding: 18px;">
-        <div class="cs-faq" style="margin-top: 0;">
-
-          <details class="csx-faqItem" open>
-            <summary>Est-ce compliqué à utiliser ?</summary>
-            <p>Non. Tu crées ton coffre, tu ajoutes tes informations, puis tu retrouves tout avec la recherche. C’est tout.</p>
-          </details>
-
-          <details class="csx-faqItem">
-            <summary>Et si j’oublie mon mot de passe ?</summary>
-            <p>
+<button class="cs-btn cs-ghost" data-copy-install-link="" type="button">Copier le lien</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="csx-section">
+<div class="csx-wrap">
+<div class="csx-surface" style="padding: 18px;">
+<div class="cs-faq" style="margin-top: 0;">
+<details class="csx-faqItem" open="">
+<summary>Est-ce compliqué à utiliser ?</summary>
+<p>Non. Tu crées ton coffre, tu ajoutes tes informations, puis tu retrouves tout avec la recherche. C’est tout.</p>
+</details>
+<details class="csx-faqItem">
+<summary>Et si j’oublie mon mot de passe ?</summary>
+<p>
               Ton coffre est fait pour rester privé. Donc si tu perds ton mot de passe, tu peux récupérer ton compte (email),
               mais il faudra définir un nouveau mot de passe pour continuer. Astuce : choisis un mot de passe que tu retiens vraiment.
             </p>
-          </details>
-
-          <details class="csx-faqItem">
-            <summary>Est-ce que ça marche sur téléphone ?</summary>
-            <p>Oui. Tu peux l’utiliser dans le navigateur, ou l’installer comme une application (icône sur l’écran d’accueil).</p>
-          </details>
-
-          <details class="csx-faqItem">
-            <summary>Je peux faire une copie de mes informations ?</summary>
-            <p>Oui. Avec Premium, tu peux créer une copie PDF depuis ton coffre (pratique pour garder une sauvegarde).</p>
-          </details>
-
-          <details class="csx-faqItem">
-            <summary>Je commence gratuit, je peux changer après ?</summary>
-            <p>Bien sûr. Tu peux commencer avec 15 éléments, puis passer à l’illimité quand tu veux.</p>
-          </details>
-
-          <details class="csx-faqItem">
-            <summary>J’ai un souci, vous répondez vite ?</summary>
-            <p>Oui. Écris-nous via la page Contact : on répond en général sous 24h (jours ouvrés).</p>
-          </details>
-
-        </div>
-
-        <div class="csx-trust" style="margin-top: 18px;">
-          <div>
-            <strong>Besoin d’aide tout de suite ?</strong> On te répond rapidement et simplement.
+</details>
+<details class="csx-faqItem">
+<summary>Est-ce que ça marche sur téléphone ?</summary>
+<p>Oui. Tu peux l’utiliser dans le navigateur, ou l’installer comme une application (icône sur l’écran d’accueil).</p>
+</details>
+<details class="csx-faqItem">
+<summary>Je peux faire une copie de mes informations ?</summary>
+<p>Oui. Avec Premium, tu peux créer une copie PDF depuis ton coffre (pratique pour garder une sauvegarde).</p>
+</details>
+<details class="csx-faqItem">
+<summary>Je commence gratuit, je peux changer après ?</summary>
+<p>Bien sûr. Tu peux commencer avec 15 éléments, puis passer à l’illimité quand tu veux.</p>
+</details>
+<details class="csx-faqItem">
+<summary>J’ai un souci, vous répondez vite ?</summary>
+<p>Oui. Écris-nous via la page Contact : on répond en général sous 24h (jours ouvrés).</p>
+</details>
+</div>
+<div class="csx-trust" style="margin-top: 18px;">
+<div>
+<strong>Besoin d’aide tout de suite ?</strong> On te répond rapidement et simplement.
           </div>
-          <div>
-            <a href="/contact.html">Nous écrire →</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+<div>
+<a href="/contact.html">Nous écrire →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
 </main>
-
 <footer class="cs-footer">
-  <div class="cs-container">© <span data-year></span> Clavis-security — Aide</div>
+<div class="cs-container">© <span data-year=""></span> Clavis-security — Aide</div>
 </footer>
-
 </body>
 </html>

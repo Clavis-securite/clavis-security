@@ -1,126 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-i18n="page_register_title">Créer mon coffre — Clavis-security</title>
-
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0ea5e9">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
-
-  <link rel="stylesheet" href="/css/styles.css" />
-
-  <!-- JS (defer) -->
-  <script src="/js/app-mode.js" defer></script>
-  <script src="/js/pwa.js" defer></script>
-  <script src="/js/i18n.js" defer></script>
-  <script src="/js/app-shell.js" defer></script>
-  <script src="/js/app.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title data-i18n="page_register_title">Créer mon coffre — Clavis-security</title>
+<link href="/manifest.webmanifest" rel="manifest"/>
+<meta content="#0ea5e9" name="theme-color"/>
+<link href="/assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/assets/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="/css/styles.css" rel="stylesheet"/>
+<!-- JS (defer) -->
+<script defer="" src="/js/app-mode.js"></script>
+<script defer="" src="/js/pwa.js"></script>
+<script defer="" src="/js/i18n.js"></script>
+<script defer="" src="/js/app-shell.js"></script>
+<script defer="" src="/js/app.js"></script>
 </head>
-
 <body data-page="register">
-
 <nav class="app-bottom" style="display:none;">
-  <div class="app-bottom-nav">
-    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-  </div>
+<div class="app-bottom-nav">
+<a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+<a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+<a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+</div>
 </nav>
-
 <header class="cs-topbar">
-  <div class="cs-container cs-nav">
-    <a class="cs-brand" href="index.html">
-      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
-      <span class="cs-brand-name">Clavis-security</span>
-    </a>
-
-    <nav class="cs-links">
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="cs-actions">
-      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
-      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
-    </div>
-  </div>
-
-  <div class="cs-container cs-mobile" data-mobile-menu>
-    <a href="offers.html">Offres</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <a href="login.html">Connexion</a>
-  </div>
+<div class="cs-container cs-nav">
+<a class="cs-brand" href="index.html">
+<img alt="" class="cs-brand-icon" height="34" src="/assets/icons/icon-192.png" width="34"/>
+<span class="cs-brand-name">Clavis-security</span>
+</a>
+<nav class="cs-links">
+<a data-i18n="nav_offers" href="offers.html">Offres</a>
+<a data-i18n="nav_faq" href="faq.html">FAQ</a>
+<a data-i18n="nav_contact" href="contact.html">Contact</a>
+</nav>
+<div class="cs-actions">
+<a class="cs-btn cs-ghost" data-i18n="nav_login" href="login.html">Connexion</a>
+<div class="cs-lang"><span>🌐</span><select aria-label="Langue" id="webLangSelect"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="it">IT</option></select></div><button class="cs-btn cs-ghost cs-menu" data-i18n="nav_menu" data-mobile-toggle="" type="button">Menu</button>
+</div>
+</div>
+<div class="cs-container cs-mobile" data-mobile-menu="">
+<a data-i18n="nav_offers" href="offers.html">Offres</a>
+<a data-i18n="nav_faq" href="faq.html">FAQ</a>
+<a data-i18n="nav_contact" href="contact.html">Contact</a>
+<a data-i18n="nav_login" href="login.html">Connexion</a>
+</div>
 </header>
-
 <main class="cs-auth">
-  <div class="cs-container cs-auth-grid">
-
-    <section class="cs-auth-left" aria-hidden="true">
-      <img src="/assets/icons/icon-512.png" alt="" class="cs-auth-icon">
-      <div class="cs-badge">✨ Commence en gratuit</div>
-      <h1 class="cs-h1">Crée ton coffre.</h1>
-      <p class="cs-lead">Tu peux démarrer gratuitement (15 éléments). Et passer en Premium plus tard.</p>
-    </section>
-
-    <section class="cs-auth-card">
-      <h2 class="cs-h2" style="margin:0;">Créer mon coffre</h2>
-      <p class="cs-muted" style="margin:6px 0 0;">En 30 secondes, c’est fait.</p>
-
-      <form id="register-form" class="cs-form">
-        <label class="cs-label">
+<div class="cs-container cs-auth-grid">
+<section aria-hidden="true" class="cs-auth-left">
+<img alt="" class="cs-auth-icon" src="/assets/icons/icon-512.png"/>
+<div class="cs-badge">✨ Commence en gratuit</div>
+<h1 class="cs-h1">Crée ton coffre.</h1>
+<p class="cs-lead">Tu peux démarrer gratuitement (15 éléments). Et passer en Premium plus tard.</p>
+</section>
+<section class="cs-auth-card">
+<h2 class="cs-h2" data-i18n="nav_register" style="margin:0;">Créer mon coffre</h2>
+<p class="cs-muted" style="margin:6px 0 0;">En 30 secondes, c’est fait.</p>
+<form class="cs-form" id="register-form">
+<label class="cs-label" data-i18n="label_email">
           Email
-          <input name="email" type="email" autocomplete="email" required class="cs-input" placeholder="ex: nom@gmail.com">
-        </label>
-
-        <label class="cs-label">
+          <input autocomplete="email" class="cs-input" name="email" placeholder="ex: nom@gmail.com" required="" type="email"/>
+</label>
+<label class="cs-label" data-i18n="label_password">
           Mot de passe
           <div class="cs-pass">
-            <input id="register_password" name="password" type="password" autocomplete="new-password"
-                   required class="cs-input cs-input-pass" placeholder="Choisis un bon mot de passe">
-            <button type="button" class="cs-eye" data-toggle-password data-target="register_password"
-                    aria-label="Afficher le mot de passe">👁️</button>
-          </div>
-          <div class="cs-muted" style="font-size:12.5px;">Astuce : 8 caractères minimum, facile à retenir pour toi.</div>
-        </label>
-
-        <button class="cs-btn cs-primary cs-btn-full" type="submit">Créer mon coffre</button>
-
-        <div class="cs-form-foot">
-          <span class="cs-muted">Déjà un compte ?</span>
-          <a href="login.html" class="cs-link">Se connecter</a>
-        </div>
-      </form>
-    </section>
-
-  </div>
+<input autocomplete="new-password" class="cs-input cs-input-pass" id="register_password" name="password" placeholder="Choisis un bon mot de passe" required="" type="password"/>
+<button aria-label="Afficher le mot de passe" class="cs-eye" data-target="register_password" data-toggle-password="" type="button">👁️</button>
+</div>
+<div class="cs-muted" style="font-size:12.5px;">Astuce : 8 caractères minimum, facile à retenir pour toi.</div>
+</label>
+<button class="cs-btn cs-primary cs-btn-full" data-i18n="nav_register" type="submit">Créer mon coffre</button>
+<div class="cs-form-foot">
+<span class="cs-muted">Déjà un compte ?</span>
+<a class="cs-link" data-i18n="btn_login" href="login.html">Se connecter</a>
+</div>
+</form>
+</section>
+</div>
 </main>
-
 <footer class="cs-footer">
-  <div class="cs-container cs-footer-row">
-    <div class="cs-footer-left">
-      <img src="/assets/icons/icon-192.png" alt="" width="28" height="28">
-      <span>© <span data-year></span> Clavis-security</span>
-    </div>
-    <div class="cs-footer-links">
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+<div class="cs-container cs-footer-row">
+<div class="cs-footer-left">
+<img alt="" height="28" src="/assets/icons/icon-192.png" width="28"/>
+<span>© <span data-year=""></span> Clavis-security</span>
+</div>
+<div class="cs-footer-links">
+<a data-i18n="nav_offers" href="offers.html">Offres</a>
+<a data-i18n="nav_faq" href="faq.html">FAQ</a>
+<a data-i18n="nav_contact" href="contact.html">Contact</a>
+</div>
+</div>
 </footer>
-
 <script src="/js/app.js"></script>
-<script src="/js/pwa.js" defer></script>
-
+<script defer="" src="/js/pwa.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase.js"></script>
 <script src="/js/register.js"></script>
-
 <script>
   const _y = document.querySelector('[data-year]');
   if (_y) _y.textContent = String(new Date().getFullYear());
@@ -143,7 +121,6 @@
     btn.setAttribute('aria-label', hidden ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
   });
 </script>
-
 <!-- mêmes styles que login (copie identique) -->
 <style>
   /* (Copie-colle EXACTEMENT le bloc <style> du login.html ici) */
@@ -259,6 +236,5 @@
     .cs-auth-left{ display:none; }
   }
 </style>
-
 </body>
 </html>
