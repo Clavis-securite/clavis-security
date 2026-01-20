@@ -61,20 +61,23 @@
 <p class="cs-muted" data-i18n="login_hint" style="margin:6px 0 0;">Ouvre ton coffre.</p>
 <form class="cs-form" id="login-form">
 <label class="cs-label" data-i18n="label_email">
-          Email
-          <input autocomplete="email" class="cs-input" name="email" placeholder="ex: nom@gmail.com" required="" type="email"/>
+  Email
+  <input autocomplete="email" class="cs-input" name="email" placeholder="ex: nom@gmail.com" required type="email"/>
 </label>
+
 <label class="cs-label" data-i18n="label_password">
-          Mot de passe
-          <div class="cs-pass">
-<input autocomplete="current-password" class="cs-input cs-input-pass" id="login_password" name="password" placeholder="••••••••" required="" type="password"/>
-<button aria-label="Afficher le mot de passe" class="cs-eye" data-target="login_password" data-toggle-password="" type="button">👁️</button>
-</div>
+  Mot de passe
+  <div class="cs-pass">
+    <input id="login_password" autocomplete="current-password" class="cs-input cs-input-pass" name="password" placeholder="••••••••" required type="password"/>
+    <button type="button" class="cs-eye" aria-label="Afficher le mot de passe" data-i18n="aria_toggle_password" data-toggle-password="login_password">👁️</button>
+  </div>
 </label>
+
 <button class="cs-btn cs-primary cs-btn-full" data-i18n="btn_login" type="submit">Se connecter</button>
+
 <div class="cs-form-foot">
-<span class="cs-muted" data-i18n="login_no_account">Pas encore de coffre ?</span>
-<a class="cs-link" data-i18n="btn_create_account" href="register.html">Créer un compte</a>
+  <span class="cs-muted" data-i18n="login_no_account">Pas encore de compte ?</span>
+  <a class="cs-link" data-i18n="btn_create_account" href="/register.html">Créer un compte</a>
 </div>
 </form>
 </section>

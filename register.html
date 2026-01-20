@@ -61,21 +61,24 @@
 <p class="cs-muted" style="margin:6px 0 0;">En 30 secondes, c’est fait.</p>
 <form class="cs-form" id="register-form">
 <label class="cs-label" data-i18n="label_email">
-          Email
-          <input autocomplete="email" class="cs-input" name="email" placeholder="ex: nom@gmail.com" required="" type="email"/>
+  Email
+  <input autocomplete="email" class="cs-input" name="email" placeholder="ex: nom@gmail.com" required type="email"/>
 </label>
+
 <label class="cs-label" data-i18n="label_password">
-          Mot de passe
-          <div class="cs-pass">
-<input autocomplete="new-password" class="cs-input cs-input-pass" id="register_password" name="password" placeholder="Choisis un bon mot de passe" required="" type="password"/>
-<button aria-label="Afficher le mot de passe" class="cs-eye" data-target="register_password" data-toggle-password="" type="button">👁️</button>
-</div>
-<div class="cs-muted" style="font-size:12.5px;">Astuce : 8 caractères minimum, facile à retenir pour toi.</div>
+  Mot de passe
+  <div class="cs-pass">
+    <input id="register_password" autocomplete="new-password" class="cs-input cs-input-pass" name="password" placeholder="Choisis un mot de passe" required type="password"/>
+    <button type="button" class="cs-eye" aria-label="Afficher le mot de passe" data-i18n="aria_toggle_password" data-toggle-password="register_password">👁️</button>
+  </div>
+  <p class="cs-hint" data-i18n="register_hint">Tu pourras ouvrir ton coffre après la création du compte.</p>
 </label>
-<button class="cs-btn cs-primary cs-btn-full" data-i18n="nav_register" type="submit">Créer mon coffre</button>
+
+<button class="cs-btn cs-primary cs-btn-full" data-i18n="btn_register" type="submit">Créer mon compte</button>
+
 <div class="cs-form-foot">
-<span class="cs-muted">Déjà un compte ?</span>
-<a class="cs-link" data-i18n="btn_login" href="login.html">Se connecter</a>
+  <span class="cs-muted" data-i18n="register_have_account">Déjà un compte ?</span>
+  <a class="cs-link" data-i18n="btn_go_login" href="/login.html">Se connecter</a>
 </div>
 </form>
 </section>

@@ -185,6 +185,7 @@
     },
 
     it: {
+      aria_toggle_password: 'Mostra password',
       app_name: 'Clavis-security',
       nav_offers: 'Offerte',
       nav_faq: 'Aiuto',
