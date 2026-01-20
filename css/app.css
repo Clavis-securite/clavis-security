@@ -1,210 +1,467 @@
 /* css/app.css
-   Applied ONLY in "app phone" mode (PWA installed on phone).
-   Goal: simple, practical, thumb-friendly.
-   Never affects normal web browsing.
+   Styles appliqués UNIQUEMENT en mode "app" (PWA installée / standalone).
+   Objectif : expérience smartphone pensée "1 pouce".
+   IMPORTANT : ne jamais impacter la version site web.
 */
 
-/* Safety: no horizontal overflow */
-html.app-phone, html.app-phone body {
-  width: 100%;
-  max-width: 100%;
+/* IMPORTANT : l'app s'applique uniquement quand la classe app-phone est presente */
+
+/* Espace pour la barre du bas */
+.app-phone body {
+  padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); /* hauteur nav */
+}
+
+/* Base anti débordements */
+.app-phone html,
+.app-phone body {
   overflow-x: hidden;
 }
-html.app-phone * { box-sizing: border-box; }
-html.app-phone img, html.app-phone svg, html.app-phone video, html.app-phone canvas {
+
+.app-phone *,
+.app-phone *::before,
+.app-phone *::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.app-phone img, .app-phone video, .app-phone canvas {
   max-width: 100%;
   height: auto;
 }
 
-/* Space for fixed bottom CTA (premium) + iPhone safe-area */
-html.app-phone body{
-  padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px));
-}
-
-/* Reduce "site" chrome */
-html.app-phone .cs-footer { display:none !important; }
-html.app-phone .cs-links { display:none !important; }
-
-/* Top app bar (search + title + language) */
-html.app-phone .app-topbar[data-app-only]{
+/* Header : plus compact en app */
+.app-mode .cs-topbar {
   position: sticky;
   top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  z-index: 50;
+}
+
+.app-mode .cs-links,
+.app-mode [data-mobile-toggle],
+.app-mode [data-mobile-menu] {
+  display: none !important;
+}
+
+.app-mode .cs-actions {
   gap: 10px;
-  padding: 10px 12px;
-  border-radius: 16px;
-  background: rgba(10, 15, 30, .72);
-  border: 1px solid rgba(255,255,255,.08);
-  backdrop-filter: blur(10px);
-  margin: 10px 0 10px;
 }
 
-html.app-phone .app-top-title{
-  font-weight: 700;
-  letter-spacing: .2px;
+.app-mode .cs-install {
+  display: none !important;
 }
 
-html.app-phone .app-icon-btn{
-  width: 42px;
-  height: 42px;
+/* Boutons : zones plus faciles à toucher */
+.app-mode .cs-btn {
+  min-height: 44px;
+  padding: 12px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
+}
+
+/* Titres et sections : plus courts */
+.app-mode .cs-hero,
+.app-mode .cs-section {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/* Grilles : une colonne en app (sans changer le web) */
+.app-mode .cs-grid3,
+.app-mode .cs-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+}
+
+/* Auth (connexion / inscription) : version app plus directe */
+.app-mode .cs-auth-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.app-mode .cs-auth-left {
+  display: none !important;
+}
+
+.app-mode .cs-auth-card {
+  margin: 0 auto;
+  width: min(560px, 100%);
+}
+
+.app-mode .cs-container {
+  width: min(720px, 100%);
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Cartes : compactes */
+.app-mode .cs-card {
+  padding: 14px;
+  border-radius: 16px;
+}
+
+/* Page Offres : meilleure lisibilité en app */
+.app-mode .pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+}
+
+/* Bottom nav (déjà dans HTML) : style app */
+.app-mode .app-bottom {
+  display: block !important;
+  position: fixed;
+  pointer-events: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.app-mode .app-bottom-nav {
+  height: 66px;
+  padding: 8px 10px 10px;
+  background: rgba(11, 18, 32, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.10);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.app-mode .app-tab {
   display: grid;
   place-items: center;
-  cursor: pointer;
+  text-decoration: none;
+  color: rgba(255,255,255,.75);
+  border-radius: 14px;
+  padding: 6px 4px;
+  font-size: 12px;
+  line-height: 1.1;
 }
 
-html.app-phone .app-top-row{
+.app-mode .app-tab .ico {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.app-mode .app-tab.active {
+  background: rgba(14,165,233,.14);
+  color: rgba(255,255,255,.95);
+}
+
+/* ============ Dashboard (app) ============ */
+
+/* En app : on évite l'en-tête/footers "site" sur le coffre pour rester simple */
+.app-phone body[data-page="dashboard"] .cs-topbar,
+.app-phone body[data-page="dashboard"] .footer {
+  display: none !important;
+}
+
+/* On respire, sans rien hors champ */
+.app-phone body[data-page="dashboard"] .section {
+  padding: 14px 0 18px;
+}
+
+.app-phone body[data-page="dashboard"] .container {
+  width: min(720px, 100%);
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Les grilles du dashboard passent en une colonne */
+.app-phone body[data-page="dashboard"] .grid2 {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+}
+
+/* Cache le "hero" marketing interne au dashboard en mode app */
+.app-phone body[data-page="dashboard"] .page-hero,
+.app-phone body[data-page="dashboard"] .hr {
+  display: none !important;
+}
+
+/* Dashboard en app : on masque le header/footer "site" pour une sensation appli */
+.app-mode body[data-page="dashboard"] .cs-topbar,
+.app-mode body[data-page="dashboard"] .footer {
+  display: none !important;
+}
+
+/* Hero plus compact */
+.app-mode body[data-page="dashboard"] .page-hero {
+  padding: 0;
   margin: 0 0 10px;
 }
 
-html.app-phone .app-top-row input,
-html.app-phone .app-top-row select{
-  width: 100%;
-  min-height: 44px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
-  color: inherit;
-  padding: 10px 12px;
+.app-mode body[data-page="dashboard"] .page-hero h1 {
+  font-size: 22px;
+  margin: 8px 0 6px;
 }
 
-/* Make the list compact */
-html.app-phone #itemsList{
-  display: grid !important;
+/* Barre "actions" compacte (ouvrir/fermer, export) */
+.app-mode body[data-page="dashboard"] .card.pad {
+  padding: 14px;
+  border-radius: 18px;
+}
+
+.app-mode body[data-page="dashboard"] .card.pad h3 {
+  font-size: 16px;
+}
+
+/* Liste d'items : plus dense */
+.app-mode body[data-page="dashboard"] #itemsList {
   gap: 10px !important;
 }
 
-/* Each item card (clickable) */
-html.app-phone .item-card{
+/* Inputs sans débordement */
+.app-mode body[data-page="dashboard"] input,
+.app-mode body[data-page="dashboard"] textarea,
+.app-mode body[data-page="dashboard"] button {
+  max-width: 100%;
+}
+
+/* Bouton + (FAB) au-dessus de la barre du bas */
+.app-phone .app-fab {
+  position: fixed;
+  right: 14px;
+  bottom: 86px; /* au-dessus de la bottom-nav */
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(14,165,233,.25);
+  color: rgba(255,255,255,.95);
+  font-size: 28px;
+  line-height: 1;
   display: grid;
-  gap: 6px;
-  padding: 12px 12px;
+  place-items: center;
+  z-index: 1200;
+}
+
+/* ============ Dashboard "app" : header + vues (sans superposition) ============ */
+
+.app-phone body[data-page="dashboard"] {
+  background: #0b1220;
+}
+
+.app-phone .app-dash-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(11, 18, 32, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.app-phone .app-dash-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  gap: 10px;
+}
+
+.app-phone .app-dash-title {
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.app-phone .app-dash-actions { display: flex; gap: 8px; }
+
+.app-phone .app-icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.95);
+  font-size: 18px;
+}
+
+.app-phone .app-dash-row {
+  padding: 0 14px 12px;
+}
+
+.app-phone .app-search {
+  width: 100%;
+  min-height: 46px;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  padding: 12px 12px;
 }
 
-/* Titles should never overflow */
-html.app-phone .item-card .item-title{
-  font-weight: 700;
-  line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.app-phone .app-lang-label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 6px;
 }
 
-html.app-phone .item-card .item-sub{
-  color: var(--muted);
-  font-size: 13px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.app-phone .app-lang-select {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  padding: 10px 12px;
+}
+
+.app-phone .app-screen { padding-top: 12px; }
+
+.app-phone .app-add-head {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 8px;
+}
+
+.app-phone .app-back {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.95);
+  font-size: 18px;
+}
+
+.app-phone .app-add-title { font-weight: 900; }
+.app-phone .app-add-note { margin: 0 0 10px; opacity: .85; }
+
+.app-phone .app-primary { width: 100%; }
+
+/* Évite un flash de la page marketing si /index.html est ouvert depuis l'app */
+.app-mode body[data-page="home"] .cs-hero,
+.app-mode body[data-page="home"] .cs-divider,
+.app-mode body[data-page="home"] .cs-section {
+  display: none;
+}
+
+
+
+/* --- App dashboard list (no overlays) --- */
+.app-phone #itemsList { display: grid; gap: 10px; }
+.app-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  max-width:100%;
+}
+.app-row-main{ min-width:0; flex:1; }
+.app-row-title{
+  font-weight:700;
+  font-size:15px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.app-row-sub{
+  margin-top:2px;
+  font-size:12.5px;
+  color: rgba(255,255,255,.65);
+}
+.app-row-go{
+  flex:0 0 auto;
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border-radius:999px;
+  background: rgba(255,255,255,.06);
 }
 
 /* Detail view */
-html.app-phone .app-detail{
-  margin-top: 10px;
+.app-detail{
+  max-width:100%;
 }
-html.app-phone .app-detail .detail-header{
+.app-detail[hidden]{ display:none !important; }
+.app-detail-head{
   display:flex;
   align-items:center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 2px 6px;
 }
-html.app-phone .app-detail .detail-title{
-  font-weight: 800;
-  font-size: 16px;
-}
-html.app-phone .app-detail .detail-actions{
-  display:flex;
-  gap: 8px;
-}
-html.app-phone .app-detail .detail-actions button{
-  min-height: 42px;
-  border-radius: 14px;
-}
-
-/* Floating + button */
-html.app-phone .app-fab{
-  position: fixed;
-  right: 14px;
-  bottom: calc(86px + env(safe-area-inset-bottom, 0px));
-  width: 54px;
-  height: 54px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(14,165,233,.20);
-  backdrop-filter: blur(10px);
-  display: grid;
-  place-items: center;
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 30;
-}
-
-/* Fixed bottom Premium CTA (only in app) */
-html.app-phone .app-premium-cta{
-  position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-  z-index: 25;
-  min-height: 54px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(34,197,94,.18);
-  backdrop-filter: blur(10px);
-  font-weight: 800;
-  letter-spacing: .2px;
-  cursor: pointer;
-}
-
-/* Forms in app: avoid wide grids */
-html.app-phone .grid2{ display:block !important; }
-html.app-phone .grid3{ display:block !important; }
-
-/* Dashboard app list rows (existing markup) */
-html.app-phone .app-row{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 12px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.03);
-  cursor: pointer;
-}
-html.app-phone .app-row-main{ min-width:0; display:grid; gap: 4px; }
-html.app-phone .app-row-title{
-  font-weight: 800;
+.app-detail-title{ min-width:0; flex:1; text-align:center; }
+.app-detail-title .h{
+  font-weight:800;
+  font-size:16px;
   overflow:hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
-html.app-phone .app-row-sub{
-  color: var(--muted);
-  font-size: 13px;
-  overflow:hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.app-detail-title .s{
+  font-size:12.5px;
+  color: rgba(255,255,255,.65);
+  margin-top:2px;
 }
-html.app-phone .app-row-right{
+.app-detail-body{
+  display:grid;
+  gap:12px;
+  margin-top:8px;
+}
+.app-detail-actions{
+  display:grid;
+  gap:10px;
+  margin-top:6px;
+}
+.app-detail-actions .btn{
+  width:100%;
+}
+.btn.danger{
+  border-color: rgba(239,68,68,.45);
+  background: rgba(239,68,68,.12);
+}
+
+/* Strong anti-overflow for app */
+.app-mode, .app-mode *{
+  box-sizing: border-box;
+}
+.app-mode{
+  overflow-x:hidden;
+}
+.app-mode main, .app-mode .cs-container, .app-mode .container{
+  max-width:100%;
+}
+
+
+/* App topbar */
+.app-topbar{
   display:flex;
   align-items:center;
-  gap: 6px;
-  flex: 0 0 auto;
+  justify-content:space-between;
+  gap:10px;
+  padding:6px 2px 10px;
 }
-
-html.app-phone .app-bottom{ display:none !important; }
-
-/* When unlock modal is open, hide underlying content to avoid 'superposition' feeling */
-html.app-phone.unlock-open header, html.app-phone.unlock-open main.section { visibility: hidden; }
-html.app-phone.unlock-open #unlockModal { visibility: visible; }
+.app-top-title{
+  font-weight:900;
+  font-size:16px;
+}
+.app-icon-btn{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+  color: inherit;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.app-top-row{
+  padding: 0 0 10px;
+}
+.app-top-row input, .app-top-row select{
+  width:100%;
+  max-width:100%;
+}
+.app-hide{ display:none !important; }

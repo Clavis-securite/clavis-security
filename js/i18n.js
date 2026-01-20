@@ -1,348 +1,403 @@
 // /js/i18n.js
-// Lightweight i18n for Clavis-security (FR/EN/ES/IT).
-// Safe behavior: if a key is missing, we KEEP the existing text (never show raw keys).
+// Simple i18n (FR/EN/ES/IT) for Clavis-security.
+// - Works for Web + App
+// - No technical words in UI
+// - Supports: data-i18n, data-i18n-placeholder, data-i18n-title, data-i18n-aria
+// - Provides: window.clavisT(key, vars), window.clavisSetLang(lang), window.clavisGetLang()
 
 (function () {
   const STORE_KEY = 'clavis_lang';
 
   const STRINGS = {
     fr: {
-      // Nav / common
-      app_name: 'Clavis-security',
+      language: 'Langue',
+      nav_home: 'Accueil',
+      nav_vault: 'Coffre',
       nav_offers: 'Offres',
       nav_faq: 'FAQ',
       nav_contact: 'Contact',
+      nav_account: 'Compte',
       nav_login: 'Connexion',
-      nav_register: 'Créer un compte',
+      nav_register: 'Créer mon coffre',
       nav_menu: 'Menu',
-      btn_install: 'Installer l’application',
-      btn_logout: 'Déconnexion',
-      btn_back: 'Retour',
 
-      // Login / Register
-      login_title: 'Connexion',
-      register_title: 'Créer un compte',
-      login_hint: 'Connecte-toi pour ouvrir ton coffre.',
-      register_hint: 'Crée ton compte en quelques secondes.',
-      label_email: 'Email',
-      label_password: 'Mot de passe',
+      btn_install: 'Installer l’app',
       btn_login: 'Se connecter',
       btn_create_account: 'Créer un compte',
-      btn_register: 'Créer mon compte',
-      login_no_account: 'Pas encore de compte ?',
-      register_have_account: 'Déjà un compte ?',
-      link_login: 'Se connecter',
-      link_register: 'Créer un compte',
+      btn_continue: 'Continuer',
+      btn_cancel: 'Annuler',
+      btn_logout: 'Se déconnecter',
 
       // Dashboard / Vault
-      vault_title: 'Coffre',
-      vault_locked: 'Coffre verrouillé',
-      vault_unlocked: 'Coffre ouvert',
-      btn_unlock: 'Ouvrir',
-      btn_lock: 'Verrouiller',
-      btn_add: 'Ajouter',
-      btn_save: 'Enregistrer',
-      btn_delete: 'Supprimer',
-      btn_copy: 'Copier',
-      btn_close: 'Fermer',
-      btn_premium: 'Passer à Premium',
-
-      label_name: 'Nom',
-      label_username: 'Identifiant',
-      label_secret: 'Mot de passe',
-      label_url: 'Site (optionnel)',
-      label_notes: 'Notes (optionnel)',
-
-      search_placeholder: 'Rechercher…',
-
+      vault_open: 'Coffre ouvert',
+      vault_closed: 'Coffre fermé',
+      vault_open_small: 'coffre ouvert',
+      vault_closed_small: 'coffre fermé',
       items_count: '{count} élément(s) enregistré(s).',
+      no_results: 'Aucun résultat.',
+      btn_view: 'Voir',
+      btn_copy_username: 'Copier identifiant',
+      btn_copy_password: 'Copier mot de passe',
+      btn_delete: 'Supprimer',
+      btn_back: 'Retour',
+      details_subtitle: 'Détails',
+      label_username: 'Identifiant',
+      label_password: 'Mot de passe',
 
-      // Messages
-      msg_generic_error: 'Une erreur est survenue. Recharge la page.',
+      msg_open_vault_first: 'Ouvre ton coffre pour continuer.',
       msg_copied: '✅ Copié !',
       msg_copy_failed: 'Impossible de copier.',
-      msg_delete_failed: 'Impossible de supprimer.',
-      msg_checkout_failed: 'Impossible d’ouvrir le paiement. Réessaie.',
-      msg_fill_email_password: 'Merci de renseigner ton email et ton mot de passe.',
-      msg_fill_required: 'Merci de compléter les champs obligatoires.',
-      msg_account_created: 'Compte créé ! Vérifie tes emails pour confirmer.'
+      msg_delete_failed: 'Oups… impossible de supprimer.',
+      msg_save_failed: 'Oups… impossible d’enregistrer.',
+      msg_cannot_show: 'Impossible d’afficher.',
+      confirm_delete: 'Supprimer "{name}" ?',
+      unlock_wrong: 'Mot de passe incorrect. Réessaie.',
+      pdf_title: 'Clavis-security — Copie PDF'
+    
+      page_login_title: 'Connexion — Clavis-security',
+      page_register_title: 'Créer mon coffre — Clavis-security',
+      login_tagline: '🔒 Ton coffre personnel',
+      login_welcome: 'Content de te revoir.',
+      login_desc: 'Connecte-toi et retrouve tes informations en quelques secondes.',
+      login_title: 'Connexion',
+      login_hint: 'Ouvre ton coffre.',
+      label_email: 'Email',
+      label_password: 'Mot de passe',
+      login_no_account: 'Pas encore de coffre ?',
+      register_tagline: 'Créer mon coffre.',
+      register_desc: 'Un espace simple pour garder tes informations importantes.',
+      register_title: 'Créer un compte',
+      register_hint: 'Crée ton coffre en 30 secondes.',
+      register_have_account: 'J’ai déjà un coffre',
+      field_name: 'Nom (ex : Gmail)',
+      add_info_heading: 'Ajouter une information',
+      my_info_heading: 'Mes informations',
+      loading: 'Chargement…',
+      search_placeholder: 'Rechercher…',
+      unlock_heading: 'Ouvrir mon coffre',
+      unlock_label: 'Mot de passe secondaire',
+      unlock_open: 'Ouvrir',
+      lock_btn: 'Verrouiller',
+      export_pdf: 'Exporter PDF',
+      vault_locked_note: 'Votre coffre est verrouillé.',
+      vault_open_note: 'Votre coffre est ouvert.',
     },
 
     en: {
-      app_name: 'Clavis-security',
-      nav_offers: 'Pricing',
+      language: 'Language',
+      nav_home: 'Home',
+      nav_vault: 'Vault',
+      nav_offers: 'Plans',
       nav_faq: 'Help',
       nav_contact: 'Contact',
+      nav_account: 'Account',
       nav_login: 'Sign in',
-      nav_register: 'Create account',
+      nav_register: 'Create my vault',
       nav_menu: 'Menu',
+
       btn_install: 'Install the app',
-      btn_logout: 'Sign out',
-      btn_back: 'Back',
-
-      login_title: 'Sign in',
-      register_title: 'Create account',
-      login_hint: 'Sign in to open your vault.',
-      register_hint: 'Create your account in seconds.',
-      label_email: 'Email',
-      label_password: 'Password',
       btn_login: 'Sign in',
-      btn_create_account: 'Create account',
-      btn_register: 'Create my account',
-      login_no_account: 'No account yet?',
-      register_have_account: 'Already have an account?',
-      link_login: 'Sign in',
-      link_register: 'Create account',
+      btn_create_account: 'Create an account',
+      btn_continue: 'Continue',
+      btn_cancel: 'Cancel',
+      btn_logout: 'Sign out',
 
-      vault_title: 'Vault',
-      vault_locked: 'Vault locked',
-      vault_unlocked: 'Vault open',
-      btn_unlock: 'Unlock',
-      btn_lock: 'Lock',
-      btn_add: 'Add',
-      btn_save: 'Save',
-      btn_delete: 'Delete',
-      btn_copy: 'Copy',
-      btn_close: 'Close',
-      btn_premium: 'Go Premium',
-
-      label_name: 'Name',
-      label_username: 'Username',
-      label_secret: 'Password',
-      label_url: 'Website (optional)',
-      label_notes: 'Notes (optional)',
-
-      search_placeholder: 'Search…',
-
+      vault_open: 'Vault unlocked',
+      vault_closed: 'Vault locked',
+      vault_open_small: 'vault unlocked',
+      vault_closed_small: 'vault locked',
       items_count: '{count} item(s) saved.',
+      no_results: 'No results.',
+      btn_view: 'View',
+      btn_copy_username: 'Copy username',
+      btn_copy_password: 'Copy password',
+      btn_delete: 'Delete',
+      btn_back: 'Back',
+      details_subtitle: 'Details',
+      label_username: 'Username',
+      label_password: 'Password',
 
-      msg_generic_error: 'Something went wrong. Please reload.',
+      msg_open_vault_first: 'Unlock your vault to continue.',
       msg_copied: '✅ Copied!',
       msg_copy_failed: 'Could not copy.',
-      msg_delete_failed: 'Could not delete.',
-      msg_checkout_failed: 'Could not open payment. Try again.',
-      msg_fill_email_password: 'Please enter your email and password.',
-      msg_fill_required: 'Please fill in the required fields.',
-      msg_account_created: 'Account created! Check your email to confirm.'
+      msg_delete_failed: 'Oops… could not delete.',
+      msg_save_failed: 'Oops… could not save.',
+      msg_cannot_show: 'Could not display.',
+      confirm_delete: 'Delete "{name}"?',
+      unlock_wrong: 'Wrong password. Try again.',
+      pdf_title: 'Clavis-security — PDF copy'
+    
+      page_login_title: 'Sign in — Clavis-security',
+      page_register_title: 'Create my vault — Clavis-security',
+      login_tagline: '🔒 Your personal vault',
+      login_welcome: 'Welcome back.',
+      login_desc: 'Sign in and find your info in seconds.',
+      login_title: 'Sign in',
+      login_hint: 'Open your vault.',
+      label_email: 'Email',
+      label_password: 'Password',
+      login_no_account: 'No vault yet?',
+      register_tagline: 'Create my vault.',
+      register_desc: 'A simple space for your important info.',
+      register_title: 'Create an account',
+      register_hint: 'Create your vault in 30 seconds.',
+      register_have_account: 'I already have a vault',
+      field_name: 'Name (e.g. Gmail)',
+      add_info_heading: 'Add an item',
+      my_info_heading: 'My items',
+      loading: 'Loading…',
+      search_placeholder: 'Search…',
+      unlock_heading: 'Unlock my vault',
+      unlock_label: 'Secondary password',
+      unlock_open: 'Unlock',
+      lock_btn: 'Lock',
+      export_pdf: 'Export PDF',
+      vault_locked_note: 'Your vault is locked.',
+      vault_open_note: 'Your vault is unlocked.',
     },
 
     es: {
-      app_name: 'Clavis-security',
+      language: 'Idioma',
+      nav_home: 'Inicio',
+      nav_vault: 'Caja',
       nav_offers: 'Planes',
       nav_faq: 'Ayuda',
       nav_contact: 'Contacto',
-      nav_login: 'Iniciar sesión',
-      nav_register: 'Crear cuenta',
+      nav_account: 'Cuenta',
+      nav_login: 'Entrar',
+      nav_register: 'Crear mi caja',
       nav_menu: 'Menú',
-      btn_install: 'Instalar la app',
-      btn_logout: 'Cerrar sesión',
-      btn_back: 'Volver',
 
-      login_title: 'Iniciar sesión',
-      register_title: 'Crear cuenta',
-      login_hint: 'Inicia sesión para abrir tu caja.',
-      register_hint: 'Crea tu cuenta en segundos.',
+      btn_install: 'Instalar la app',
+      btn_login: 'Entrar',
+      btn_create_account: 'Crear una cuenta',
+      btn_continue: 'Continuar',
+      btn_cancel: 'Cancelar',
+      btn_logout: 'Salir',
+
+      vault_open: 'Caja abierta',
+      vault_closed: 'Caja cerrada',
+      vault_open_small: 'caja abierta',
+      vault_closed_small: 'caja cerrada',
+      items_count: '{count} elemento(s) guardado(s).',
+      no_results: 'Sin resultados.',
+      btn_view: 'Ver',
+      btn_copy_username: 'Copiar usuario',
+      btn_copy_password: 'Copiar contraseña',
+      btn_delete: 'Eliminar',
+      btn_back: 'Volver',
+      details_subtitle: 'Detalles',
+      label_username: 'Usuario',
+      label_password: 'Contraseña',
+
+      msg_open_vault_first: 'Abre tu caja para continuar.',
+      msg_copied: '✅ Copiado!',
+      msg_copy_failed: 'No se pudo copiar.',
+      msg_delete_failed: 'Ups… no se pudo eliminar.',
+      msg_save_failed: 'Ups… no se pudo guardar.',
+      msg_cannot_show: 'No se pudo mostrar.',
+      confirm_delete: '¿Eliminar "{name}"?',
+      unlock_wrong: 'Contraseña incorrecta. Inténtalo de nuevo.',
+      pdf_title: 'Clavis-security — Copia PDF'
+    
+      page_login_title: 'Entrar — Clavis-security',
+      page_register_title: 'Crear mi caja — Clavis-security',
+      login_tagline: '🔒 Tu caja personal',
+      login_welcome: 'Qué gusto verte.',
+      login_desc: 'Entra y encuentra tu info en segundos.',
+      login_title: 'Entrar',
+      login_hint: 'Abre tu caja.',
       label_email: 'Email',
       label_password: 'Contraseña',
-      btn_login: 'Entrar',
-      btn_create_account: 'Crear cuenta',
-      btn_register: 'Crear mi cuenta',
-      login_no_account: '¿Aún no tienes cuenta?',
-      register_have_account: '¿Ya tienes cuenta?',
-      link_login: 'Entrar',
-      link_register: 'Crear cuenta',
-
-      vault_title: 'Caja',
-      vault_locked: 'Caja bloqueada',
-      vault_unlocked: 'Caja abierta',
-      btn_unlock: 'Abrir',
-      btn_lock: 'Bloquear',
-      btn_add: 'Añadir',
-      btn_save: 'Guardar',
-      btn_delete: 'Eliminar',
-      btn_copy: 'Copiar',
-      btn_close: 'Cerrar',
-      btn_premium: 'Pasar a Premium',
-
-      label_name: 'Nombre',
-      label_username: 'Usuario',
-      label_secret: 'Contraseña',
-      label_url: 'Sitio (opcional)',
-      label_notes: 'Notas (opcional)',
-
+      login_no_account: '¿Aún no tienes caja?',
+      register_tagline: 'Crear mi caja.',
+      register_desc: 'Un espacio simple para tu información importante.',
+      register_title: 'Crear una cuenta',
+      register_hint: 'Crea tu caja en 30 segundos.',
+      register_have_account: 'Ya tengo una caja',
+      field_name: 'Nombre (ej. Gmail)',
+      add_info_heading: 'Añadir un elemento',
+      my_info_heading: 'Mis elementos',
+      loading: 'Cargando…',
       search_placeholder: 'Buscar…',
-
-      items_count: '{count} elemento(s) guardado(s).',
-
-      msg_generic_error: 'Ocurrió un error. Recarga la página.',
-      msg_copied: '✅ ¡Copiado!',
-      msg_copy_failed: 'No se pudo copiar.',
-      msg_delete_failed: 'No se pudo eliminar.',
-      msg_checkout_failed: 'No se pudo abrir el pago. Inténtalo de nuevo.',
-      msg_fill_email_password: 'Introduce tu email y contraseña.',
-      msg_fill_required: 'Completa los campos obligatorios.',
-      msg_account_created: '¡Cuenta creada! Revisa tu email para confirmar.'
+      unlock_heading: 'Abrir mi caja',
+      unlock_label: 'Contraseña secundaria',
+      unlock_open: 'Abrir',
+      lock_btn: 'Cerrar',
+      export_pdf: 'Exportar PDF',
+      vault_locked_note: 'Tu caja está cerrada.',
+      vault_open_note: 'Tu caja está abierta.',
     },
 
     it: {
-      aria_toggle_password: 'Mostra password',
-      app_name: 'Clavis-security',
-      nav_offers: 'Offerte',
+      language: 'Lingua',
+      nav_home: 'Home',
+      nav_vault: 'Cassaforte',
+      nav_offers: 'Piani',
       nav_faq: 'Aiuto',
       nav_contact: 'Contatto',
+      nav_account: 'Account',
       nav_login: 'Accedi',
-      nav_register: 'Crea account',
+      nav_register: 'Crea la cassaforte',
       nav_menu: 'Menu',
-      btn_install: "Installa l'app",
-      btn_logout: 'Esci',
-      btn_back: 'Indietro',
 
-      login_title: 'Accedi',
-      register_title: 'Crea account',
-      login_hint: 'Accedi per aprire il tuo vault.',
-      register_hint: 'Crea il tuo account in pochi secondi.',
-      label_email: 'Email',
-      label_password: 'Password',
+      btn_install: 'Installa l’app',
       btn_login: 'Accedi',
-      btn_create_account: 'Crea account',
-      btn_register: 'Crea il mio account',
-      login_no_account: 'Non hai un account?',
-      register_have_account: 'Hai già un account?',
-      link_login: 'Accedi',
-      link_register: 'Crea account',
+      btn_create_account: 'Crea un account',
+      btn_continue: 'Continua',
+      btn_cancel: 'Annulla',
+      btn_logout: 'Esci',
 
-      vault_title: 'Vault',
-      vault_locked: 'Vault bloccato',
-      vault_unlocked: 'Vault aperto',
-      btn_unlock: 'Apri',
-      btn_lock: 'Blocca',
-      btn_add: 'Aggiungi',
-      btn_save: 'Salva',
-      btn_delete: 'Elimina',
-      btn_copy: 'Copia',
-      btn_close: 'Chiudi',
-      btn_premium: 'Passa a Premium',
-
-      label_name: 'Nome',
-      label_username: 'Utente',
-      label_secret: 'Password',
-      label_url: 'Sito (opzionale)',
-      label_notes: 'Note (opzionale)',
-
-      search_placeholder: 'Cerca…',
-
+      vault_open: 'Cassaforte aperta',
+      vault_closed: 'Cassaforte chiusa',
+      vault_open_small: 'cassaforte aperta',
+      vault_closed_small: 'cassaforte chiusa',
       items_count: '{count} elemento(i) salvato(i).',
+      no_results: 'Nessun risultato.',
+      btn_view: 'Vedi',
+      btn_copy_username: 'Copia utente',
+      btn_copy_password: 'Copia password',
+      btn_delete: 'Elimina',
+      btn_back: 'Indietro',
+      details_subtitle: 'Dettagli',
+      label_username: 'Utente',
+      label_password: 'Password',
 
-      msg_generic_error: 'Si è verificato un errore. Ricarica la pagina.',
+      msg_open_vault_first: 'Apri la cassaforte per continuare.',
       msg_copied: '✅ Copiato!',
       msg_copy_failed: 'Impossibile copiare.',
-      msg_delete_failed: 'Impossibile eliminare.',
-      msg_checkout_failed: 'Impossibile aprire il pagamento. Riprova.',
-      msg_fill_email_password: 'Inserisci email e password.',
-      msg_fill_required: 'Compila i campi obbligatori.',
-      msg_account_created: "Account creato! Controlla l'email per confermare."
+      msg_delete_failed: 'Ops… impossibile eliminare.',
+      msg_save_failed: 'Ops… impossibile salvare.',
+      msg_cannot_show: 'Impossibile mostrare.',
+      confirm_delete: 'Eliminare "{name}"?',
+      unlock_wrong: 'Password errata. Riprova.',
+      pdf_title: 'Clavis-security — Copia PDF'
+    
+      page_login_title: 'Accedi — Clavis-security',
+      page_register_title: 'Crea la cassaforte — Clavis-security',
+      login_tagline: '🔒 La tua cassaforte personale',
+      login_welcome: 'Bentornato.',
+      login_desc: 'Accedi e ritrova i tuoi dati in pochi secondi.',
+      login_title: 'Accedi',
+      login_hint: 'Apri la cassaforte.',
+      label_email: 'Email',
+      label_password: 'Password',
+      login_no_account: 'Non hai ancora una cassaforte?',
+      register_tagline: 'Crea la cassaforte.',
+      register_desc: 'Uno spazio semplice per le informazioni importanti.',
+      register_title: 'Crea un account',
+      register_hint: 'Crea la cassaforte in 30 secondi.',
+      register_have_account: 'Ho già una cassaforte',
+      field_name: 'Nome (es. Gmail)',
+      add_info_heading: 'Aggiungi un elemento',
+      my_info_heading: 'I miei elementi',
+      loading: 'Caricamento…',
+      search_placeholder: 'Cerca…',
+      unlock_heading: 'Apri la mia cassaforte',
+      unlock_label: 'Password secondaria',
+      unlock_open: 'Apri',
+      lock_btn: 'Blocca',
+      export_pdf: 'Esporta PDF',
+      vault_locked_note: 'La cassaforte è bloccata.',
+      vault_open_note: 'La cassaforte è aperta.',
     }
   };
 
-  const normalize = (lang) => (['fr','en','es','it'].includes(lang) ? lang : 'fr');
-
   function getLang() {
-    const saved = localStorage.getItem(STORE_KEY);
-    if (saved) return normalize(saved);
-    const nav = (navigator.language || 'fr').slice(0,2).toLowerCase();
-    return normalize(nav);
+    try {
+      const v = localStorage.getItem(STORE_KEY);
+      return STRINGS[v] ? v : 'fr';
+    } catch (_) {
+      return 'fr';
+    }
   }
 
-  function setLang(lang) {
-    const l = normalize(lang);
-    localStorage.setItem(STORE_KEY, l);
-    apply(l);
-  }
-
-  function format(str, vars) {
+  function interpolate(str, vars) {
     if (!vars) return str;
     return String(str).replace(/\{(\w+)\}/g, (_, k) => (vars[k] != null ? String(vars[k]) : ''));
   }
 
-  function t(key, vars) {
-    const lang = getLang();
-    const dict = STRINGS[lang] || STRINGS.fr;
-
-    const v = (dict && dict[key]) || STRINGS.fr[key];
-    if (v == null) return format(String(key), vars);
-    return format(v, vars);
+  function tr(lang, key, vars) {
+    const pack = STRINGS[lang] || STRINGS.fr;
+    const base = pack[key] != null ? pack[key] : (STRINGS.fr[key] != null ? STRINGS.fr[key] : key);
+    return interpolate(base, vars);
   }
 
-  function rememberDefault(el, attr, val) {
-    const k = `i18nDefault${attr}`;
-    if (el.dataset[k] == null) el.dataset[k] = val;
-  }
+  function applyLang(lang) {
+    // lang attribute
+    try { document.documentElement.setAttribute('lang', lang); } catch (_) {}
 
-  function pickFallback(el, attr, key) {
-    const k = `i18nDefault${attr}`;
-    const current = el.dataset[k];
-    const v = (STRINGS[getLang()] && STRINGS[getLang()][key]) || STRINGS.fr[key];
-    // If we don't have a translation, keep original (avoid showing raw keys)
-    if (v == null) return current != null ? current : null;
-    return v;
-  }
-
-  function apply(lang) {
-    lang = normalize(lang);
-    const dict = STRINGS[lang] || STRINGS.fr;
-
-    // Text content
+    // data-i18n text
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
-      const original = (el.textContent || '').trim();
-      rememberDefault(el, 'Text', original);
-      const next = (dict[key] || STRINGS.fr[key]);
-      if (next != null) el.textContent = next;
-      // else keep existing text
+      if (!key) return;
+      el.textContent = tr(lang, key);
     });
 
-    // Placeholder
+    // placeholder
     document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
       const key = el.getAttribute('data-i18n-placeholder');
-      const original = el.getAttribute('placeholder') || '';
-      rememberDefault(el, 'Placeholder', original);
-      const next = (dict[key] || STRINGS.fr[key]);
-      if (next != null) el.setAttribute('placeholder', next);
+      if (!key) return;
+      el.setAttribute('placeholder', tr(lang, key));
     });
 
-    // Title
+    // title attribute
     document.querySelectorAll('[data-i18n-title]').forEach((el) => {
       const key = el.getAttribute('data-i18n-title');
-      const original = el.getAttribute('title') || '';
-      rememberDefault(el, 'Title', original);
-      const next = (dict[key] || STRINGS.fr[key]);
-      if (next != null) el.setAttribute('title', next);
+      if (!key) return;
+      el.setAttribute('title', tr(lang, key));
     });
 
-    // Aria-label
+    // aria-label
     document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
       const key = el.getAttribute('data-i18n-aria');
-      const original = el.getAttribute('aria-label') || '';
-      rememberDefault(el, 'Aria', original);
-      const next = (dict[key] || STRINGS.fr[key]);
-      if (next != null) el.setAttribute('aria-label', next);
+      if (!key) return;
+      el.setAttribute('aria-label', tr(lang, key));
     });
 
-    // Sync language selects
-    document.querySelectorAll('select[data-lang-select], #appLangSelect').forEach((sel) => {
-      try { if (sel.value !== lang) sel.value = lang; } catch (_) {}
-    });
+    // sync selects
+    const webSel = document.getElementById('webLangSelect');
+    if (webSel && webSel.value !== lang) webSel.value = lang;
 
-    document.documentElement.setAttribute('lang', lang);
+    const appSel = document.getElementById('appLangSelect');
+    if (appSel && appSel.value !== lang) appSel.value = lang;
   }
 
-  window.clavisT = t;
+  function setLang(lang) {
+    if (!STRINGS[lang]) lang = 'fr';
+    try { localStorage.setItem(STORE_KEY, lang); } catch (_) {}
+    applyLang(lang);
+    try { window.dispatchEvent(new CustomEvent('clavis:lang', { detail: { lang } })); } catch (_) {}
+  }
+
+  // Public API for JS-generated UI
   window.clavisGetLang = getLang;
   window.clavisSetLang = setLang;
+  window.clavisT = function (key, vars) { return tr(getLang(), key, vars); };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => apply(getLang()));
-  } else {
-    apply(getLang());
+  function init() {
+    const lang = getLang();
+    applyLang(lang);
+
+    const webSel = document.getElementById('webLangSelect');
+    if (webSel) {
+      webSel.value = lang;
+      webSel.addEventListener('change', () => setLang(webSel.value));
+    }
+
+    // App selector (if present)
+    const appSel = document.getElementById('appLangSelect');
+    if (appSel) {
+      appSel.value = lang;
+      appSel.addEventListener('change', () => setLang(appSel.value));
+    }
+
+    window.addEventListener('clavis:lang', (e) => {
+      const next = e && e.detail && e.detail.lang ? e.detail.lang : getLang();
+      applyLang(next);
+    });
   }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
