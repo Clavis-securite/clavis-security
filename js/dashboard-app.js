@@ -1,203 +1,142 @@
 // /js/dashboard-app.js
-// Dashboard APP (PWA installed on phone): simple, no overlays.
-// Views:
-// - List (items)
-// - Add (form)
-// - Detail (handled by inline script)
-// Controls:
-// - 🔍 toggles search
-// - 🌐 toggles language selector
-// - ＋ opens Add view
+// Dashboard APP (PWA installée sur téléphone) : UI simple, sans overlays.
+// Gère uniquement : topbar app (🔍 / 🌐), vue Ajouter via le bouton ＋, et placement de la barre de recherche.
+
 (function () {
+  function ready(fn) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+
   function isAppPhone() {
     return document.documentElement.classList.contains('app-phone');
   }
 
   const qs = (sel, root) => (root || document).querySelector(sel);
 
-  function setHidden(el, hidden) {
-    if (!el) return;
-    el.hidden = !!hidden;
+  function show(el) { if (el) el.hidden = false; }
+  function hide(el) { if (el) el.hidden = true; }
+
+  function ensureSearchRow() {
+    const row = qs('#appSearchRow');
+    const search = qs('#search');
+    if (!row || !search) return { row, search };
+
+    // Move search input into the app row (once)
+    if (!row.contains(search)) {
+      row.innerHTML = '';
+      row.appendChild(search);
+      search.classList.add('app-search-input');
+    }
+
+    // i18n placeholder
+    try {
+      if (window.clavisT) search.setAttribute('placeholder', window.clavisT('search_placeholder'));
+    } catch (_) {}
+    return { row, search };
   }
 
-  function init() {
+  ready(() => {
     if (!isAppPhone()) return;
 
-    const topbar = qs('.app-topbar[data-app-only]');
-    const searchBtn = qs('#appSearchBtn');
-    const langBtn = qs('#appLangBtn');
-    const searchRow = qs('#appSearchRow');
+    // Show app topbar
+    const topbar = qs('.app-topbar');
+    show(topbar);
+
+    // Show FAB (+)
+    const fab = qs('#btnAdd');
+    if (fab) fab.style.display = 'grid';
+
+    const { row: searchRow, search } = ensureSearchRow();
+
     const langRow = qs('#appLangRow');
     const langSelect = qs('#appLangSelect');
 
-    const addBtn = qs('#btnAdd');
-    const addForm = qs('#addForm');
-    const addCard = addForm ? addForm.closest('.card') : null;
-
-    const list = qs('#itemsList');
-    const listCard = list ? list.closest('.card') : null;
-    const detail = qs('#appDetail'); // injected container
-
-    // Show app topbar
-    if (topbar) topbar.hidden = false;
-
-    // Ensure + button is visible and above bottom button
-    if (addBtn) addBtn.style.display = 'grid';
-
-    // Move the existing search input into the app search row
-    const searchInput = qs('#search');
-    if (searchInput && searchRow && !searchRow.contains(searchInput)) {
-      searchRow.appendChild(searchInput);
-      searchInput.placeholder = (window.clavisT ? window.clavisT('search_placeholder') : (searchInput.placeholder || 'Rechercher…'));
-    }
-
-    // Simplify add form: show only Name + Username + Password in app
-    function simplifyAddForm() {
-      const title = qs('#title');
-      const username = qs('#username');
-      const pwd = qs('#secretPassword');
-      const url = qs('#url');
-      const notes = qs('#notes');
-
-      if (title) {
-        title.required = true;
-        title.placeholder = title.placeholder || 'ex : Gmail';
-      }
-
-      if (url) url.closest('.field')?.classList.add('app-hide');
-      if (notes) notes.closest('.field')?.classList.add('app-hide');
-
-      // keep fields present (no breaking), only hide in app
-      if (username) username.placeholder = username.placeholder || '';
-      if (pwd) pwd.placeholder = pwd.placeholder || '';
-    }
-    simplifyAddForm();
-
-    function showList() {
-      setHidden(searchRow, true);
-      setHidden(langRow, true);
-      if (detail) setHidden(detail, true);
-      if (addCard) addCard.style.display = 'none';
-      if (listCard) listCard.style.display = 'block';
-      if (addBtn) addBtn.hidden = false;
-    }
-
-    function showAdd() {
-      setHidden(searchRow, true);
-      setHidden(langRow, true);
-      if (detail) setHidden(detail, true);
-      if (listCard) listCard.style.display = 'none';
-      if (addCard) addCard.style.display = 'block';
-      if (addBtn) addBtn.hidden = true;
-      // focus first field
-      setTimeout(() => { qs('#title')?.focus(); }, 50);
-    }
-
-    // Buttons
-    if (searchBtn) {
+    // Toggle search
+    const searchBtn = qs('#appSearchBtn');
+    if (searchBtn && searchRow) {
       searchBtn.addEventListener('click', () => {
-        const nowOpen = !searchRow.hidden;
-        setHidden(searchRow, nowOpen);
-        if (!nowOpen) {
-          setHidden(langRow, true);
-          qs('#search')?.focus();
+        const isHidden = searchRow.hidden === true;
+        if (isHidden) {
+          show(searchRow);
+          hide(langRow);
+          setTimeout(() => { try { search && search.focus(); } catch (_) {} }, 50);
+        } else {
+          hide(searchRow);
         }
       });
     }
 
-    if (langBtn) {
+    // Toggle language
+    const langBtn = qs('#appLangBtn');
+    if (langBtn && langRow) {
       langBtn.addEventListener('click', () => {
-        const nowOpen = !langRow.hidden;
-        setHidden(langRow, nowOpen);
-        if (!nowOpen) setHidden(searchRow, true);
+        const isHidden = langRow.hidden === true;
+        if (isHidden) {
+          show(langRow);
+          hide(searchRow);
+          setTimeout(() => { try { langSelect && langSelect.focus(); } catch (_) {} }, 50);
+        } else {
+          hide(langRow);
+        }
       });
     }
 
     if (langSelect) {
-      try { langSelect.value = localStorage.getItem('clavis_lang') || 'fr'; } catch (_) {}
       langSelect.addEventListener('change', () => {
-        try { localStorage.setItem('clavis_lang', langSelect.value); } catch (_) {}
-        if (window.clavisSetLang) window.clavisSetLang(langSelect.value);
+        try { if (window.clavisSetLang) window.clavisSetLang(langSelect.value); } catch (_) {}
       });
     }
 
-    if (addBtn) addBtn.addEventListener('click', showAdd);
+    // Add view: show the existing Add card, hide list/detail
+    const addForm = qs('#addForm');
+    const addCard = addForm ? addForm.closest('.card') : null;
+    const list = qs('#itemsList');
+    const listCard = list ? list.closest('.card') : null;
+    const detail = qs('#appDetail');
 
-    // When add form submits successfully, inline script already refreshes list.
-    // We return to list on submit (safe).
-    if (addForm) {
-      addForm.addEventListener('submit', () => {
-        setTimeout(showList, 250);
-      });
+    function showList() {
+      if (listCard) listCard.style.display = '';
+      if (addCard) addCard.style.display = 'none';
+      if (detail) detail.hidden = true;
+      if (list) list.hidden = false;
     }
 
-    // If user taps "Compte" tab, login page handles account screen in app.
-    // Start on list.
+    function showAdd() {
+      if (listCard) listCard.style.display = 'none';
+      if (addCard) addCard.style.display = '';
+      if (detail) detail.hidden = true;
+      if (list) list.hidden = true;
+
+      // Focus first field (Nom)
+      setTimeout(() => {
+        try {
+          const name = qs('#title');
+          if (name) name.focus();
+        } catch (_) {}
+      }, 50);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Default to list
     showList();
 
+    if (fab) fab.addEventListener('click', showAdd);
 
-    // Premium CTA (no bottom navigation in app)
-    const premiumBtn = qs('#appPremiumBtn');
-    async function startPremiumCheckout() {
-      try {
-        // Use the same logic as Offers: requires login
-        if (typeof getSession !== 'function') {
-          alert(t('msg_generic_error') || "Une erreur est survenue. Recharge la page.");
-          return;
-        }
-        const session = await getSession();
-        if (!session || !session.user) {
-          const next = encodeURIComponent('/dashboard.html');
-          window.location.href = `/login.html?next=${next}`;
-          return;
-        }
+    // When saving, the inline script will re-render and we can go back to list.
+    if (addForm) {
+      addForm.addEventListener('submit', () => {
+        // Let inline submit run; switch back after a short delay.
+        setTimeout(() => showList(), 400);
+      });
+    }
 
-        // Go straight to annual premium checkout
-        const body = {
-          plan: 'annual',
-          user_id: session.user.id,
-          user_email: session.user.email,
-          site_url: window.location.origin
-        };
-
-        const res = await fetch('/.netlify/functions/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-
-        if (!res.ok) {
-          alert(t('msg_checkout_failed') || "Impossible d’ouvrir le paiement. Réessaie dans un instant.");
-          return;
-        }
-
-        const data = await res.json().catch(() => ({}));
-        if (data && data.url) {
-          window.location.href = data.url;
-          return;
-        }
-
-        alert(t('msg_checkout_failed') || "Impossible d’ouvrir le paiement. Réessaie dans un instant.");
-      } catch (_) {
-        alert(t('msg_checkout_failed') || "Impossible d’ouvrir le paiement. Réessaie dans un instant.");
+    // If detail view closes, ensure list is visible (inline script toggles list/detail)
+    document.addEventListener('click', (e) => {
+      const back = e.target && e.target.closest && e.target.closest('[data-detail-back]');
+      if (back) {
+        setTimeout(() => showList(), 0);
       }
-    }
-
-    if (premiumBtn) {
-      premiumBtn.hidden = false;
-      premiumBtn.addEventListener('click', startPremiumCheckout);
-    }
-
-    // If user changed language elsewhere, keep select in sync
-    window.addEventListener('clavis:lang', () => {
-      try {
-        const lang = localStorage.getItem('clavis_lang') || 'fr';
-        if (langSelect && langSelect.value !== lang) langSelect.value = lang;
-        if (searchInput) searchInput.placeholder = (window.clavisT ? window.clavisT('search_placeholder') : searchInput.placeholder);
-      } catch (_) {}
     });
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  });
 })();
