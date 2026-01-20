@@ -6,61 +6,63 @@
   <title>Mon coffre — Clavis-security</title>
   <meta name="description" content="Retrouve facilement tes informations en toute simplicité." />
   <link rel="stylesheet" href="/css/styles.css" />
-
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
-
-  <!-- JS (defer) -->
-  <script src="/js/app-mode.js" defer></script>
-  <script src="/js/pwa.js" defer></script>
-  <script src="/js/i18n.js" defer></script>
-  <script src="/js/app-shell.js" defer></script>
-  <script src="/js/dashboard-app.js" defer></script>
-  <script src="/js/app.js" defer></script>
+  <link rel="stylesheet" href="/css/app.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0ea5e9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
-
-<body data-page="dashboard">
+<script src="/js/pwa.js"></script>
+<script src="/js/app-mode.js" defer></script>
 
 <nav class="app-bottom" style="display:none;">
   <div class="app-bottom-nav">
-    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+    <a class="app-tab active" href="/dashboard.html"><div class="ico">🔐</div><span>Coffre</span></a>
+    <a class="app-tab" href="/offers.html"><div class="ico">⭐</div><span>Premium</span></a>
+    <a class="app-tab" href="/faq.html"><div class="ico">❓</div><span>Aide</span></a>
+    <a class="app-tab" href="/contact.html"><div class="ico">✉️</div><span>Contact</span></a>
   </div>
 </nav>
 
 <button class="app-fab" id="btnAdd" style="display:none;" aria-label="Ajouter">＋</button>
 
-<header class="cs-topbar">
-  <div class="cs-container cs-nav">
-    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
-      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
-      <span class="cs-brand-name">Clavis-security</span>
-    </a>
+<script>
+  // n'affiche que si app-mode
+  if (document.documentElement.classList.contains("app-mode")) {
+    document.querySelector(".app-bottom").style.display = "block";
+    document.getElementById("btnAdd").style.display = "grid";
+  }
+</script>
 
-    <nav class="cs-links" aria-label="Navigation">
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="offers.html">Offres</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="navcta">
+        <span class="badge" id="userBadge">👤 …</span>
+        <button class="btn small" id="logoutBtn">Déconnexion</button>
+        <button class="btn small mobile-toggle" data-mobile-toggle aria-label="Ouvrir le menu">Menu</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" data-mobile-menu>
       <a href="offers.html">Offres</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="cs-actions">
-      <span class="cs-pill" id="userBadge">👤 …</span>
-      <button class="cs-btn cs-ghost" id="logoutBtn" type="button">Déconnexion</button>
-      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+      <button class="btn" id="logoutBtnMobile" style="margin-top:12px;">Déconnexion</button>
     </div>
-  </div>
-
-  <div class="cs-container cs-mobile" data-mobile-menu>
-    <a href="offers.html">Offres</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <button class="cs-btn cs-ghost" id="logoutBtnMobile" type="button">Déconnexion</button>
   </div>
 </header>
 
@@ -185,6 +187,7 @@
 </footer>
 
 <script src="/js/app.js"></script>
+<script src="/js/premium.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase.js"></script>
 <script src="/js/crypto.js"></script>
@@ -700,5 +703,9 @@
   });
 </script>
 
+
+  <div class="app-premium-cta" aria-hidden="true">
+    <button id="appPremiumBtn" class="btn btn-primary" type="button">Passer à Premium</button>
+  </div>
 </body>
 </html>

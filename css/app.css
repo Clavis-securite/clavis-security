@@ -1,342 +1,91 @@
 /* css/app.css
-   Styles appliqués UNIQUEMENT en mode "app" (PWA installée / standalone).
-   Objectif : expérience smartphone pensée "1 pouce".
-   IMPORTANT : ne jamais impacter la version site web.
+   Styles appliqués uniquement en PWA installée SUR TÉLÉPHONE via .app-phone
+   (n'impacte pas le site web en navigateur).
 */
 
-/* IMPORTANT : l'app s'applique uniquement quand la classe app-phone est presente */
-
-/* Espace pour la barre du bas */
-.app-phone body {
-  padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); /* hauteur nav */
+:root.app-phone {
+  overscroll-behavior: none;
 }
 
-/* Base anti débordements */
-.app-phone html,
 .app-phone body {
   overflow-x: hidden;
 }
 
-.app-phone *,
-.app-phone *::before,
-.app-phone *::after {
-  box-sizing: border-box;
-  min-width: 0;
-}
-
-.app-phone img, .app-phone video, .app-phone canvas {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Header : plus compact en app */
-.app-mode .cs-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
-
-.app-mode .cs-links,
-.app-mode [data-mobile-toggle],
-.app-mode [data-mobile-menu] {
+/* Cache les éléments "site" pour une vraie sensation app */
+.app-phone header,
+.app-phone footer,
+.app-phone .site-header,
+.app-phone .site-footer {
   display: none !important;
 }
 
-.app-mode .cs-actions {
-  gap: 10px;
+/* Conteneurs : plus serré et lisible */
+.app-phone .container {
+  padding: 16px !important;
+  max-width: 620px;
 }
 
-.app-mode .cs-install {
-  display: none !important;
-}
-
-/* Boutons : zones plus faciles à toucher */
-.app-mode .cs-btn {
-  min-height: 44px;
-  padding: 12px 14px;
-  border-radius: 14px;
-}
-
-/* Titres et sections : plus courts */
-.app-mode .cs-hero,
-.app-mode .cs-section {
-  padding-top: 18px;
-  padding-bottom: 18px;
-}
-
-/* Grilles : une colonne en app (sans changer le web) */
-.app-mode .cs-grid3,
-.app-mode .cs-hero-grid {
-  display: grid;
-  grid-template-columns: 1fr !important;
-  gap: 12px;
-}
-
-/* Auth (connexion / inscription) : version app plus directe */
-.app-mode .cs-auth-grid {
-  grid-template-columns: 1fr !important;
-}
-
-.app-mode .cs-auth-left {
-  display: none !important;
-}
-
-.app-mode .cs-auth-card {
-  margin: 0 auto;
-  width: min(560px, 100%);
-}
-
-.app-mode .cs-container {
-  width: min(720px, 100%);
-  padding-left: 14px;
-  padding-right: 14px;
-}
-
-/* Cartes : compactes */
-.app-mode .cs-card {
-  padding: 14px;
-  border-radius: 16px;
-}
-
-/* Page Offres : meilleure lisibilité en app */
-.app-mode .pricing-grid {
-  display: grid;
-  grid-template-columns: 1fr !important;
-  gap: 12px;
-}
-
-/* Bottom nav (déjà dans HTML) : style app */
-.app-mode .app-bottom {
-  display: block !important;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-}
-
-.app-mode .app-bottom-nav {
-  height: 66px;
-  padding: 8px 10px 10px;
-  background: rgba(11, 18, 32, 0.92);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255,255,255,.10);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  z-index: 999;
-  pointer-events: auto;
-}
-
-.app-mode .app-tab {
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  color: rgba(255,255,255,.75);
-  border-radius: 14px;
-  padding: 6px 4px;
-  font-size: 12px;
-  line-height: 1.1;
-}
-
-.app-mode .app-tab .ico {
-  font-size: 18px;
-  margin-bottom: 3px;
-}
-
-.app-mode .app-tab.active {
-  background: rgba(14,165,233,.14);
-  color: rgba(255,255,255,.95);
-}
-
-/* ============ Dashboard (app) ============ */
-
-/* En app : on évite l'en-tête/footers "site" sur le coffre pour rester simple */
-.app-phone body[data-page="dashboard"] .cs-topbar,
-.app-phone body[data-page="dashboard"] .footer {
-  display: none !important;
-}
-
-/* On respire, sans rien hors champ */
-.app-phone body[data-page="dashboard"] .section {
-  padding: 14px 0 18px;
-}
-
-.app-phone body[data-page="dashboard"] .container {
-  width: min(720px, 100%);
-  padding-left: 14px;
-  padding-right: 14px;
-}
-
-/* Les grilles du dashboard passent en une colonne */
-.app-phone body[data-page="dashboard"] .grid2 {
-  display: grid;
-  grid-template-columns: 1fr !important;
-  gap: 12px;
-}
-
-/* Cache le "hero" marketing interne au dashboard en mode app */
-.app-phone body[data-page="dashboard"] .page-hero,
-.app-phone body[data-page="dashboard"] .hr {
-  display: none !important;
-}
-
-/* Dashboard en app : on masque le header/footer "site" pour une sensation appli */
-.app-mode body[data-page="dashboard"] .cs-topbar,
-.app-mode body[data-page="dashboard"] .footer {
-  display: none !important;
-}
-
-/* Hero plus compact */
-.app-mode body[data-page="dashboard"] .page-hero {
-  padding: 0;
-  margin: 0 0 10px;
-}
-
-.app-mode body[data-page="dashboard"] .page-hero h1 {
-  font-size: 22px;
-  margin: 8px 0 6px;
-}
-
-/* Barre "actions" compacte (ouvrir/fermer, export) */
-.app-mode body[data-page="dashboard"] .card.pad {
-  padding: 14px;
+.app-phone .card {
   border-radius: 18px;
 }
 
-.app-mode body[data-page="dashboard"] .card.pad h3 {
-  font-size: 16px;
-}
-
-/* Liste d'items : plus dense */
-.app-mode body[data-page="dashboard"] #itemsList {
-  gap: 10px !important;
-}
-
-/* Inputs sans débordement */
-.app-mode body[data-page="dashboard"] input,
-.app-mode body[data-page="dashboard"] textarea,
-.app-mode body[data-page="dashboard"] button {
+/* Formulaires : champs plus grands, zone pouce */
+.app-phone input,
+.app-phone select,
+.app-phone button,
+.app-phone textarea {
   max-width: 100%;
 }
 
-/* Bouton + (FAB) au-dessus de la barre du bas */
-.app-phone .app-fab {
-  position: fixed;
-  right: 14px;
-  bottom: 86px; /* au-dessus de la bottom-nav */
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(14,165,233,.25);
-  color: rgba(255,255,255,.95);
-  font-size: 28px;
-  line-height: 1;
-  display: grid;
-  place-items: center;
-  z-index: 1200;
+.app-phone .form-row {
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 
-/* ============ Dashboard "app" : header + vues (sans superposition) ============ */
-
-.app-phone body[data-page="dashboard"] {
-  background: #0b1220;
-}
-
-.app-phone .app-dash-header {
+/* Dashboard app : on garde la logique existante mais on rend tout simple */
+.app-phone .vault-toolbar,
+.app-phone .dashboard-toolbar {
   position: sticky;
   top: 0;
-  z-index: 60;
-  background: rgba(11, 18, 32, 0.92);
+  z-index: 5;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.10);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 0 12px 0;
 }
 
-.app-phone .app-dash-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 14px;
-  gap: 10px;
+.app-phone .vault-list,
+.app-phone .items-list {
+  margin-bottom: 86px; /* espace bouton premium */
 }
 
-.app-phone .app-dash-title {
-  font-weight: 900;
-  letter-spacing: .2px;
+/* Bouton Premium (fixe bas) */
+.app-phone .app-premium-cta {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 20;
 }
 
-.app-phone .app-dash-actions { display: flex; gap: 8px; }
-
-.app-phone .app-icon-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  color: rgba(255,255,255,.95);
-  font-size: 18px;
-}
-
-.app-phone .app-dash-row {
-  padding: 0 14px 12px;
-}
-
-.app-phone .app-search {
+.app-phone .app-premium-cta button {
   width: 100%;
-  min-height: 46px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.18);
-  color: rgba(255,255,255,.92);
-  padding: 12px 12px;
+  border-radius: 999px;
+  padding: 14px 16px;
+  font-weight: 700;
 }
 
-.app-phone .app-lang-label {
-  display: block;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.app-phone .app-lang-select {
-  width: 100%;
-  min-height: 46px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.18);
-  color: rgba(255,255,255,.92);
-  padding: 10px 12px;
-}
-
-.app-phone .app-screen { padding-top: 12px; }
-
-.app-phone .app-add-head {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 0 8px;
-}
-
-.app-phone .app-back {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  color: rgba(255,255,255,.95);
-  font-size: 18px;
-}
-
-.app-phone .app-add-title { font-weight: 900; }
-.app-phone .app-add-note { margin: 0 0 10px; opacity: .85; }
-
-.app-phone .app-primary { width: 100%; }
-
-/* Évite un flash de la page marketing si /index.html est ouvert depuis l'app */
-.app-mode body[data-page="home"] .cs-hero,
-.app-mode body[data-page="home"] .cs-divider,
-.app-mode body[data-page="home"] .cs-section {
+/* Vue details (si utilisée) */
+.app-phone .app-view {
   display: none;
 }
+.app-phone .app-view.active {
+  display: block;
+}
 
+/* Évite les overlays qui se superposent en app : on force une seule vue visible */
+.app-phone .modal,
+.app-phone .overlay,
+.app-phone .drawer,
+.app-phone .sheet {
+  display: none !important;
+}

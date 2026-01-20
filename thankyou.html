@@ -4,60 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Merci — Clavis-security</title>
-  <meta name="description" content="Merci ! Ton coffre est prêt." />
-
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
-
+  <meta name="description" content="Merci ! Ton accès Premium est en cours d’activation." />
   <link rel="stylesheet" href="/css/styles.css" />
-
-  <!-- JS (defer) -->
-  <script src="/js/app-mode.js" defer></script>
-  <script src="/js/pwa.js" defer></script>
-    <script src="/js/i18n.js" defer></script>
-<script src="/js/app-shell.js" defer></script>
-  <script src="/js/app.js" defer></script>
 </head>
+<script src="/js/app-mode.js" defer></script>
 
-<body data-page="thankyou">
+<body>
 
-<nav class="app-bottom" style="display:none;">
-  <div class="app-bottom-nav">
-    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
-    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
-    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
-  </div>
-</nav>
-
-<header class="cs-topbar">
-  <div class="cs-container cs-nav">
-    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
-      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
-      <span class="cs-brand-name">Clavis-security</span>
-    </a>
-
-    <nav class="cs-links" aria-label="Navigation">
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="cs-actions">
-      <a class="cs-btn cs-primary" href="dashboard.html">Aller à mon coffre</a>
-      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Clavis-security</span>
+      </a>
+      <div class="navcta">
+        <a class="btn small" href="dashboard.html">Aller à mon coffre</a>
+      </div>
     </div>
-  </div>
-
-  <div class="cs-container cs-mobile" data-mobile-menu>
-    <a href="offers.html">Offres</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <a href="dashboard.html">Mon coffre</a>
   </div>
 </header>
 
@@ -65,43 +29,44 @@
   <div class="container">
 
     <div class="card pad">
-      <span class="badge" id="ty-badge">✅ C’est bon</span>
-      <h1 style="margin:8px 0 8px;" id="ty-title">Merci !</h1>
+      <span class="badge" id="ty-badge">✅ Paiement confirmé</span>
+      <h1 style="margin:8px 0 8px;" id="ty-title">Merci ! Tu es prêt.</h1>
 
       <p style="margin:0;color:var(--muted); max-width: 760px;" id="ty-lead">
-        Ton coffre est prêt. Si tu reviens d’un paiement, l’activation peut prendre quelques secondes.
+        Ton accès est activé automatiquement. Si tu ne vois pas la différence tout de suite,
+        recharge simplement la page du coffre.
       </p>
 
       <div class="hr"></div>
 
       <div class="grid2" id="ty-actions">
         <div>
-          <h3 style="margin:0 0 6px;">La suite</h3>
+          <h3 style="margin:0 0 6px;">Ce que tu peux faire maintenant</h3>
           <ul style="margin:0; padding-left: 18px; color: var(--muted);">
-            <li>Ouvre ton coffre</li>
-            <li>Ajoute tes informations</li>
-            <li>Retrouve tout grâce à la recherche</li>
+            <li>Ajouter autant d’éléments que tu veux</li>
+            <li>Retrouver tout instantanément grâce à la recherche</li>
+            <li>Faire une <strong>copie PDF</strong> de tout ton contenu (dans le coffre)</li>
           </ul>
         </div>
 
         <div style="display:flex; gap:10px; justify-content:flex-end; align-items:center; flex-wrap:wrap;">
           <a class="btn primary" href="dashboard.html" id="ty-primary">Ouvrir mon coffre</a>
-          <a class="btn" href="faq.html" id="ty-secondary">Voir l’aide</a>
+          <a class="btn" href="offers.html" id="ty-secondary">Voir les offres</a>
         </div>
       </div>
 
       <div class="hr"></div>
 
       <div class="hero-note">
-        Astuce : sur téléphone, tu peux installer Clavis comme une application (icône sur l’écran d’accueil).
+        Astuce : pour une meilleure tranquillité, pense à fermer ton coffre quand tu as fini.
       </div>
     </div>
 
     <div class="grid2" style="margin-top: 14px;">
       <div class="card pad">
-        <h3 style="margin:0 0 6px;">Besoin d’un coup de main ?</h3>
+        <h3 style="margin:0 0 6px;">Une question ?</h3>
         <p style="margin:0;color:var(--muted);">
-          Écris-nous, on répond en général sous 24h (jours ouvrés).
+          Va sur la FAQ ou contacte-nous, on répond vite.
         </p>
         <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
           <a class="btn" href="faq.html">FAQ</a>
@@ -110,9 +75,9 @@
       </div>
 
       <div class="card pad">
-        <h3 style="margin:0 0 6px;">Tranquille 👌</h3>
+        <h3 style="margin:0 0 6px;">Bien joué 👌</h3>
         <p style="margin:0;color:var(--muted);">
-          Moins d’oublis, plus de sérénité.
+          Tu viens de te simplifier la vie. Moins d’oublis, plus de sérénité.
         </p>
       </div>
     </div>
@@ -133,48 +98,42 @@
   </div>
 </footer>
 
+<script src="/js/app.js"></script>
 <script>
+  // Petit message optionnel si tu veux
   (function(){
     const params = new URLSearchParams(window.location.search);
-    const isRegistered = params.get('registered') === '1';
+    const isRegistered = params.get("registered") === "1";
 
-    const badge = document.getElementById('ty-badge');
-    const title = document.getElementById('ty-title');
-    const lead = document.getElementById('ty-lead');
-    const primary = document.getElementById('ty-primary');
-    const secondary = document.getElementById('ty-secondary');
-
+    // Si c'est une inscription : page merci + invitation a verifier l'email
     if (isRegistered) {
-      const email = params.get('email') || '';
-      if (badge) badge.textContent = '✅ Compte créé';
-      if (title) title.textContent = 'Merci ! Dernière petite étape.';
+      const email = params.get("email") || "";
+      const badge = document.getElementById("ty-badge");
+      const title = document.getElementById("ty-title");
+      const lead = document.getElementById("ty-lead");
+      const primary = document.getElementById("ty-primary");
+      const secondary = document.getElementById("ty-secondary");
+
+      if (badge) badge.textContent = "✅ Compte créé";
+      if (title) title.textContent = "Merci ! Dernière petite étape.";
       if (lead) {
-        const safeEmail = email.replace(/[<>&"']/g, '');
-        lead.innerHTML = "On vient de t'envoyer un email pour confirmer ton adresse" + (safeEmail ? (" <strong>" + safeEmail + "</strong>") : '') + ".<br>Ouvre-le et confirme, puis connecte-toi.";
+        lead.innerHTML = "On vient de t'envoyer un email pour confirmer ton adresse" + (email ? (" <strong>" + email + "</strong>") : "") + ".<br>Ouvre-le et confirme : ensuite tu pourras te connecter.";
       }
       if (primary) {
-        primary.textContent = 'Aller à la connexion';
-        primary.setAttribute('href', email ? ("login.html?email=" + encodeURIComponent(email)) : 'login.html');
+        primary.textContent = "Aller à la connexion";
+        primary.setAttribute("href", email ? ("login.html?email=" + encodeURIComponent(email)) : "login.html");
       }
       if (secondary) {
-        secondary.textContent = 'Voir les offres';
-        secondary.setAttribute('href', 'offers.html');
+        secondary.textContent = "Voir les offres";
+        secondary.setAttribute("href", "offers.html");
       }
       return;
     }
 
-    // Paiement confirmé
-    if (params.get('success') === '1') {
-      if (badge) badge.textContent = '✅ Paiement confirmé';
-      if (title) title.textContent = 'Merci ! Tu es prêt.';
-      if (lead) lead.textContent = "Ton accès est activé automatiquement. Si tu ne vois pas la différence tout de suite, recharge la page du coffre.";
-      if (secondary) {
-        secondary.textContent = 'Voir mon coffre';
-        secondary.setAttribute('href', 'dashboard.html');
-      }
-    }
+    // Paiement confirme (comportement actuel)
+    if (params.get("success") !== "1") return;
+    // Rien de technique, juste une confirmation douce
   })();
 </script>
-
 </body>
 </html>

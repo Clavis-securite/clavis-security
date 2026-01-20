@@ -2,103 +2,25 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Clavis — Application</title>
-  <meta name="robots" content="noindex" />
-
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0ea5e9">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <title>Clavis</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/icons/icon-192.png" />
   <link rel="stylesheet" href="/css/styles.css" />
-
-  <script src="/js/app-mode.js" defer></script>
-  <script src="/js/pwa.js" defer></script>
-
-  <!-- Supabase (pour savoir si on ouvre directement le coffre) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="/js/supabase.js" defer></script>
-
-  <script defer>
-    (function () {
-      function isStandalone() {
-        return (
-          (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
-          window.navigator.standalone === true
-        );
-      }
-
-      function isPhoneLike() {
-        const w = Math.min(window.innerWidth || 0, (screen && screen.width) ? screen.width : 9999);
-        const small = w <= 900;
-        const coarse = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : true;
-        return small && coarse;
-      }
-
-      async function boot() {
-        // Si quelqu’un ouvre /app.html dans un navigateur normal : on renvoie vers le site web.
-        // Ou si c'est une PWA sur desktop/tablette : on garde le site web.
-        if (!isStandalone() || !isPhoneLike()) {
-          window.location.replace('/index.html');
-          return;
-        }
-
-        // En mode app : si déjà connecté => coffre, sinon connexion.
-        try {
-          // supabase.js expose getSession()
-          if (typeof window.getSession === 'function') {
-            const session = await window.getSession();
-            window.location.replace(session ? '/dashboard.html' : '/login.html');
-            return;
-          }
-        } catch (_) {}
-
-        window.location.replace('/login.html');
-      }
-
-      window.addEventListener('load', boot);
-    })();
-  </script>
-
-  <style>
-    /* Mini écran d'attente ultra léger */
-    html, body { height: 100%; }
-    body {
-      display: grid;
-      place-items: center;
-      margin: 0;
-      background: #0b1220;
-      color: rgba(255,255,255,.9);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-    .splash {
-      width: min(420px, 92vw);
-      padding: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      text-align: center;
-    }
-    .logo {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      margin: 0 auto 12px;
-      display: block;
-    }
-    .t { font-weight: 700; font-size: 18px; margin: 0 0 6px; }
-    .s { opacity: .8; font-size: 14px; margin: 0; }
-  </style>
+  <link rel="stylesheet" href="/css/app.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/app-mode.js"></script>
+  <script src="/js/pwa.js"></script>
+  <script defer src="/js/app-entry.js"></script>
 </head>
-<body>
-  <div class="splash" role="status" aria-live="polite">
-    <img class="logo" src="/assets/icons/icon-192.png" alt="" />
-    <p class="t">Clavis</p>
-    <p class="s">Ouverture…</p>
-  </div>
+<body class="app-entry">
+  <main class="container" style="padding: 24px 16px;">
+    <div class="card" style="text-align:center;">
+      <h1 style="margin:0 0 6px 0;">Clavis</h1>
+      <p style="margin:0; opacity:.85;">Ouverture de l’application…</p>
+    </div>
+  </main>
 </body>
 </html>

@@ -1,148 +1,123 @@
-// /js/pwa.js
-// PWA helper:
-// 1) Registers service-worker safely (no frameworks, static Netlify).
-// 2) Handles "Installer l'application" button:
-//    - Android/desktop (Chrome/Edge): native prompt.
-//    - iPhone/iPad (Safari): inline help (no intrusive banner / pop-up).
+// js/pwa.js
+// - Android/PC (Chrome/Edge): bouton "Installer l'app" -> prompt natif.
+// - iPhone/iPad (Safari): bouton -> affiche une aide inline (pas de banniere, pas de popup).
 
-(function () {
-  const SW_URL = '/service-worker.js';
-  const SW_SCOPE = '/';
+let deferredPrompt = null;
 
-  function detectIOS() {
-    return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
-  }
+const installButtons = Array.from(document.querySelectorAll('.js-install'));
+const helpBox = document.getElementById('installHelp');
 
-  function isStandalone() {
-    // iOS
-    if (window.navigator.standalone === true) return true;
-    // Android/desktop
-    return !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
-  }
+function detectIOS() {
+  return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+}
 
-  function registerServiceWorker() {
-    if (!('serviceWorker' in navigator)) return;
+function isStandalone() {
+  // iOS
+  if (window.navigator.standalone === true) return true;
+  // Android/desktop
+  return !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+}
 
-    // Avoid running on file:// and other unsupported schemes
-    if (!window.location.origin.startsWith('http')) return;
+function showInstallButtons() {
+  installButtons.forEach((b) => (b.hidden = false));
+}
 
-    window.addEventListener('load', async () => {
+function hideInstallButtons() {
+  installButtons.forEach((b) => (b.hidden = true));
+}
+
+function showIOSHelp() {
+  if (!helpBox) return;
+  helpBox.hidden = false;
+  helpBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideIOSHelp() {
+  if (!helpBox) return;
+  helpBox.hidden = true;
+}
+
+// Etat initial
+if (isStandalone()) {
+  hideInstallButtons();
+  hideIOSHelp();
+} else if (detectIOS()) {
+  // iOS: pas de beforeinstallprompt -> on montre le bouton tout de suite
+  showInstallButtons();
+}
+
+// Android/PC: on recupere l'evenement pour declencher le prompt via NOTRE bouton
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone()) showInstallButtons();
+});
+
+// Clic sur le bouton
+installButtons.forEach((btn) => {
+  btn.addEventListener('click', async () => {
+    // Android/PC
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
       try {
-        const reg = await navigator.serviceWorker.register(SW_URL, { scope: SW_SCOPE });
-
-        // If a new SW is waiting, ask it to activate now.
-        if (reg.waiting) {
-          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-        }
-
-        // When we detect an update installing, auto-activate once installed.
-        reg.addEventListener('updatefound', () => {
-          const nw = reg.installing;
-          if (!nw) return;
-          nw.addEventListener('statechange', () => {
-            if (nw.state === 'installed' && navigator.serviceWorker.controller) {
-              try { nw.postMessage({ type: 'SKIP_WAITING' }); } catch (_) {}
-            }
-          });
-        });
-
-        // Once the new SW takes control, reload ONCE to avoid stale bundles/caches.
-        let reloaded = false;
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          if (reloaded) return;
-          reloaded = true;
-          window.location.reload();
-        });
-      } catch (e) {
-        // Silent: PWA must never break the site.
-        console.log('SW registration skipped:', e?.message || e);
+        await deferredPrompt.userChoice;
+      } catch (_) {
+        // ignore
       }
-    });
-  }
-
-  function setupInstallButton() {
-    let deferredPrompt = null;
-
-    const installButtons = Array.from(document.querySelectorAll('.js-install'));
-    const helpBox = document.getElementById('installHelp');
-
-    function showInstallButtons() {
-      installButtons.forEach((b) => (b.hidden = false));
-    }
-
-    function hideInstallButtons() {
-      installButtons.forEach((b) => (b.hidden = true));
-    }
-
-    function showIOSHelp() {
-      if (!helpBox) return;
-      helpBox.hidden = false;
-      helpBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function hideIOSHelp() {
-      if (!helpBox) return;
-      helpBox.hidden = true;
-    }
-
-    // Initial state
-    if (isStandalone()) {
+      deferredPrompt = null;
+      // Le navigateur gerera la suite; on masque le bouton pour eviter de spam.
       hideInstallButtons();
       hideIOSHelp();
-    } else if (detectIOS()) {
-      // iOS: no beforeinstallprompt
-      showInstallButtons();
+      return;
     }
 
-    // Android/desktop: capture native prompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      if (!isStandalone()) showInstallButtons();
-    });
-
-    // Click handler
-    installButtons.forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        // Android/desktop
-        if (deferredPrompt) {
-          deferredPrompt.prompt();
-          try { await deferredPrompt.userChoice; } catch (_) {}
-          deferredPrompt = null;
-          hideInstallButtons();
-          hideIOSHelp();
-          return;
-        }
-
-        // iOS help
-        if (detectIOS()) {
-          showIOSHelp();
-        }
-      });
-    });
-
-    // Installed
-    window.addEventListener('appinstalled', () => {
-      hideInstallButtons();
-      hideIOSHelp();
-    });
-
-    // Optional: copy link helper (if the page provides a button)
-    const copyBtn = document.querySelector('[data-copy-install-link]');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          copyBtn.textContent = 'Lien copié ✅';
-          setTimeout(() => (copyBtn.textContent = 'Copier le lien'), 1800);
-        } catch (_) {
-          // fallback: nothing
-        }
-      });
+    // iOS (ou autre cas sans prompt): on affiche l'aide inline
+    if (detectIOS()) {
+      showIOSHelp();
     }
-  }
+  });
+});
 
-  // Boot
-  registerServiceWorker();
-  document.addEventListener('DOMContentLoaded', setupInstallButton);
+// Quand l'app est installee
+window.addEventListener('appinstalled', () => {
+  hideInstallButtons();
+  hideIOSHelp();
+});
+
+// --- Service Worker registration (safe) ---
+(function registerSW() {
+  if (!('serviceWorker' in navigator)) return;
+  if (!window.location.origin.startsWith('http')) return;
+
+  window.addEventListener('load', async () => {
+    try {
+      const reg = await navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
+
+      // Si une nouvelle version attend, on l’active proprement.
+      if (reg && reg.waiting) {
+        try { reg.waiting.postMessage({ type: 'SKIP_WAITING' }); } catch (_) {}
+      }
+
+      reg.addEventListener('updatefound', () => {
+        const sw = reg.installing;
+        if (!sw) return;
+        sw.addEventListener('statechange', () => {
+          if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+            try { sw.postMessage({ type: 'SKIP_WAITING' }); } catch (_) {}
+          }
+        });
+      });
+
+      // Reload 1 fois quand le nouveau SW prend le contrôle (évite assets périmés)
+      let reloaded = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (reloaded) return;
+        reloaded = true;
+        window.location.reload();
+      });
+    } catch (e) {
+      // Silencieux : la PWA ne doit jamais casser le site.
+      console.log('SW register skipped:', e && (e.message || e));
+    }
+  });
 })();

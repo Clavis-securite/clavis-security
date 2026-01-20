@@ -2,15 +2,15 @@
    IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v12"; // ⬅️ incrémente à chaque changement du SW
+const CACHE_VERSION = "v20"; // ⬅️ change en v8 quand tu modifies le SW
 const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 
 // Pages + assets essentiels (si un fichier n’existe pas, on ne casse pas l’installation)
 const PRECACHE_URLS = [
   "/",
-  "/app.html",
   "/index.html",
+  "/app.html",
   "/offers.html",
   "/faq.html",
   "/contact.html",
@@ -21,14 +21,13 @@ const PRECACHE_URLS = [
   "/404.html",
 
   "/css/styles.css",
+
   "/css/app.css",
 
   "/js/pwa.js",
   "/js/app-mode.js",
-  "/js/app-shell.js",
-  "/js/dashboard-app.js",
-  "/js/i18n.js",
-  "/js/app.js",
+  "/js/premium.js",
+  "/js/app-entry.js",
 
   "/manifest.webmanifest",
   "/assets/icons/icon-192.png",
@@ -72,23 +71,12 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Permet au site de forcer l'activation d'une nouvelle version (sans pop-up)
-self.addEventListener("message", (event) => {
-  if (event?.data?.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
-
 // -------- FETCH --------
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
   // On ignore tout ce qui n’est pas http/https (corrige chrome-extension://)
   if (!req.url.startsWith("http")) return;
-
-  // Évite une erreur classique : "only-if-cached" + cross-origin
-  // (peut arriver via certains navigateurs / extensions)
-  if (req.cache === "only-if-cached" && req.mode !== "same-origin") return;
 
   // On ne cache que les GET
   if (req.method !== "GET") return;
