@@ -2,7 +2,7 @@
    IMPORTANT : incrémente CACHE_VERSION à chaque changement
 */
 
-const CACHE_VERSION = "v13"; // ⬅️ incrémente à chaque changement du SW
+const CACHE_VERSION = "v14"; // ⬅️ incrémente à chaque changement du SW
 const STATIC_CACHE = `clavis-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `clavis-runtime-${CACHE_VERSION}`;
 

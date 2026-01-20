@@ -1227,3 +1227,13 @@ html.app-mode .csx-section{ padding-bottom: 40px; }
 
 /* Footer spacing helpers */
 .csx-footerSpace{ padding-bottom: 30px; }
+
+
+/* --- Mobile no-overlap hardening --- */
+html, body{ overflow-x:hidden; }
+*{ box-sizing:border-box; }
+@media (max-width: 520px){
+  .cs-nav .container{ flex-wrap: wrap; gap: 10px; }
+  .cs-nav .cs-actions{ flex-wrap: wrap; gap: 8px; }
+  .cs-nav .cs-actions > *{ max-width: 100%; }
+}

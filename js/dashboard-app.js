@@ -41,7 +41,7 @@
     // Show app topbar
     if (topbar) topbar.hidden = false;
 
-    // Ensure + button is visible and above bottom nav
+    // Ensure + button is visible and above bottom button
     if (addBtn) addBtn.style.display = 'grid';
 
     // Move the existing search input into the app search row
@@ -134,6 +134,59 @@
     // If user taps "Compte" tab, login page handles account screen in app.
     // Start on list.
     showList();
+
+
+    // Premium CTA (no bottom navigation in app)
+    const premiumBtn = qs('#appPremiumBtn');
+    async function startPremiumCheckout() {
+      try {
+        // Use the same logic as Offers: requires login
+        if (typeof getSession !== 'function') {
+          alert(t('msg_generic_error') || "Une erreur est survenue. Recharge la page.");
+          return;
+        }
+        const session = await getSession();
+        if (!session || !session.user) {
+          const next = encodeURIComponent('/dashboard.html');
+          window.location.href = `/login.html?next=${next}`;
+          return;
+        }
+
+        // Go straight to annual premium checkout
+        const body = {
+          plan: 'annual',
+          user_id: session.user.id,
+          user_email: session.user.email,
+          site_url: window.location.origin
+        };
+
+        const res = await fetch('/.netlify/functions/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        if (!res.ok) {
+          alert(t('msg_checkout_failed') || "Impossible d’ouvrir le paiement. Réessaie dans un instant.");
+          return;
+        }
+
+        const data = await res.json().catch(() => ({}));
+        if (data && data.url) {
+          window.location.href = data.url;
+          return;
+        }
+
+        alert(t('msg_checkout_failed') || "Impossible d’ouvrir le paiement. Réessaie dans un instant.");
+      } catch (_) {
+        alert(t('msg_checkout_failed') || "Impossible d’ouvrir le paiement. Réessaie dans un instant.");
+      }
+    }
+
+    if (premiumBtn) {
+      premiumBtn.hidden = false;
+      premiumBtn.addEventListener('click', startPremiumCheckout);
+    }
 
     // If user changed language elsewhere, keep select in sync
     window.addEventListener('clavis:lang', () => {
