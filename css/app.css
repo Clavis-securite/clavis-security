@@ -1,91 +1,61 @@
+
 /* css/app.css
    Styles appliqués uniquement en PWA installée SUR TÉLÉPHONE via .app-phone
    (n'impacte pas le site web en navigateur).
 */
 
-:root.app-phone {
-  overscroll-behavior: none;
-}
+:root.app-phone { overscroll-behavior: none; }
+.app-phone body { overflow-x: hidden; }
 
-.app-phone body {
-  overflow-x: hidden;
-}
-
-/* Cache les éléments "site" pour une vraie sensation app */
 .app-phone header,
-.app-phone footer,
-.app-phone .site-header,
-.app-phone .site-footer {
-  display: none !important;
-}
+.app-phone footer { display:none !important; }
 
-/* Conteneurs : plus serré et lisible */
-.app-phone .container {
-  padding: 16px !important;
-  max-width: 620px;
-}
+/* Evite toute largeur qui déborde */
+.app-phone *, .app-phone *::before, .app-phone *::after { box-sizing:border-box; }
+.app-phone img, .app-phone video, .app-phone canvas { max-width:100%; height:auto; }
+.app-phone input, .app-phone textarea, .app-phone button, .app-phone select { max-width:100%; }
 
-.app-phone .card {
-  border-radius: 18px;
-}
+/* Mise en page app */
+.app-phone main.section { padding-top: 18px !important; padding-bottom: 96px !important; }
+.app-phone .container { width: min(560px, 92vw) !important; }
 
-/* Formulaires : champs plus grands, zone pouce */
-.app-phone input,
-.app-phone select,
-.app-phone button,
-.app-phone textarea {
-  max-width: 100%;
-}
+/* Cartes plus compactes */
+.app-phone .card.pad { padding: 14px !important; border-radius: 18px !important; }
+.app-phone h1 { font-size: 22px !important; }
+.app-phone h3 { font-size: 16px !important; }
+.app-phone .hero-note { font-size: 13px !important; }
 
-.app-phone .form-row {
-  flex-direction: column !important;
-  gap: 12px !important;
-}
+/* Liste : tap-friendly */
+.app-phone #itemsList > div { width:100%; }
+.app-phone #itemsList > div { cursor: pointer; }
+.app-phone #itemsList strong { font-size: 15px; }
 
-/* Dashboard app : on garde la logique existante mais on rend tout simple */
-.app-phone .vault-toolbar,
-.app-phone .dashboard-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 8px 0 12px 0;
-}
+/* Formulaire ajout : simple */
+.app-phone #addForm .field { margin-bottom: 12px; }
+.app-phone #addForm .btn.primary { width: 100%; }
 
-.app-phone .vault-list,
-.app-phone .items-list {
-  margin-bottom: 86px; /* espace bouton premium */
-}
+/* Détails */
+.app-phone #appDetailCard .btn { width: 100%; }
+.app-phone #appDetailCard .btn.small { width: auto; }
+.app-phone #appDetailCard input[readonly] { opacity: .95; }
 
-/* Bouton Premium (fixe bas) */
+/* On ne veut PAS de barre en bas */
+.app-phone .app-bottom { display:none !important; }
+
+/* CTA Premium fixe */
+.app-premium-cta { display:none; }
 .app-phone .app-premium-cta {
+  display:block;
   position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: calc(12px + env(safe-area-inset-bottom));
-  z-index: 20;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 14px calc(14px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, rgba(10,12,16,.95), rgba(10,12,16,.55));
+  backdrop-filter: blur(10px);
+  z-index: 9999;
 }
+.app-phone .app-premium-cta .btn { width:100%; border-radius: 18px; }
 
-.app-phone .app-premium-cta button {
-  width: 100%;
-  border-radius: 999px;
-  padding: 14px 16px;
-  font-weight: 700;
-}
-
-/* Vue details (si utilisée) */
-.app-phone .app-view {
-  display: none;
-}
-.app-phone .app-view.active {
-  display: block;
-}
-
-/* Évite les overlays qui se superposent en app : on force une seule vue visible */
-.app-phone .modal,
-.app-phone .overlay,
-.app-phone .drawer,
-.app-phone .sheet {
-  display: none !important;
-}
+/* Quand le coffre est verrouillé : pas de “superposition” derrière */
+.app-phone body.vault-locked { overflow: hidden; }

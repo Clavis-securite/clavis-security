@@ -66,7 +66,7 @@
   </div>
 </header>
 
-<main class="section">
+<main class="section" id="mainContent">
   <div class="container">
     <div class="page-hero">
       <span class="badge">🔒 Mon coffre personnel</span>
@@ -141,6 +141,30 @@
         <h3 style="margin:0 0 10px;">Mes informations</h3>
         <div class="hero-note" id="itemsInfo">Chargement…</div>
         <div id="itemsList" style="display:grid; gap:10px; margin-top:12px;"></div>
+        <div id="appDetailCard" class="card pad" style="display:none;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <button type="button" class="btn small" id="appBackBtn">← Retour</button>
+            <strong id="appDetailTitle" style="font-size:16px;"></strong>
+            <span style="width:70px;"></span>
+          </div>
+          <div style="margin-top:12px; display:grid; gap:10px;">
+            <div class="field">
+              <label>Identifiant</label>
+              <input id="appDetailUser" type="text" readonly />
+              <button type="button" class="btn small" id="appCopyUserBtn" style="margin-top:8px;">Copier l’identifiant</button>
+            </div>
+            <div class="field">
+              <label>Mot de passe</label>
+              <input id="appDetailPass" type="password" readonly />
+              <div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;">
+                <button type="button" class="btn small" id="appTogglePassBtn">Afficher</button>
+                <button type="button" class="btn small" id="appCopyPassBtn">Copier le mot de passe</button>
+              </div>
+            </div>
+            <button type="button" class="btn" id="appDeleteBtn">Supprimer</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -395,7 +419,7 @@
         <div>
           <strong>${escapeHtml(it.title)}</strong><br />
           <span style="color: rgba(255,255,255,.65); font-size: 13px;">
-            ${opened ? "coffre ouvert" : "coffre fermé"}
+            ${opened ? "Coffre ouvert" : "Coffre verrouillé"}
           </span>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
@@ -702,7 +726,7 @@
     window.location.href = "login.html";
   });
 </script>
-
+<script src="/js/app-dashboard.js" defer></script>
 
   <div class="app-premium-cta" aria-hidden="true">
     <button id="appPremiumBtn" class="btn btn-primary" type="button">Passer à Premium</button>
