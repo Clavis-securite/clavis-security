@@ -13,311 +13,152 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- Icônes (depuis vos icons) -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/brand/clavis-logo.svg">
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/icon-512.png">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/brand/clavis-logo.svg">
 
   <link rel="stylesheet" href="/css/styles.css" />
-</head>
-<script src="/js/app-mode.js" defer></script>
 
+  <script src="/js/app-mode.js" defer></script>
+</head>
 <body>
 
-<header class="cs-topbar">
-  <div class="cs-container cs-nav">
-    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
-      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
-      <span class="cs-brand-name">Clavis-security</span>
+<header class="topbar">
+  <div class="container nav">
+    <a href="/index.html" class="brandmark" aria-label="Accueil Clavis Security">
+      <img src="/assets/brand/clavis-logo.svg" alt="Clavis" width="34" height="34">
+      <span>Clavis</span><span class="muted">Security</span>
     </a>
 
-    <nav class="cs-links" aria-label="Navigation">
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
+    <nav class="navlinks" aria-label="Navigation">
+      <a href="/offers.html">Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
     </nav>
 
-    <div class="cs-actions">
-      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
-      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
-
-      <!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
-      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>
-        Installer l’app
-      </button>
-
-      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    <div class="actions">
+      <a href="/app.html" class="btn">Ouvrir l’app</a>
+      <a href="/login.html" class="btn">Connexion</a>
+      <a href="/register.html" class="btn primary">Créer mon coffre</a>
     </div>
+
+    <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
   </div>
 
-  <div class="cs-container cs-mobile" data-mobile-menu>
-    <a href="offers.html">Offres</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <a href="login.html">Connexion</a>
-    <a href="register.html">Créer mon coffre</a>
+  <div class="mobile-menu" data-mobile-menu>
+    <div class="container" style="display:flex; flex-direction:column; gap:10px; padding-top:10px;">
+      <a href="/offers.html">Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/app.html">Ouvrir l’app</a>
+      <a href="/login.html">Connexion</a>
+      <a href="/register.html">Créer mon coffre</a>
+    </div>
   </div>
 </header>
 
 <main>
+  <section class="section" style="padding-top:34px;">
+    <div class="container hero-grid">
+      <div class="hero">
+        <div class="badge"><span class="spark">🔐</span> Coffre chiffré côté client</div>
+        <h1>Un mot de passe pour tous les retenir.</h1>
+        <p>Clavis Security stocke tes identifiants dans un coffre chiffré côté appareil. Tu déverrouilles localement, tu recherches instantanément, tu copies en un clic.</p>
 
-  <!-- HERO -->
-  <section class="cs-hero">
-    <div class="cs-container cs-hero-grid">
-      <div class="cs-hero-copy">
-        <div class="cs-badge">🔒 Simple • Clair • Rassurant</div>
-
-        <h1 class="cs-h1">
-          Un mot de passe <span class="cs-soft">pour tous les retenir.</span>
-        </h1>
-
-        <p class="cs-lead">
-          Clavis-security te permet de <strong>ranger tes informations</strong> au même endroit
-          et de <strong>les retrouver en quelques secondes</strong> grâce à la recherche.
-        </p>
-
-        <div class="cs-cta-row">
-          <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
-          <a class="cs-btn cs-ghost" href="offers.html">Voir les offres</a>
-
-          <!-- ✅ Même bouton dans le Hero (plus visible) -->
-          <button class="cs-btn cs-ghost cs-install js-install" type="button" hidden>
-            Installer l’app
-          </button>
+        <div class="hero-ctas">
+          <a class="btn primary" href="/register.html">Créer mon coffre</a>
+          <a class="btn" href="/offers.html">Voir Premium</a>
+          <a class="btn" href="/app.html">Ouvrir l’app</a>
         </div>
 
-        <!-- ✅ Aide iPhone/iPad (pas de bannière, pas de popup) -->
-        <div id="installHelp" class="cs-install-help" hidden>
-          <div class="cs-install-help-title">Installer sur iPhone / iPad</div>
-          <div class="cs-install-help-text">
-            Ouvre le menu <strong>Partager</strong> (⬆️), puis choisis <strong>Sur l’écran d’accueil</strong>.
+        <div class="hero-note">Sans publicité • Paiement sécurisé Stripe • Support : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a></div>
+
+        <div class="grid3" style="margin-top:18px;">
+          <div class="feature">
+            <div class="icon">🛡️</div>
+            <h3>Chiffrement local</h3>
+            <p>Les secrets sont chiffrés sur ton appareil avant stockage.</p>
           </div>
-        </div>
-
-        <div class="cs-micro">
-          Gratuit jusqu’à <strong>15</strong> éléments • Premium <strong>30€/an</strong> • À vie <strong>99€</strong>
-        </div>
-
-        <div class="cs-trust-row">
-          <div class="cs-trust">✅ Recherche rapide</div>
-          <div class="cs-trust">✅ Coffre personnel</div>
-          <div class="cs-trust">✅ Ouverture en 1 geste</div>
-        </div>
-      </div>
-
-      <div class="cs-hero-card" aria-hidden="true">
-        <div class="cs-hero-card-top">
-          <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
-        </div>
-
-        <div class="cs-hero-card-body">
-          <div class="cs-hero-visual">
-            <!-- ✅ Icône utilisée comme “image” principale -->
-            <img src="/assets/icons/icon-512.png" alt="" class="cs-hero-icon">
+          <div class="feature">
+            <div class="icon">⚡</div>
+            <h3>Ultra rapide</h3>
+            <p>Recherche instantanée, copie en un clic, interface claire.</p>
           </div>
-
-          <div class="cs-mini-title">Exemple</div>
-          <div class="cs-mini-input">banque, gmail, netflix…</div>
-
-          <div class="cs-mini-note">
-            Retrouve ce que tu cherches, puis ouvre ton coffre pour afficher/copier.
-          </div>
-
-          <div class="cs-mini-pill-row">
-            <span class="cs-mini-pill">Gmail</span>
-            <span class="cs-mini-pill">Banque</span>
-            <span class="cs-mini-pill">Netflix</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cs-container cs-divider"></div>
-  </section>
-
-  <!-- BENEFICES -->
-  <section class="cs-section">
-    <div class="cs-container">
-      <div class="cs-section-head">
-        <h2 class="cs-h2">Pourquoi tu vas adorer Clavis-security</h2>
-        <p class="cs-muted">
-          Pensé pour monsieur et madame tout le monde : pas de mots compliqués, juste une expérience simple et efficace.
-        </p>
-      </div>
-
-      <div class="cs-grid3">
-        <article class="cs-card">
-          <div class="cs-card-icon">🔎</div>
-          <h3>Tu retrouves en 2 secondes</h3>
-          <p>Tu tapes un nom… et tu tombes directement sur ce que tu cherches.</p>
-        </article>
-
-        <article class="cs-card">
-          <div class="cs-card-icon">🧠</div>
-          <h3>Tu retiens l’essentiel</h3>
-          <p>Un seul mot de passe à retenir. Le reste est rangé proprement.</p>
-        </article>
-
-        <article class="cs-card">
-          <div class="cs-card-icon">🧩</div>
-          <h3>Tu ranges comme tu veux</h3>
-          <p>Banque, box internet, assurances, abonnements… tout a sa place.</p>
-        </article>
-
-        <article class="cs-card">
-          <div class="cs-card-icon">🛡️</div>
-          <h3>Tu ouvres / tu refermes</h3>
-          <p>Tu affiches seulement quand tu en as besoin, puis tu refermes ton coffre.</p>
-        </article>
-
-        <article class="cs-card">
-          <div class="cs-card-icon">📱</div>
-          <h3>Sur ordinateur et téléphone</h3>
-          <p>Tu peux l’utiliser partout. Et même l’installer comme une application.</p>
-        </article>
-
-        <article class="cs-card">
-          <div class="cs-card-icon">📄</div>
-          <h3>Copie PDF (Premium)</h3>
-          <p>Pour les abonnés Premium : exporter une copie PDF de tes informations.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMMENT CA MARCHE -->
-  <section class="cs-section cs-alt">
-    <div class="cs-container">
-      <div class="cs-section-head">
-        <h2 class="cs-h2">Comment ça marche (vraiment simple)</h2>
-        <p class="cs-muted">3 étapes, pas plus.</p>
-      </div>
-
-      <div class="cs-steps">
-        <div class="cs-step">
-          <div class="cs-step-n">1</div>
-          <div>
-            <h3>Tu crées ton coffre</h3>
-            <p>Avec ton email et ton mot de passe.</p>
-          </div>
-        </div>
-
-        <div class="cs-step">
-          <div class="cs-step-n">2</div>
-          <div>
-            <h3>Tu ajoutes tes infos</h3>
-            <p>Un titre simple, et tes détails dedans.</p>
-          </div>
-        </div>
-
-        <div class="cs-step">
-          <div class="cs-step-n">3</div>
-          <div>
-            <h3>Tu retrouves quand tu veux</h3>
-            <p>Grâce à la recherche, tu gagnes du temps (et de l’énergie).</p>
+          <div class="feature">
+            <div class="icon">📱</div>
+            <h3>PWA</h3>
+            <p>Installe l’app sur téléphone pour une expérience “1 pouce”.</p>
           </div>
         </div>
       </div>
 
-      <div class="cs-cta-band">
-        <div>
-          <div class="cs-badge">✨ Astuce</div>
-          <h3 style="margin:10px 0 6px;">Commence gratuit, passe Premium quand tu veux</h3>
-          <p class="cs-muted" style="margin:0;">
-            Tu peux démarrer gratuitement (15 éléments) et évoluer ensuite.
-          </p>
+      <div class="card mock">
+        <div class="top">
+          <span>Clavis — Aperçu</span>
+          <span class="muted">Coffre verrouillé</span>
         </div>
-        <div class="cs-cta-row">
-          <a class="cs-btn cs-ghost" href="offers.html">Comparer les offres</a>
-          <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+        <div class="search">
+          <div class="muted" style="font-size:12px; margin-bottom:8px;">Recherche rapide</div>
+          <div style="border:1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 12px 12px; color: rgba(255,255,255,.75);">
+            🔎 banque / netflix / pro…
+          </div>
+        </div>
+        <div class="hr"></div>
+        <div class="items">
+          <div class="item">
+            <div>
+              <div style="font-weight:800;">Email pro</div>
+              <div class="muted" style="font-size:13px;">login@domaine.fr</div>
+            </div>
+            <span class="pill">Copier</span>
+          </div>
+          <div class="item">
+            <div>
+              <div style="font-weight:800;">Banque</div>
+              <div class="muted" style="font-size:13px;">••••••••••</div>
+            </div>
+            <span class="pill">Déverrouiller</span>
+          </div>
+          <div class="item">
+            <div>
+              <div style="font-weight:800;">Netflix</div>
+              <div class="muted" style="font-size:13px;">••••••••••</div>
+            </div>
+            <span class="pill">Copier</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OFFRES (résumé) -->
-  <section class="cs-section">
-    <div class="cs-container">
-      <div class="cs-section-head">
-        <h2 class="cs-h2">Offres simples et claires</h2>
-        <p class="cs-muted">Choisis ce qui te convient. Tu peux changer plus tard.</p>
-      </div>
-
-      <div class="cs-pricing">
-        <div class="cs-price">
-          <div class="cs-price-name">Gratuit</div>
-          <div class="cs-price-val">0€</div>
-          <ul>
-            <li>Jusqu’à 15 éléments</li>
-            <li>Recherche rapide</li>
-            <li>Parfait pour démarrer</li>
-          </ul>
-          <a class="cs-btn cs-primary" href="register.html">Commencer</a>
-        </div>
-
-        <div class="cs-price cs-featured">
-          <div class="cs-price-name">Premium</div>
-          <div class="cs-price-val">30€ <span class="cs-muted">/ an</span></div>
-          <ul>
-            <li>Éléments illimités</li>
-            <li>Copie PDF (Premium)</li>
-            <li>Pour être tranquille</li>
-          </ul>
-          <a class="cs-btn cs-primary" href="offers.html">Passer en Premium</a>
-        </div>
-
-        <div class="cs-price">
-          <div class="cs-price-name">À vie</div>
-          <div class="cs-price-val">99€</div>
-          <ul>
-            <li>Paiement unique</li>
-            <li>Accès Premium à vie</li>
-            <li>Copie PDF (Premium)</li>
-          </ul>
-          <a class="cs-btn cs-primary" href="offers.html">Prendre à vie</a>
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="card pad">
+        <h2 style="margin:0;">Passe en Premium quand tu es prêt.</h2>
+        <p class="muted" style="margin:8px 0 0;">Plus de capacité, exports PDF, support prioritaire. Deux options : annuel ou à vie.</p>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="/offers.html">Voir les offres</a>
+          <a class="btn" href="/faq.html">Lire la FAQ</a>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- MINI FAQ -->
-  <section class="cs-section cs-alt">
-    <div class="cs-container">
-      <div class="cs-section-head">
-        <h2 class="cs-h2">Questions fréquentes</h2>
-        <p class="cs-muted">Réponses simples, sans jargon.</p>
-      </div>
-
-      <div class="cs-faq">
-        <details class="cs-faq-item">
-          <summary>Est-ce que c’est compliqué ?</summary>
-          <p>Non. Tu crées ton coffre, tu ajoutes tes infos, tu retrouves grâce à la recherche.</p>
-        </details>
-
-        <details class="cs-faq-item">
-          <summary>Je peux l’utiliser sur téléphone ?</summary>
-          <p>Oui. Et tu peux même l’installer comme une application (bouton “Installer l’app”).</p>
-        </details>
-
-        <details class="cs-faq-item">
-          <summary>Et si je veux une copie ?</summary>
-          <p>Les abonnés Premium peuvent générer une copie PDF de leurs informations.</p>
-        </details>
-
-        <div class="cs-faq-cta">
-          <a class="cs-btn cs-ghost" href="faq.html">Voir toute la FAQ</a>
-          <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <footer class="footer">
   <div class="container footer-row">
     <div>
-      <strong>Clavis Security</strong><br/>
-      <span class="muted">Coffre chiffré côté appareil — vous gardez le contrôle.</span>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img src="/assets/brand/clavis-logo.svg" alt="Clavis" width="30" height="30" style="border-radius:10px;">
+        <strong>Clavis Security</strong>
+      </div>
+      <div class="muted" style="margin-top:8px; max-width:60ch;">
+        Coffre chiffré côté appareil — vous gardez le contrôle.
+      </div>
+      <div class="muted" style="margin-top:10px; font-size:14px;">
+        <strong>A16 Technologies</strong> • SIRET 97918596400041<br/>
+        <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> • <a href="tel:0770577989">07 70 57 79 89</a>
+      </div>
     </div>
 
     <div style="display:flex; gap:18px; flex-wrap:wrap;">
@@ -342,12 +183,9 @@
     </div>
   </div>
 
-  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-    <div>© <span data-year></span> A16 Technologies — SIRET 97918596400041</div>
-    <div>
-      <a href="tel:0770577989">0770577989</a> ·
-      <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>
-    </div>
+  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.10); padding-top:14px;">
+    <div class="muted" style="font-size:13px;">© <span data-year></span> A16 Technologies. Tous droits réservés.</div>
+    <div class="muted" style="font-size:13px;">Chiffrement côté client • Paiement sécurisé Stripe</div>
   </div>
 </footer>
 
@@ -365,257 +203,7 @@
 <!-- IMPORTANT : defer pour que le bouton existe avant le script -->
 <script src="/js/pwa.js" defer></script>
 
-<style>
-  /* --- Styles de sécurité (si ton CSS n'a pas ces classes) --- */
-  :root{
-    --bg:#070b14;
-    --card: rgba(255,255,255,.05);
-    --border: rgba(255,255,255,.10);
-    --text: rgba(255,255,255,.92);
-    --muted: rgba(255,255,255,.70);
-    --brand:#0ea5e9;
-    --brand2:#22c55e;
-  }
-  body{ background:var(--bg); color:var(--text); }
-  a{ color:inherit; text-decoration:none; }
-  .cs-container{ width:min(1100px, 92vw); margin:0 auto; }
-  .cs-topbar{
-    position:sticky; top:0; z-index:50;
-    background: rgba(7,11,20,.70);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,.06);
-  }
-  .cs-nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0; }
-  .cs-brand{ display:flex; align-items:center; gap:10px; }
-  .cs-brand-icon{ border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-  .cs-brand-name{ font-weight:800; letter-spacing:.2px; }
-  .cs-links{ display:flex; gap:16px; opacity:.9; }
-  .cs-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-  .cs-btn{
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.06);
-    color: var(--text);
-    padding: 10px 14px;
-    border-radius: 999px;
-    cursor:pointer;
-    font-weight:700;
-  }
-  .cs-btn:hover{ background: rgba(255,255,255,.10); }
-  .cs-primary{ background: linear-gradient(90deg, rgba(14,165,233,.9), rgba(34,197,94,.65)); border-color: transparent; }
-  .cs-primary:hover{ filter: brightness(1.04); }
-  .cs-ghost{ background: rgba(255,255,255,.04); }
-  .cs-menu{ display:none; }
-  .cs-install{ box-shadow: 0 18px 60px rgba(0,0,0,.35); }
 
-  /* Aide installation iOS (inline, discret) */
-  .cs-install-help{
-    margin-top: 12px;
-    padding: 12px 14px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-    max-width: 560px;
-  }
-  .cs-install-help-title{ font-weight: 900; margin-bottom: 6px; }
-  .cs-install-help-text{ color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.45; }
-
-  .cs-mobile{ display:none; padding:0 0 14px; }
-  .cs-mobile a{ display:block; padding:10px 0; border-top: 1px solid rgba(255,255,255,.06); }
-  .cs-mobile.open{ display:block; }
-
-  .cs-hero{
-    padding: 54px 0 26px;
-    background:
-      radial-gradient(900px 520px at 12% 10%, rgba(14,165,233,.18), transparent 60%),
-      radial-gradient(900px 520px at 86% 25%, rgba(34,197,94,.14), transparent 60%);
-  }
-  .cs-hero-grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:22px; align-items:center; }
-  .cs-badge{
-    display:inline-flex; gap:8px; align-items:center;
-    padding: 8px 12px; border-radius: 999px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.10);
-    color: rgba(255,255,255,.86);
-    font-weight:700; font-size:13px;
-  }
-  .cs-h1{ font-size: clamp(34px, 4.2vw, 54px); margin: 14px 0 10px; line-height:1.05; }
-  .cs-soft{ opacity:.88; }
-  .cs-lead{ font-size: 16px; color: var(--muted); margin:0 0 16px; max-width: 640px; }
-  .cs-cta-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-  .cs-micro{ margin-top:12px; font-size: 13px; color: rgba(255,255,255,.62); }
-  .cs-trust-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-  .cs-trust{
-    padding: 8px 10px; border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-    color: rgba(255,255,255,.75);
-    font-size: 13px;
-  }
-
-  .cs-hero-card{
-    border: 1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.06);
-    border-radius: 24px;
-    overflow:hidden;
-    box-shadow: 0 20px 80px rgba(0,0,0,.40);
-  }
-  .cs-hero-card-top{
-    display:flex; gap:6px;
-    padding: 12px 14px;
-    background: rgba(255,255,255,.04);
-    border-bottom: 1px solid rgba(255,255,255,.10);
-  }
-  .cs-dot{ width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,.22); }
-  .cs-hero-card-body{ padding: 16px; }
-  .cs-hero-visual{
-    display:flex; justify-content:center; align-items:center;
-    padding: 16px 0 10px;
-  }
-  .cs-hero-icon{
-    width: 180px; max-width: 45vw; height: auto;
-    border-radius: 24px;
-    box-shadow: 0 22px 70px rgba(0,0,0,.45);
-  }
-  .cs-mini-title{ font-size: 12px; color: rgba(255,255,255,.60); margin-top: 8px; }
-  .cs-mini-input{
-    margin-top: 8px;
-    border-radius: 16px;
-    padding: 12px 12px;
-    border: 1px solid rgba(255,255,255,.12);
-    background: rgba(0,0,0,.18);
-    color: rgba(255,255,255,.78);
-    font-size: 13px;
-  }
-  .cs-mini-note{ margin-top: 10px; font-size: 12.5px; color: rgba(255,255,255,.62); line-height:1.4; }
-  .cs-mini-pill-row{ margin-top: 12px; display:flex; gap:8px; flex-wrap:wrap; }
-  .cs-mini-pill{
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.05);
-    font-size: 12px;
-    color: rgba(255,255,255,.72);
-  }
-
-  .cs-divider{
-    height: 1px;
-    margin-top: 22px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
-  }
-
-  .cs-section{ padding: 44px 0; }
-  .cs-alt{ background: rgba(255,255,255,.02); border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); }
-  .cs-section-head{ margin-bottom: 18px; }
-  .cs-h2{ margin:0 0 8px; font-size: 26px; }
-  .cs-muted{ color: var(--muted); }
-
-  .cs-grid3{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .cs-card{
-    padding: 18px 16px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-  }
-  .cs-card-icon{
-    width: 44px; height: 44px;
-    display:grid; place-items:center;
-    border-radius: 16px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.10);
-    margin-bottom: 10px;
-    font-size: 20px;
-  }
-  .cs-card h3{ margin: 0 0 6px; }
-  .cs-card p{ margin:0; color: var(--muted); line-height:1.45; }
-
-  .cs-steps{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-top: 14px;
-  }
-  .cs-step{
-    display:flex; gap:12px;
-    padding: 16px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-  }
-  .cs-step-n{
-    width: 38px; height: 38px;
-    border-radius: 14px;
-    display:grid; place-items:center;
-    font-weight:900;
-    background: rgba(14,165,233,.18);
-    border: 1px solid rgba(255,255,255,.10);
-  }
-  .cs-step h3{ margin:0 0 6px; }
-  .cs-step p{ margin:0; color: var(--muted); }
-
-  .cs-cta-band{
-    margin-top: 18px;
-    display:flex; justify-content:space-between; align-items:center; gap: 16px;
-    padding: 18px;
-    border-radius: 22px;
-    border: 1px solid rgba(255,255,255,.14);
-    background: linear-gradient(90deg, rgba(14,165,233,.18), rgba(34,197,94,.10));
-    box-shadow: 0 18px 60px rgba(0,0,0,.28);
-    flex-wrap:wrap;
-  }
-
-  .cs-pricing{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 16px;
-  }
-  .cs-price{
-    padding: 18px 16px;
-    border-radius: 22px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-  }
-  .cs-featured{ border-color: rgba(14,165,233,.35); background: rgba(14,165,233,.08); }
-  .cs-price-name{ font-weight:900; }
-  .cs-price-val{ font-size: 30px; margin: 8px 0 10px; font-weight: 900; }
-  .cs-price ul{ margin:0 0 14px; padding-left: 18px; color: rgba(255,255,255,.75); }
-  .cs-price li{ margin: 6px 0; }
-
-  .cs-faq{ display:grid; gap: 12px; }
-  .cs-faq-item{
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.04);
-    padding: 12px 14px;
-  }
-  .cs-faq-item summary{ cursor:pointer; font-weight:800; }
-  .cs-faq-item p{ margin: 10px 0 0; color: var(--muted); }
-  .cs-faq-cta{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 6px; }
-
-  .cs-footer{
-    padding: 18px 0;
-    border-top: 1px solid rgba(255,255,255,.06);
-    background: rgba(0,0,0,.18);
-  }
-  .cs-footer-row{
-    display:flex; justify-content:space-between; align-items:center; gap: 12px; flex-wrap:wrap;
-  }
-  .cs-footer-left{ display:flex; align-items:center; gap: 10px; color: rgba(255,255,255,.72); }
-  .cs-footer-links{ display:flex; gap: 14px; color: rgba(255,255,255,.65); }
-
-  @media (max-width: 980px){
-    .cs-hero-grid{ grid-template-columns: 1fr; }
-    .cs-links{ display:none; }
-    .cs-menu{ display:inline-flex; }
-    .cs-grid3{ grid-template-columns: 1fr; }
-    .cs-steps{ grid-template-columns: 1fr; }
-    .cs-pricing{ grid-template-columns: 1fr; }
-  }
-</style>
 
 </body>
 </html>
