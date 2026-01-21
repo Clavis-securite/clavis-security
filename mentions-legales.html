@@ -3,14 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mentions légales — Clavis Security</title>
-  <meta name="description" content="Informations légales de A16 Technologies (Clavis Security)." />
+  <title>Mentions légales — Clavis-security</title>
+  <meta name="description" content="Les informations essentielles sur l’éditeur, l’hébergement et les règles du site." />
   <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/app.css" />
-  <meta name="theme-color" content="#0ea5e9">
-</head>
-<body class="csx-page">
 
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" href="/assets/icons/icon-192.png" />
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
+</head>
+
+<body data-page="legal">
 <header class="cs-topbar">
   <div class="cs-container cs-nav">
     <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
@@ -27,12 +37,7 @@
     <div class="cs-actions">
       <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
       <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
-
-      <!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
-      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>
-        Installer l’app
-      </button>
-
+      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>Installer l’app</button>
       <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
     </div>
   </div>
@@ -46,87 +51,66 @@
   </div>
 </header>
 
-<main>
-  <section class="cs-hero">
-    <div class="cs-container">
-      <div class="cs-hero-grid">
-        <div>
-          <h1 class="cs-hero-title">Mentions légales</h1>
-          <p class="cs-hero-subtitle">Informations légales et coordonnées de l’éditeur.</p>
-        </div>
-        <div class="cs-hero-card">
-          <div class="cs-hero-card-title">Éditeur</div>
-          <ul class="cs-checklist">
-            <li><strong>A16 Technologies</strong></li>
-            <li><strong>SIRET :</strong> 97918596400041</li>
-            <li><strong>Email :</strong> clavis.service.client@gmail.com</li>
-            <li><strong>Tél :</strong> 0770577989</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<main class="cs-container" style="padding: 34px 0 54px;">
+  <section class="cs-card" style="padding: 22px;">
+    <h1 style="margin:0 0 10px;">Mentions légales</h1>
+    <p style="margin:0; color: rgba(255,255,255,.78);">Les informations essentielles sur l’éditeur, l’hébergement et les règles du site.</p>
   </section>
 
-  <section class="cs-section">
-    <div class="cs-container">
-      <div class="card">
-        
-<h2>Éditeur du site</h2>
-<p><strong>A16 Technologies</strong> — SIRET <strong>97918596400041</strong></p>
-<p>Email : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> — Téléphone : <a href="tel:0770577989">0770577989</a></p>
+  <section class="cs-card" style="padding: 22px; margin-top: 14px;">
+    
+<h2 style="margin:0 0 10px;">Éditeur du site</h2>
+<ul style="margin:0 0 14px; padding-left: 18px; color: rgba(255,255,255,.84);">
+  <li><strong>A16 Technologies</strong> — Micro-entreprise</li>
+  <li>France</li>
+  <li>SIRET : 97918596400041</li>
+  <li>Contact : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a></li>
+</ul>
 
-<h2>Hébergement</h2>
-<p>Site hébergé sur une infrastructure de déploiement web (type Netlify). Les données d’authentification et de base sont gérées via Supabase.</p>
+<h2 style="margin:18px 0 10px;">Hébergement</h2>
+<p style="margin:0; color: rgba(255,255,255,.84);">
+  Le site est hébergé par <strong>Netlify</strong>.
+</p>
 
-<h2>Propriété intellectuelle</h2>
-<p>Le contenu, la marque et les éléments graphiques sont protégés. Toute reproduction non autorisée est interdite.</p>
+<h2 style="margin:18px 0 10px;">Propriété intellectuelle</h2>
+<p style="margin:0; color: rgba(255,255,255,.84);">
+  Les contenus (textes, éléments graphiques, identité de marque) sont protégés. Toute reproduction non autorisée est interdite.
+</p>
 
-<h2>Contact</h2>
-<p>Pour toute demande : <a href="/contact.html">page contact</a>.</p>
+<h2 style="margin:18px 0 10px;">Données personnelles</h2>
+<p style="margin:0; color: rgba(255,255,255,.84);">
+  Clavis-security stocke des données nécessaires au fonctionnement du service (compte, coffre, facturation). Le chiffrement est réalisé côté client : vous gardez le contrôle sur vos secrets.
+  Pour toute demande liée à vos données, vous pouvez nous contacter par email.
+</p>
 
-      </div>
-    </div>
+<h2 style="margin:18px 0 10px;">Cookies</h2>
+<p style="margin:0; color: rgba(255,255,255,.84);">
+  Des cookies techniques peuvent être utilisés pour assurer la session et le bon fonctionnement de l’application.
+</p>
+
   </section>
 </main>
-
-<footer class="footer">
-  <div class="container footer-row">
-    <div>
-      <strong>Clavis Security</strong><br/>
-      <span class="muted">Coffre chiffré côté appareil — vous gardez le contrôle.</span>
+<footer class="cs-footer">
+  <div class="cs-container cs-footer-row">
+    <div class="cs-footer-left">
+      <img src="/assets/icons/icon-192.png" alt="" width="28" height="28">
+      <span>© <span data-year></span> Clavis-security</span>
     </div>
-
-    <div style="display:flex; gap:18px; flex-wrap:wrap;">
-      <div>
-        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Produit</div>
-        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
-          <a href="/offers.html">Offres</a>
-          <a href="/app.html">Application</a>
-          <a href="/faq.html">FAQ</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Entreprise</div>
-        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
-          <a href="/contact.html">Contact</a>
-          <a href="/mentions-legales.html">Mentions légales</a>
-          <a href="/politique-confidentialite.html">Confidentialité</a>
-          <a href="/cgu.html">CGU</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-    <div>© <span data-year></span> A16 Technologies — SIRET 97918596400041</div>
-    <div>
-      <a href="tel:0770577989">0770577989</a> ·
-      <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>
+    <div class="cs-footer-links">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
-<script>document.querySelectorAll("[data-year]").forEach(n=>n.textContent=new Date().getFullYear());</script>
-  <script src="/js/app.js" defer></script>
+
+<script>
+  const _y = document.querySelector('[data-year]');
+  if (_y) _y.textContent = String(new Date().getFullYear());
+  const toggle = document.querySelector('[data-mobile-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('open'));
+</script>
 </body>
 </html>
+

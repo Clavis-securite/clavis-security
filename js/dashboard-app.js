@@ -110,7 +110,7 @@
       const note = document.createElement('p');
       note.className = 'app-add-note';
       note.setAttribute('data-i18n', 'add_note');
-      note.textContent = "Renseigne juste l'identifiant et le mot de passe.";
+      note.textContent = "Renseigne le nom, l’identifiant et le mot de passe.";
       screenAdd.insertBefore(note, addCard);
 
       container.appendChild(screenAdd);
@@ -132,6 +132,14 @@
       setHidden(qs('#appLangRow'), true);
       setHidden(qs('#appSearchRow'), true);
     }
+
+    // Expose navigation helpers for other scripts (edit button)
+    try {
+      window.ClavisApp = window.ClavisApp || {};
+      window.ClavisApp.showAdd = showAdd;
+      window.ClavisApp.showList = showList;
+      window.ClavisApp.isAppPhone = true;
+    } catch (_) {}
 
     // + button
     if (fab) {
@@ -229,15 +237,16 @@
     function simplifyAddForm() {
       if (!addForm) return;
 
-      // Title: keep required but auto-fill to something useful
+      // Title (Nom): required on mobile
       if (titleInput) {
-        titleInput.required = false;
-        titleInput.value = titleInput.value || (usernameInput && usernameInput.value ? usernameInput.value : 'Compte');
+        titleInput.required = true;
       }
 
-      // Hide title field row (but keep input in DOM)
+      // Show title field row (Nom)
       const titleField = titleInput ? titleInput.closest('.field') : null;
-      if (titleField) titleField.style.display = 'none';
+      if (titleField) titleField.style.display = '';
+      const tLabel = titleInput ? addForm.querySelector('label[for="title"]') : null;
+      if (tLabel) tLabel.textContent = 'Nom';
 
       // Hide URL and Notes fields
       const urlField = urlInput ? urlInput.closest('.field') : null;

@@ -34,6 +34,8 @@
   </div>
 </nav>
 
+<a id="premiumCta" class="app-premium-cta" href="/offers.html" hidden>Passer en prenium</a>
+
 <button class="app-fab" id="btnAdd" style="display:none;" aria-label="Ajouter">＋</button>
 
 <header class="cs-topbar">
@@ -198,6 +200,9 @@
   let profile = null;
   let items = [];
 
+  // Edition (mobile)
+  let editingItemId = null;
+
   let opened = false;
   let vaultKey = null;
   let vaultSaltB64 = null;
@@ -295,7 +300,17 @@
     } else {
       document.getElementById("limitNote").textContent = "Offre Premium : éléments illimités + copie PDF.";
     }
-  }
+  
+    // Premium CTA (mobile/iPhone): visible uniquement si plan free + en mode app-phone
+    try {
+      const cta = document.getElementById("premiumCta");
+      const isPhone = document.documentElement.classList.contains("app-phone");
+      if (cta) {
+        const show = isPhone && profile.plan === "free";
+        cta.hidden = !show;
+      }
+    } catch (_) {}
+}
 
   async function ensureVaultSalt() {
     if (profile.vault_salt) {
@@ -379,6 +394,7 @@
 
     filtered.forEach(it => {
       const row = document.createElement("div");
+      row.className = "vault-row";
       row.style.borderRadius = "16px";
       row.style.padding = "10px 12px";
       row.style.background = "rgba(255,255,255,.05)";
@@ -395,10 +411,14 @@
             ${opened ? "coffre ouvert" : "coffre fermé"}
           </span>
         </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+        <div class="vault-row-actions">
           <button class="btn small" data-action="view">Voir</button>
-          <button class="btn small" data-action="copy-user">Copier identifiant</button>
-          <button class="btn small" data-action="copy-pass">Copier mot de passe</button>
+          ${
+            document.documentElement.classList.contains("app-phone")
+              ? `<button class="btn small" data-action="edit">Modifier</button>`
+              : `<button class="btn small" data-action="copy-user">Copier identifiant</button>
+                 <button class="btn small" data-action="copy-pass">Copier mot de passe</button>`
+          }
           <button class="btn small" data-action="delete">Supprimer</button>
         </div>
       `;
@@ -434,7 +454,48 @@
         }
       });
 
-      row.querySelector('[data-action="copy-user"]').addEventListener('click', async () => {
+      
+      const editBtn = row.querySelector('[data-action="edit"]');
+      if (editBtn) {
+        editBtn.addEventListener('click', async () => {
+          if (!opened || !vaultKey) return message("Ouvrez votre coffre pour modifier.");
+          try {
+            const { uiv, piv, urliv, niv } = getIVs(it);
+            const username = await CryptoV1.decryptText(it.username_encrypted, uiv, vaultKey);
+            const pwd = await CryptoV1.decryptText(it.password_encrypted, piv, vaultKey);
+            const url = it.url_encrypted ? await CryptoV1.decryptText(it.url_encrypted, urliv, vaultKey) : "";
+            const notes = it.notes_encrypted ? await CryptoV1.decryptText(it.notes_encrypted, niv, vaultKey) : "";
+
+            // Fill form
+            document.getElementById("title").value = it.title || "";
+            document.getElementById("username").value = username || "";
+            document.getElementById("secretPassword").value = pwd || "";
+            document.getElementById("url").value = url || "";
+            document.getElementById("notes").value = notes || "";
+
+            editingItemId = it.id;
+
+            // UI hint (button + title)
+            const submit = document.querySelector('#addForm button[type="submit"]');
+            if (submit) submit.textContent = "Mettre à jour";
+
+            // Go to add/edit screen in app-phone
+            if (window.ClavisApp && typeof window.ClavisApp.showAdd === "function") {
+              window.ClavisApp.showAdd();
+            } else {
+              document.getElementById("title")?.focus();
+              document.getElementById("addForm")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            startAutoLockTimer();
+          } catch {
+            message("Oups… impossible de préparer la modification.");
+          }
+        });
+      }
+
+      const copyUserBtn = row.querySelector('[data-action="copy-user"]');
+      if (copyUserBtn) copyUserBtn.addEventListener('click', async () => {
         if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
 
         try {
@@ -447,7 +508,8 @@
         }
       });
 
-      row.querySelector('[data-action="copy-pass"]').addEventListener('click', async () => {
+      const copyPassBtn = row.querySelector('[data-action="copy-pass"]');
+      if (copyPassBtn) copyPassBtn.addEventListener('click', async () => {
         if (!opened || !vaultKey) return message("Ouvrez votre coffre pour copier.");
 
         try {
@@ -478,7 +540,69 @@
   // ==========================
   // Ajouter (✅ corrigé pour table actuelle)
   // ==========================
-  async function addItem(e) {
+  
+  async function updateItem(e) {
+    e.preventDefault();
+
+    if (!opened || !vaultKey) return message("Ouvrez votre coffre avant de modifier.");
+    if (!editingItemId) return message("Aucun élément à modifier.");
+
+    const title = document.getElementById("title").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("secretPassword").value;
+    const url = document.getElementById("url").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+
+    try {
+      await ensureVaultSalt();
+
+      // Nouveau IV pour la mise à jour
+      const iv = CryptoV1.newIvB64();
+
+      const usernameEnc = await CryptoV1.encryptText(username, vaultKey, iv);
+      const passwordEnc = await CryptoV1.encryptText(password, vaultKey, iv);
+      const urlEnc = url ? await CryptoV1.encryptText(url, vaultKey, iv) : null;
+      const notesEnc = notes ? await CryptoV1.encryptText(notes, vaultKey, iv) : null;
+
+      const payload = {
+        title,
+        username_encrypted: usernameEnc,
+        password_encrypted: passwordEnc,
+        url_encrypted: urlEnc,
+        notes_encrypted: notesEnc,
+        crypto_iv: iv,
+        crypto_salt: vaultSaltB64
+      };
+
+      const { data, error } = await supabaseClient
+        .from("vault_items")
+        .update(payload)
+        .eq("id", editingItemId)
+        .select("*")
+        .single();
+
+      if (error) throw error;
+
+      // Update local list
+      items = items.map(x => x.id === editingItemId ? data : x);
+
+      // Reset form + state
+      document.getElementById("addForm").reset();
+      editingItemId = null;
+
+      const submit = document.querySelector('#addForm button[type="submit"]');
+      if (submit) submit.textContent = "Enregistrer";
+
+      document.getElementById("itemsInfo").textContent = `${items.length} élément(s) enregistré(s).`;
+      renderItems();
+      startAutoLockTimer();
+      message("✅ Mis à jour.");
+    } catch {
+      message("Oups… impossible de modifier. Réessayez.");
+    }
+  }
+
+async function addItem(e) {
     e.preventDefault();
 
     if (!opened || !vaultKey) return message("Ouvrez votre coffre avant d’enregistrer.");

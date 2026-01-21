@@ -338,3 +338,61 @@
   display: none;
 }
 
+
+
+/* ==========================
+   Mobile/iPhone improvements (Dashboard)
+   - Remove bottom bar, add Premium CTA
+   - Airier layout + better item cards
+   ========================== */
+
+.app-phone .vault-row {
+  padding: 14px 14px;
+  border-radius: 18px;
+  gap: 14px;
+}
+
+.app-phone .vault-row-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.app-phone .card.pad { padding: 18px; }
+
+.app-phone .field { margin-bottom: 14px; }
+.app-phone .field input,
+.app-phone .field textarea,
+.app-phone .field select {
+  min-height: 48px;
+  border-radius: 16px;
+}
+
+.app-phone .field textarea { min-height: 110px; }
+
+.app-premium-cta {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 9998;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(14,165,233,.18);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.app-premium-cta:active { transform: translateY(1px); }
+
+/* Ensure content is not hidden behind the bottom CTA when visible */
+html.app-mode body[data-page="dashboard"] main {
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));
+}
