@@ -21,19 +21,12 @@
 
   // APP_GUARD : en PWA téléphone, on limite volontairement l’expérience
   if (standalone && phone) {
-    const allowed = new Set(['/app.html','/login.html','/register.html','/dashboard.html']);
+    const allowed = new Set(['/app.html','/login.html','/register.html','/dashboard.html','/offers.html','/thankyou.html']);
     const path = (window.location.pathname || '/').toLowerCase();
     if (!allowed.has(path)) {
-      // On renvoie vers l’écran utile (dashboard si connecté, sinon login)
-      try {
-        if (typeof getSession === 'function') {
-          getSession().then((s) => {
-            window.location.replace(s ? '/dashboard.html' : '/login.html?app=1');
-          }).catch(() => window.location.replace('/login.html?app=1'));
-          return;
-        }
-      } catch (_) {}
-      window.location.replace('/login.html?app=1');
+      // Redirige vers le hub PWA (qui décidera login/dashboard)
+      window.location.replace('/app.html');
+      return;
     }
   }
 

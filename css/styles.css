@@ -1070,3 +1070,34 @@ body{
 
 /* App-only elements are hidden by default (shown via .app-phone in app.css) */
 .app-premium-cta { display: none; }
+
+
+/* --- Toasts (pro UX) --- */
+#cs-toast-root{
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: grid;
+  gap: 10px;
+  z-index: 9999;
+  width: min(560px, calc(100vw - 24px));
+  pointer-events: none;
+}
+.cs-toast{
+  background: rgba(15,23,42,.92);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: .2px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.cs-toast.show{ opacity: 1; transform: translateY(0); }
+.cs-toast--success{ border-color: rgba(34,197,94,.35); }
+.cs-toast--error{ border-color: rgba(239,68,68,.4); }
+.cs-toast--info{ border-color: rgba(34,211,238,.35); }

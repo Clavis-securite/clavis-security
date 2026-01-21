@@ -1,59 +1,64 @@
-// /js/premium.js
-// Bouton "Passer à Premium" (utilisé surtout en app téléphone).
-// Ne casse jamais le site : si la function Netlify n'est pas dispo, on redirige vers /offers.html.
+// js/premium.js
+// Stripe checkout helper (Annual / Lifetime) with safe fallbacks.
+// Requires supabase.js (getSession) and optional ui.js (CS_UI.toast).
 
 (function () {
-  async function startCheckout() {
+  function toast(msg, type="info"){ (window.CS_UI && CS_UI.toast) ? CS_UI.toast(msg,type) : console.log(msg); }
+
+  async function startCheckout(plan="annual") {
+    // Auth required for checkout (to attach metadata + enable premium flags)
+    let session = null;
     try {
-      if (typeof getSession === 'function') {
-        const session = await getSession();
-        if (!session) {
-          window.location.href = '/login.html?next=/dashboard.html';
-          return;
-        }
-      }
-    } catch (_) {
-      // si session check échoue, on tente quand même
+      if (typeof getSession === "function") session = await getSession();
+    } catch (_) {}
+
+    if (!session) {
+      const next = encodeURIComponent(`/offers.html`);
+      window.location.href = `/login.html?next=${next}`;
+      return;
     }
 
-    const btn = document.getElementById('appPremiumBtn');
-    const old = btn ? btn.textContent : '';
-    if (btn) {
-      btn.disabled = true;
-      btn.textContent = 'Ouverture...';
-    }
+    const payload = {
+      plan,
+      user_id: session.user.id,
+      user_email: session.user.email,
+      site_url: window.location.origin
+    };
 
     try {
-      const res = await fetch('/.netlify/functions/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan: 'annual' })
+      const res = await fetch("/.netlify/functions/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
       });
 
-      if (!res.ok) throw new Error('checkout_failed');
+      if (!res.ok) {
+        const txt = await res.text().catch(()=>"");
+        throw new Error(`checkout_failed_${res.status}_${txt}`);
+      }
+
       const data = await res.json();
       if (data && data.url) {
         window.location.href = data.url;
         return;
       }
-      throw new Error('no_url');
+      throw new Error("no_url");
     } catch (e) {
-      console.log('checkout fallback:', e && (e.message || e));
-      window.location.href = '/offers.html';
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = old || 'Passer à Premium';
-      }
+      console.error(e);
+      toast("Impossible d’ouvrir le paiement. Réessaie dans quelques secondes.", "error");
+      // fallback: keep user on offers
     }
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('appPremiumBtn');
+  // Expose globally
+  window.CS_Checkout = { startCheckout };
+
+  // Auto-bind buttons
+  document.addEventListener("click", (ev) => {
+    const btn = ev.target && ev.target.closest ? ev.target.closest("[data-checkout-plan]") : null;
     if (!btn) return;
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      startCheckout();
-    });
+    ev.preventDefault();
+    const plan = btn.getAttribute("data-checkout-plan") || "annual";
+    startCheckout(plan);
   });
 })();
