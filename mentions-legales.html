@@ -11,69 +11,81 @@
 </head>
 <body class="csx-page">
 
-<header class="topbar">
-  <div class="container">
-    <div class="brand">
-      <a href="/index.html" class="logo" aria-label="Clavis Security">
-        <span class="dot"></span><span>Clavis</span><span class="muted">Security</span>
-      </a>
-    </div>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-    <nav class="navlinks" aria-label="Navigation">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <div class="actions">
-      <a href="/app.html" class="btn">Ouvrir l’app</a>
-      <a href="/login.html" class="btn primary">Connexion</a>
-    </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
 
-    <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
+      <!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
+      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>
+        Installer l’app
+      </button>
+
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-menu>
-    <div class="container" style="display:flex; flex-direction:column; gap:10px; padding-top:10px;">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/app.html">Ouvrir l’app</a>
-      <a href="/login.html">Connexion</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
-<main class="container">
-  <section class="page-hero">
-    <h1>Mentions légales</h1>
-    <p class="muted">Dernière mise à jour : 21/01/2026</p>
+<main>
+  <section class="cs-hero">
+    <div class="cs-container">
+      <div class="cs-hero-grid">
+        <div>
+          <h1 class="cs-hero-title">Mentions légales</h1>
+          <p class="cs-hero-subtitle">Informations légales et coordonnées de l’éditeur.</p>
+        </div>
+        <div class="cs-hero-card">
+          <div class="cs-hero-card-title">Éditeur</div>
+          <ul class="cs-checklist">
+            <li><strong>A16 Technologies</strong></li>
+            <li><strong>SIRET :</strong> 97918596400041</li>
+            <li><strong>Email :</strong> clavis.service.client@gmail.com</li>
+            <li><strong>Tél :</strong> 0770577989</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="card" style="margin-top:10px;">
-    
-<h2 style="margin-top:0;">Éditeur du site</h2>
-<p>
-  <strong>A16 Technologies</strong><br/>
-  SIRET : <strong>97918596400041</strong><br/>
-  Email : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a><br/>
-  Téléphone : <a href="tel:0770577989">0770577989</a>
-</p>
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="card">
+        
+<h2>Éditeur du site</h2>
+<p><strong>A16 Technologies</strong> — SIRET <strong>97918596400041</strong></p>
+<p>Email : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> — Téléphone : <a href="tel:0770577989">0770577989</a></p>
 
-<h2>Directeur de publication</h2>
-<p>Le directeur de publication est A16 Technologies.</p>
-
-<h2>Hébergeur</h2>
-<p>Le site est hébergé sur l’infrastructure de Netlify, Inc. (hébergement et déploiement).</p>
+<h2>Hébergement</h2>
+<p>Site hébergé sur une infrastructure de déploiement web (type Netlify). Les données d’authentification et de base sont gérées via Supabase.</p>
 
 <h2>Propriété intellectuelle</h2>
-<p class="muted">
-  Les contenus, marques, logos et éléments graphiques liés à Clavis Security sont protégés. Toute reproduction non autorisée est interdite.
-</p>
+<p>Le contenu, la marque et les éléments graphiques sont protégés. Toute reproduction non autorisée est interdite.</p>
 
 <h2>Contact</h2>
-<p>Pour toute question : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>.</p>
+<p>Pour toute demande : <a href="/contact.html">page contact</a>.</p>
 
+      </div>
+    </div>
   </section>
 </main>
 
@@ -115,5 +127,6 @@
   </div>
 </footer>
 <script>document.querySelectorAll("[data-year]").forEach(n=>n.textContent=new Date().getFullYear());</script>
+  <script src="/js/app.js" defer></script>
 </body>
 </html>

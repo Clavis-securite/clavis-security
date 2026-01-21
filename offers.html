@@ -45,95 +45,137 @@
   </div>
 </header>
 
-<main class="container">
-  <section class="page-hero">
-    <h1>Choisissez l’offre qui vous suit dans le temps</h1>
-    <p>
-      Clavis chiffre vos secrets <strong>côté appareil</strong>. Premium ajoute de la capacité, de l’export et un support prioritaire — sans compromettre la confidentialité.
-    </p>
-  </section>
+<main>
+  <section class="cs-hero">
+    <div class="cs-container">
+      <div class="cs-hero-grid">
+        <div>
+          <h1 class="cs-hero-title">Passez à Premium</h1>
+          <p class="cs-hero-subtitle">
+            Plus d’entrées, plus de confort, le même chiffrement côté appareil.
+            Payez via Stripe et gardez le contrôle.
+          </p>
+          <div class="cs-hero-cta">
+            <button class="cs-btn cs-primary" type="button" data-checkout-plan="annual">Premium — 30€/an</button>
+            <button class="cs-btn cs-ghost" type="button" data-checkout-plan="lifetime">Accès à vie — 99€</button>
+          </div>
+          <p class="muted" style="margin-top:10px;">
+            Gratuit : 15 entrées · Premium : usage étendu · Paiement sécurisé Stripe
+          </p>
+        </div>
 
-  <section class="pricing" aria-label="Offres">
-    <div class="card price-card">
-      <div class="name">Gratuit</div>
-      <div class="price">0€</div>
-      <p class="desc">Pour démarrer et tester le coffre.</p>
-      <ul>
-        <li>Jusqu’à <strong>15</strong> entrées</li>
-        <li>Recherche rapide</li>
-        <li>Chiffrement côté client</li>
-      </ul>
-      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn" href="/register.html">Créer un compte</a>
-        <a class="btn" href="/app.html">Ouvrir l’app</a>
-      </div>
-    </div>
-
-    <div class="card price-card featured">
-      <div class="tag">Le plus choisi</div>
-      <div class="name">Premium</div>
-      <div class="price">30€<span style="font-size:14px; color:var(--muted); font-weight:600;"> / an</span></div>
-      <p class="desc">Pour ne plus jamais compter.</p>
-      <ul>
-        <li>Jusqu’à <strong>500</strong> entrées</li>
-        <li>Export PDF</li>
-        <li>Support prioritaire</li>
-      </ul>
-      <div style="margin-top:14px;">
-        <button class="btn primary" type="button" data-checkout-plan="annual">Passer à Premium</button>
-      </div>
-      <div class="hint" style="margin-top:10px;">Annulable à tout moment • Paiement sécurisé par Stripe</div>
-    </div>
-
-    <div class="card price-card">
-      <div class="name">À vie</div>
-      <div class="price">99€</div>
-      <p class="desc">Une fois. Pour toujours.</p>
-      <ul>
-        <li>Premium <strong>à vie</strong></li>
-        <li>Mises à jour incluses</li>
-        <li>Priorité aux nouveautés</li>
-      </ul>
-      <div style="margin-top:14px;">
-        <button class="btn" type="button" data-checkout-plan="lifetime">Accès à vie</button>
-      </div>
-      <div class="hint" style="margin-top:10px;">Paiement unique • Paiement sécurisé par Stripe</div>
-    </div>
-  </section>
-
-  <section class="card" style="margin-top:18px;">
-    <h2 style="margin-top:0;">Pourquoi Premium est sûr</h2>
-    <div class="grid3" style="margin-top:12px;">
-      <div class="card" style="background:rgba(255,255,255,.03);">
-        <strong>Chiffrement côté client</strong>
-        <p class="muted">Vos données sont chiffrées avant d’être envoyées. Sans votre mot de passe secondaire, elles restent illisibles.</p>
-      </div>
-      <div class="card" style="background:rgba(255,255,255,.03);">
-        <strong>Accès contrôlé</strong>
-        <p class="muted">Déverrouillage explicite pour afficher/copier. Verrouillage rapide pour garder le coffre fermé.</p>
-      </div>
-      <div class="card" style="background:rgba(255,255,255,.03);">
-        <strong>Paiement Stripe</strong>
-        <p class="muted">Paiement sécurisé. Votre abonnement est géré via Stripe (annulation possible à tout moment).</p>
+        <div class="cs-hero-card">
+          <div class="cs-hero-card-title">Ce que vous obtenez</div>
+          <ul class="cs-checklist">
+            <li><strong>Chiffrement côté client</strong> (vos secrets ne sortent pas en clair)</li>
+            <li><strong>Déverrouillage</strong> par mot de passe secondaire</li>
+            <li><strong>Recherche</strong> instantanée dans le coffre</li>
+            <li><strong>Export PDF</strong> (pratique pour vos audits / archives)</li>
+          </ul>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="cs-btn cs-ghost" href="/faq.html">Voir la FAQ</a>
+            <a class="cs-btn cs-ghost" href="/app.html">Ouvrir l’app</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section style="margin-top:18px;">
-    <h2>Questions fréquentes</h2>
-    <div class="faq" style="margin-top:10px;">
-      <details>
-        <summary>Je peux annuler quand je veux ?</summary>
-        <p>Oui. Pour l’offre annuelle, l’abonnement est annulable depuis Stripe. Vous gardez l’accès jusqu’à la fin de la période en cours.</p>
-      </details>
-      <details>
-        <summary>Vous voyez mes mots de passe ?</summary>
-        <p>Non. Le coffre est chiffré côté appareil. Sans votre mot de passe secondaire, le contenu n’est pas lisible.</p>
-      </details>
-      <details>
-        <summary>Comment fonctionne l’offre à vie ?</summary>
-        <p>C’est un paiement unique. Votre compte est marqué Premium à vie après confirmation de paiement.</p>
-      </details>
+  <section class="cs-section">
+    <div class="cs-container">
+      <h2 class="cs-section-title">Choisissez votre formule</h2>
+      <p class="cs-section-subtitle">Simple, clair, sans surprise.</p>
+
+      <div class="pricing">
+        <article class="price-card">
+          <div class="price-top">
+            <h3>Gratuit</h3>
+            <div class="price"><span class="price-amount">0€</span><span class="price-period">/ toujours</span></div>
+            <p class="muted">Pour démarrer et tester.</p>
+          </div>
+          <ul class="price-features">
+            <li>Jusqu’à 15 entrées</li>
+            <li>Chiffrement côté appareil</li>
+            <li>Recherche rapide</li>
+          </ul>
+          <div class="price-cta">
+            <a class="btn" href="/register.html">Créer mon coffre</a>
+          </div>
+        </article>
+
+        <article class="price-card featured">
+          <div class="badge">Recommandé</div>
+          <div class="price-top">
+            <h3>Premium</h3>
+            <div class="price"><span class="price-amount">30€</span><span class="price-period">/ an</span></div>
+            <p class="muted">Le meilleur équilibre pour un usage sérieux.</p>
+          </div>
+          <ul class="price-features">
+            <li>Limite augmentée</li>
+            <li>Export PDF</li>
+            <li>Support prioritaire</li>
+          </ul>
+          <div class="price-cta">
+            <button class="btn primary" type="button" data-checkout-plan="annual">Passer à Premium</button>
+          </div>
+        </article>
+
+        <article class="price-card">
+          <div class="price-top">
+            <h3>À vie</h3>
+            <div class="price"><span class="price-amount">99€</span><span class="price-period">/ une fois</span></div>
+            <p class="muted">Paiement unique, accès à vie.</p>
+          </div>
+          <ul class="price-features">
+            <li>Limite augmentée</li>
+            <li>Export PDF</li>
+            <li>Accès à vie</li>
+          </ul>
+          <div class="price-cta">
+            <button class="btn" type="button" data-checkout-plan="lifetime">Choisir À vie</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- On garde la FAQ (tu l’aimes) -->
+  <section class="csx-section">
+    <div class="csx-wrap">
+      <h2 class="csx-title">Questions fréquentes</h2>
+      <p class="csx-sub">Les réponses rapides avant de passer à Premium.</p>
+
+      <div class="csx-faq">
+        <details class="csx-faq-item" open>
+          <summary>Est-ce que Clavis peut lire mes mots de passe ?</summary>
+          <div class="csx-faq-body">
+            Non. Le coffre est chiffré côté appareil. Vos secrets ne sont jamais stockés en clair.
+          </div>
+        </details>
+
+        <details class="csx-faq-item">
+          <summary>Que se passe-t-il si j’oublie le mot de passe secondaire ?</summary>
+          <div class="csx-faq-body">
+            Pour des raisons de sécurité, il n’existe pas de “reset” magique : c’est ce qui garantit que personne
+            ne peut déverrouiller vos secrets à votre place.
+          </div>
+        </details>
+
+        <details class="csx-faq-item">
+          <summary>Puis-je annuler Premium ?</summary>
+          <div class="csx-faq-body">
+            Oui. Vous gardez l’accès selon la période payée. Le paiement est géré via Stripe.
+          </div>
+        </details>
+
+        <details class="csx-faq-item">
+          <summary>Je peux vous contacter si j’ai un souci ?</summary>
+          <div class="csx-faq-body">
+            Oui : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> ou
+            <a href="tel:0770577989">0770577989</a>.
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 </main>

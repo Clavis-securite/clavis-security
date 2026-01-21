@@ -11,85 +11,83 @@
 </head>
 <body class="csx-page">
 
-<header class="topbar">
-  <div class="container">
-    <div class="brand">
-      <a href="/index.html" class="logo" aria-label="Clavis Security">
-        <span class="dot"></span><span>Clavis</span><span class="muted">Security</span>
-      </a>
-    </div>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-    <nav class="navlinks" aria-label="Navigation">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <div class="actions">
-      <a href="/app.html" class="btn">Ouvrir l’app</a>
-      <a href="/login.html" class="btn primary">Connexion</a>
-    </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
 
-    <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
+      <!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
+      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>
+        Installer l’app
+      </button>
+
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-menu>
-    <div class="container" style="display:flex; flex-direction:column; gap:10px; padding-top:10px;">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/app.html">Ouvrir l’app</a>
-      <a href="/login.html">Connexion</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
-<main class="container">
-  <section class="page-hero">
-    <h1>CGU</h1>
-    <p class="muted">Dernière mise à jour : 21/01/2026</p>
+<main>
+  <section class="cs-hero">
+    <div class="cs-container">
+      <div class="cs-hero-grid">
+        <div>
+          <h1 class="cs-hero-title">CGU</h1>
+          <p class="cs-hero-subtitle">Conditions générales d’utilisation du service.</p>
+        </div>
+        <div class="cs-hero-card">
+          <div class="cs-hero-card-title">Éditeur</div>
+          <ul class="cs-checklist">
+            <li><strong>A16 Technologies</strong></li>
+            <li><strong>SIRET :</strong> 97918596400041</li>
+            <li><strong>Email :</strong> clavis.service.client@gmail.com</li>
+            <li><strong>Tél :</strong> 0770577989</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="card" style="margin-top:10px;">
-    
-<h2 style="margin-top:0;">Objet</h2>
-<p class="muted">
-  Les présentes Conditions Générales d’Utilisation (CGU) encadrent l’accès et l’utilisation de Clavis Security.
-</p>
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="card">
+        
+<h2>Objet</h2>
+<p>Les présentes CGU encadrent l’utilisation de Clavis-security (création de compte, coffre chiffré, fonctionnalités Premium).</p>
 
-<h2>Accès au service</h2>
-<ul>
-  <li>Vous créez un compte et utilisez un coffre chiffré.</li>
-  <li>Vous êtes responsable de la confidentialité de vos identifiants et de votre mot de passe secondaire.</li>
-</ul>
+<h2>Compte et sécurité</h2>
+<p>Vous êtes responsable de la confidentialité de vos mots de passe. En cas de perte du mot de passe secondaire, l’accès aux secrets peut être impossible par conception.</p>
 
 <h2>Offres</h2>
-<ul>
-  <li><strong>Gratuit</strong> : capacité limitée.</li>
-  <li><strong>Premium annuel</strong> : abonnement, annulable (gestion via Stripe).</li>
-  <li><strong>À vie</strong> : paiement unique.</li>
-</ul>
+<p>Une offre gratuite (limite d’entrées) et des offres payantes (Premium / À vie) sont proposées. Les paiements sont traités par Stripe.</p>
 
-<h2>Sécurité & chiffrement</h2>
-<p class="muted">
-  Le service applique un chiffrement côté client. En cas d’oubli du mot de passe secondaire, le contenu du coffre peut devenir irrécupérable.
-</p>
-
-<h2>Usage acceptable</h2>
-<p class="muted">
-  Interdiction d’utiliser le service pour des activités illégales, du spam, ou toute tentative d’attaque / abus.
-</p>
+<h2>Disponibilité</h2>
+<p>Le service est fourni “en l’état”, avec une exigence de fiabilité maximale. Des interruptions temporaires peuvent survenir (maintenance, incidents).</p>
 
 <h2>Support</h2>
-<p class="muted">
-  Support : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> — <a href="tel:0770577989">0770577989</a>.
-</p>
+<p>Contact : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> — <a href="tel:0770577989">0770577989</a></p>
 
-<h2>Responsabilité</h2>
-<p class="muted">
-  Le service est fourni « en l’état ». A16 Technologies met en œuvre des moyens raisonnables de sécurité, sans garantie absolue.
-</p>
-
+      </div>
+    </div>
   </section>
 </main>
 
@@ -131,5 +129,6 @@
   </div>
 </footer>
 <script>document.querySelectorAll("[data-year]").forEach(n=>n.textContent=new Date().getFullYear());</script>
+  <script src="/js/app.js" defer></script>
 </body>
 </html>

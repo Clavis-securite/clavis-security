@@ -11,88 +11,88 @@
 </head>
 <body class="csx-page">
 
-<header class="topbar">
-  <div class="container">
-    <div class="brand">
-      <a href="/index.html" class="logo" aria-label="Clavis Security">
-        <span class="dot"></span><span>Clavis</span><span class="muted">Security</span>
-      </a>
-    </div>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-    <nav class="navlinks" aria-label="Navigation">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <div class="actions">
-      <a href="/app.html" class="btn">Ouvrir l’app</a>
-      <a href="/login.html" class="btn primary">Connexion</a>
-    </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
 
-    <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
+      <!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
+      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>
+        Installer l’app
+      </button>
+
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-menu>
-    <div class="container" style="display:flex; flex-direction:column; gap:10px; padding-top:10px;">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/app.html">Ouvrir l’app</a>
-      <a href="/login.html">Connexion</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
-<main class="container">
-  <section class="page-hero">
-    <h1>Politique de confidentialité</h1>
-    <p class="muted">Dernière mise à jour : 21/01/2026</p>
+<main>
+  <section class="cs-hero">
+    <div class="cs-container">
+      <div class="cs-hero-grid">
+        <div>
+          <h1 class="cs-hero-title">Politique de confidentialité</h1>
+          <p class="cs-hero-subtitle">Comment nous traitons vos données et protégeons vos secrets.</p>
+        </div>
+        <div class="cs-hero-card">
+          <div class="cs-hero-card-title">Éditeur</div>
+          <ul class="cs-checklist">
+            <li><strong>A16 Technologies</strong></li>
+            <li><strong>SIRET :</strong> 97918596400041</li>
+            <li><strong>Email :</strong> clavis.service.client@gmail.com</li>
+            <li><strong>Tél :</strong> 0770577989</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="card" style="margin-top:10px;">
-    
-<h2 style="margin-top:0;">Résumé (lisible en 10 secondes)</h2>
-<ul>
-  <li><strong>Vos secrets sont chiffrés côté appareil</strong> avant stockage. Nous n’avons pas votre mot de passe secondaire.</li>
-  <li>Nous utilisons Supabase pour l’authentification et la base de données chiffrée.</li>
-  <li>Stripe gère le paiement (abonnement/à vie) et ses propres données de paiement.</li>
-</ul>
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="card">
+        
+<h2>Principes</h2>
+<p>Clavis-security vise à minimiser les données collectées. Le coffre est chiffré côté appareil : vos secrets ne sont pas stockés en clair.</p>
 
-<h2>Données collectées</h2>
+<h2>Données traitées</h2>
 <ul>
-  <li><strong>Compte</strong> : email, identifiants techniques (id utilisateur) nécessaires au fonctionnement.</li>
-  <li><strong>Coffre</strong> : contenus <em>chiffrés</em> (nous stockons des blobs chiffrés, pas des mots de passe en clair).</li>
-  <li><strong>Paiement</strong> : géré par Stripe (nous ne stockons pas votre carte bancaire).</li>
+  <li>Compte : email et identifiant utilisateur (authentification)</li>
+  <li>Données de coffre : stockées chiffrées</li>
+  <li>Paiements : gérés par Stripe (Clavis ne stocke pas vos numéros de carte)</li>
 </ul>
 
 <h2>Finalités</h2>
 <ul>
-  <li>Fournir l’accès au service et synchroniser votre coffre chiffré.</li>
-  <li>Gérer l’abonnement Premium (activation, statut, facturation via Stripe).</li>
-  <li>Support client et sécurité (détection d’abus, journalisation technique minimale).</li>
+  <li>Fournir l’accès au service</li>
+  <li>Gérer l’abonnement Premium / accès à vie</li>
+  <li>Support client</li>
 </ul>
 
-<h2>Partage</h2>
-<p class="muted">
-  Partage limité aux prestataires nécessaires : Supabase (service) et Stripe (paiement). Pas de revente de données.
-</p>
-
-<h2>Durée de conservation</h2>
-<p class="muted">
-  Compte et coffre : tant que le compte est actif. Vous pouvez demander la suppression via le support.
-</p>
-
 <h2>Vos droits</h2>
-<p class="muted">
-  Accès, rectification, suppression, opposition, portabilité. Contact : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>.
-</p>
+<p>Vous pouvez demander l’accès, la rectification ou la suppression de vos données. Contact : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>.</p>
 
-<h2>Cookies</h2>
-<p class="muted">
-  Cookies/stockage local strictement nécessaires au fonctionnement (session, préférences). Pas de tracking publicitaire.
-</p>
-
+      </div>
+    </div>
   </section>
 </main>
 
@@ -134,5 +134,6 @@
   </div>
 </footer>
 <script>document.querySelectorAll("[data-year]").forEach(n=>n.textContent=new Date().getFullYear());</script>
+  <script src="/js/app.js" defer></script>
 </body>
 </html>

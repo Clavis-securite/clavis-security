@@ -12,63 +12,92 @@
 </head>
 <body class="csx-page">
 
-<header class="topbar">
-  <div class="container">
-    <div class="brand">
-      <a href="/index.html" class="logo" aria-label="Clavis Security">
-        <span class="dot"></span><span>Clavis</span><span class="muted">Security</span>
-      </a>
-    </div>
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
 
-    <nav class="navlinks" aria-label="Navigation">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html" class='active'>Contact</a>
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <div class="actions">
-      <a href="/app.html" class="btn">Ouvrir l’app</a>
-      <a href="/login.html" class="btn primary">Connexion</a>
-    </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
 
-    <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
+      <!-- ✅ Bouton installation (PWA) : visible quand dispo (Android/PC) + aide iPhone -->
+      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>
+        Installer l’app
+      </button>
+
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-menu>
-    <div class="container" style="display:flex; flex-direction:column; gap:10px; padding-top:10px;">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/app.html">Ouvrir l’app</a>
-      <a href="/login.html">Connexion</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
-<main class="container">
-  <section class="page-hero">
-    <h1>Contact</h1>
-    <p>Une question, un souci de paiement ou besoin d’aide ? On répond rapidement.</p>
-  </section>
+<main>
+  <section class="cs-hero">
+    <div class="cs-container">
+      <div class="cs-hero-grid">
+        <div>
+          <h1 class="cs-hero-title">Contact</h1>
+          <p class="cs-hero-subtitle">
+            Une question, un souci de paiement, une demande pro ? On répond vite.
+          </p>
+          <div class="cs-hero-cta">
+            <a class="cs-btn cs-primary" href="mailto:clavis.service.client@gmail.com">Envoyer un email</a>
+            <a class="cs-btn cs-ghost" href="tel:0770577989">Appeler 0770577989</a>
+          </div>
+        </div>
 
-  <section class="grid2" style="margin-top:10px;">
-    <div class="card">
-      <h2 style="margin-top:0;">Support client</h2>
-      <p class="muted">Réponse généralement sous 24–48h ouvrées.</p>
-      <div style="display:flex; flex-direction:column; gap:10px; margin-top:12px;">
-        <a class="btn primary" href="mailto:clavis.service.client@gmail.com">Écrire au support</a>
-        <a class="btn" href="tel:0770577989">Appeler : 0770577989</a>
+        <div class="cs-hero-card">
+          <div class="cs-hero-card-title">Coordonnées</div>
+          <ul class="cs-checklist">
+            <li><strong>Entreprise :</strong> A16 Technologies</li>
+            <li><strong>SIRET :</strong> 97918596400041</li>
+            <li><strong>Email :</strong> clavis.service.client@gmail.com</li>
+            <li><strong>Téléphone :</strong> 0770577989</li>
+          </ul>
+          <p class="muted" style="margin-top:12px;">
+            Pour la confidentialité et la sécurité, évitez d’envoyer des mots de passe en clair.
+          </p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h2 style="margin-top:0;">Informations légales</h2>
-      <p class="muted" style="margin-bottom:12px;">A16 Technologies — SIRET 97918596400041</p>
-      <ul style="margin:0; padding-left:18px; color:rgba(255,255,255,.78);">
-        <li>Email : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a></li>
-        <li>Téléphone : <a href="tel:0770577989">0770577989</a></li>
-        <li>Pages : <a href="/mentions-legales.html">Mentions légales</a>, <a href="/politique-confidentialite.html">Confidentialité</a>, <a href="/cgu.html">CGU</a></li>
-      </ul>
+  <section class="cs-section">
+    <div class="cs-container">
+      <h2 class="cs-section-title">Support</h2>
+      <p class="cs-section-subtitle">
+        Dites-nous : votre email de compte, la page concernée, et ce que vous essayiez de faire.
+      </p>
+
+      <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;">
+        <div class="card">
+          <h3>Compte / Connexion</h3>
+          <p class="muted">Problèmes de connexion, accès au coffre, limitation d’entrées.</p>
+          <a class="btn" href="/faq.html">Voir la FAQ</a>
+        </div>
+
+        <div class="card">
+          <h3>Paiements</h3>
+          <p class="muted">Checkout, Premium, reçu, accès à vie.</p>
+          <a class="btn" href="/offers.html">Voir les offres</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
