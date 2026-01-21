@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Offres — Clavis Security</title>
-  <meta name="description" content="Passez à Premium pour déverrouiller l’illimité. Paiement sécurisé par Stripe. Données chiffrées côté client." />
+  <meta name="description" content="Passez à Premium pour déverrouiller plus d’entrées, l’export PDF et un support prioritaire. Paiement sécurisé Stripe. Données chiffrées côté client." />
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="stylesheet" href="/css/app.css" />
   <link rel="manifest" href="/manifest.webmanifest">
@@ -14,89 +14,164 @@
 
 <header class="topbar">
   <div class="container">
-    <div class="nav">
-      <a class="brand" href="/index.html">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Clavis Security</span>
+    <div class="brand">
+      <a href="/index.html" class="logo" aria-label="Clavis Security">
+        <span class="dot"></span><span>Clavis</span><span class="muted">Security</span>
       </a>
-      <div class="navlinks">
-        <a href="/faq.html">FAQ</a>
-        <a href="/login.html" class="btn small">Connexion</a>
-      </div>
+    </div>
+
+    <nav class="navlinks" aria-label="Navigation">
+      <a href="/offers.html" class='active'>Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="actions">
+      <a href="/app.html" class="btn">Ouvrir l’app</a>
+      <a href="/login.html" class="btn primary">Connexion</a>
+    </div>
+
+    <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
+  </div>
+
+  <div class="mobile-menu" data-mobile-menu>
+    <div class="container" style="display:flex; flex-direction:column; gap:10px; padding-top:10px;">
+      <a href="/offers.html">Offres</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/app.html">Ouvrir l’app</a>
+      <a href="/login.html">Connexion</a>
     </div>
   </div>
 </header>
 
-<main class="section">
-  <div class="container">
-    <div class="hero">
-      <h1>Choisis ton plan. <span class="grad">Garde le contrôle.</span></h1>
-      <p class="lead">
-        Tes secrets sont chiffrés <strong>sur ton appareil</strong>. Même Clavis ne peut pas les lire.
-        Commence gratuitement, puis passe à l’illimité quand tu veux.
-      </p>
-    </div>
+<main class="container">
+  <section class="page-hero">
+    <h1>Choisissez l’offre qui vous suit dans le temps</h1>
+    <p>
+      Clavis chiffre vos secrets <strong>côté appareil</strong>. Premium ajoute de la capacité, de l’export et un support prioritaire — sans compromettre la confidentialité.
+    </p>
+  </section>
 
-    <div class="grid3" style="margin-top:18px;">
-      <div class="card">
-        <h2>Gratuit</h2>
-        <p class="muted">Pour démarrer sans friction.</p>
-        <div class="price"><span>0€</span></div>
-        <ul class="list">
-          <li>Jusqu’à <strong>15</strong> entrées</li>
-          <li>Recherche rapide</li>
-          <li>Déverrouillage par mot de passe secondaire</li>
-        </ul>
-        <a class="btn" href="/register.html?next=/dashboard.html">Créer mon coffre</a>
-      </div>
-
-      <div class="card glow">
-        <div class="pill">Le plus choisi</div>
-        <h2>Premium</h2>
-        <p class="muted">Pour ne plus jamais compter.</p>
-        <div class="price"><span>30€</span><small>/ an</small></div>
-        <ul class="list">
-          <li>Jusqu’à <strong>500</strong> entrées</li>
-          <li>Export PDF</li>
-          <li>Support prioritaire</li>
-        </ul>
-        <a class="btn primary" href="#" data-checkout-plan="annual">Passer à Premium</a>
-        <p class="hint">Annulable à tout moment • Paiement sécurisé Stripe</p>
-      </div>
-
-      <div class="card">
-        <h2>À vie</h2>
-        <p class="muted">Une fois. Pour toujours.</p>
-        <div class="price"><span>99€</span><small>paiement unique</small></div>
-        <ul class="list">
-          <li>Premium <strong>à vie</strong></li>
-          <li>Mises à jour incluses</li>
-          <li>Priorité aux nouveautés</li>
-        </ul>
-        <a class="btn" href="#" data-checkout-plan="lifetime">Accès à vie</a>
-        <p class="hint">Paiement unique • Stripe</p>
+  <section class="pricing" aria-label="Offres">
+    <div class="card price-card">
+      <div class="name">Gratuit</div>
+      <div class="price">0€</div>
+      <p class="desc">Pour démarrer et tester le coffre.</p>
+      <ul>
+        <li>Jusqu’à <strong>15</strong> entrées</li>
+        <li>Recherche rapide</li>
+        <li>Chiffrement côté client</li>
+      </ul>
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="/register.html">Créer un compte</a>
+        <a class="btn" href="/app.html">Ouvrir l’app</a>
       </div>
     </div>
 
-    <div class="card" style="margin-top:18px;">
-      <h3>Rassurance</h3>
-      <p class="muted" style="margin-top:6px;">
-        ✅ Chiffrement côté client (tes données restent illisibles sans ton mot de passe) •
-        ✅ Paiement sécurisé par Stripe •
-        ✅ Aucune pub, aucune revente de données.
-      </p>
+    <div class="card price-card featured">
+      <div class="tag">Le plus choisi</div>
+      <div class="name">Premium</div>
+      <div class="price">30€<span style="font-size:14px; color:var(--muted); font-weight:600;"> / an</span></div>
+      <p class="desc">Pour ne plus jamais compter.</p>
+      <ul>
+        <li>Jusqu’à <strong>500</strong> entrées</li>
+        <li>Export PDF</li>
+        <li>Support prioritaire</li>
+      </ul>
+      <div style="margin-top:14px;">
+        <button class="btn primary" type="button" data-checkout-plan="annual">Passer à Premium</button>
+      </div>
+      <div class="hint" style="margin-top:10px;">Annulable à tout moment • Paiement sécurisé par Stripe</div>
     </div>
-  </div>
+
+    <div class="card price-card">
+      <div class="name">À vie</div>
+      <div class="price">99€</div>
+      <p class="desc">Une fois. Pour toujours.</p>
+      <ul>
+        <li>Premium <strong>à vie</strong></li>
+        <li>Mises à jour incluses</li>
+        <li>Priorité aux nouveautés</li>
+      </ul>
+      <div style="margin-top:14px;">
+        <button class="btn" type="button" data-checkout-plan="lifetime">Accès à vie</button>
+      </div>
+      <div class="hint" style="margin-top:10px;">Paiement unique • Paiement sécurisé par Stripe</div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px;">
+    <h2 style="margin-top:0;">Pourquoi Premium est sûr</h2>
+    <div class="grid3" style="margin-top:12px;">
+      <div class="card" style="background:rgba(255,255,255,.03);">
+        <strong>Chiffrement côté client</strong>
+        <p class="muted">Vos données sont chiffrées avant d’être envoyées. Sans votre mot de passe secondaire, elles restent illisibles.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,.03);">
+        <strong>Accès contrôlé</strong>
+        <p class="muted">Déverrouillage explicite pour afficher/copier. Verrouillage rapide pour garder le coffre fermé.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,.03);">
+        <strong>Paiement Stripe</strong>
+        <p class="muted">Paiement sécurisé. Votre abonnement est géré via Stripe (annulation possible à tout moment).</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:18px;">
+    <h2>Questions fréquentes</h2>
+    <div class="faq" style="margin-top:10px;">
+      <details>
+        <summary>Je peux annuler quand je veux ?</summary>
+        <p>Oui. Pour l’offre annuelle, l’abonnement est annulable depuis Stripe. Vous gardez l’accès jusqu’à la fin de la période en cours.</p>
+      </details>
+      <details>
+        <summary>Vous voyez mes mots de passe ?</summary>
+        <p>Non. Le coffre est chiffré côté appareil. Sans votre mot de passe secondaire, le contenu n’est pas lisible.</p>
+      </details>
+      <details>
+        <summary>Comment fonctionne l’offre à vie ?</summary>
+        <p>C’est un paiement unique. Votre compte est marqué Premium à vie après confirmation de paiement.</p>
+      </details>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="foot">
-      <span>© <span data-year></span> Clavis Security</span>
-      <div class="footlinks">
-        <a href="/contact.html">Contact</a>
-        <a href="/faq.html">FAQ</a>
+  <div class="container footer-row">
+    <div>
+      <strong>Clavis Security</strong><br/>
+      <span class="muted">Coffre chiffré côté appareil — vous gardez le contrôle.</span>
+    </div>
+
+    <div style="display:flex; gap:18px; flex-wrap:wrap;">
+      <div>
+        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Produit</div>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
+          <a href="/offers.html">Offres</a>
+          <a href="/app.html">Application</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
       </div>
+
+      <div>
+        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Entreprise</div>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
+          <a href="/contact.html">Contact</a>
+          <a href="/mentions-legales.html">Mentions légales</a>
+          <a href="/politique-confidentialite.html">Confidentialité</a>
+          <a href="/cgu.html">CGU</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+    <div>© <span data-year></span> A16 Technologies — SIRET 97918596400041</div>
+    <div>
+      <a href="tel:0770577989">0770577989</a> ·
+      <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>
     </div>
   </div>
 </footer>
@@ -108,5 +183,6 @@
 <script src="/js/pwa.js" defer></script>
 <script src="/js/app.js" defer></script>
 <script src="/js/premium.js" defer></script>
+<script>document.querySelectorAll("[data-year]").forEach(n=>n.textContent=new Date().getFullYear());</script>
 </body>
 </html>
