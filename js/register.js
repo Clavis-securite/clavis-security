@@ -1,48 +1,58 @@
-// js/register.js
-// Auth: register (Supabase) — pro UX, respects ?next=
-// Depends on supabase.js and optional core/ui.js.
+// /js/register.js
+// Inscription (Supabase) — redirige vers thankyou (vérif email).
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("register-form");
+function initRegister(){
+  const form = document.getElementById('register-form');
   if (!form) return;
 
-  const toast = (msg, type="info") => (window.CS_UI && CS_UI.toast) ? CS_UI.toast(msg, type) : alert(msg);
-
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = (form.querySelector('input[name="email"]')?.value || "").trim();
-    const password = form.querySelector('input[name="password"]')?.value || "";
+    const email = (form.querySelector('input[name="email"]')?.value || '').trim();
+    const password = form.querySelector('input[name="password"]')?.value || '';
 
     if (!email || !password) {
-      toast("Renseigne un email et un mot de passe.", "error");
-      return;
-    }
-    if (password.length < 8) {
-      toast("Choisis un mot de passe d’au moins 8 caractères.", "error");
+      alert('Merci de renseigner ton email et ton mot de passe.');
       return;
     }
 
     const btn = form.querySelector('button[type="submit"]');
-    if (btn) { btn.disabled = true; btn.dataset.prevText = btn.textContent; btn.textContent = "Création…"; }
+    const old = btn ? btn.textContent : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Création...';
+    }
 
     try {
-      if (typeof signUp !== "function") throw new Error("supabase_missing");
-      const { error } = await signUp(email, password);
-      if (error) throw error;
+      // signUp() est défini dans /js/supabase.js
+      if (typeof signUp !== 'function') {
+        console.error('signUp() introuvable. Vérifie que /js/supabase.js est bien chargé AVANT /js/register.js');
+        alert("Une erreur est survenue. Réessaie.");
+        return;
+      }
 
-      toast("Compte créé ✅ Vérifie tes emails si demandé.", "success");
+      await signUp(email, password);
 
-      const params = new URLSearchParams(window.location.search);
-      const next = params.get("next");
-      const safeNext = (next && next.startsWith("/")) ? next : "/dashboard.html";
-      window.location.href = safeNext;
+      const url = new URL('/thankyou.html', window.location.origin);
+      url.searchParams.set('registered', '1');
+      url.searchParams.set('email', email);
+      window.location.href = url.pathname + url.search;
     } catch (err) {
-      console.error(err);
-      const msg = (err && err.message) ? err.message : "Inscription impossible.";
-      toast(msg, "error");
+      console.error('Register error:', err);
+      alert("Oups… impossible de créer le compte. Vérifie ton email et réessaie.");
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = btn.dataset.prevText || "Créer mon compte"; }
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = old;
+      }
     }
   });
-});
+}
+
+// Le script est parfois chargé après DOMContentLoaded (script en bas de page).
+// Dans ce cas, l'écouteur ne se déclenche jamais => le formulaire "recharge".
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRegister);
+} else {
+  initRegister();
+}

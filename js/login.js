@@ -1,56 +1,69 @@
-// js/login.js
-// Auth: login (Supabase) — pro UX, respects ?next=
-// Depends on supabase.js and optional core/ui.js.
+// /js/login.js
+// Connexion (Supabase) — simple, robuste, compatible "pretty URLs".
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("login-form");
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('login-form');
   if (!form) return;
-
-  const toast = (msg, type="info") => (window.CS_UI && CS_UI.toast) ? CS_UI.toast(msg, type) : alert(msg);
 
   // Prefill email from URL (?email=...)
   try {
     const params = new URLSearchParams(window.location.search);
-    const email = params.get("email");
+    const email = params.get('email');
     if (email) {
       const input = form.querySelector('input[name="email"]');
       if (input) input.value = email;
     }
   } catch (_) {}
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = (form.querySelector('input[name="email"]')?.value || "").trim();
-    const password = form.querySelector('input[name="password"]')?.value || "";
+    const email = (form.querySelector('input[name="email"]')?.value || '').trim();
+    const password = form.querySelector('input[name="password"]')?.value || '';
 
     if (!email || !password) {
-      toast("Renseigne ton email et ton mot de passe.", "error");
+      alert('Merci de renseigner ton email et ton mot de passe.');
       return;
     }
 
-    // UI: disable button
     const btn = form.querySelector('button[type="submit"]');
-    if (btn) { btn.disabled = true; btn.dataset.prevText = btn.textContent; btn.textContent = "Connexion…"; }
+    const old = btn ? btn.textContent : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Connexion...';
+    }
 
     try {
-      if (typeof signIn !== "function") throw new Error("supabase_missing");
-      const { error } = await signIn(email, password);
-      if (error) throw error;
+      // signIn() est défini dans /js/supabase.js
+      if (typeof signIn !== 'function') {
+        console.error('signIn() introuvable. Vérifie que /js/supabase.js est bien chargé AVANT /js/login.js');
+        alert("Une erreur est survenue. Réessaie.");
+        return;
+      }
 
-      toast("Connecté ✅", "success");
+      await signIn(email, password);
 
-      const params = new URLSearchParams(window.location.search);
-      const next = params.get("next");
-      const safeNext = (next && next.startsWith("/")) ? next : "/dashboard.html";
+      // Optional return path (?next=/offers.html)
+      let next = null;
+      try {
+        const params = new URLSearchParams(window.location.search);
+        next = params.get('next');
+      } catch (_) {}
 
-      window.location.href = safeNext;
+      // Safety: allow only same-origin relative paths
+      if (next && typeof next === 'string' && next.startsWith('/') && !next.startsWith('//')) {
+        window.location.href = next;
+      } else {
+        window.location.href = '/dashboard.html';
+      }
     } catch (err) {
-      console.error(err);
-      const msg = (err && err.message) ? err.message : "Connexion impossible.";
-      toast(msg.includes("Invalid") ? "Email ou mot de passe incorrect." : "Connexion impossible. Réessaie.", "error");
+      console.error('Login error:', err);
+      alert('Oups… email ou mot de passe incorrect.');
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = btn.dataset.prevText || "Se connecter"; }
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = old;
+      }
     }
   });
 });

@@ -1,154 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Aide – Clavis Security</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FAQ Clavis Security : réponses simples, sans jargon.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aide — Clavis-security</title>
+  <meta name="description" content="Aide Clavis-security : réponses simples, sans mots compliqués." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
   <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+    <script src="/js/i18n.js" defer></script>
+<script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
-<body class="csx-page">
+
+<body class="csx-page" data-page="faq">
+
+<nav class="app-bottom" style="display:none;">
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span>Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span>Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span>Compte</span></a>
+  </div>
+</nav>
 
 <header class="cs-topbar">
   <div class="cs-container cs-nav">
-    <div class="cs-logo">
-      <img src="/assets/icons/icon-192.png" alt="Clavis">
-      <span>Clavis Security</span>
-    </div>
-    <nav class="cs-links">
-      <a href="/index.html">Accueil</a>
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html" class="active">Aide</a>
-      <a href="/login.html" class="btn">Connexion</a>
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
+
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html">Offres</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="contact.html">Contact</a>
     </nav>
+
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
+      <button class="cs-btn cs-primary cs-install js-install" type="button" hidden>Installer l’application</button>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
+  </div>
+
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html">Offres</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
 <main>
   <section class="csx-hero">
     <div class="csx-wrap">
-      <h1>Des réponses <span class="csx-grad">simples</span>, sans blabla</h1>
-      <p class="csx-lead">
-        Ici, pas de mots techniques. Juste ce qu’il faut pour utiliser Clavis sereinement.
-      </p>
+      <h1>Des réponses <span class="csx-grad">simples</span>, sans prise de tête</h1>
+      <p class="csx-lead">Le but : te rassurer et te guider, en 2 minutes.</p>
 
       <div class="csx-proof">
         <div class="csx-pill">✅ Facile</div>
         <div class="csx-pill">✅ Clair</div>
-        <div class="csx-pill">✅ Rassurant</div>
+        <div class="csx-pill">✅ Sur téléphone</div>
+      </div>
+
+      <div id="installHelp" class="cs-install-help" hidden>
+        <div class="cs-install-help-title">Installer sur iPhone / iPad</div>
+        <div class="cs-install-help-text">
+          Appuie sur <strong>Partager</strong> (⬆️), puis <strong>Sur l’écran d’accueil</strong>.
+          <div class="cs-install-help-actions">
+            <button class="cs-btn cs-ghost" type="button" data-copy-install-link>Copier le lien</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="csx-section">
     <div class="csx-wrap">
+      <div class="csx-surface" style="padding: 18px;">
+        <div class="cs-faq" style="margin-top: 0;">
 
-      <div class="csx-faq">
-        <details class="csx-surface">
-          <summary>Est-ce que quelqu’un peut voir mes mots de passe ?</summary>
-          <p>
-            Non. Votre coffre est privé. Sans votre mot de passe, vos informations ne sont pas lisibles.
-            L’objectif est simple : <strong>vous seul</strong> pouvez accéder à vos données.
-          </p>
-        </details>
+          <details class="csx-faqItem" open>
+            <summary>Est-ce compliqué à utiliser ?</summary>
+            <p>Non. Tu crées ton coffre, tu ajoutes tes informations, puis tu retrouves tout avec la recherche. C’est tout.</p>
+          </details>
 
-        <details class="csx-surface">
-          <summary>Si j’oublie mon mot de passe, je fais comment ?</summary>
-          <p>
-            Pour votre sécurité, personne ne peut “récupérer” votre mot de passe à votre place.
-            C’est justement ce qui garantit que personne ne peut accéder à votre coffre.
-          </p>
-        </details>
+          <details class="csx-faqItem">
+            <summary>Et si j’oublie mon mot de passe ?</summary>
+            <p>
+              Ton coffre est fait pour rester privé. Donc si tu perds ton mot de passe, tu peux récupérer ton compte (email),
+              mais il faudra définir un nouveau mot de passe pour continuer. Astuce : choisis un mot de passe que tu retiens vraiment.
+            </p>
+          </details>
 
-        <details class="csx-surface">
-          <summary>Je peux l’utiliser sur téléphone et ordinateur ?</summary>
-          <p>
-            Oui. Vous pouvez vous connecter et retrouver votre coffre sur plusieurs appareils.
-            Pratique si vous changez de téléphone ou si vous voulez aussi l’avoir sur PC.
-          </p>
-        </details>
+          <details class="csx-faqItem">
+            <summary>Est-ce que ça marche sur téléphone ?</summary>
+            <p>Oui. Tu peux l’utiliser dans le navigateur, ou l’installer comme une application (icône sur l’écran d’accueil).</p>
+          </details>
 
-        <details class="csx-surface">
-          <summary>À quoi sert l’offre Premium ?</summary>
-          <p>
-            Elle enlève la limite (mots de passe illimités) et ajoute des options utiles,
-            comme l’export PDF (une copie complète de vos informations).
-          </p>
-        </details>
+          <details class="csx-faqItem">
+            <summary>Je peux faire une copie de mes informations ?</summary>
+            <p>Oui. Avec Premium, tu peux créer une copie PDF depuis ton coffre (pratique pour garder une sauvegarde).</p>
+          </details>
 
-        <details class="csx-surface">
-          <summary>Pourquoi proposer un accès à vie ?</summary>
-          <p>
-            Pour ceux qui préfèrent payer une fois et être tranquilles.
-            Même fonctionnalités Premium, sans abonnement.
-          </p>
-        </details>
+          <details class="csx-faqItem">
+            <summary>Je commence gratuit, je peux changer après ?</summary>
+            <p>Bien sûr. Tu peux commencer avec 15 éléments, puis passer à l’illimité quand tu veux.</p>
+          </details>
 
-        <details class="csx-surface">
-          <summary>Je suis débutant, c’est fait pour moi ?</summary>
-          <p>
-            Oui. Ajouter, rechercher, copier : c’est tout.
-            Clavis est pensé pour “monsieur et madame tout le monde”.
-          </p>
-        </details>
-      </div>
+          <details class="csx-faqItem">
+            <summary>J’ai un souci, vous répondez vite ?</summary>
+            <p>Oui. Écris-nous via la page Contact : on répond en général sous 24h (jours ouvrés).</p>
+          </details>
 
-      <div class="csx-trust csx-surface" style="margin-top:18px;">
-        <div>
-          <strong>Besoin d’un coup de main ?</strong> On te répond rapidement, simplement.
         </div>
-        <div>
-          <a href="/contact.html">Nous contacter →</a>
-        </div>
-      </div>
 
-      <div class="csx-footerSpace"></div>
+        <div class="csx-trust" style="margin-top: 18px;">
+          <div>
+            <strong>Besoin d’aide tout de suite ?</strong> On te répond rapidement et simplement.
+          </div>
+          <div>
+            <a href="/contact.html">Nous écrire →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="container footer-row">
-    <div>
-      <strong>Clavis Security</strong><br/>
-      <span class="muted">Coffre chiffré côté appareil — vous gardez le contrôle.</span>
-    </div>
-
-    <div style="display:flex; gap:18px; flex-wrap:wrap;">
-      <div>
-        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Produit</div>
-        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
-          <a href="/offers.html">Offres</a>
-          <a href="/app.html">Application</a>
-          <a href="/faq.html">FAQ</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Entreprise</div>
-        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
-          <a href="/contact.html">Contact</a>
-          <a href="/mentions-legales.html">Mentions légales</a>
-          <a href="/politique-confidentialite.html">Confidentialité</a>
-          <a href="/cgu.html">CGU</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-    <div>© <span data-year></span> A16 Technologies — SIRET 97918596400041</div>
-    <div>
-      <a href="tel:0770577989">0770577989</a> ·
-      <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>
-    </div>
-  </div>
+<footer class="cs-footer">
+  <div class="cs-container">© <span data-year></span> Clavis-security — Aide</div>
 </footer>
-
-<script>
-  const y = document.querySelector('[data-year]');
-  if (y) y.textContent = new Date().getFullYear();
-</script>
 
 </body>
 </html>

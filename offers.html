@@ -3,228 +3,283 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Offres — Clavis Security</title>
-  <meta name="description" content="Passez à Premium pour déverrouiller plus d’entrées, l’export PDF et un support prioritaire. Paiement sécurisé Stripe. Données chiffrées côté client." />
-  <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/app.css" />
+  <title>Offres — Clavis-security</title>
+  <meta name="description" content="Choisissez votre offre Clavis-security : gratuit, Premium annuel ou accès à vie." />
+
+  <!-- PWA -->
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- JS (defer) -->
+  <script src="/js/app-mode.js" defer></script>
+  <script src="/js/pwa.js" defer></script>
+    <script src="/js/i18n.js" defer></script>
+<script src="/js/app-shell.js" defer></script>
+  <script src="/js/app.js" defer></script>
 </head>
-<body class="csx-page">
 
-<header class="topbar">
-  <div class="container">
-    <div class="brand">
-      <a href="/index.html" class="logo" aria-label="Clavis Security">
-        <span class="dot"></span><span>Clavis</span><span class="muted">Security</span>
-      </a>
-    </div>
+<body class="csx-page" data-page="offers">
 
-    <nav class="navlinks" aria-label="Navigation">
-      <a href="/offers.html" class='active'>Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
+<nav class="app-bottom" style="display:none;">
+  <div class="app-bottom-nav">
+    <a class="app-tab" data-path="/dashboard.html" href="/dashboard.html"><div class="ico">🔐</div><span data-i18n="nav_vault">Coffre</span></a>
+    <a class="app-tab" data-path="/offers.html" href="/offers.html"><div class="ico">⭐</div><span data-i18n="nav_offers">Offres</span></a>
+    <a class="app-tab" data-path="/login.html" href="/login.html"><div class="ico">👤</div><span data-i18n="nav_account">Compte</span></a>
+  </div>
+</nav>
+
+<header class="cs-topbar">
+  <div class="cs-container cs-nav">
+    <a class="cs-brand" href="index.html" aria-label="Accueil Clavis-security">
+      <img class="cs-brand-icon" src="/assets/icons/icon-192.png" alt="" width="34" height="34">
+      <span class="cs-brand-name">Clavis-security</span>
+    </a>
+
+    <nav class="cs-links" aria-label="Navigation">
+      <a href="offers.html" class="active">Offres</a>
+      <a href="faq.html">Aide</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
-    <div class="actions">
-      <a href="/app.html" class="btn">Ouvrir l’app</a>
-      <a href="/login.html" class="btn primary">Connexion</a>
-    </div>
+    <div class="cs-actions">
+      <a class="cs-btn cs-ghost" href="login.html">Connexion</a>
+      <a class="cs-btn cs-primary" href="register.html">Créer mon coffre</a>
 
-    <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
+      <button class="cs-btn cs-ghost cs-install js-install" type="button" hidden>
+        Installer l’application
+      </button>
+
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+    </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-menu>
-    <div class="container" style="display:flex; flex-direction:column; gap:10px; padding-top:10px;">
-      <a href="/offers.html">Offres</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/app.html">Ouvrir l’app</a>
-      <a href="/login.html">Connexion</a>
-    </div>
+  <div class="cs-container cs-mobile" data-mobile-menu>
+    <a href="offers.html" class="active">Offres</a>
+    <a href="faq.html">Aide</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Connexion</a>
+    <a href="register.html">Créer mon coffre</a>
   </div>
 </header>
 
 <main>
-  <section class="cs-hero">
-    <div class="cs-container">
-      <div class="cs-hero-grid">
-        <div>
-          <h1 class="cs-hero-title">Passez à Premium</h1>
-          <p class="cs-hero-subtitle">
-            Plus d’entrées, plus de confort, le même chiffrement côté appareil.
-            Payez via Stripe et gardez le contrôle.
-          </p>
-          <div class="cs-hero-cta">
-            <button class="cs-btn cs-primary" type="button" data-checkout-plan="annual">Premium — 30€/an</button>
-            <button class="cs-btn cs-ghost" type="button" data-checkout-plan="lifetime">Accès à vie — 99€</button>
-          </div>
-          <p class="muted" style="margin-top:10px;">
-            Gratuit : 15 entrées · Premium : usage étendu · Paiement sécurisé Stripe
-          </p>
-        </div>
+  <section class="csx-hero">
+    <div class="csx-wrap">
+      <h1>Choisissez votre <span class="csx-grad">tranquillité</span></h1>
+      <p class="csx-lead">
+        Commencez gratuit, puis passez à l’illimité quand vous en avez besoin.
+        Tout est pensé pour être simple, rapide, et rassurant.
+      </p>
 
-        <div class="cs-hero-card">
-          <div class="cs-hero-card-title">Ce que vous obtenez</div>
-          <ul class="cs-checklist">
-            <li><strong>Chiffrement côté client</strong> (vos secrets ne sortent pas en clair)</li>
-            <li><strong>Déverrouillage</strong> par mot de passe secondaire</li>
-            <li><strong>Recherche</strong> instantanée dans le coffre</li>
-            <li><strong>Export PDF</strong> (pratique pour vos audits / archives)</li>
-          </ul>
-          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="cs-btn cs-ghost" href="/faq.html">Voir la FAQ</a>
-            <a class="cs-btn cs-ghost" href="/app.html">Ouvrir l’app</a>
-          </div>
+      <div class="csx-proof">
+        <div class="csx-pill">🔎 Retrouver en 2 secondes</div>
+        <div class="csx-pill">📱 Sur téléphone et ordinateur</div>
+        <div class="csx-pill">🧠 Un seul mot de passe à retenir</div>
+      </div>
+
+      <div id="offerMsg" class="csx-msg" role="status" aria-live="polite" hidden></div>
+
+      <!-- Aide iPhone/iPad (install) : pas de pop-up, juste une aide claire -->
+      <div id="installHelp" class="cs-install-help" hidden>
+        <div class="cs-install-help-title">Installer sur iPhone / iPad</div>
+        <div class="cs-install-help-text">
+          Appuie sur <strong>Partager</strong> (⬆️), puis <strong>Sur l’écran d’accueil</strong>.
+        </div>
+        <div class="cs-install-help-actions">
+          <button class="cs-btn cs-ghost" type="button" data-copy-install-link>Copier le lien</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cs-section">
-    <div class="cs-container">
-      <h2 class="cs-section-title">Choisissez votre formule</h2>
-      <p class="cs-section-subtitle">Simple, clair, sans surprise.</p>
-
-      <div class="pricing">
-        <article class="price-card">
-          <div class="price-top">
-            <h3>Gratuit</h3>
-            <div class="price"><span class="price-amount">0€</span><span class="price-period">/ toujours</span></div>
-            <p class="muted">Pour démarrer et tester.</p>
-          </div>
-          <ul class="price-features">
-            <li>Jusqu’à 15 entrées</li>
-            <li>Chiffrement côté appareil</li>
-            <li>Recherche rapide</li>
-          </ul>
-          <div class="price-cta">
-            <a class="btn" href="/register.html">Créer mon coffre</a>
-          </div>
-        </article>
-
-        <article class="price-card featured">
-          <div class="badge">Recommandé</div>
-          <div class="price-top">
-            <h3>Premium</h3>
-            <div class="price"><span class="price-amount">30€</span><span class="price-period">/ an</span></div>
-            <p class="muted">Le meilleur équilibre pour un usage sérieux.</p>
-          </div>
-          <ul class="price-features">
-            <li>Limite augmentée</li>
-            <li>Export PDF</li>
-            <li>Support prioritaire</li>
-          </ul>
-          <div class="price-cta">
-            <button class="btn primary" type="button" data-checkout-plan="annual">Passer à Premium</button>
-          </div>
-        </article>
-
-        <article class="price-card">
-          <div class="price-top">
-            <h3>À vie</h3>
-            <div class="price"><span class="price-amount">99€</span><span class="price-period">/ une fois</span></div>
-            <p class="muted">Paiement unique, accès à vie.</p>
-          </div>
-          <ul class="price-features">
-            <li>Limite augmentée</li>
-            <li>Export PDF</li>
-            <li>Accès à vie</li>
-          </ul>
-          <div class="price-cta">
-            <button class="btn" type="button" data-checkout-plan="lifetime">Choisir À vie</button>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- On garde la FAQ (tu l’aimes) -->
   <section class="csx-section">
     <div class="csx-wrap">
-      <h2 class="csx-title">Questions fréquentes</h2>
-      <p class="csx-sub">Les réponses rapides avant de passer à Premium.</p>
+      <div class="csx-grid-3">
 
-      <div class="csx-faq">
-        <details class="csx-faq-item" open>
-          <summary>Est-ce que Clavis peut lire mes mots de passe ?</summary>
-          <div class="csx-faq-body">
-            Non. Le coffre est chiffré côté appareil. Vos secrets ne sont jamais stockés en clair.
-          </div>
-        </details>
+        <article class="csx-surface csx-plan">
+          <h3>Gratuit</h3>
+          <div class="csx-price">0 €</div>
+          <p class="csx-sub">Parfait pour démarrer sans se poser de questions.</p>
 
-        <details class="csx-faq-item">
-          <summary>Que se passe-t-il si j’oublie le mot de passe secondaire ?</summary>
-          <div class="csx-faq-body">
-            Pour des raisons de sécurité, il n’existe pas de “reset” magique : c’est ce qui garantit que personne
-            ne peut déverrouiller vos secrets à votre place.
-          </div>
-        </details>
+          <ul class="csx-list">
+            <li>Jusqu’à 15 éléments</li>
+            <li>Recherche rapide</li>
+            <li>Ajout et copie en un geste</li>
+            <li>Sur téléphone et ordinateur</li>
+          </ul>
 
-        <details class="csx-faq-item">
-          <summary>Puis-je annuler Premium ?</summary>
-          <div class="csx-faq-body">
-            Oui. Vous gardez l’accès selon la période payée. Le paiement est géré via Stripe.
+          <div class="csx-ctaRow">
+            <a class="csx-btn csx-btnGhost" href="/register.html">Commencer gratuitement</a>
           </div>
-        </details>
 
-        <details class="csx-faq-item">
-          <summary>Je peux vous contacter si j’ai un souci ?</summary>
-          <div class="csx-faq-body">
-            Oui : <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> ou
-            <a href="tel:0770577989">0770577989</a>.
+          <div class="csx-small">Idéal pour prendre l’habitude.</div>
+        </article>
+
+        <article class="csx-surface csx-plan csx-highlight">
+          <div class="csx-badge">⭐ Le plus choisi</div>
+          <h3>Premium</h3>
+          <div class="csx-price">30 € / an</div>
+          <p class="csx-sub">L’option simple : vous rangez tout, sans limite.</p>
+
+          <ul class="csx-list">
+            <li>Éléments illimités</li>
+            <li>Copie PDF (pour garder un double)</li>
+            <li>Nouveautés en priorité</li>
+            <li>Réponse plus rapide si besoin</li>
+          </ul>
+
+          <div class="csx-ctaRow">
+            <button class="csx-btn csx-btnPrimary" id="buyAnnual" type="button">Passer en Premium</button>
+            <a class="csx-btn csx-btnGhost" href="/register.html">Créer mon compte</a>
           </div>
-        </details>
+
+          <div class="csx-small">Recommandé si vous voulez être tranquille.</div>
+        </article>
+
+        <article class="csx-surface csx-plan">
+          <h3>À vie</h3>
+          <div class="csx-price">99 €</div>
+          <p class="csx-sub">Un paiement unique, et c’est réglé.</p>
+
+          <ul class="csx-list">
+            <li>Tout Premium inclus</li>
+            <li>Aucun abonnement</li>
+            <li>Accès illimité à vie</li>
+            <li>Mises à jour incluses</li>
+          </ul>
+
+          <div class="csx-ctaRow">
+            <button class="csx-btn csx-btnGhost" id="buyLifetime" type="button">Accès à vie</button>
+          </div>
+
+          <div class="csx-small">Parfait si vous détestez les abonnements.</div>
+        </article>
+
       </div>
+
+      <div class="csx-trust csx-surface">
+        <div>
+          <strong>Et si je perds mon mot de passe ?</strong> On vous explique simplement quoi faire dans l’aide.
+        </div>
+        <div>
+          <a href="/faq.html">Voir les réponses →</a>
+        </div>
+      </div>
+
+      <div class="csx-footerSpace"></div>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="container footer-row">
-    <div>
-      <strong>Clavis Security</strong><br/>
-      <span class="muted">Coffre chiffré côté appareil — vous gardez le contrôle.</span>
-    </div>
-
-    <div style="display:flex; gap:18px; flex-wrap:wrap;">
-      <div>
-        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Produit</div>
-        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
-          <a href="/offers.html">Offres</a>
-          <a href="/app.html">Application</a>
-          <a href="/faq.html">FAQ</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="muted" style="font-size:12px; letter-spacing:.08em; text-transform:uppercase;">Entreprise</div>
-        <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
-          <a href="/contact.html">Contact</a>
-          <a href="/mentions-legales.html">Mentions légales</a>
-          <a href="/politique-confidentialite.html">Confidentialité</a>
-          <a href="/cgu.html">CGU</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-    <div>© <span data-year></span> A16 Technologies — SIRET 97918596400041</div>
-    <div>
-      <a href="tel:0770577989">0770577989</a> ·
-      <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>
-    </div>
+<footer class="cs-footer">
+  <div class="cs-container">
+    © <span data-year></span> Clavis-security
   </div>
 </footer>
 
+<script>
+  const y = document.querySelector('[data-year]');
+  if (y) y.textContent = new Date().getFullYear();
+</script>
+
+<!-- Supabase (session) + checkout -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase.js"></script>
-<script src="/js/core/ui.js" defer></script>
-<script src="/js/app-mode.js" defer></script>
-<script src="/js/pwa.js" defer></script>
-<script src="/js/app.js" defer></script>
-<script src="/js/premium.js" defer></script>
-<script>document.querySelectorAll("[data-year]").forEach(n=>n.textContent=new Date().getFullYear());</script>
+<script>
+  (function(){
+    const msg = document.getElementById('offerMsg');
+    const btnAnnual = document.getElementById('buyAnnual');
+    const btnLifetime = document.getElementById('buyLifetime');
+
+    function showMsg(text, type){
+      if (!msg) return;
+      msg.hidden = false;
+      msg.textContent = text;
+      msg.dataset.type = type || '';
+    }
+
+    function setLoading(btn, on){
+      if (!btn) return;
+      btn.disabled = !!on;
+      btn.dataset.loading = on ? '1' : '';
+      btn.textContent = on ? 'Ouverture…' : btn.dataset.label;
+    }
+
+    async function startCheckout(plan){
+      const btn = plan === 'annual' ? btnAnnual : btnLifetime;
+      if (btn && !btn.dataset.label) btn.dataset.label = btn.textContent;
+
+      try {
+        setLoading(btn, true);
+        showMsg('', '');
+        msg.hidden = true;
+
+        if (typeof getSession !== 'function') {
+          showMsg("Une petite erreur est survenue. Recharge la page.", 'error');
+          return;
+        }
+
+        const session = await getSession();
+        if (!session) {
+          // Flow safe: ask user to login first.
+          const next = encodeURIComponent('/offers.html');
+          window.location.href = `/login.html?next=${next}`;
+          return;
+        }
+
+        const body = {
+          plan,
+          user_id: session.user.id,
+          user_email: session.user.email,
+          site_url: window.location.origin
+        };
+
+        const res = await fetch('/.netlify/functions/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        if (!res.ok) {
+          const t = await res.text().catch(()=>'');
+          console.log('Checkout error:', res.status, t);
+          showMsg("Impossible d’ouvrir le paiement. Réessaie dans un instant.", 'error');
+          return;
+        }
+
+        const data = await res.json();
+        if (data && data.url) {
+          window.location.href = data.url;
+          return;
+        }
+
+        showMsg("Impossible d’ouvrir le paiement. Réessaie dans un instant.", 'error');
+      } catch (e) {
+        console.log(e);
+        showMsg("Impossible d’ouvrir le paiement. Réessaie dans un instant.", 'error');
+      } finally {
+        setLoading(plan === 'annual' ? btnAnnual : btnLifetime, false);
+      }
+    }
+
+    if (btnAnnual) btnAnnual.addEventListener('click', () => startCheckout('annual'));
+    if (btnLifetime) btnLifetime.addEventListener('click', () => startCheckout('lifetime'));
+
+    // Petit message si annulation
+    try{
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('canceled') === '1') {
+        showMsg("Paiement annulé. Aucun souci : tu peux réessayer quand tu veux.", 'info');
+      }
+    }catch(_){ }
+  })();
+</script>
+
 </body>
 </html>
