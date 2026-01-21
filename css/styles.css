@@ -1101,8 +1101,3 @@ body{
 .cs-toast--success{ border-color: rgba(34,197,94,.35); }
 .cs-toast--error{ border-color: rgba(239,68,68,.4); }
 .cs-toast--info{ border-color: rgba(34,211,238,.35); }
-
-
-/* Brandmark (logo SVG) */
-.brandmark{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-0.02em;}
-.brandmark img{width:36px; height:36px; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,.35);}

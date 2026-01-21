@@ -13,22 +13,22 @@
 <body class="csx-page">
 
 <header class="topbar">
-  <div class="container nav">
-    <a href="/index.html" class="brandmark" aria-label="Accueil Clavis Security">
-      <img src="/assets/brand/clavis-logo.svg" alt="Clavis" width="34" height="34">
-      <span>Clavis</span><span class="muted">Security</span>
-    </a>
+  <div class="container">
+    <div class="brand">
+      <a href="/index.html" class="logo" aria-label="Clavis Security">
+        <span class="dot"></span><span>Clavis</span><span class="muted">Security</span>
+      </a>
+    </div>
 
     <nav class="navlinks" aria-label="Navigation">
-      <a href="/offers.html">Offres</a>
+      <a href="/offers.html" class='active'>Offres</a>
       <a href="/faq.html">FAQ</a>
       <a href="/contact.html">Contact</a>
     </nav>
 
     <div class="actions">
       <a href="/app.html" class="btn">Ouvrir l’app</a>
-      <a href="/login.html" class="btn">Connexion</a>
-      <a href="/register.html" class="btn primary">Créer mon coffre</a>
+      <a href="/login.html" class="btn primary">Connexion</a>
     </div>
 
     <button class="mobile-toggle" type="button" aria-label="Ouvrir le menu" data-mobile-toggle>☰</button>
@@ -41,122 +41,99 @@
       <a href="/contact.html">Contact</a>
       <a href="/app.html">Ouvrir l’app</a>
       <a href="/login.html">Connexion</a>
-      <a href="/register.html">Créer mon coffre</a>
     </div>
   </div>
 </header>
 
-<main>
-  <section class="page-hero section">
-    <div class="container">
-      <div class="badge"><span class="spark">★</span> Offres</div>
-      <h1>Déverrouille l’expérience Premium.</h1>
-      <p>Clavis chiffre tes secrets côté appareil. Premium ajoute plus de capacité, des exports, et une expérience plus fluide — sans compromettre la sécurité.</p>
-      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn primary" href="/register.html">Créer mon coffre</a>
+<main class="container">
+  <section class="page-hero">
+    <h1>Choisissez l’offre qui vous suit dans le temps</h1>
+    <p>
+      Clavis chiffre vos secrets <strong>côté appareil</strong>. Premium ajoute de la capacité, de l’export et un support prioritaire — sans compromettre la confidentialité.
+    </p>
+  </section>
+
+  <section class="pricing" aria-label="Offres">
+    <div class="card price-card">
+      <div class="name">Gratuit</div>
+      <div class="price">0€</div>
+      <p class="desc">Pour démarrer et tester le coffre.</p>
+      <ul>
+        <li>Jusqu’à <strong>15</strong> entrées</li>
+        <li>Recherche rapide</li>
+        <li>Chiffrement côté client</li>
+      </ul>
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="/register.html">Créer un compte</a>
         <a class="btn" href="/app.html">Ouvrir l’app</a>
       </div>
-      <div class="muted" style="margin-top:12px;">Paiement sécurisé par Stripe • Annulable à tout moment (abonnement annuel)</div>
+    </div>
+
+    <div class="card price-card featured">
+      <div class="tag">Le plus choisi</div>
+      <div class="name">Premium</div>
+      <div class="price">30€<span style="font-size:14px; color:var(--muted); font-weight:600;"> / an</span></div>
+      <p class="desc">Pour ne plus jamais compter.</p>
+      <ul>
+        <li>Jusqu’à <strong>500</strong> entrées</li>
+        <li>Export PDF</li>
+        <li>Support prioritaire</li>
+      </ul>
+      <div style="margin-top:14px;">
+        <button class="btn primary" type="button" data-checkout-plan="annual">Passer à Premium</button>
+      </div>
+      <div class="hint" style="margin-top:10px;">Annulable à tout moment • Paiement sécurisé par Stripe</div>
+    </div>
+
+    <div class="card price-card">
+      <div class="name">À vie</div>
+      <div class="price">99€</div>
+      <p class="desc">Une fois. Pour toujours.</p>
+      <ul>
+        <li>Premium <strong>à vie</strong></li>
+        <li>Mises à jour incluses</li>
+        <li>Priorité aux nouveautés</li>
+      </ul>
+      <div style="margin-top:14px;">
+        <button class="btn" type="button" data-checkout-plan="lifetime">Accès à vie</button>
+      </div>
+      <div class="hint" style="margin-top:10px;">Paiement unique • Paiement sécurisé par Stripe</div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="pricing">
-        <article class="card price-card pad">
-          <div class="name">Gratuit</div>
-          <div class="price">0€</div>
-          <p class="desc">Pour démarrer et tester l’app.</p>
-          <ul class="cs-list">
-            <li>Jusqu’à <strong>15</strong> entrées</li>
-            <li>Chiffrement côté client</li>
-            <li>Recherche rapide</li>
-          </ul>
-          <div style="margin-top:16px;">
-            <a class="btn primary" href="/register.html">Créer mon coffre</a>
-          </div>
-          <div class="hint" style="margin-top:10px;">Aucun paiement requis</div>
-        </article>
-
-        <article class="card price-card featured pad">
-          <div class="name">Premium annuel <span class="tag">Recommandé</span></div>
-          <div class="price">30€ <span class="muted" style="font-size:14px;">/ an</span></div>
-          <p class="desc">L’équilibre parfait : plus de capacité, plus de confort.</p>
-          <ul class="cs-list">
-            <li>Jusqu’à <strong>500</strong> entrées</li>
-            <li>Export PDF</li>
-            <li>Support prioritaire</li>
-          </ul>
-          <div style="margin-top:16px;">
-            <button class="btn primary" type="button" data-checkout-plan="annual">Passer à Premium</button>
-          </div>
-          <div class="hint" style="margin-top:10px;">Renouvellement annuel • Annulable quand tu veux</div>
-        </article>
-
-        <article class="card price-card pad">
-          <div class="name">Premium à vie</div>
-          <div class="price">99€</div>
-          <p class="desc">Un paiement unique. Accès Premium pour toujours.</p>
-          <ul class="cs-list">
-            <li>Premium <strong>à vie</strong></li>
-            <li>Mises à jour incluses</li>
-            <li>Priorité aux nouveautés</li>
-          </ul>
-          <div style="margin-top:16px;">
-            <button class="btn" type="button" data-checkout-plan="lifetime">Accès à vie</button>
-          </div>
-          <div class="hint" style="margin-top:10px;">Paiement unique • Paiement sécurisé par Stripe</div>
-        </article>
+  <section class="card" style="margin-top:18px;">
+    <h2 style="margin-top:0;">Pourquoi Premium est sûr</h2>
+    <div class="grid3" style="margin-top:12px;">
+      <div class="card" style="background:rgba(255,255,255,.03);">
+        <strong>Chiffrement côté client</strong>
+        <p class="muted">Vos données sont chiffrées avant d’être envoyées. Sans votre mot de passe secondaire, elles restent illisibles.</p>
       </div>
-
-      <div class="hr" style="margin:26px 0;"></div>
-
-      <div class="grid3">
-        <div class="feature">
-          <div class="icon">🔒</div>
-          <h3>Chiffrement côté client</h3>
-          <p>Les secrets sont chiffrés sur ton appareil. Le serveur ne voit jamais le contenu.</p>
-        </div>
-        <div class="feature">
-          <div class="icon">⚡</div>
-          <h3>Accès rapide</h3>
-          <p>Recherche instantanée et copie en un clic. Optimisé mobile/PWA.</p>
-        </div>
-        <div class="feature">
-          <div class="icon">🧾</div>
-          <h3>Export PDF</h3>
-          <p>Garde une trace sécurisée pour tes besoins pro (avec les bons réflexes).</p>
-        </div>
+      <div class="card" style="background:rgba(255,255,255,.03);">
+        <strong>Accès contrôlé</strong>
+        <p class="muted">Déverrouillage explicite pour afficher/copier. Verrouillage rapide pour garder le coffre fermé.</p>
       </div>
+      <div class="card" style="background:rgba(255,255,255,.03);">
+        <strong>Paiement Stripe</strong>
+        <p class="muted">Paiement sécurisé. Votre abonnement est géré via Stripe (annulation possible à tout moment).</p>
+      </div>
+    </div>
+  </section>
 
-      <section class="card pad" style="margin-top:18px;">
-        <h2 style="margin-top:0;">Questions fréquentes</h2>
-        <div class="cs-faq" style="margin-top:10px;">
-          <details>
-            <summary>Est-ce que Clavis peut voir mes mots de passe ?</summary>
-            <p class="muted" style="margin:10px 0 0;">Non. Les données sont chiffrées côté client avant d’être enregistrées.</p>
-          </details>
-          <details>
-            <summary>Je peux annuler l’abonnement annuel ?</summary>
-            <p class="muted" style="margin:10px 0 0;">Oui, à tout moment. Tu conserves l’accès Premium jusqu’à la fin de la période payée.</p>
-          </details>
-          <details>
-            <summary>Le paiement est sécurisé ?</summary>
-            <p class="muted" style="margin:10px 0 0;">Oui, le paiement est traité par Stripe (nous ne stockons pas tes données de carte).</p>
-          </details>
-        </div>
-        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="/contact.html">Contacter le support</a>
-          <a class="btn" href="/cgu.html">Voir les CGU</a>
-        </div>
-      </section>
-
-      <section class="csx-trust" style="margin-top:18px;">
-        <div><strong>Entreprise :</strong> A16 Technologies</div>
-        <div><strong>Support :</strong> <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a></div>
-        <div><strong>Téléphone :</strong> <a href="tel:0770577989">07 70 57 79 89</a></div>
-      </section>
-
+  <section style="margin-top:18px;">
+    <h2>Questions fréquentes</h2>
+    <div class="faq" style="margin-top:10px;">
+      <details>
+        <summary>Je peux annuler quand je veux ?</summary>
+        <p>Oui. Pour l’offre annuelle, l’abonnement est annulable depuis Stripe. Vous gardez l’accès jusqu’à la fin de la période en cours.</p>
+      </details>
+      <details>
+        <summary>Vous voyez mes mots de passe ?</summary>
+        <p>Non. Le coffre est chiffré côté appareil. Sans votre mot de passe secondaire, le contenu n’est pas lisible.</p>
+      </details>
+      <details>
+        <summary>Comment fonctionne l’offre à vie ?</summary>
+        <p>C’est un paiement unique. Votre compte est marqué Premium à vie après confirmation de paiement.</p>
+      </details>
     </div>
   </section>
 </main>
@@ -164,17 +141,8 @@
 <footer class="footer">
   <div class="container footer-row">
     <div>
-      <div style="display:flex; align-items:center; gap:10px;">
-        <img src="/assets/brand/clavis-logo.svg" alt="Clavis" width="30" height="30" style="border-radius:10px;">
-        <strong>Clavis Security</strong>
-      </div>
-      <div class="muted" style="margin-top:8px; max-width:60ch;">
-        Coffre chiffré côté appareil — vous gardez le contrôle.
-      </div>
-      <div class="muted" style="margin-top:10px; font-size:14px;">
-        <strong>A16 Technologies</strong> • SIRET 97918596400041<br/>
-        <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a> • <a href="tel:0770577989">07 70 57 79 89</a>
-      </div>
+      <strong>Clavis Security</strong><br/>
+      <span class="muted">Coffre chiffré côté appareil — vous gardez le contrôle.</span>
     </div>
 
     <div style="display:flex; gap:18px; flex-wrap:wrap;">
@@ -199,9 +167,12 @@
     </div>
   </div>
 
-  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.10); padding-top:14px;">
-    <div class="muted" style="font-size:13px;">© <span data-year></span> A16 Technologies. Tous droits réservés.</div>
-    <div class="muted" style="font-size:13px;">Chiffrement côté client • Paiement sécurisé Stripe</div>
+  <div class="container" style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+    <div>© <span data-year></span> A16 Technologies — SIRET 97918596400041</div>
+    <div>
+      <a href="tel:0770577989">0770577989</a> ·
+      <a href="mailto:clavis.service.client@gmail.com">clavis.service.client@gmail.com</a>
+    </div>
   </div>
 </footer>
 
