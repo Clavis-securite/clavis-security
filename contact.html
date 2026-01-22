@@ -85,7 +85,7 @@
   <section class="csx-section">
     <div class="csx-wrap">
       <div class="csx-surface" style="padding: 22px;">
-        <form class="cs-form" name="contact" method="POST" data-netlify="true">
+        <form id="contactForm" class="cs-form" name="contact" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="contact" />
 
           <label>
@@ -109,6 +109,7 @@
             <button class="cs-btn cs-primary" type="submit">Envoyer</button>
             <span class="cs-muted">On te répond au plus vite.</span>
           </div>
+            <div id="contactStatus" class="cs-muted" style="min-height:20px; margin-top:6px;"></div>
         </form>
       </div>
     </div>
@@ -133,5 +134,67 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  const form = document.getElementById('contactForm');
+  if(!form) return;
+  const statusEl = document.getElementById('contactStatus');
+  const lang = (document.documentElement.lang || 'fr').toLowerCase().startsWith('en') ? 'en' : 'fr';
+
+  const TXT = {
+    fr: {
+      sending: "Envoi en cours…",
+      sent: "Message envoyé. Merci !",
+      error: "Impossible d’envoyer le message. Réessaie dans un instant."
+    },
+    en: {
+      sending: "Sending…",
+      sent: "Message sent. Thanks!",
+      error: "Unable to send the message. Please try again."
+    }
+  };
+
+  function setStatus(type, msg){
+    if(!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.style.opacity = '1';
+    statusEl.style.color = (type === 'error') ? 'var(--danger, #ef4444)' : '';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    // If JS is enabled, use Brevo function. Otherwise Netlify Forms remains a fallback.
+    e.preventDefault();
+
+    const fd = new FormData(form);
+    const payload = {
+      email: String(fd.get('email') || '').trim(),
+      subject: String(fd.get('subject') || '').trim(),
+      message: String(fd.get('message') || '').trim()
+    };
+
+    setStatus('info', TXT[lang].sending);
+
+    try{
+      const res = await fetch('/.netlify/functions/send-contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if(!res.ok){
+        setStatus('error', TXT[lang].error);
+        return;
+      }
+
+      form.reset();
+      setStatus('ok', TXT[lang].sent);
+    }catch(err){
+      setStatus('error', TXT[lang].error);
+    }
+  });
+})();
+</script>
 </body>
+
 </html>
