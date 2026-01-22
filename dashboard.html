@@ -39,23 +39,23 @@
     </a>
 
     <nav class="cs-links" aria-label="Navigation">
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
+      <a href="offers.html" data-i18n="nav_offers">Offres</a>
+      <a href="faq.html" data-i18n="nav_faq">FAQ</a>
+      <a href="contact.html" data-i18n="nav_contact">Contact</a>
     </nav>
 
     <div class="cs-actions">
       <span class="cs-pill" id="userBadge">👤 …</span>
-      <button class="cs-btn cs-ghost" id="logoutBtn" type="button">Déconnexion</button>
-      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle>Menu</button>
+      <button class="cs-btn cs-ghost" id="logoutBtn" type="button" data-i18n="action_logout">Déconnexion</button>
+      <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle data-i18n="action_menu">Menu</button>
     </div>
   </div>
 
   <div class="cs-container cs-mobile" data-mobile-menu>
-    <a href="offers.html">Offres</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <button class="cs-btn cs-ghost" id="logoutBtnMobile" type="button">Déconnexion</button>
+    <a href="offers.html" data-i18n="nav_offers">Offres</a>
+    <a href="faq.html" data-i18n="nav_faq">FAQ</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    <button class="cs-btn cs-ghost" id="logoutBtnMobile" type="button" data-i18n="action_logout">Déconnexion</button>
   </div>
 </header>
 
@@ -69,13 +69,13 @@
 
     <div class="grid2">
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Ouvrir / fermer mon coffre</h3>
+        <h3 style="margin:0 0 10px;" data-i18n="vault_controls_title">Ouvrir / fermer mon coffre</h3>
 
         <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
           <span class="pill lock" id="vaultState">FERMÉ</span>
-          <button class="btn primary" id="unlockBtn">Ouvrir mon coffre</button>
-          <button class="btn" id="lockBtn" disabled>Fermer</button>
-          <button class="btn" id="exportPdfBtn" disabled>Faire une copie PDF</button>
+          <button class="btn primary" id="unlockBtn" data-i18n="vault_open">Ouvrir mon coffre</button>
+          <button class="btn" id="lockBtn" disabled data-i18n="vault_close">Fermer</button>
+          <button class="btn" id="exportPdfBtn" disabled data-i18n="vault_export_pdf">Faire une copie PDF</button>
         </div>
 
         <div class="hero-note" id="vaultNote">
@@ -84,12 +84,12 @@
       </div>
 
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Rechercher</h3>
+        <h3 style="margin:0 0 10px;" data-i18n="search_title">Rechercher</h3>
         <div class="field">
-          <label for="search">Tapez un nom</label>
-          <input id="search" placeholder="ex : banque, gmail, netflix…" />
+          <label for="search" data-i18n="search_label">Tapez un nom</label>
+          <input id="search" placeholder="ex : banque, gmail, netflix…" data-i18n-placeholder="search_ph" />
         </div>
-        <div class="hero-note hero-note--plain">Le nom sert juste à retrouver plus vite.</div>
+        <div class="hero-note hero-note--plain" data-i18n="search_help">Le nom sert juste à retrouver plus vite.</div>
       </div>
     </div>
 
@@ -97,27 +97,27 @@
 
     <div class="grid2">
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Ajouter une information</h3>
+        <h3 style="margin:0 0 10px;" data-i18n="add_info_title">Ajouter une information</h3>
 
         <form class="form" id="addForm">
           <div class="field">
-            <label for="title">Nom (ex : Gmail)</label>
+            <label for="title" data-i18n="add_name_label">Nom (ex : Gmail)</label>
             <input id="title" required />
           </div>
 
           <div class="field">
-            <label for="username">Identifiant</label>
+            <label for="username" data-i18n="identifier">Identifiant</label>
             <input id="username" required />
           </div>
 
           <div class="field">
-            <label for="secretPassword">Mot de passe</label>
+            <label for="secretPassword" data-i18n="password">Mot de passe</label>
             <input id="secretPassword" required />
           </div>
 
           <div class="field">
-            <label for="url">Site (optionnel)</label>
-            <input id="url" placeholder="https://..." />
+            <label for="url" data-i18n="url_label">Site (optionnel)</label>
+            <input id="url" placeholder="https://..." data-i18n-placeholder="url_ph" />
           </div>
 
           <div class="field">
@@ -125,13 +125,13 @@
             <textarea id="notes" placeholder="Ex : code de secours, rappel…"></textarea>
           </div>
 
-          <button class="btn primary" type="submit">Enregistrer</button>
+          <button class="btn primary" type="submit" data-i18n="save_btn">Enregistrer</button>
           <div class="hero-note" id="limitNote"></div>
         </form>
       </div>
 
       <div class="card pad">
-        <h3 style="margin:0 0 10px;">Mes informations</h3>
+        <h3 style="margin:0 0 10px;" data-i18n="my_items_title">Mes informations</h3>
         <div class="hero-note" id="itemsInfo">Chargement…</div>
         <div id="itemsList" style="display:grid; gap:10px; margin-top:12px;"></div>
       </div>
@@ -142,14 +142,14 @@
   <div id="unlockModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter: blur(6px); z-index:999;">
     <div class="container" style="height:100%; display:grid; place-items:center;">
       <div class="card pad" style="width:min(520px, 92vw);">
-        <h3 style="margin:0 0 8px;">Ouvrir mon coffre</h3>
+        <h3 style="margin:0 0 8px;" data-i18n="vault_open">Ouvrir mon coffre</h3>
         <p style="margin:0 0 14px; color:var(--muted);">
           Pour protéger vos informations, on vous demande votre mot de passe.
         </p>
 
         <form class="form" id="unlockForm">
           <div class="field">
-            <label for="unlockPassword">Mot de passe</label>
+            <label for="unlockPassword" data-i18n="password">Mot de passe</label>
             <input id="unlockPassword" type="password" placeholder="••••••••••" required />
           </div>
 
@@ -173,13 +173,13 @@
       <span>© <span data-year></span> Clavis-security</span>
     </div>
     <div class="cs-footer-links">
-      <a href="offers.html">Offres</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-      <a href="legales.html">Légales</a>
-      <a href="cgu.html">CGU</a>
-      <a href="cgv.html">CGV</a>
-      <a href="mentions-legales.html">Mentions</a>
+      <a href="offers.html" data-i18n="nav_offers">Offres</a>
+      <a href="faq.html" data-i18n="nav_faq">FAQ</a>
+      <a href="contact.html" data-i18n="nav_contact">Contact</a>
+      <a href="legales.html" data-i18n="legal_hub">Légales</a>
+      <a href="cgu.html" data-i18n="legal_cgu">CGU</a>
+      <a href="cgv.html" data-i18n="legal_cgv">CGV</a>
+      <a href="mentions-legales.html" data-i18n="legal_mentions">Mentions</a>
     </div>
   </div>
 </footer>
@@ -485,14 +485,14 @@
           </span>
         </div>
         <div class="vault-row-actions">
-          <button class="btn small" data-action="view">Voir</button>
+          <button class="btn small" data-action="view" data-i18n="view_btn">Voir</button>
           ${
             document.documentElement.classList.contains("app-phone")
-              ? `<button class="btn small" data-action="edit">Modifier</button>`
+              ? `<button class="btn small" data-action="edit" data-i18n="edit_btn">Modifier</button>`
               : `<button class="btn small" data-action="copy-user">Copier identifiant</button>
                  <button class="btn small" data-action="copy-pass">Copier mot de passe</button>`
           }
-          <button class="btn small" data-action="delete">Supprimer</button>
+          <button class="btn small" data-action="delete" data-i18n="delete_btn">Supprimer</button>
         </div>
       `;
 

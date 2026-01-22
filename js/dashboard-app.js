@@ -29,6 +29,21 @@
 
     const fab = document.getElementById('btnAdd');
     const searchInput = document.getElementById('search');
+    // Phone UX: remove the big Search card (the top-right loupe is enough).
+    // We keep the original #search input in the DOM (hidden) because the existing dashboard logic depends on it.
+    const searchCard = searchInput ? searchInput.closest('.card') : null;
+    if (searchInput && searchCard) {
+      let hold = document.getElementById('appHiddenFields');
+      if (!hold) {
+        hold = document.createElement('div');
+        hold.id = 'appHiddenFields';
+        hold.style.display = 'none';
+        document.body.appendChild(hold);
+      }
+      hold.appendChild(searchInput);
+      searchCard.remove();
+    }
+
     const addForm = document.getElementById('addForm');
     const addCard = addForm ? addForm.closest('.card') : null;
 
@@ -62,15 +77,20 @@
         <div class="app-dash-row" id="appLangRow" hidden>
           <label class="app-lang-label" data-i18n="language">Langue</label>
           <select id="appLangSelect" class="app-lang-select" aria-label="Langue">
-            <option value="fr">Francais</option>
-            <option value="en">English</option>
-            <option value="es">Espanol</option>
-            <option value="it">Italiano</option>
+            <option value="fr">FR</option>
+            <option value="en">EN</option>
           </select>
         </div>
       `;
       document.body.insertBefore(appHeader, document.body.firstChild);
     }
+
+    // Apply current language to the elements we just injected/updated.
+    try {
+      if (window.ClavisI18n && window.ClavisI18n.setLang && window.ClavisI18n.getLang) {
+        window.ClavisI18n.setLang(window.ClavisI18n.getLang());
+      }
+    } catch (_) {}
 
     // --- Screens: LIST and ADD (no sheet/modal) ---
     let screenList = document.getElementById('appScreenList');
@@ -246,7 +266,7 @@
       const titleField = titleInput ? titleInput.closest('.field') : null;
       if (titleField) titleField.style.display = '';
       const tLabel = titleInput ? addForm.querySelector('label[for="title"]') : null;
-      if (tLabel) tLabel.textContent = 'Nom';
+      if (tLabel) { tLabel.setAttribute('data-i18n','add_name_label'); }
 
       // Hide URL and Notes fields
       const urlField = urlInput ? urlInput.closest('.field') : null;
@@ -256,9 +276,9 @@
 
       // Relabel visible fields (no jargon)
       const uLabel = usernameInput ? addForm.querySelector('label[for="username"]') : null;
-      if (uLabel) uLabel.textContent = 'Identifiant';
+      if (uLabel) { uLabel.setAttribute('data-i18n','identifier'); }
       const pLabel = passwordInput ? addForm.querySelector('label[for="secretPassword"]') : null;
-      if (pLabel) pLabel.textContent = 'Mot de passe';
+      if (pLabel) { pLabel.setAttribute('data-i18n','password'); }
 
       // Make sure inputs are password type
       if (passwordInput && passwordInput.type !== 'password') passwordInput.type = 'password';
