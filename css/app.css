@@ -206,6 +206,17 @@
   font-size: 16px;
 }
 
+/* Note "Rechercher" : en mobile on préfère un texte simple (pas de bloc/pill) */
+.app-mode body[data-page="dashboard"] .hero-note--plain {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin-top: 6px;
+  color: rgba(255,255,255,.70);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
 /* Liste d'items : plus dense */
 .app-mode body[data-page="dashboard"] #itemsList {
   gap: 10px !important;

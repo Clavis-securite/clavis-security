@@ -89,7 +89,7 @@
           <label for="search">Tapez un nom</label>
           <input id="search" placeholder="ex : banque, gmail, netflix…" />
         </div>
-        <div class="hero-note">Le nom sert juste à retrouver plus vite.</div>
+        <div class="hero-note hero-note--plain">Le nom sert juste à retrouver plus vite.</div>
       </div>
     </div>
 
@@ -743,6 +743,15 @@ async function addItem(e) {
     if (!isPremium()) return message("Cette option est réservée aux abonnés Premium.");
     if (!opened || !vaultKey) return message("Ouvrez votre coffre pour faire une copie PDF.");
 
+    // IMPORTANT : pendant l'export, on évite que la fermeture auto
+    // se déclenche et invalide la clé en plein déchiffrement.
+    if (autoLockTimer) {
+      clearTimeout(autoLockTimer);
+      autoLockTimer = null;
+    }
+
+    try {
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: "mm", format: "a4" });
 
@@ -833,9 +842,12 @@ async function addItem(e) {
       y += 6;
     }
 
-    const safeDate = now.toISOString().slice(0, 10);
-    doc.save(`clavis-copie-${safeDate}.pdf`);
-    startAutoLockTimer();
+      const safeDate = now.toISOString().slice(0, 10);
+      doc.save(`clavis-copie-${safeDate}.pdf`);
+    } finally {
+      // On relance la fermeture auto après l'export.
+      startAutoLockTimer();
+    }
   }
 
   // ==========================
