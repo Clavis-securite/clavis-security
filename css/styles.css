@@ -1219,3 +1219,9 @@ html.app-mode .csx-section{ padding-bottom: 40px; }
 
 /* Footer spacing helpers */
 .csx-footerSpace{ padding-bottom: 30px; }
+
+
+/* PC only blocks: hide on small screens */
+@media (max-width: 980px){
+  .pc-only{ display:none !important; }
+}
