@@ -401,3 +401,9 @@
 html.app-mode body[data-page="dashboard"] main {
   padding-bottom: calc(120px + env(safe-area-inset-bottom));
 }
+
+
+/* Ensure hidden CTA is really hidden (UA hidden can be overridden by author styles) */
+.app-premium-cta[hidden]{
+  display: none !important;
+}

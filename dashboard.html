@@ -380,7 +380,8 @@
       if (cta) {
         const show = isPhone && profile.plan === "free";
         cta.hidden = !show;
-      }
+        cta.style.display = show ? 'block' : 'none';
+}
     } catch (_) {}
 }
 
