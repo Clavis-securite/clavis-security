@@ -362,10 +362,21 @@
       document.getElementById("limitNote").textContent = "Offre Premium : éléments illimités + copie PDF.";
     }
   
-    // Premium CTA (mobile/iPhone): visible uniquement si plan free + en mode app-phone
+    // Premium CTA (téléphone/iPhone) : visible uniquement si plan free
+    // Note : certains utilisateurs testent en navigateur mobile (pas en PWA). On détecte donc "téléphone"
+    // via largeur + pointeur tactile, en plus de la classe app-phone.
     try {
       const cta = document.getElementById("premiumCta");
-      const isPhone = document.documentElement.classList.contains("app-phone");
+
+      function isPhoneLike() {
+        const w = Math.min(window.innerWidth || 0, (screen && screen.width) ? screen.width : 9999);
+        const small = w <= 900;
+        const coarse = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : true;
+        return small && coarse;
+      }
+
+      const isPhone = document.documentElement.classList.contains("app-phone") || isPhoneLike();
+
       if (cta) {
         const show = isPhone && profile.plan === "free";
         cta.hidden = !show;
