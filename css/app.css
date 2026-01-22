@@ -392,6 +392,11 @@
 
 .app-premium-cta:active { transform: translateY(1px); }
 
+.app-premium-cta.is-loading {
+  pointer-events: none;
+  opacity: .85;
+}
+
 /* Ensure content is not hidden behind the bottom CTA when visible */
 html.app-mode body[data-page="dashboard"] main {
   padding-bottom: calc(120px + env(safe-area-inset-bottom));

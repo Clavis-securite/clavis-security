@@ -27,7 +27,7 @@
 <body data-page="dashboard">
 
 
-<a id="premiumCta" class="app-premium-cta" href="/offers.html" hidden>Passer en prenium</a>
+<a id="premiumCta" class="app-premium-cta" href="#" data-plan="annual" hidden>Passer en prenium</a>
 
 <button class="app-fab" id="btnAdd" style="display:none;" aria-label="Ajouter">＋</button>
 
@@ -236,6 +236,69 @@
 
   function isPremium() {
     return profile && (profile.plan === "annual" || profile.plan === "lifetime");
+  }
+
+  async function startCheckout(plan) {
+    // Mobile CTA: ouverture directe du paiement (annual)
+    const cta = document.getElementById('premiumCta');
+    const originalText = cta ? cta.textContent : '';
+
+    try {
+      if (cta) {
+        cta.setAttribute('aria-disabled', 'true');
+        cta.classList.add('is-loading');
+        cta.textContent = 'Ouverture…';
+      }
+
+      if (typeof getSession !== 'function') {
+        message("Une erreur est survenue. Recharge la page.");
+        return;
+      }
+
+      const session = await getSession();
+      if (!session) {
+        const next = encodeURIComponent('/dashboard.html');
+        window.location.href = `/login.html?next=${next}`;
+        return;
+      }
+
+      const body = {
+        plan,
+        user_id: session.user.id,
+        user_email: session.user.email,
+        site_url: window.location.origin
+      };
+
+      const res = await fetch('/.netlify/functions/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (!res.ok) {
+        const t = await res.text().catch(()=>'');
+        console.log('Checkout error:', res.status, t);
+        message("Impossible d’ouvrir le paiement. Réessaie dans un instant.");
+        return;
+      }
+
+      const data = await res.json();
+      if (data && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+
+      message("Impossible d’ouvrir le paiement. Réessaie dans un instant.");
+    } catch (e) {
+      console.log(e);
+      message("Impossible d’ouvrir le paiement. Réessaie dans un instant.");
+    } finally {
+      if (cta) {
+        cta.removeAttribute('aria-disabled');
+        cta.classList.remove('is-loading');
+        cta.textContent = originalText || 'Passer en prenium';
+      }
+    }
   }
 
   function startAutoLockTimer() {
@@ -784,6 +847,19 @@ async function addItem(e) {
 
     await loadProfile();
     await loadItems();
+
+    // Premium CTA (mobile/iPhone): ouvre directement le paiement "annual"
+    try {
+      const cta = document.getElementById('premiumCta');
+      if (cta) {
+        cta.addEventListener('click', async (e) => {
+          e.preventDefault();
+          // Sécurité: si déjà premium, on ne fait rien
+          if (isPremium()) return;
+          await startCheckout(cta.dataset.plan || 'annual');
+        });
+      }
+    } catch (_) {}
 
     document.getElementById("search").addEventListener("input", renderItems);
 
