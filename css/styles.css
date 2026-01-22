@@ -1225,3 +1225,20 @@ html.app-mode .csx-section{ padding-bottom: 40px; }
 @media (max-width: 980px){
   .pc-only{ display:none !important; }
 }
+
+
+/* --- Added: reassurance + premium badge --- */
+.cs-pill--premium{
+  border-color: rgba(34,197,94,.35);
+  background: rgba(34,197,94,.10);
+}
+
+.hero-hint{
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.hero-hint--premium{
+  color: rgba(255,255,255,.78);
+}

@@ -8,6 +8,10 @@
     fr: {
       language: 'Langue',
 
+      security_reassure: '🔒 Vos données sont chiffrées localement. Même nous ne pouvons pas lire vos identifiants.',
+      premium_active_badge: 'Premium actif',
+      premium_export_included: '✔ Export PDF inclus avec Premium',
+
       // Topbar / nav
       nav_offers: 'Offres',
       nav_faq: 'FAQ',
@@ -71,6 +75,10 @@
     },
     en: {
       language: 'Language',
+
+      security_reassure: '🔒 Your data is encrypted locally. Even we cannot read your credentials.',
+      premium_active_badge: 'Premium active',
+      premium_export_included: '✔ PDF export included with Premium',
 
       // Topbar / nav
       nav_offers: 'Plans',

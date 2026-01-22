@@ -46,6 +46,7 @@
 
     <div class="cs-actions">
       <span class="cs-pill" id="userBadge">👤 …</span>
+      <span class="cs-pill cs-pill--premium" id="planBadge" hidden data-i18n="premium_active_badge">Premium actif</span>
       <button class="cs-btn cs-ghost" id="logoutBtn" type="button" data-i18n="action_logout">Déconnexion</button>
       <button class="cs-btn cs-ghost cs-menu" type="button" data-mobile-toggle data-i18n="action_menu">Menu</button>
     </div>
@@ -81,6 +82,10 @@
         <div class="hero-note" id="vaultNote">
           Pour afficher ou copier vos informations, vous devez ouvrir votre coffre.
         </div>
+
+        <div class="hero-hint" id="securityReassure" data-i18n="security_reassure">🔒 Vos données sont chiffrées localement. Même nous ne pouvons pas lire vos identifiants.</div>
+        <div class="hero-hint hero-hint--premium" id="premiumExportHint" hidden data-i18n="premium_export_included">✔ Export PDF inclus avec Premium</div>
+
       </div>
 
       <div class="card pad">
@@ -382,6 +387,13 @@
         cta.hidden = !show;
         cta.style.display = show ? 'block' : 'none';
 }
+
+      // Premium badge + hint
+      const badge = document.getElementById('planBadge');
+      const exportHint = document.getElementById('premiumExportHint');
+      const prem = isPremium();
+      if (badge) badge.hidden = !prem;
+      if (exportHint) exportHint.hidden = !prem;
     } catch (_) {}
 }
 
